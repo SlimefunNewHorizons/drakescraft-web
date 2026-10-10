@@ -407,3 +407,148 @@ body.theme-halloween .card:hover {
 body.theme-halloween .site-nav {
   border-bottom: 1px solid rgba(255, 119, 0, 0.25) !important;
 }
+
+
+/* ==========================================================================
+   REGLAS MAESTRAS DE HALLOWEEN PARA TODAS LAS PAGINAS DEL SITIO
+   (Tienda, Metricas, Guias, Comandos, Rangos, Slimefun, Apoya, Soporte)
+   ========================================================================== */
+
+/* 1. TIENDA (store.html) EN HALLOWEEN */
+body.theme-halloween.store-theme,
+body.theme-halloween[data-page="store"],
+body.theme-halloween .store-theme {
+  --store-bg: #08040d !important;
+  --store-card-bg: rgba(24, 12, 32, 0.85) !important;
+  --store-card-border: rgba(255, 119, 0, 0.32) !important;
+  --store-card-hover: rgba(255, 119, 0, 0.65) !important;
+  --store-accent-gold: #ffaa33 !important;
+  --store-accent-purple: #c084fc !important;
+  background-color: #08040d !important;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(255, 119, 0, 0.16) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(180, 20, 20, 0.12) 0%, transparent 40%) !important;
+}
+
+body.theme-halloween .store-hero-modern {
+  border-bottom: 1px solid rgba(255, 119, 0, 0.25) !important;
+}
+
+body.theme-halloween .store-hero-modern .badge-editorial,
+body.theme-halloween .store-pill {
+  background: rgba(255, 119, 0, 0.16) !important;
+  border-color: rgba(255, 119, 0, 0.45) !important;
+  color: #ffaa33 !important;
+}
+
+body.theme-halloween .store-pill.active {
+  background: linear-gradient(135deg, #ff7700, #b30000) !important;
+  color: #fff !important;
+  border-color: #ffaa33 !important;
+  box-shadow: 0 0 16px rgba(255, 119, 0, 0.5) !important;
+}
+
+body.theme-halloween .store-card {
+  background: rgba(22, 10, 30, 0.8) !important;
+  border: 1px solid rgba(255, 119, 0, 0.25) !important;
+}
+
+body.theme-halloween .store-card:hover {
+  border-color: #ff7700 !important;
+  box-shadow: 0 8px 30px rgba(255, 119, 0, 0.25), 0 0 15px rgba(255, 119, 0, 0.15) !important;
+}
+
+body.theme-halloween .store-card__btn {
+  background: linear-gradient(135deg, #ff7700, #b30000) !important;
+  border-color: #ffaa33 !important;
+  box-shadow: 0 4px 15px rgba(255, 119, 0, 0.35) !important;
+}
+
+body.theme-halloween .store-price-tag,
+body.theme-halloween .store-card__price {
+  color: #ffaa33 !important;
+}
+
+/* 2. METRICAS (metricas.html) EN HALLOWEEN */
+body.theme-halloween[data-section="metrics"],
+body.theme-halloween .metricas-container {
+  --page-accent: #ff7700 !important;
+}
+
+body.theme-halloween .metric-card,
+body.theme-halloween .stat-card,
+body.theme-halloween .node-card {
+  background: rgba(22, 10, 30, 0.8) !important;
+  border: 1px solid rgba(255, 119, 0, 0.25) !important;
+}
+
+body.theme-halloween .metric-card:hover,
+body.theme-halloween .stat-card:hover,
+body.theme-halloween .node-card:hover {
+  border-color: #ff7700 !important;
+  box-shadow: 0 0 25px rgba(255, 119, 0, 0.22) !important;
+}
+
+body.theme-halloween .metric-val,
+body.theme-halloween .stat-number {
+  color: #ffaa33 !important;
+  text-shadow: 0 0 15px rgba(255, 119, 0, 0.4) !important;
+}
+
+/* 3. GUIAS Y ACORDEONES (guia.html, guia-comandos.html, guia-rangos.html, guia-slimefun.html) */
+body.theme-halloween .guide-hero,
+body.theme-halloween .guia-hero {
+  border-bottom: 1px solid rgba(255, 119, 0, 0.2) !important;
+}
+
+body.theme-halloween .guide-hero h1,
+body.theme-halloween .guia-hero h1,
+body.theme-halloween .section-title {
+  color: #f5e6fb !important;
+  text-shadow: 0 0 25px rgba(255, 119, 0, 0.45) !important;
+}
+
+body.theme-halloween .accordion__header {
+  border-color: rgba(255, 119, 0, 0.2) !important;
+}
+
+body.theme-halloween .accordion__item--open .accordion__header,
+body.theme-halloween .accordion__header:hover {
+  border-color: #ff7700 !important;
+  background: rgba(255, 119, 0, 0.08) !important;
+}
+
+body.theme-halloween .search-input,
+body.theme-halloween .filter-search input {
+  border-color: rgba(255, 119, 0, 0.3) !important;
+  background: rgba(20, 8, 28, 0.8) !important;
+}
+
+body.theme-halloween .search-input:focus,
+body.theme-halloween .filter-search input:focus {
+  border-color: #ff7700 !important;
+  box-shadow: 0 0 15px rgba(255, 119, 0, 0.35) !important;
+}
+
+body.theme-halloween .btn-primary,
+body.theme-halloween .guide-pill.active {
+  background: linear-gradient(135deg, #ff7700, #b30000) !important;
+  border-color: #ffaa33 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(255, 119, 0, 0.35) !important;
+}
+
+/* 4. FOOTER & SCROLLBAR UNIVERSAL */
+body.theme-halloween .site-footer {
+  border-top: 1px solid rgba(255, 119, 0, 0.2) !important;
+}
+
+body.theme-halloween ::-webkit-scrollbar-thumb {
+  background: rgba(255, 119, 0, 0.4) !important;
+  border-radius: 4px;
+}
+
+body.theme-halloween ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 119, 0, 0.7) !important;
+}
