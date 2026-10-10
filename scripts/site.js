@@ -292,6 +292,15 @@
         }
     }
 
+    function ensureChristmasFX() {
+        if (!document.getElementById("drakes-christmas-fx-script")) {
+            const script = document.createElement("script");
+            script.id = "drakes-christmas-fx-script";
+            script.src = "scripts/christmas-fx.js?v=20261010-v1";
+            document.head.appendChild(script);
+        }
+    }
+
     function applySeasonalTheme(forcedTheme) {
         ensureSeasonalStylesheet();
         const theme = forcedTheme || detectSeasonalTheme();
@@ -300,6 +309,8 @@
             document.body.classList.add("theme-" + theme);
             if (theme === "halloween") {
                 ensureHalloweenFX();
+            } else if (theme === "christmas") {
+                ensureChristmasFX();
             }
         }
         window.drakesCurrentTheme = theme;
