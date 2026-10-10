@@ -353,3 +353,57 @@ body.theme-valentines .home-cta-store {
   border-color: #f43f5e !important;
   box-shadow: 0 0 30px rgba(244, 63, 94, 0.35) !important;
 }
+
+
+/*  TELARANAS EN ESQUINAS SUPERIORES PARA TODAS LAS PAGINAS EN HALLOWEEN  */
+body.theme-halloween::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 170px;
+  height: 170px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='rgba(255,119,0,0.38)' stroke-width='1.2' d='M0,0 L100,0 M0,0 L0,100 M0,0 L85,85 M0,0 L45,95 M0,0 L95,45 M0,20 Q20,20 20,0 M0,40 Q40,40 40,0 M0,60 Q60,60 60,0 M0,80 Q80,80 80,0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.85;
+}
+
+body.theme-halloween::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 170px;
+  height: 170px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='rgba(255,119,0,0.38)' stroke-width='1.2' d='M100,0 L0,0 M100,0 L100,100 M100,0 L15,85 M100,0 L55,95 M100,0 L5,45 M100,20 Q80,20 80,0 M100,40 Q60,40 60,0 M100,60 Q40,60 40,0 M100,80 Q20,80 20,0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.85;
+}
+
+/*  ACENTOS Y TARJETAS EN TODAS LAS PAGINAS (GUIAS, COMANDOS, SLIMEFUN, TIENDA)  */
+body.theme-halloween .guide-card,
+body.theme-halloween .rank-card,
+body.theme-halloween .metric-card,
+body.theme-halloween .store-card,
+body.theme-halloween .card,
+body.theme-halloween .accordion__item {
+  border-color: rgba(255, 119, 0, 0.28) !important;
+}
+
+body.theme-halloween .guide-card:hover,
+body.theme-halloween .rank-card:hover,
+body.theme-halloween .store-card:hover,
+body.theme-halloween .card:hover {
+  border-color: rgba(255, 119, 0, 0.65) !important;
+  box-shadow: 0 8px 32px rgba(255, 119, 0, 0.2) !important;
+}
+
+body.theme-halloween .site-nav {
+  border-bottom: 1px solid rgba(255, 119, 0, 0.25) !important;
+}

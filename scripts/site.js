@@ -274,7 +274,17 @@
         return "default";
     }
 
+    function ensureSeasonalStylesheet() {
+        if (!document.querySelector('link[href*="seasonal-themes.css"]')) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "styles/seasonal-themes.css?v=20261010-v4";
+            document.head.appendChild(link);
+        }
+    }
+
     function applySeasonalTheme(forcedTheme) {
+        ensureSeasonalStylesheet();
         const theme = forcedTheme || detectSeasonalTheme();
         document.body.classList.remove("theme-halloween", "theme-birthday", "theme-christmas", "theme-valentines");
         if (theme !== "default") {
