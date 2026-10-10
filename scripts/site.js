@@ -283,12 +283,24 @@
         }
     }
 
+    function ensureHalloweenFX() {
+        if (!document.getElementById("drakes-halloween-fx-script")) {
+            const script = document.createElement("script");
+            script.id = "drakes-halloween-fx-script";
+            script.src = "scripts/halloween-fx.js?v=20261010-v1";
+            document.head.appendChild(script);
+        }
+    }
+
     function applySeasonalTheme(forcedTheme) {
         ensureSeasonalStylesheet();
         const theme = forcedTheme || detectSeasonalTheme();
         document.body.classList.remove("theme-halloween", "theme-birthday", "theme-christmas", "theme-valentines");
         if (theme !== "default") {
             document.body.classList.add("theme-" + theme);
+            if (theme === "halloween") {
+                ensureHalloweenFX();
+            }
         }
         window.drakesCurrentTheme = theme;
         window.dispatchEvent(new CustomEvent("drakesThemeChanged", { detail: { theme } }));
