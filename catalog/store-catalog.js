@@ -12,6 +12,7 @@ export const storeCatalog = {
   },
   categories: [
     { id: 'halloween', label: '🎃 Eventos Únicos: Halloween', tagline: 'Edición mítica y ultra-limitada disponible exclusivamente durante el mes de Octubre con entrega digital inmediata.' },
+    { id: 'christmas', label: '🎄 Eventos Únicos: Navidad & Solsticio Hiemal', tagline: 'Kit exclusivo de la Corona de Bóreas y Frío Primordial. Disponible Diciembre a Enero con entrega digital inmediata.' },
     { id: 'monthly', label: 'Pases VIP', tagline: 'Pases manuales de 30 días, sin renovación automática. Progresión griega real, utilidades y auras integradas por Odysseia.' },
     { id: 'titans', label: 'Titanes Primordiales', tagline: 'La línea superior de rangos mensuales: equipo, protecciones y habilidades de escala primordial.' },
     { id: 'roles', label: 'Roles de Juego', tagline: 'Pases manuales de 30 días, sin renovación automática. Subrangos con identidad propia dentro de la comunidad.' },
