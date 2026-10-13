@@ -8,21 +8,22 @@
 (function () {
     'use strict';
 
-    function isHalloweenSeason() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const queryTheme = urlParams.get('theme');
-        if (queryTheme) return queryTheme.toLowerCase() === 'halloween';
+    // Misma regla que site.js (calendario de Chile, ?theme= solo en la pestana). Si site.js no esta cargado, se
+    // replica la parte necesaria.
+    function isSeason() {
+        if (typeof window.drakesDetectSeasonalTheme === 'function') return window.drakesDetectSeasonalTheme() === 'halloween';
+        const q = new URLSearchParams(window.location.search).get('theme');
+        if (q) return q.toLowerCase() === 'halloween';
+        let month, day;
         try {
-            const stored = localStorage.getItem('drakes_seasonal_theme');
-            if (stored) return stored === 'halloween';
-        } catch (e) {}
-
-        const now = new Date();
-        // 1 al 31 de octubre inclusive (mes index 9)
-        return now.getMonth() === 9;
+            const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+            month = Number(parts.find((x) => x.type === 'month').value) - 1;
+            day = Number(parts.find((x) => x.type === 'day').value);
+        } catch (e) { const n = new Date(); month = n.getMonth(); day = n.getDate(); }
+        return month === 9;
     }
 
-    if (!isHalloweenSeason()) return;
+    if (!isSeason()) return;
 
     function initHalloweenFX() {
         if (document.getElementById('drakes-halloween-canvas')) return;

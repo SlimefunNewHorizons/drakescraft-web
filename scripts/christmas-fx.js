@@ -8,22 +8,22 @@
 (function () {
     'use strict';
 
-    function isChristmasSeason() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const queryTheme = urlParams.get('theme');
-        if (queryTheme) return queryTheme.toLowerCase() === 'christmas';
+    // Misma regla que site.js (calendario de Chile, ?theme= solo en la pestana). Si site.js no esta cargado, se
+    // replica la parte necesaria.
+    function isSeason() {
+        if (typeof window.drakesDetectSeasonalTheme === 'function') return window.drakesDetectSeasonalTheme() === 'christmas';
+        const q = new URLSearchParams(window.location.search).get('theme');
+        if (q) return q.toLowerCase() === 'christmas';
+        let month, day;
         try {
-            const stored = localStorage.getItem('drakes_seasonal_theme');
-            if (stored) return stored === 'christmas';
-        } catch (e) {}
-
-        const now = new Date();
-        const month = now.getMonth(); // 11 = Dic, 0 = Ene
-        const day = now.getDate();
+            const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+            month = Number(parts.find((x) => x.type === 'month').value) - 1;
+            day = Number(parts.find((x) => x.type === 'day').value);
+        } catch (e) { const n = new Date(); month = n.getMonth(); day = n.getDate(); }
         return month === 11 || (month === 0 && day <= 15);
     }
 
-    if (!isChristmasSeason()) return;
+    if (!isSeason()) return;
 
     function initChristmasFX() {
         if (document.getElementById('drakes-christmas-canvas')) return;

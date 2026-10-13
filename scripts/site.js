@@ -238,47 +238,58 @@
         }
     }
 
+    const SEASON_THEMES = ["halloween", "birthday", "christmas", "valentines", "default"];
+
+    // Fecha segun America/Santiago (el servidor es chileno): asi el cambio de tema ocurre a medianoche de Chile
+    // para todos los visitantes y no segun la zona horaria de cada uno.
+    function chileDate() {
+        try {
+            const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Santiago", year: "numeric", month: "2-digit", day: "2-digit" })
+                .formatToParts(new Date());
+            const get = (type) => Number(parts.find((x) => x.type === type).value);
+            return { month: get("month") - 1, day: get("day") };
+        } catch (e) {
+            const now = new Date();
+            return { month: now.getMonth(), day: now.getDate() };
+        }
+    }
+
+    // Tema por calendario:
+    //   octubre ......... halloween   (se retira el 31 de octubre)
+    //   noviembre ....... birthday    (cumpleanos del owner, 29 de noviembre)
+    //   1 dic - 15 ene .. christmas   (se retira el 15 de enero)
+    //   febrero ......... valentines
+    function calendarTheme() {
+        const { month, day } = chileDate();
+        if (month === 9) return "halloween";
+        if (month === 10) return "birthday";
+        if (month === 11 || (month === 0 && day <= 15)) return "christmas";
+        if (month === 1) return "valentines";
+        return "default";
+    }
+
     function detectSeasonalTheme() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const queryTheme = urlParams.get("theme");
-        if (queryTheme) {
+        // ?theme=... sirve para previsualizar y SOLO vale en esa pestana (sessionStorage). Antes se guardaba en
+        // localStorage y el visitante se quedaba para siempre en Halloween aunque ya fuera diciembre.
+        const queryTheme = new URLSearchParams(window.location.search).get("theme");
+        if (queryTheme && SEASON_THEMES.includes(queryTheme.toLowerCase())) {
             const normalized = queryTheme.toLowerCase();
-            if (["halloween", "birthday", "christmas", "valentines", "default"].includes(normalized)) {
-                try { localStorage.setItem("drakes_seasonal_theme", normalized); } catch (e) {}
-                return normalized;
-            }
+            try { sessionStorage.setItem("drakes_seasonal_preview", normalized); } catch (e) {}
+            return normalized;
         }
         try {
-            const storedTheme = localStorage.getItem("drakes_seasonal_theme");
-            if (storedTheme && ["halloween", "birthday", "christmas", "valentines", "default"].includes(storedTheme)) {
-                return storedTheme;
-            }
+            const preview = sessionStorage.getItem("drakes_seasonal_preview");
+            if (preview && SEASON_THEMES.includes(preview)) return preview;
+            localStorage.removeItem("drakes_seasonal_theme"); // valor viejo que fijaba el tema para siempre
         } catch (e) {}
-
-        const now = new Date();
-        const month = now.getMonth(); // 0: Jan, 1: Feb, ..., 9: Oct, 10: Nov, 11: Dec
-        const day = now.getDate();
-
-        // Octubre (todo el mes): Halloween / Sombras del Tártaro
-        if (month === 9) return "halloween";
-
-        // Noviembre: Cumpleaños del Owner / JackStar (29 de Noviembre)
-        if (month === 10) return "birthday";
-
-        // Diciembre y hasta el 15 de Enero: Navidad & Solsticio Hiemal
-        if (month === 11 || (month === 0 && day <= 15)) return "christmas";
-
-        // Febrero: Día de los Enamorados / Afrodita
-        if (month === 1) return "valentines";
-
-        return "default";
+        return calendarTheme();
     }
 
     function ensureSeasonalStylesheet() {
         if (!document.querySelector('link[href*="seasonal-themes.css"]')) {
             const link = document.createElement("link");
             link.rel = "stylesheet";
-            link.href = "styles/seasonal-themes.css?v=20261010-v4";
+            link.href = "styles/seasonal-themes.css?v=20261014-v6";
             document.head.appendChild(link);
         }
     }
@@ -287,7 +298,7 @@
         if (!document.getElementById("drakes-halloween-fx-script")) {
             const script = document.createElement("script");
             script.id = "drakes-halloween-fx-script";
-            script.src = "scripts/halloween-fx.js?v=20261010-v1";
+            script.src = "scripts/halloween-fx.js?v=20261014";
             document.head.appendChild(script);
         }
     }
@@ -296,7 +307,7 @@
         if (!document.getElementById("drakes-christmas-fx-script")) {
             const script = document.createElement("script");
             script.id = "drakes-christmas-fx-script";
-            script.src = "scripts/christmas-fx.js?v=20261010-v1";
+            script.src = "scripts/christmas-fx.js?v=20261014";
             document.head.appendChild(script);
         }
     }
@@ -321,9 +332,10 @@
     window.showToast = showToast;
     window.setupTilt = setupTilt;
     window.drakesDetectSeasonalTheme = detectSeasonalTheme;
+    window.drakesCalendarTheme = calendarTheme;
     window.drakesApplySeasonalTheme = applySeasonalTheme;
     window.drakesSetSeasonalTheme = function(theme) {
-        try { localStorage.setItem("drakes_seasonal_theme", theme); } catch (e) {}
+        try { sessionStorage.setItem("drakes_seasonal_preview", theme); } catch (e) {}
         return applySeasonalTheme(theme);
     };
 

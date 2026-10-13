@@ -198,7 +198,7 @@ body.cyber-greek-theme {
 .inv-header { display: flex; justify-content: space-between; align-items: center; }
 .inv-summary { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-muted); }
 .inv-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
-.inv-grid { display: grid; grid-template-columns: repeat(9, 44px); gap: 4px; }
+.inv-grid { display: grid; grid-template-columns: repeat(9, minmax(0, 44px)); gap: 4px; justify-content: center; }
 .inv-slot {
   width: 44px; height: 44px; background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px;
@@ -221,3 +221,11 @@ body.cyber-greek-theme {
   .inventory-panel { grid-column: 1; }
   .canvas-wrapper { height: 350px; }
 }
+
+/* Movil (2026-10-14): los paneles HUD no deben exceder el ancho de la pantalla */
+.hud-grid > *, .hud-card { min-width: 0; max-width: 100%; }
+@media (max-width: 600px) {
+  .orders-grid { grid-template-columns: 1fr; }
+  .header-status-pill { max-width: 100%; flex-wrap: wrap; }
+}
+.view-switch-tabs, .radar-controls { flex-wrap: wrap; max-width: 100%; }

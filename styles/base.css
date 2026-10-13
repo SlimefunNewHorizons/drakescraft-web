@@ -1239,3 +1239,48 @@ body {
     color: #ffffff;
     box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
 }
+
+/* ==========================================================================
+   RESPONSIVE (2026-10-14): el menu de escritorio no cabe por debajo de ~1180 px (tablets, ventanas
+   estrechas y moviles en modo escritorio): "Discord" y el selector de idioma se salian de la pantalla.
+   Se colapsa a hamburguesa desde 1180 px; el resto del orden de la pagina no cambia.
+   ========================================================================== */
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, canvas, svg, iframe { max-width: 100%; }
+
+@media (max-width: 1180px) {
+    .nav-toggle { display: block; }
+
+    .site-nav__links {
+        position: absolute;
+        top: calc(100% + 0.4rem);
+        left: 1rem;
+        right: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.15rem;
+        padding: 0.8rem;
+        max-height: calc(100vh - 6rem);
+        overflow-y: auto;
+        background: rgba(5, 19, 15, .98);
+        border: 1px solid rgba(216, 182, 90, .28);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+    }
+    .site-nav__links.is-open { display: flex; }
+    .site-nav__links a { min-height: 44px; display: flex; align-items: center; }
+    .site-nav__links .nav-lang-btn,
+    .site-nav__links .nav-discord { justify-content: center; }
+}
+
+@media (max-width: 960px) {
+    .hero-stage { min-height: 320px; }
+}
+
+@media (max-width: 560px) {
+    .container, .wrap, main > section { padding-left: 1rem; padding-right: 1rem; }
+    h1 { overflow-wrap: anywhere; }
+    table { display: block; overflow-x: auto; }
+    .btn, .button, button { min-height: 44px; }
+}
