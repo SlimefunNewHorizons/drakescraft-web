@@ -250,9 +250,15 @@
 
 
 /* Primeros pasos (home) */
-.home-start { padding:3rem 0; border-top:1px solid var(--home-line); }
+.home-start { padding:4rem 0 4.5rem; border-top:1px solid var(--home-line); }
 .home-start h2 { margin:.2rem 0 1.2rem; }
 .home-start__steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
 .home-start__steps li { padding:1.1rem 1.2rem; border:1px solid var(--home-line); border-radius:12px; line-height:1.55; }
 .home-start__steps code { overflow-wrap:anywhere; }
 .home-start__note { margin:1.2rem 0 0; opacity:.85; line-height:1.55; }
+.home-start { background:#0a1f18; }
+.home-start .container { padding-block:0; }
+.home-start__steps { counter-reset:paso; }
+.home-start__steps li { counter-increment:paso; position:relative; padding-top:2.6rem; background:rgba(244,239,223,.03); }
+.home-start__steps li::before { content:counter(paso); position:absolute; top:.8rem; left:1.2rem; width:1.7rem; height:1.7rem; display:grid; place-items:center; border:1px solid var(--home-gold); color:var(--home-gold); font:500 .8rem/1 "DM Mono",monospace; }
+.home-start__note { max-width:70ch; padding:1rem 1.2rem; border-left:3px solid var(--home-gold); background:rgba(216,182,90,.06); }

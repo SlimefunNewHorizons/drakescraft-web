@@ -1127,7 +1127,7 @@ app.get('/api/edge-metrics', async (_request, reply) => {
       host: 'Game Hosting Dedicado (Dallas, TX, USA)',
       subdomain: 'mc.drakescraft.cl',
       java_port: 25565,
-      bedrock_port: 19132,
+      bedrock_port: 25565,
       tps_target: '20.0 TPS',
       ddos_mitigation: 'Filtrado perimetral L4/L7 + Rate Limiting Activo',
       modalities: [
