@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btnTextColor: "#fff",
             title: "La Noche Perpetua del Tártaro ha comenzado",
             desc: "En DrakesCraft la luz solar ha sido desterrada durante todo octubre. Descubre el <strong>Kit Legendario: Sombras del Tártaro</strong>, con la armadura divina del Rey del Tártaro (+10 Corazones e inmunidad total a radiación y fuego), la Guadaña Espectral de Caronte con daño verdadero y la legendaria Papa de Mar Espectral.",
-            btnText: "Ver Kit Tártaro $29.99 ➔",
+            btnText: "Ver Kit Tártaro US$29.99 ➔",
             category: "halloween"
         },
         birthday: {

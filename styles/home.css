@@ -248,3 +248,11 @@
 .star-tech-card code { margin-top:auto; padding-top:1rem; color:#79d7ff; font-size:.75rem; font-family:"DM Mono", monospace; }
 @media (max-width:960px) { .star-tech-heading { grid-template-columns:1fr; } .star-tech-grid { grid-template-columns:1fr; } }
 
+
+/* Primeros pasos (home) */
+.home-start { padding:3rem 0; border-top:1px solid var(--home-line); }
+.home-start h2 { margin:.2rem 0 1.2rem; }
+.home-start__steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+.home-start__steps li { padding:1.1rem 1.2rem; border:1px solid var(--home-line); border-radius:12px; line-height:1.55; }
+.home-start__steps code { overflow-wrap:anywhere; }
+.home-start__note { margin:1.2rem 0 0; opacity:.85; line-height:1.55; }
