@@ -49,3 +49,10 @@ jobs:
           curl --fail --silent http://127.0.0.1:18080/api/store >/dev/null
           curl --fail --silent http://127.0.0.1:18080/dioses.html >/dev/null
           curl --fail --silent http://127.0.0.1:18080/slimefun.html >/dev/null
+
+  seguridad:
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: write
+    uses: SlimefunNewHorizons/.github/.github/workflows/seguridad.yml@main
