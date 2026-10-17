@@ -1,7 +1,7 @@
 {
   "name": "DrakesCraft · Servidor Minecraft Java & Bedrock",
   "short_name": "DrakesCraft",
-  "description": "Servidor Minecraft Java y Bedrock con cinco modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock y Laboratorio.",
+  "description": "Servidor Minecraft Java y Bedrock con seis modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#071712",

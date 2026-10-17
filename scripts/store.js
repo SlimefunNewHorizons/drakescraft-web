@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btnStyle: "background: linear-gradient(135deg, #0284c7, #0f766e); box-shadow: 0 4px 18px rgba(56, 189, 248, 0.4); border: 1px solid #7dd3fc;",
             btnTextColor: "#fff",
             title: "La Ventisca Eterna de Bóreas ha descendido",
-            desc: "El invierno primordial congela las cinco modalidades. Descubre el <strong>Kit Mítico: Corona de Bóreas</strong> con el Cristal Criogénico Absoluto, la Capa de Nieve Eterna que extingue el daño por frío y cajas navideñas de fin de año con recompensas exclusivas.",
+            desc: "El invierno primordial congela las seis modalidades. Descubre el <strong>Kit Mítico: Corona de Bóreas</strong> con el Cristal Criogénico Absoluto, la Capa de Nieve Eterna que extingue el daño por frío y cajas navideñas de fin de año con recompensas exclusivas.",
             btnText: "Ver Colección Hiemal ➔",
             category: "ranks"
         },
