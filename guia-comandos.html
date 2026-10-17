@@ -68,6 +68,50 @@
     </nav>
 
     <div class="container">
+      <!-- Selector Interactivo de Modalidades (6 en 1) -->
+      <div class="modality-selector-grid" id="modality-selector" role="tablist" aria-label="Filtro de Modalidad">
+        <button class="modality-btn is-active" type="button" data-mod="all" aria-pressed="true" role="tab">
+          <span class="modality-btn__icon">🌌</span>
+          <span>Todas</span>
+          <code>General</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="slimefun" aria-pressed="false" role="tab" style="--btn-active-border: #10b981; --btn-active-bg: rgba(16, 185, 129, 0.18);">
+          <span class="modality-btn__icon">⚡</span>
+          <span>Slimefun SF</span>
+          <code>/survival</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="clasico" aria-pressed="false" role="tab" style="--btn-active-border: #3b82f6; --btn-active-bg: rgba(59, 130, 246, 0.18);">
+          <span class="modality-btn__icon">🌲</span>
+          <span>Clásico Vanilla</span>
+          <code>/clasico</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="skyblock" aria-pressed="false" role="tab" style="--btn-active-border: #38bdf8; --btn-active-bg: rgba(56, 189, 248, 0.18);">
+          <span class="modality-btn__icon">☁️</span>
+          <span>SkyBlock</span>
+          <code>/skyblock</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="oneblock" aria-pressed="false" role="tab" style="--btn-active-border: #a855f7; --btn-active-bg: rgba(168, 85, 247, 0.18);">
+          <span class="modality-btn__icon">🌀</span>
+          <span>OneBlock</span>
+          <code>/oneblock</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="onechunk" aria-pressed="false" role="tab" style="--btn-active-border: #ea580c; --btn-active-bg: rgba(234, 88, 12, 0.18);">
+          <span class="modality-btn__icon">🧱</span>
+          <span>OneChunk</span>
+          <code>/onechunk</code>
+        </button>
+        <button class="modality-btn" type="button" data-mod="laboratorio" aria-pressed="false" role="tab" style="--btn-active-border: #f43f5e; --btn-active-bg: rgba(244, 63, 94, 0.18);">
+          <span class="modality-btn__icon">🧪</span>
+          <span>Laboratorio</span>
+          <code>/laboratorio</code>
+        </button>
+      </div>
+
+      <!-- Ficha Técnica Dinámica de Modalidad -->
+      <article class="modality-overview-card is-hidden" id="modality-card">
+        <!-- Renderizado dinámico vía script con información detallada -->
+      </article>
+
       <div class="guide-search">
         <label class="sr-only" for="guide-q">Buscar</label>
         <input type="search" id="guide-q" placeholder="Escribe un comando o lo que quieres hacer…" autocomplete="off">
@@ -156,6 +200,14 @@
         <div class="guide-row"><code>/ob phases</code><p>Todas las fases del OneBlock y en cuál estás.<span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
         <div class="guide-row"><code>/ob respawnblock</code><p>Devuelve el bloque si se te perdió por un accidente.<span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
         <div class="guide-row"><code>/ob bossbar</code><p>Muestra u oculta el contador de la fase en la barra superior.<span class="guide-row__alias">En la barra de acción: /ob actionbar</span><span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
+        <div class="guide-row"><code>/ch</code><p>Te teletransporta al centro de tu territorio de OneChunk (16x16). La primera vez genera tu parcela con el bloque infinito.<span class="guide-row__alias">También: /chunk, /onechunk</span><span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch chunks</code><p>Muestra el mapa visual en chat de tus chunks desbloqueados, el radio actual y los créditos disponibles para reclamar nuevos chunks.<span class="guide-row__alias">También: /ch c</span><span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch count</code><p>Muestra cuántos bloques has picado de tu Bloque Mágico infinito y en qué fase biómica te encuentras.<span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch phases</code><p>Despliega el catálogo interactivo de las 20 fases biómicas de OneChunk (Plains, Underground, Nether, Deep Dark, Lush Caves, etc.).<span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch respawn-block</code><p>Regenera el Bloque Mágico central si desapareció por explosión o caída accidental.<span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch ledger [días]</code><p>Registro de aportes de la isla: audita cuántos bloques ha roto cada miembro del equipo y cuántos chunks o anillos ha conquistado.<span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>/ch title</code><p>Equipa o consulta los títulos y trofeos que ha ganado tu isla al completar anillos concéntricos (3x3, 5x5, etc.).<span class="guide-tag guide-tag--survival">Solo OneChunk</span></p></div>
+        <div class="guide-row"><code>Reclamar Anillos en OneChunk</code><p>Para expandirte más allá de tu 16x16 inicial: sube de nivel de isla (/ch level) o de rango (/rankup) para ganar créditos. Luego camina hasta tu borde perimetral y <strong>golpea la barrera</strong> en la dirección que quieras anexar.</p></div>
       </div>
     </section>
     <section class="container guide-section" id="protecciones">
