@@ -9,6 +9,7 @@ import { estadoServidor } from './lib/mc-status.js';
 // Direccion publica del servidor de juego. Configurable por si cambia el dominio.
 const MC_HOST = process.env.MC_HOST || 'mc.drakescraft.cl';
 const MC_PUERTO = Number(process.env.MC_PORT || 25565);
+import { DatabaseSync } from 'node:sqlite';
 import fastifyStatic from '@fastify/static';
 import { storeCatalog } from './catalog/store-catalog.js';
 
@@ -123,7 +124,24 @@ const tebexPackageIds = {
   'titan-hiperion': 7609646,
   'titan-cronos': 7609648,
   'titan-caos': 7609649,
-  'slimefun-research-all': 7609650
+  'slimefun-research-all': 7609650,
+  'anti-afk-permanent': 7697411,
+  'anti-afk-30d': 7697412,
+  'protection-campamento': 7697418,
+  'protection-aldea': 7697420,
+  'protection-fortaleza': 7697422,
+  'vaults-pack-3': 7697423,
+  'vaults-pack-10': 7697424,
+  'homes-pack-5': 7697425,
+  'homes-pack-15': 7697427,
+  'fly-pass-7d': 7697430,
+  'fly-pass-30d': 7697432,
+  'keys-atenea-3': 7697433,
+  'keys-hermes-5': 7697434,
+  'keys-zeus-3': 7697435,
+  'booster-money-1h': 7697436,
+  'booster-exp-1h': 7697437,
+  'kit-halloween-tartaro': 7707436
 };
 // Los bloqueos excepcionales se declaran aquí para impedir que un producto llegue al checkout.
 // protection-481 fue verificada contra el alias vipzeus de ProtectionStones.
@@ -327,9 +345,21 @@ function isTebexEnabledProduct(product) {
 }
 
 function getStoreCatalogView() {
+  const now = new Date();
+  const activeProducts = storeCatalog.products.filter((product) => {
+    if (product.availableUntil && now > new Date(product.availableUntil)) {
+      return false;
+    }
+    return true;
+  });
+
+  const activeCategoryIds = new Set(activeProducts.map((p) => p.category));
+  const activeCategories = storeCatalog.categories.filter((cat) => activeCategoryIds.has(cat.id));
+
   return {
     ...storeCatalog,
-    products: storeCatalog.products.map((product) => ({
+    categories: activeCategories,
+    products: activeProducts.map((product) => ({
       ...product,
       tebexPackageId: tebexPackageIds[product.id] || null,
       tebexEnabled: isTebexEnabledProduct(product),
@@ -519,6 +549,73 @@ app.addHook('preParsing', async (request, _reply, payload) => {
   return Readable.from(raw);
 });
 
+// --- Slimefun Knowledge Lake SQLite API (Native node:sqlite) ---
+const slimefunDbPath = path.join(dataDir, 'slimefun_lake.db');
+let slimefunDb = null;
+try {
+  slimefunDb = new DatabaseSync(slimefunDbPath, { readOnly: true });
+  console.log('[SlimefunLake] SQLite Lake connected at', slimefunDbPath);
+} catch (err) {
+  console.warn('[SlimefunLake] Warning: lake not opened at', slimefunDbPath, err.message);
+}
+
+app.get('/api/slimefun/search', async (request, reply) => {
+  if (!slimefunDb) return reply.code(503).send({ error: 'Slimefun Lake no disponible temporalmente' });
+  const q = String(request.query.q || '').trim();
+  const limit = Math.min(Math.max(parseInt(request.query.limit, 10) || 20, 1), 60);
+  if (!q) {
+    const defaultItems = slimefunDb.prepare('SELECT id, name, addon, group_key, material, recipe_type, lore_text FROM items ORDER BY id ASC LIMIT ?').all(limit);
+    return reply.send({ total: defaultItems.length, items: defaultItems });
+  }
+
+  const cleanQ = q.replace(/["*]/g, '').trim();
+  if (!cleanQ) return reply.send({ total: 0, items: [] });
+  const words = cleanQ.split(/\s+/).filter(Boolean);
+  const ftsTerm = words.map(w => w + '*').join(' ');
+
+  try {
+    const stmt = slimefunDb.prepare(`
+      SELECT i.id, i.name, i.addon, i.group_key, i.material, i.recipe_type, i.output_amount, i.lore_text
+      FROM items_fts f
+      JOIN items i ON f.id = i.id
+      WHERE items_fts MATCH ?
+      LIMIT ?
+    `);
+    const items = stmt.all(ftsTerm, limit);
+    return reply.send({ total: items.length, items });
+  } catch (err) {
+    const likeTerm = '%' + cleanQ + '%';
+    const stmt = slimefunDb.prepare(`
+      SELECT id, name, addon, group_key, material, recipe_type, output_amount, lore_text
+      FROM items
+      WHERE id LIKE ? OR name LIKE ? OR addon LIKE ? OR lore_text LIKE ?
+      LIMIT ?
+    `);
+    const items = stmt.all(likeTerm, likeTerm, likeTerm, likeTerm, limit);
+    return reply.send({ total: items.length, items });
+  }
+});
+
+app.get('/api/slimefun/item/:id', async (request, reply) => {
+  if (!slimefunDb) return reply.code(503).send({ error: 'Slimefun Lake no disponible' });
+  const id = String(request.params.id || '').trim();
+  const item = slimefunDb.prepare('SELECT * FROM items WHERE id = ?').get(id);
+  if (!item) return reply.code(404).send({ error: 'Item no encontrado' });
+  try {
+    item.recipe = JSON.parse(item.recipe_json || '[]');
+  } catch (e) {
+    item.recipe = [];
+  }
+  return reply.send(item);
+});
+
+app.get('/api/slimefun/stats', async (_request, reply) => {
+  if (!slimefunDb) return reply.code(503).send({ error: 'Slimefun Lake no disponible' });
+  const total = slimefunDb.prepare('SELECT count(*) as count FROM items').get().count;
+  const addons = slimefunDb.prepare('SELECT addon, count(*) as count FROM items GROUP BY addon ORDER BY count DESC LIMIT 20').all();
+  return reply.send({ total, addons });
+});
+
 app.get('/api/health', async () => ({
   status: 'ok',
   service: 'drakescraft-web',
@@ -695,7 +792,12 @@ app.post('/api/webhooks/github-sponsors', async (request, reply) => {
 app.post('/api/store/tebex/checkout', async (request, reply) => {
   const body = request.body || {};
   const selectedIds = Array.isArray(body.items) ? body.items.slice(0, 12) : [];
-  const validIds = new Set(storeCatalog.products.map((product) => product.id));
+  const now = new Date();
+  const validIds = new Set(
+    storeCatalog.products
+      .filter((product) => !product.availableUntil || now <= new Date(product.availableUntil))
+      .map((product) => product.id)
+  );
   const items = storeCatalog.products.filter((product) => selectedIds.includes(product.id) && validIds.has(product.id));
   const nick = String(body.nick || '').trim().slice(0, 17);
   const contact = String(body.contact || '').trim().slice(0, 80);
@@ -785,12 +887,12 @@ async function notifyQuoteDiscord({ type, quoteId, items, nick, contact, notes, 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username: 'DrakesCraft · Portal',
-        avatar_url: 'https://web.drakescraft.cl/assets/logo-drakescraft.png',
+        avatar_url: 'https://web.drakescraft.cl/assets/logo-drakescraft.webp',
         embeds: [{
           title: `${emoji} ${type}`,
           description,
           color,
-          thumbnail: { url: 'https://web.drakescraft.cl/assets/logo-drakescraft.png' },
+          thumbnail: { url: 'https://web.drakescraft.cl/assets/logo-drakescraft.webp' },
           fields: [
             { name: '🎮 Nick de Minecraft', value: `\`${nick || 'No especificado'}\``, inline: true },
             { name: '💬 Medio de Contacto', value: `\`${contact || 'No especificado'}\``, inline: true },
@@ -853,7 +955,7 @@ for (const [alias, file] of [
   ['/apoya', 'apoya.html'], ['/apoyar', 'apoya.html'], ['/donar', 'apoya.html'], ['/sponsors', 'apoya.html'],
   ['/rangos', 'guia-rangos.html'], ['/ranks', 'guia-rangos.html'],
   ['/slimefun', 'guia-slimefun.html'], ['/sf', 'guia-slimefun.html'],
-  ['/atenea', 'ojo-de-atenea.html'], ['/saori', 'ojo-de-atenea.html'], ['/ojo-de-atenea', 'ojo-de-atenea.html'], ['/radar', 'ojo-de-atenea.html']
+  ['/plugins', 'guia-plugins.html'], ['/suites', 'guia-plugins.html'],
 ]) {
   app.get(alias, async (_request, reply) => reply.sendFile(file));
 }
@@ -902,7 +1004,7 @@ await app.register(fastifyStatic, {
       'guia-comandos.html',
       'guia-rangos.html',
       'guia-slimefun.html',
-      'ojo-de-atenea.html',
+      'guia-plugins.html',
       '404.html',
       '500.html',
       'maintenance.html',
@@ -910,11 +1012,16 @@ await app.register(fastifyStatic, {
       'support.html',
       'terms.html',
       'bannerdrakes.jpg',
-      'dragon_fly.png',
-      'logodrakescraft.png',
+      'dragon_fly.webp',
+      'robots.txt',
+      'sitemap.xml',
+      'privacidad.html',
+      'logodrakescraft.webp',
       'previewdiscord1.png',
       'previewdiscord2.png',
       'favicon.ico',
+      'site.webmanifest',
+      'manifest.json',
       'three.min.js'
     ]);
     const normalized = pathname.replace(/^[/\\]+/, '').replaceAll('\\', '/');
@@ -1088,7 +1195,7 @@ app.get('/api/edge-metrics', async (_request, reply) => {
       host: 'Game Hosting Dedicado (Dallas, TX, USA)',
       subdomain: 'mc.drakescraft.cl',
       java_port: 25565,
-      bedrock_port: 19132,
+      bedrock_port: 25565,
       tps_target: '20.0 TPS',
       ddos_mitigation: 'Filtrado perimetral L4/L7 + Rate Limiting Activo',
       modalities: [
