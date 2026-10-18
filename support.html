@@ -1,42 +1,408 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soporte de compras | DrakesCraft</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centro de Soporte y Asistencia · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/support.html">
-  <meta name="description" content="Soporte de DrakesCraft: cómo abrir un ticket en Discord, reportar bugs, pérdidas o jugadores, y qué información enviar para resolverlo rápido.">
+  <meta name="description" content="Centro de Soporte Oficial de DrakesCraft: Asistencia técnica 24/7, entregas de Tebex, reportes SRE con SAORI, seguridad de cuenta y resolución de tickets.">
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261014-v4"><link rel="stylesheet" href="styles/store.css?v=20260824-editorial-images">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/store.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="manifest" href="/site.webmanifest">
+
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con seis modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio."}]}</script>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
-  <meta property="og:title" content="Soporte de compras | DrakesCraft">
-  <meta property="og:description" content="Soporte de DrakesCraft: cómo abrir un ticket en Discord, reportar bugs, pérdidas o jugadores, y qué información enviar para resolverlo rápido.">
+  <meta property="og:title" content="Centro de Soporte Oficial · DrakesCraft">
+  <meta property="og:description" content="Atención rápida y trazable para compras Tebex, reporte de bugs, incidentes de cuenta y comandos in-game.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Soporte de compras | DrakesCraft">
-  <meta name="twitter:description" content="Soporte de DrakesCraft: cómo abrir un ticket en Discord, reportar bugs, pérdidas o jugadores, y qué información enviar para resolverlo rápido.">
+  <meta name="twitter:title" content="Centro de Soporte Oficial · DrakesCraft">
+  <meta name="twitter:description" content="Atención rápida y trazable para compras Tebex, reporte de bugs, incidentes de cuenta y comandos in-game.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261014-v6">
+
+  <style>
+    /* Estilos dedicados para el Centro de Soporte Olympus / Star Luxe */
+    .support-hero {
+      position: relative;
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at 50% 10%, rgba(192, 132, 252, 0.12) 0%, transparent 60%);
+      overflow: hidden;
+    }
+    .support-hero__grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .support-hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin: 0.8rem 0 1.2rem;
+      color: #fff;
+    }
+    .support-hero__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c084fc 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .support-hero__lead {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      max-width: 58ch;
+    }
+    .support-quick-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 1rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #34d399;
+      font-family: var(--font-mono);
+    }
+    .support-sla-banner {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 6px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .support-sla-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      margin: 0 0 1rem;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .support-sla-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .support-sla-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.5rem;
+    }
+    .support-sla-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .support-sla-label {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .support-sla-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .badge--fast {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .badge--high {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .badge--live {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Pilares de Soporte */
+    .support-pillars {
+      padding: 4.5rem 0 2rem;
+    }
+    .support-section-heading {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .support-section-heading h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin: 0.5rem 0 0.8rem;
+      color: #fff;
+    }
+    .support-section-heading p {
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .support-channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+    .support-card {
+      background: rgba(15, 20, 36, 0.75);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 6px;
+      padding: 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      backdrop-filter: blur(10px);
+    }
+    .support-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+    .support-card--featured {
+      background: linear-gradient(145deg, rgba(28, 22, 48, 0.85) 0%, rgba(13, 17, 32, 0.8) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.08);
+    }
+    .support-card--featured:hover {
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 16px 40px rgba(245, 158, 11, 0.15);
+    }
+    .support-card__badge {
+      position: absolute;
+      top: -11px;
+      right: 1.5rem;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #0b0914;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+    .support-card__header {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .support-card__icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .support-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      margin: 0 0 0.25rem;
+      color: #fff;
+    }
+    .support-card__tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #38bdf8;
+    }
+    .support-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      margin: 0 0 1.25rem;
+    }
+    .support-card__requirements {
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid #c084fc;
+      border-radius: 0 4px 4px 0;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .support-card--featured .support-card__requirements {
+      border-left-color: #f59e0b;
+    }
+    .support-card__requirements strong {
+      display: block;
+      font-size: 0.85rem;
+      color: #f1f5f9;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .support-card__requirements ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .support-card__action {
+      margin-top: auto;
+    }
+    .support-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .support-btn--gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #0d0a1a;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+    }
+    .support-btn--gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+      color: #000;
+    }
+    .support-btn--discord {
+      background: #5865F2;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(88, 101, 242, 0.25);
+    }
+    .support-btn--discord:hover {
+      background: #4752c4;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+      color: #fff;
+    }
+    .support-btn--ghost {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+    }
+    .support-btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    /* Comandos in-game rápidos */
+    .support-ingame-section {
+      background: rgba(11, 15, 28, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 4rem 0;
+      margin: 2rem 0;
+    }
+    .support-commands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .cmd-card {
+      background: rgba(18, 23, 40, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+    }
+    .cmd-card__code {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 3px;
+      padding: 0.3rem 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .cmd-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Security Notice */
+    .support-security-box {
+      margin: 3.5rem 0 5rem;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 6px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+    }
+    .support-security-box__icon {
+      font-size: 2.8rem;
+      flex-shrink: 0;
+    }
+    .support-security-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: #fca5a5;
+      margin: 0 0 0.5rem;
+    }
+    .support-security-box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .support-hero__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .support-security-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-<body class="page-shell" data-page="store" data-section="support">
-  <nav class="site-nav" aria-label="Principal">
+<body class="page-shell" data-page="support" data-section="help">
+  <nav class="site-nav" aria-label="Navegación principal">
     <div class="container site-nav__bar">
-      <a class="brand" href="/">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="Logo DrakesCraft">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Soporte · Star Network</span></span>
+      <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="Logo DrakesCraft" width="44" height="44">
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Centro de Soporte · Star Network</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="site-nav__links" id="nav-menu">
@@ -52,10 +418,205 @@
       </ul>
     </div>
   </nav>
-  <main class="store-subpage"><div class="container prose-page"><p class="eyebrow">Soporte de compras</p><h1>Resolver una entrega sin vueltas.</h1><p>La compra se procesa mediante Tebex y el servidor recibe la orden de entrega. La mayoría de las entregas son automáticas; si algo falla, el ID de transacción permite revisar el registro correcto.</p><p class="prose-page__note"><strong>Esta página es sólo para compras.</strong> Si lo que falla es algo del juego &mdash; una máquina, un comando, un objeto &mdash; no abras un ticket de compra: ábrelo en el <strong>foro de reportes del Discord</strong>. Cómo hacerlo y cuándo se atiende está en la <a href="guia.html">guía</a>.</p><div class="prose-page__grid"><article><h2>Antes de abrir un ticket</h2><ol><li>Confirma que el pago aparece completado en Tebex.</li><li>Verifica que escribiste tu nick exacto, incluyendo el punto inicial en Bedrock.</li><li>Espera unos minutos si acabas de reconectarte al servidor.</li></ol></article><article><h2>Qué enviar en Discord</h2><ul><li>Tu nick exacto.</li><li>El nombre del producto.</li><li>El identificador de transacción de Tebex.</li><li>Una explicación breve de lo que esperabas recibir.</li></ul></article></div>      <article class="prose-page__warning"><strong>Nunca envies contrasenas, numeros de tarjeta ni codigos de pago.</strong><p>El equipo solo necesita datos de juego y el identificador de Tebex para localizar una entrega.</p></article>
 
-      <p style="margin-top: 1.5rem;"><a class="btn btn-primary" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Abrir soporte en Discord</a></p></div></main>
-  <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>Compras claras, soporte trazable.</p></div><div class="site-footer__links"><a href="/">Tienda</a><a href="guia.html">Guía</a><a href="terms.html">Términos</a><a href="privacidad.html">Privacidad</a></div><div class="site-footer__sponsor">
+  <main>
+    <!-- HERO PRINCIPAL -->
+    <header class="support-hero">
+      <div class="container support-hero__grid">
+        <div>
+          <span class="support-quick-status">
+            <span class="store-pulse-dot"></span> EQUIPO SRE Y MODERACIÓN ACTIVO
+          </span>
+          <h1 class="support-hero__title">Centro de Soporte &amp; <em>Asistencia Técnica</em></h1>
+          <p class="support-hero__lead">Atención directa, trazable y sin intermediarios. Ya sea un retraso en la entrega de tu paquete VIP en Tebex, un incidente de inventario o un bug técnico en Slimefun, nuestro equipo e inteligencia autónoma te asisten con la mayor celeridad.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a class="support-btn support-btn--gold" style="width: auto; padding: 0.85rem 1.75rem;" href="#canales">Ver Canales de Atención &darr;</a>
+            <a class="support-btn support-btn--discord" style="width: auto; padding: 0.85rem 1.75rem;" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Abrir Discord Oficial ⚡</a>
+          </div>
+        </div>
+
+        <aside class="support-sla-banner">
+          <h3>⏱️ Acuerdos de Nivel de Servicio (SLA)</h3>
+          <ul class="support-sla-list">
+            <li class="support-sla-item">
+              <span class="support-sla-label">💳 Compras &amp; Entregas VIP</span>
+              <span class="support-sla-badge badge--high">&lt; 1 a 6 horas</span>
+            </li>
+            <li class="support-sla-item">
+              <span class="support-sla-label">🤖 Telemetría SAORI SRE</span>
+              <span class="support-sla-badge badge--live">Tiempo Real (24/7)</span>
+            </li>
+            <li class="support-sla-item">
+              <span class="support-sla-label">🛡️ Apelaciones y Cuentas</span>
+              <span class="support-sla-badge badge--fast">&lt; 12 a 24 horas</span>
+            </li>
+            <li class="support-sla-item">
+              <span class="support-sla-label">⚔️ Asistencia en el Servidor</span>
+              <span class="support-sla-badge badge--live">Inmediata (/helpop)</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <!-- PILARES DE ATENCIÓN Y TICKETS -->
+    <section class="container support-pillars" id="canales">
+      <div class="support-section-heading">
+        <p class="eyebrow">Canales Oficiales</p>
+        <h2>¿Qué necesitas resolver hoy?</h2>
+        <p>Selecciona la categoría exacta de tu incidente para dirigir tu caso al especialista adecuado y evitar demoras innecesarias.</p>
+      </div>
+
+      <div class="support-channels-grid">
+        <!-- CANAL 1: Compras Tebex -->
+        <article class="support-card support-card--featured">
+          <span class="support-card__badge">Prioridad Alta</span>
+          <div>
+            <div class="support-card__header">
+              <div class="support-card__icon">💳</div>
+              <div>
+                <h3>Compras &amp; Entregas VIP</h3>
+                <span class="support-card__tag">Tebex &middot; Rangos &middot; Dragmas</span>
+              </div>
+            </div>
+            <p>Si realizaste una compra en la tienda oficial y no recibiste tus ítems o rangos tras reconectarte, nuestro sistema audita la orden al instante.</p>
+            
+            <div class="support-card__requirements">
+              <strong>Datos que debes tener listos:</strong>
+              <ul>
+                <li>Tu nick exacto de Minecraft (con el punto <code>.</code> si eres de Bedrock).</li>
+                <li>Identificador de Transacción de Tebex (ej: <code>tbx-12345678a</code>).</li>
+                <li>Correo electrónico utilizado en el checkout.</li>
+                <li>Nombre exacto del paquete o rango adquirido.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="support-card__action">
+            <a class="support-btn support-btn--gold" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">
+              Ticket de Compras en Discord &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- CANAL 2: Reportes Técnicos y Slimefun -->
+        <article class="support-card">
+          <div>
+            <div class="support-card__header">
+              <div class="support-card__icon">🛠️</div>
+              <div>
+                <h3>Reportes de Bugs &amp; SRE</h3>
+                <span class="support-card__tag">Mecánicas &middot; Slimefun &middot; Exploits</span>
+              </div>
+            </div>
+            <p>¿Encontraste una máquina trabada, un fallo de red o un exploit? Nuestra Tríada SRE y SAORI procesan incidentes para parches inmediatos.</p>
+
+            <div class="support-card__requirements">
+              <strong>Qué incluir en tu reporte:</strong>
+              <ul>
+                <li>Modalidad donde ocurrió (Slimefun, Clásico, SkyBlock, etc.).</li>
+                <li>Coordenadas del bloque o máquina afectada (<code>X, Y, Z</code>).</li>
+                <li>Captura de pantalla o clip corto del error.</li>
+                <li>Pasos sencillos para reproducir la falla.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="support-card__action">
+            <a class="support-btn support-btn--discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">
+              Reportar en #foro-reportes &rarr;
+            </a>
+          </div>
+        </article>
+
+        <!-- CANAL 3: Seguridad de Cuenta y Apelaciones -->
+        <article class="support-card">
+          <div>
+            <div class="support-card__header">
+              <div class="support-card__icon">🛡️</div>
+              <div>
+                <h3>Seguridad &amp; Apelaciones</h3>
+                <span class="support-card__tag">nLogin &middot; Sanciones &middot; Recuperación</span>
+              </div>
+            </div>
+            <p>Si olvidaste tu contraseña registrada con nLogin, fuiste víctima de un intento de usurpación o deseas apelar una sanción administrativa.</p>
+
+            <div class="support-card__requirements">
+              <strong>Condiciones de verificación:</strong>
+              <ul>
+                <li>Validación estricta de identidad para prevenir robos de cuenta.</li>
+                <li>Captura del mensaje de desconexión o sanción recibida.</li>
+                <li>Comprobantes históricos de juego o compras asociadas.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="support-card__action">
+            <a class="support-btn support-btn--ghost" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">
+              Ticket de Seguridad &rarr;
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASISTENCIA RÁPIDA DENTRO DEL JUEGO -->
+    <section class="support-ingame-section">
+      <div class="container">
+        <div class="support-section-heading" style="margin-bottom: 2.5rem;">
+          <p class="eyebrow">Sin salir de Minecraft</p>
+          <h2>Comandos de Asistencia In-Game</h2>
+          <p>Puedes solicitar auxilio o resolver dudas directamente desde el chat de cualquier modalidad.</p>
+        </div>
+
+        <div class="support-commands-grid">
+          <div class="cmd-card">
+            <span class="cmd-card__code">/helpop &lt;mensaje&gt;</span>
+            <p>Envía un aviso de emergencia con sonido directo a la pantalla de todos los moderadores conectados.</p>
+          </div>
+          <div class="cmd-card">
+            <span class="cmd-card__code">/jack &lt;mensaje&gt;</span>
+            <p>Notifica directamente a Jack (Dueño &amp; Arquitecto) ante anomalías críticas del servidor o kernel.</p>
+          </div>
+          <div class="cmd-card">
+            <span class="cmd-card__code">/discord</span>
+            <p>Genera en el chat el enlace de invitación oficial sincronizado con tu cuenta y rangos.</p>
+          </div>
+          <div class="cmd-card">
+            <span class="cmd-card__code">/ping</span>
+            <p>Mide tu latencia exacta hacia el nodo de Dallas para descartar problemas de conectividad local.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLÍTICA ESTRICTA DE SEGURIDAD ZERO-TRUST -->
+    <section class="container">
+      <div class="support-security-box">
+        <div class="support-security-box__icon">⚠️</div>
+        <div>
+          <h3>Protocolo de Seguridad Inviolable (Zero-Trust)</h3>
+          <p><strong>NUNCA entregues tus contraseñas, números de tarjeta, claves de acceso ni códigos de autenticación a nadie.</strong> Ningún miembro del Staff de DrakesCraft, ni Saori, ni Jack te solicitarán jamás tu clave de <code>/login</code> o datos bancarios privados. Toda verificación legítima se procesa únicamente mediante tu Nickname y el ID de Transacción oficial de Tebex.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <strong>DrakesCraft Network</strong>
+        <p>Infraestructura de alto rendimiento, soporte trazable y desarrollo continuo.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="/">Inicio</a>
+        <a href="guia.html">Guía</a>
+        <a href="guia-comandos.html">Comandos</a>
+        <a href="store.html">Tienda VIP</a>
+        <a href="terms.html">Términos</a>
+        <a href="privacidad.html">Privacidad</a>
+      </div>
+      <div class="site-footer__sponsor">
         <span class="footer-sponsor-label">Apoya el proyecto</span>
         <div class="sponsor-badges">
           <a class="sponsor-btn" href="https://github.com/sponsors/JackStar6677-1" target="_blank" rel="noopener" title="Patrocinar a Jack (Fundador & Dev)">
@@ -67,7 +628,10 @@
             <span class="sponsor-btn__heart">❤ Sponsor</span>
           </a>
         </div>
-      </div></div></footer>
-  <script src="scripts/site.js?v=20261014-season"></script>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js?v=20261017-v7"></script>
 </body>
 </html>

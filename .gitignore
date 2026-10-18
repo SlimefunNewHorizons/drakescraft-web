@@ -8,3 +8,5 @@ npm-debug.log
 target/
 build/
 .gradle/
+
+graphify-out/
