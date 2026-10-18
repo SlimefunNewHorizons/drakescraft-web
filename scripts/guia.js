@@ -225,16 +225,21 @@
         const tagText = row.querySelector(".guide-tag")?.textContent.toLowerCase() || "";
         const rowCode = row.querySelector("code")?.textContent.toLowerCase() || "";
         
-        // Mapeo inteligente de fila a modalidad
-        let mods = ["all"];
-        if (rowCode.startsWith("/is") || tagText.includes("skyblock")) mods.push("skyblock");
-        if (rowCode.startsWith("/ob") || tagText.includes("oneblock")) mods.push("oneblock");
-        if (rowCode.startsWith("/ch") || tagText.includes("onechunk") || text.includes("chunkblock")) mods.push("onechunk");
-        if (tagText.includes("clásico") || text.includes("clásico")) mods.push("clasico");
-        if (rowCode.startsWith("/sf") || tagText.includes("slimefun") || text.includes("slimefun")) mods.push("slimefun", "skyblock", "oneblock", "onechunk", "laboratorio");
-        if (rowCode.includes("laboratorio") || tagText.includes("laboratorio") || rowCode.includes("/sf cheat")) mods.push("laboratorio");
-        if (tagText.includes("todos") || row.closest("#basicos") || row.closest("#social") || row.closest("#drakescraft") || row.closest("#traductor") || row.closest("#comodidad")) {
-            mods.push("slimefun", "clasico", "skyblock", "oneblock", "onechunk", "laboratorio");
+        // Mapeo determinista vía data-mod si existe
+        let mods = [];
+        if (row.dataset.mod) {
+            mods = row.dataset.mod.split(",").map(m => m.trim().toLowerCase());
+        } else {
+            mods = ["all"];
+            if (rowCode.startsWith("/is") || tagText.includes("skyblock")) mods.push("skyblock");
+            if (rowCode.startsWith("/ob") || tagText.includes("oneblock")) mods.push("oneblock");
+            if (rowCode.startsWith("/ch") || tagText.includes("onechunk") || text.includes("chunkblock")) mods.push("onechunk");
+            if (tagText.includes("clásico") || text.includes("clásico")) mods.push("clasico");
+            if (rowCode.startsWith("/sf") || tagText.includes("slimefun") || text.includes("slimefun")) mods.push("slimefun", "skyblock", "oneblock", "onechunk", "laboratorio");
+            if (rowCode.includes("laboratorio") || tagText.includes("laboratorio") || rowCode.includes("/sf cheat")) mods.push("laboratorio");
+            if (tagText.includes("todos") || row.closest("#basicos") || row.closest("#social") || row.closest("#drakescraft") || row.closest("#traductor") || row.closest("#comodidad")) {
+                mods.push("slimefun", "clasico", "skyblock", "oneblock", "onechunk", "laboratorio");
+            }
         }
 
         return {
