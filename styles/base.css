@@ -1284,3 +1284,96 @@ img, video, canvas, svg, iframe { max-width: 100%; }
     table { display: block; overflow-x: auto; }
     .btn, .button, button { min-height: 44px; }
 }
+
+
+/* Compliance & Legal Disclaimer Footer Box */
+.site-footer__compliance {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(14, 20, 28, 0.85);
+    border: 1px solid rgba(216, 182, 90, 0.25);
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.site-footer__compliance .compliance-badge {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+}
+
+.site-footer__compliance .compliance-title {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fef3c7;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.03em;
+}
+
+.site-footer__compliance .compliance-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.site-footer__compliance .compliance-desc strong {
+    color: #e2e8f0;
+}
+
+/* Store Compliance Ribbon */
+.store-compliance-ribbon {
+    margin-top: 1.25rem;
+    padding: 0.65rem 1rem;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+    color: #cbd5e1;
+}
+
+.store-compliance-ribbon .ribbon-tag {
+    background: #f59e0b;
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    font-family: var(--font-mono, monospace);
+    white-space: nowrap;
+}
+
+.store-compliance-ribbon p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.checkout-eula-notice {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    border-left: 2px solid rgba(216, 182, 90, 0.4);
+}
+
+.checkout-eula-notice a {
+    color: #fbbf24;
+    text-decoration: underline;
+}
