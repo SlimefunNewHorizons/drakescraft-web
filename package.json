@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check scripts/site.js && node --check scripts/store.js && node --check scripts/bosses.js && node --check scripts/dioses.js && node scripts/verify-store-catalog.mjs"
+    "check": "node --check server.js && node --check scripts/site.js && node --check scripts/store.js && node --check scripts/bosses.js && node --check scripts/dioses.js && node --check scripts/cultivation.js && node --check scripts/experience.js && node --check scripts/emblem.js && node --check scripts/guia.js && node scripts/verify-store-catalog.mjs && node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@fastify/static": "^10.1.2",
+    "bootstrap": "^5.3.8",
     "fastify": "^5.11.2"
   }
 }

@@ -1,308 +1,1845 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Todos los comandos de DrakesCraft explicados: teletransporte, protecciones, economía, Slimefun, oficios y los sistemas propios del servidor.">
-  <title>Comandos · DrakesCraft</title>
-  <link rel="icon" type="image/png" href="assets/logo-drakescraft.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20260824-nav-v1">
-  <link rel="stylesheet" href="styles/guia.css?v=20260824-editorial-images">
-</head>
-<body class="page-shell" data-page="guia" data-section="commands">
-  <nav class="site-nav" aria-label="Navegación principal">
-    <div class="container site-nav__bar">
-      <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
-        <img class="brand__mark" src="assets/logo-drakescraft.png" alt="">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Guía del servidor</span></span>
-      </a>
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-      <ul class="site-nav__links" id="nav-menu">
-        <li><a class="active" href="guia-comandos.html">Comandos</a></li>
-        <li><a href="guia.html">El servidor</a></li>
-        <li><a href="guia-rangos.html">Rangos</a></li>
-        <li><a href="guia-slimefun.html">Slimefun</a></li>
-        <li><a href="metricas.html">Métricas</a></li><li><a href="store.html">Tienda</a></li>
-        <li><a href="apoya.html">Apoyar</a></li>
-        <li><a href="terms.html">Términos</a></li>
-        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
-      </ul>
-    </div>
-  </nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta
+      content="Todos los comandos de DrakesCraft explicados: teletransporte, protecciones, economía, Slimefun, oficios y los sistemas propios del servidor."
+      name="description"
+    />
+    <title>Comandos · DrakesCraft</title>
+    <link href="assets/logo-drakescraft.png" rel="icon" type="image/png" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
 
-  <main>
-    <header class="guide-hero">
-      <div class="guide-hero__backdrop" aria-hidden="true"></div>
-      <div class="container guide-hero__grid">
-        <p class="eyebrow">+140 comandos y funciones comprobadas</p>
-        <h1>Guía de <em>comandos</em></h1>
-        <p class="guide-hero__lead">Sacados uno a uno de los plugins que corren ahora mismo en el servidor. Si un comando aparece aquí, existe; si te dice que no tienes permiso, es cosa de tu rango.</p>
+    <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/styles/olympus.css?v=20260909-3d" rel="stylesheet" />
+  </head>
+  <body class="op-page" data-design="olympus-3d">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <nav
+      class="navbar navbar-expand-xl op-nav"
+      data-bs-theme="dark"
+      aria-label="Navegación principal"
+    >
+      <div class="container-fluid">
+        <a class="op-brand" href="/"
+          ><img
+            src="/assets/logo-drakescraft.png"
+            alt=""
+            width="43"
+            height="48"
+          /><span
+            ><strong>DrakesCraft</strong><small>PORTAL OFICIAL</small></span
+          ></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#portal-nav"
+          aria-controls="portal-nav"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="portal-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia.html">El servidor</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="/guia-comandos.html"
+                aria-current="page"
+                >Comandos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia-rangos.html">Rangos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia-slimefun.html">Slimefun</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/store.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/metricas.html">Métricas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/apoya.html">Apoyar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support.html">Soporte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-discord" href="/discord.html"
+                >Discord ↗</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
-
-    <nav class="guide-tabs" aria-label="Secciones de la guia">
-      <a href="guia-comandos.html" class="is-active">Comandos</a>
-      <a href="guia.html">El servidor</a>
-      <a href="guia-rangos.html">Rangos</a>
-      <a href="guia-slimefun.html">Slimefun</a>
     </nav>
-
-    <div class="container">
-      <div class="guide-search">
-        <label class="sr-only" for="guide-q">Buscar</label>
-        <input type="search" id="guide-q" placeholder="Escribe un comando o lo que quieres hacer…" autocomplete="off">
-        <p class="guide-search__count" id="guide-count"></p>
+    <main id="main">
+      <header class="op-page-heading">
+        <div class="container">
+          <nav class="op-breadcrumb" aria-label="Ubicación">
+            <a href="/">Inicio</a><span>/</span><span>Comandos</span>
+          </nav>
+          <div class="op-heading-row">
+            <div>
+              <p class="eyebrow">+140 comandos y funciones comprobadas</p>
+              <h1>Guía de <em>comandos</em></h1>
+              <p class="op-lead">
+                Sacados uno a uno de los plugins que corren ahora mismo en el
+                servidor. Si un comando aparece aquí, existe; si te dice que no
+                tienes permiso, es cosa de tu rango.
+              </p>
+            </div>
+            <figure class="op-page-art" aria-hidden="true">
+              <img
+                src="/assets/home/world-garden-960.webp"
+                alt=""
+                width="400"
+                height="260"
+              />
+            </figure>
+          </div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="op-document">
+          <aside class="op-sidebar" aria-label="Índice de la página">
+            <p>EN ESTA PÁGINA</p>
+            <a href="#seccion-1">Lo básico</a
+            ><a href="#seccion-2">Moverte entre las 5 modalidades</a
+            ><a href="#seccion-3">Tu isla: SkyBlock y OneBlock</a
+            ><a href="#seccion-4">Proteger tu base</a
+            ><a href="#seccion-5">Guardar y mover cosas</a
+            ><a href="#seccion-6">Dinero, tiendas y subastas</a
+            ><a href="#seccion-7">Slimefun</a
+            ><a href="#seccion-8">Trabajos, misiones y habilidades</a
+            ><a href="#seccion-9">Social y chat</a
+            ><a href="#seccion-10">Traducir el chat</a
+            ><a href="#seccion-11">Lo que solo existe aquí</a
+            ><a href="#seccion-12">Comodidades</a
+            ><a href="#seccion-13">Comunidad en Discord y Bot SAORI</a
+            ><a href="#seccion-14">Si un comando no te funciona</a>
+          </aside>
+          <div class="op-doc-content">
+            <nav aria-label="Secciones de la guia" class="guide-tabs">
+              <a class="is-active" href="guia-comandos.html">Comandos</a>
+              <a href="guia.html">El servidor</a>
+              <a href="guia-rangos.html">Rangos</a>
+              <a href="guia-slimefun.html">Slimefun</a>
+            </nav>
+            <div class="">
+              <div class="guide-search">
+                <label class="sr-only" for="guide-q">Buscar</label>
+                <input
+                  autocomplete="off"
+                  id="guide-q"
+                  placeholder="Escribe un comando o lo que quieres hacer…"
+                  type="search"
+                />
+                <p class="guide-search__count" id="guide-count"></p>
+              </div>
+              <p class="guide-empty is-hidden" id="guide-empty">
+                No encontramos nada con eso. Prueba con otra palabra.
+              </p>
+            </div>
+            <section class="guide-section" id="basicos">
+              <h2 id="seccion-1">Lo básico</h2>
+              <p class="guide-section__note">
+                Lo que vas a escribir todos los días. Si eres nuevo, con esta
+                sección te basta para empezar.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/spawn</code>
+                  <p>
+                    Te lleva al punto de aparición de la modalidad en la que
+                    estés, no al lobby. En SkyBlock y OneBlock no hay spawn: se
+                    entra directo a la isla.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/lobby</code>
+                  <p>
+                    Te devuelve al hub principal (SpawnWarps), donde se elige
+                    modalidad.<span class="guide-row__alias"
+                      >También: /hub, /l</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/discord</code>
+                  <p>
+                    Enlace oficial de la comunidad de Discord y vinculación de
+                    tu cuenta con el bot SAORI.<span class="guide-row__alias"
+                      >Comunidad y soporte</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sethome &lt;nombre&gt;</code>
+                  <p>
+                    Guarda donde estás como hogar. Cuántos puedes tener depende
+                    de tu rango.<span class="guide-row__alias"
+                      >Borrar: /delhome &lt;nombre&gt; · Renombrar:
+                      /renamehome</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/home &lt;nombre&gt;</code>
+                  <p>
+                    Te lleva a un hogar guardado. Sin nombre, al principal.<span
+                      class="guide-row__alias"
+                      >Ver todos: /homes</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/back</code>
+                  <p>
+                    Vuelve al último sitio del que te teletransportaste, o a
+                    donde moriste.<span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/graves</code>
+                  <p>
+                    Tus tumbas. Al morir no sueltas nada al suelo: todo queda
+                    guardado en una tumba con tu cabeza, incluida la
+                    experiencia. Aguanta <strong>7 días</strong> antes de
+                    desaparecer y solo tú puedes abrirla.<span
+                      class="guide-row__alias"
+                      >Listado con coordenadas: /axgraves list · Ir a una:
+                      /axgraves tp &lt;mundo&gt; &lt;x&gt; &lt;y&gt;
+                      &lt;z&gt;</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/tpa &lt;jugador&gt;</code>
+                  <p>
+                    Pide permiso para teletransportarte a alguien.<span
+                      class="guide-row__alias"
+                      >Al revés: /tpahere · Aceptar: /tpaccept · Rechazar:
+                      /tpdeny</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/msg &lt;jugador&gt; &lt;texto&gt;</code>
+                  <p>
+                    Mensaje privado.<span class="guide-row__alias"
+                      >También: /w, /m, /t, /pm · Responder: /r</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/list</code>
+                  <p>Quién está conectado ahora mismo.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/afk</code>
+                  <p>Te marca como ausente para que nadie te espere.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/ping</code>
+                  <p>
+                    Tu latencia con el servidor. Útil antes de decir que el
+                    servidor va mal.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/playtime</code>
+                  <p>
+                    Cuánto has jugado en total. Es lo que cuenta para los rangos
+                    de veteranía.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/rules</code>
+                  <p>
+                    Las normas. Están cortas a propósito.<span
+                      class="guide-row__alias"
+                      >También: /reglas, /normas</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/motd</code>
+                  <p>El mensaje del día.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/help</code>
+                  <p>
+                    El listado que genera el propio servidor.<span
+                      class="guide-row__alias"
+                      >También: /ayuda, /comandos</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="modalidades">
+              <h2 id="seccion-2">Moverte entre las 5 modalidades</h2>
+              <p class="guide-section__note">
+                Slimefun, Clásico, SkyBlock, OneBlock y Laboratorio son mundos
+                aislados con inventario separado para proteger tu progreso y la
+                economía.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/modalidades</code>
+                  <p>
+                    El menú visual para saltar entre las 5 modalidades del
+                    servidor.<span class="guide-row__alias"
+                      >También: /modalidad, /modos</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/survival</code>
+                  <p>
+                    Directo a la modalidad principal con Slimefun, magia y
+                    jefes.<span class="guide-row__alias"
+                      >También: /slimefun, /principal, /polis, /main</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/clasico</code>
+                  <p>
+                    Directo al survival clásico tradicional sin Slimefun ni
+                    máquinas.<span class="guide-row__alias"
+                      >Muévete con /rtp</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/island</code>
+                  <p>
+                    Tu isla de SkyBlock. La primera vez te la crea.<span
+                      class="guide-row__alias"
+                      >También: /is, /skyblock, /sb</span
+                    ><span class="guide-tag guide-tag--survival">SkyBlock</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ob</code>
+                  <p>
+                    Tu isla de OneBlock.<span class="guide-row__alias"
+                      >También: /oneblock</span
+                    ><span class="guide-tag guide-tag--survival">OneBlock</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/warp laboratorio</code>
+                  <p>
+                    🧪 Laboratorio de pruebas en modo creativo, pacífico y sin
+                    mobs.<span class="guide-row__alias"
+                      >Acceso a trucos de Slimefun: /sf cheat</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sf cheat</code>
+                  <p>
+                    🎁 Abre el Cheat Sheet para sacar cualquier máquina o ítem
+                    de Slimefun con un clic. En Laboratorio todas las
+                    investigaciones aparecen desbloqueadas temporalmente.<span
+                      class="guide-tag guide-tag--survival"
+                      >Solo en Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Cambio seguro</code>
+                  <p>
+                    Al cambiar de modalidad debes quedarte quieto unos segundos
+                    mientras se respalda el inventario de origen. Inventario,
+                    ender chest, experiencia, vida, hambre, estadísticas y
+                    avances se cargan por separado; el dinero y el rango sí son
+                    globales.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/rtp</code>
+                  <p>
+                    Te lanza a un punto aleatorio, lejos de todo.<span
+                      class="guide-row__alias"
+                      >También: /wild, /randomtp</span
+                    ><span class="guide-tag guide-tag--bedrock"
+                      >Bedrock: hasta 150.000 bloques</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/warps</code>
+                  <p>
+                    Los puntos públicos del servidor.<span
+                      class="guide-row__alias"
+                      >Ir a uno: /warp &lt;nombre&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/pw</code>
+                  <p>
+                    Los warps que abren otros jugadores, y los tuyos.<span
+                      class="guide-row__alias"
+                      >Crear el tuyo: /pw set &lt;nombre&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="islas">
+              <h2 id="seccion-3">Tu isla: SkyBlock y OneBlock</h2>
+              <p class="guide-section__note">
+                Las dos modalidades de isla usan los mismos comandos: en
+                SkyBlock empiezan por <code>/is</code> y en OneBlock por
+                <code>/ob</code>. Lo único que cambia es el tamaño de la isla,
+                que depende de tu rango, y los comandos de fase, que solo
+                existen en OneBlock.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/is</code>
+                  <p>
+                    Te lleva a tu isla. La primera vez que lo escribes, te la
+                    crea.<span class="guide-row__alias"
+                      >También: /island, /skyblock, /sb · En OneBlock: /ob,
+                      /oneblock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is go</code>
+                  <p>
+                    Vuelve a tu isla desde donde estés.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is spawn</code>
+                  <p>
+                    Te lleva al spawn de la modalidad, fuera de las islas.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is near</code>
+                  <p>
+                    Los nombres de las islas vecinas a la tuya.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is sethome &lt;nombre&gt;</code>
+                  <p>
+                    Guarda un punto dentro de tu isla. Puedes tener varios.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is homes</code>
+                  <p>
+                    Lista los puntos que has guardado en tu isla.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is deletehome &lt;nombre&gt;</code>
+                  <p>
+                    Borra uno de esos puntos.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is renamehome &lt;nombre&gt;</code>
+                  <p>
+                    Le cambia el nombre a un punto guardado.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is info</code>
+                  <p>
+                    Quién es el dueño, quién está en el equipo y desde cuándo
+                    existe.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is setname &lt;nombre&gt;</code>
+                  <p>
+                    Le pones nombre a tu isla; es el que ven los demás.<span
+                      class="guide-row__alias"
+                      >Quitarlo: /is resetname · Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is settings</code>
+                  <p>
+                    Las reglas de dentro: quién puede abrir cofres, romper
+                    bloques o entrar.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is lock</code>
+                  <p>
+                    Cierra la isla para que no entre nadie ajeno al equipo.<span
+                      class="guide-row__alias"
+                      >Vuelve a abrirla con el mismo comando · Igual en OneBlock
+                      con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is language</code>
+                  <p>
+                    Elige el idioma de los mensajes de isla.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is reset</code>
+                  <p>
+                    Borra tu isla y te da una nueva. No hay vuelta atrás y
+                    pierdes todo lo construido.<span class="guide-row__alias"
+                      >Tienes un número limitado de reinicios</span
+                    ><span class="guide-tag guide-tag--bedrock"
+                      >Irreversible</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is level</code>
+                  <p>
+                    Recalcula el nivel de tu isla según los bloques colocados.
+                    Solo se actualiza al usar el comando o al entrar al
+                    servidor, con 60 s de espera entre cálculos.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob. Detalles completos en la guía
+                      general</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is top</code>
+                  <p>
+                    El ranking de islas de la modalidad.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is value</code>
+                  <p>
+                    Cuánto suma al nivel el bloque que llevas en la mano.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is detail</code>
+                  <p>
+                    El desglose del nivel: qué bloques aportan y cuánto,
+                    incluidos spawners, lo sumergido y lo que está sobre el
+                    nivel del mar.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is generator</code>
+                  <p>
+                    El menú de generadores de piedra, con lo que puedes
+                    desbloquear según tu nivel.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is biome</code>
+                  <p>
+                    Abre el panel interactivo para cambiar el bioma de tu isla,
+                    chunk o área (afecta el cielo, césped, agua y tipos de
+                    criaturas que aparecen).<span class="guide-row__alias"
+                      >También: /is biomes · En OneBlock: /ob biome (disponible
+                      tras el próximo reinicio)</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team</code>
+                  <p>
+                    Muestra tu equipo y en qué rango está cada uno.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team invite &lt;jugador&gt;</code>
+                  <p>
+                    Invita a alguien a tu isla.<span class="guide-row__alias"
+                      >Quien recibe: /is team accept o /is team reject · Igual
+                      en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team kick &lt;jugador&gt;</code>
+                  <p>
+                    Saca a alguien del equipo.<span class="guide-row__alias"
+                      >Salir tú: /is team leave · Igual en OneBlock con
+                      /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team promote &lt;jugador&gt;</code>
+                  <p>
+                    Le sube el rango dentro de la isla y con él lo que puede
+                    tocar.<span class="guide-row__alias"
+                      >Bajarlo: /is team demote · Igual en OneBlock con
+                      /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team setowner &lt;jugador&gt;</code>
+                  <p>
+                    Le cede la propiedad de la isla. Piénsalo dos veces: dejas
+                    de mandar tú.<span class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team coop &lt;jugador&gt;</code>
+                  <p>
+                    Acceso temporal a tu isla; se pierde al desconectar.<span
+                      class="guide-row__alias"
+                      >Quitarlo: /is team uncoop · Igual en OneBlock con
+                      /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is team trust &lt;jugador&gt;</code>
+                  <p>
+                    Acceso permanente sin meterlo en el equipo.<span
+                      class="guide-row__alias"
+                      >Quitarlo: /is team untrust · Igual en OneBlock con
+                      /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is expel &lt;jugador&gt;</code>
+                  <p>
+                    Echa de tu isla a quien esté dentro ahora mismo.<span
+                      class="guide-row__alias"
+                      >Igual en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/is ban &lt;jugador&gt;</code>
+                  <p>
+                    Le impide volver a entrar.<span class="guide-row__alias"
+                      >Levantarlo: /is unban · Ver la lista: /is banlist · Igual
+                      en OneBlock con /ob</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ob count</code>
+                  <p>
+                    Cuántos bloques llevas rotos y cuánto falta para la
+                    siguiente fase.<span class="guide-tag guide-tag--survival"
+                      >Solo OneBlock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ob phases</code>
+                  <p>
+                    Todas las fases del OneBlock y en cuál estás.<span
+                      class="guide-tag guide-tag--survival"
+                      >Solo OneBlock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ob respawnblock</code>
+                  <p>
+                    Devuelve el bloque si se te perdió por un accidente.<span
+                      class="guide-tag guide-tag--survival"
+                      >Solo OneBlock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ob bossbar</code>
+                  <p>
+                    Muestra u oculta el contador de la fase en la barra
+                    superior.<span class="guide-row__alias"
+                      >En la barra de acción: /ob actionbar</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Solo OneBlock</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="protecciones">
+              <h2 id="seccion-4">Proteger tu base</h2>
+              <p class="guide-section__note">
+                DrakesCraft usa ProtectionStones: proteges poniendo un bloque,
+                no dibujando una región. Consigue el bloque de protección y
+                colócalo en el centro de lo que quieras defender.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/ps get</code>
+                  <p>
+                    Te da un bloque de protección de los que tengas
+                    disponibles.<span class="guide-row__alias"
+                      >También: /claim, /claims, /proteccion</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/tiendaprot</code>
+                  <p>
+                    Abre el menú para adquirir menas de protección adicionales
+                    con Dragmas.<span class="guide-row__alias"
+                      >También: /protecciones, /menuprotes</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps info</code>
+                  <p>
+                    Quién manda en la protección donde estás parado.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps members add &lt;jugador&gt;</code>
+                  <p>
+                    Deja construir a alguien dentro de tu protección.<span
+                      class="guide-row__alias"
+                      >Quitar: /ps members remove &lt;jugador&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps owners add &lt;jugador&gt;</code>
+                  <p>
+                    Le da control total, incluido romper la protección. Piénsalo
+                    dos veces.<span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps home</code>
+                  <p>
+                    Te lleva a tu protección.<span class="guide-row__alias"
+                      >Fijar el punto: /ps sethome</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps list</code>
+                  <p>
+                    Todas tus protecciones.<span class="guide-row__alias"
+                      >Cuántas te quedan: /ps count</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps flag</code>
+                  <p>
+                    Configura o consulta las reglas de tu protección (ej. spawn
+                    de mobs, pvp, explosiones o mensaje de bienvenida). Usa
+                    <code>/ps flags</code> para ver la lista de banderas
+                    disponibles.<span class="guide-row__alias"
+                      >Sintaxis: /ps flag &lt;bandera&gt;
+                      &lt;allow|deny|valor&gt; · Ejemplo: /ps flag mob-spawning
+                      deny · Lista: /ps flags</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps unclaim</code>
+                  <p>
+                    Retira la protección y te devuelve el bloque. No hay
+                    confirmación doble.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ps merge</code>
+                  <p>
+                    Une dos protecciones tuyas que se tocan en una sola.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/borde</code>
+                  <p>
+                    Enseña u oculta el borde de cristal de tu protección para
+                    ver dónde acaba.<span class="guide-row__alias"
+                      >También: /bordes, /border, /limite</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Límites en Clásico</code>
+                  <p>
+                    Los límites de menas (4 en Polis, 10 en OldSchool) y de
+                    hogares (6 u 8) en <strong>Survival Clásico</strong> son
+                    totalmente independientes de los usados en Slimefun: no
+                    consumen tu cupo principal.<span
+                      class="guide-tag guide-tag--survival"
+                      >Exclusivo Clásico</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="guardar">
+              <h2 id="seccion-5">Guardar y mover cosas</h2>
+              <p class="guide-section__note">
+                Inventarios, cofres de ender y bóvedas se resuelven por
+                modalidad. Un objeto guardado en Slimefun no aparecerá en
+                Clásico, OneBlock, SkyBlock o Laboratorio.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/pv</code>
+                  <p>
+                    Abre las bóvedas personales de la modalidad actual. Cada
+                    modalidad mantiene contenido independiente.<span
+                      class="guide-row__alias"
+                      >También: /vault, /playervault</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Bloqueado en Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/enderchest</code>
+                  <p>
+                    Tu cofre de ender de siempre, sin tener que llevarlo
+                    encima.<span class="guide-row__alias">También: /echest</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    ><span class="guide-tag guide-tag--vip">Desde Hermes</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/disposal</code>
+                  <p>
+                    Una papelera portátil. Lo que metas ahí no vuelve.<span
+                      class="guide-row__alias"
+                      >También: /trash</span
+                    ><span class="guide-tag guide-tag--vip">Desde Hefesto</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/workbench</code>
+                  <p>
+                    Mesa de crafteo portátil.<span class="guide-row__alias"
+                      >También: /craft, /wb</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    ><span class="guide-tag guide-tag--vip">Desde Hermes</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/anvil</code>
+                  <p>
+                    Yunque portátil.<span class="guide-row__alias"
+                      >Otros: /grindstone, /stonecutter, /loom,
+                      /cartographytable, /smithingtable</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    ><span class="guide-tag guide-tag--vip">Desde Hefesto</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/condense</code>
+                  <p>
+                    Convierte lo que lleves en bloques: lingotes a bloques,
+                    etc.<span class="guide-row__alias"
+                      >También: /compact, /blocks</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    ><span class="guide-tag guide-tag--vip">Desde Hefesto</span>
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="dinero">
+              <h2 id="seccion-6">Dinero, tiendas y subastas</h2>
+              <p class="guide-section__note">
+                Los Dragmas son globales. Los objetos no: cada modalidad tiene
+                su propia casa de subastas y el Laboratorio no permite comerciar
+                para evitar convertir objetos de prueba en dinero real.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/balance</code>
+                  <p>
+                    Tu dinero.<span class="guide-row__alias"
+                      >También: /bal, /money</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/baltop</code>
+                  <p>
+                    Quién tiene más. Actualízalo antes de presumir.<span
+                      class="guide-row__alias"
+                      >También: /balancetop</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/pay &lt;jugador&gt; &lt;cantidad&gt;</code>
+                  <p>
+                    Le pasas dinero a alguien. No hay devoluciones.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sbank</code>
+                  <p>
+                    El banco central: depósitos, retiros e
+                    <strong>intereses pasivos automáticos</strong> sobre tus
+                    Dragmas guardados.<span class="guide-row__alias"
+                      >También: /banco, /bank, /sb, /bank deposit &lt;monto&gt;,
+                      /bank withdraw &lt;monto&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ah</code>
+                  <p>
+                    La casa de subastas de tu modalidad. Publica ítems con
+                    <code>/ah sell &lt;precio&gt;</code>.<span
+                      class="guide-row__alias"
+                      >También: /crazyauctions, /ca</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sfmercado</code>
+                  <p>
+                    Mercado algorítmico dinámico especializado en materiales y
+                    tecnología de Slimefun. Compra y vende recursos con precios
+                    fluctuantes según oferta y demanda.<span
+                      class="guide-row__alias"
+                      >También: /mercado, /sm</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun, SkyBlock y OneBlock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sellgui</code>
+                  <p>
+                    Abre una venta selectiva: deposita solo lo que quieras
+                    vender. Al cerrar, vende los objetos reconocidos y devuelve
+                    los que no tengan precio.<span
+                      class="guide-tag guide-tag--survival"
+                      >Bloqueado en Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/qs</code>
+                  <p>
+                    Crea y gestiona tus tiendas de cofre con
+                    <strong>QuickShop-Hikari</strong>. Sostén el ítem, mira un
+                    cofre y pon el precio.<span class="guide-row__alias"
+                      >Comandos: /qs create &lt;precio&gt;, /qs setprice
+                      &lt;precio&gt;, /qs find &lt;item&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun, SkyBlock y OneBlock</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sellall</code>
+                  <p>
+                    Vende de golpe todos los minerales, madera, cultivos y
+                    materiales compatibles del inventario principal.<span
+                      class="guide-row__alias"
+                      >También: /sellinv, /venderinv</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >Desde Afrodita</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/worth</code>
+                  <p>
+                    Cuánto vale lo que tienes en la mano antes de venderlo.<span
+                      class="guide-row__alias"
+                      >También: /price</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >Desde Afrodita</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sell</code>
+                  <p>
+                    Vende lo que llevas en la mano.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >Desde Afrodita</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/menu</code>
+                  <p>
+                    El catálogo y menú interactivo principal del servidor:
+                    rangos, protecciones, kits, servicios y accesos
+                    directos.<span class="guide-row__alias"
+                      >También: /tienda, /drakestienda</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/buy</code>
+                  <p>
+                    El enlace a la tienda web.<span class="guide-row__alias"
+                      >También: /comprar, /store, /shop</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/pwarp</code>
+                  <p>
+                    Comercios de otros jugadores. Si la lista sale vacía no es
+                    un fallo: nadie ha creado un warp todavía en esa modalidad,
+                    tiene que hacerlo primero el dueño de la tienda.<span
+                      class="guide-row__alias"
+                      >También: /pwarps, /playerwarp, /playerwarps</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/papatrueque</code>
+                  <p>
+                    Canjea las papas de mar que el servidor reparte
+                    automáticamente (una cada 15 minutos por jugador conectado)
+                    por kits de oficio, provisiones, rangos temporales o
+                    cosméticos como el Rastro del Dragón y la Corona del Rey
+                    Papa. Solo cuentan las papas con marca del servidor.<span
+                      class="guide-row__alias"
+                      >Los cosméticos adquiridos se equipan con
+                      /cosmeticos</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="slimefun">
+              <h2 id="seccion-7">Slimefun</h2>
+              <p class="guide-section__note">
+                Slimefun funciona en Slimefun, SkyBlock y OneBlock. En Clásico
+                está apagado para conservar una experiencia vanilla; Laboratorio
+                es una zona de pruebas aislada.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/sf guide</code>
+                  <p>
+                    Abre la guía de recetas de Slimefun.<span
+                      class="guide-row__alias"
+                      >También: /slimefun guide</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun, islas y Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sf search &lt;texto&gt;</code>
+                  <p>
+                    Busca un objeto por nombre sin navegar categorías.<span
+                      class="guide-tag guide-tag--survival"
+                      >Slimefun, islas y Laboratorio</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sf give · /sf research</code>
+                  <p>
+                    Son herramientas administrativas, no métodos de juego. En
+                    Laboratorio usa <code>/sf cheat</code>; las investigaciones
+                    se desbloquean allí de forma virtual y no alteran tu
+                    progreso real.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Laboratorio seguro</code>
+                  <p>
+                    No permite subastas, tiendas, ventas, bóvedas, ender chest,
+                    homes ni teletransportes económicos. Solo puedes alternar
+                    entre creativo y survival; explosivos y máquinas de alto
+                    riesgo muestran su efecto sin causar explosiones reales.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sfcalc</code>
+                  <p>
+                    Calcula todo lo necesario para fabricar algo, incluidos
+                    pasos intermedios.<span class="guide-row__alias"
+                      >También: /sfc</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Modalidades con Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sfa</code>
+                  <p>
+                    Tus logros de Slimefun: qué has desbloqueado y qué te
+                    falta.<span class="guide-row__alias"
+                      >También: /sfadvancements</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Modalidades con Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Networks</code>
+                  <p>
+                    Almacenamiento, transporte y cuadrículas. No tiene comando
+                    de jugador: cada máquina y su receta salen en
+                    <code>/sf guide</code>.<span
+                      class="guide-tag guide-tag--survival"
+                      >Modalidades con Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/nex</code>
+                  <p>
+                    El sistema de investigación de Nexcavate.<span
+                      class="guide-row__alias"
+                      >También: /nexcavate</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Solo modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/stb</code>
+                  <p>
+                    Los comandos de SensibleToolbox.<span
+                      class="guide-tag guide-tag--survival"
+                      >Solo modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/dank</code>
+                  <p>
+                    Gestiona tus Dank Tech.<span class="guide-row__alias"
+                      >También: /dt, /danktech2</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Solo modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="progresion">
+              <h2 id="seccion-8">Trabajos, misiones y habilidades</h2>
+              <p class="guide-section__note">
+                Tres sistemas distintos que suman a la vez: no tienes que elegir
+                uno.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/jobs</code>
+                  <p>
+                    Los oficios. Te pagan por lo que ya haces: minar, talar,
+                    construir, cazar.<span class="guide-row__alias"
+                      >Apuntarte: /jobs join &lt;oficio&gt;</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Slimefun y Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/quests</code>
+                  <p>
+                    Las misiones del servidor.<span class="guide-row__alias"
+                      >También: /q, /quest</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/skills</code>
+                  <p>
+                    Tus habilidades de AuraSkills: suben solas según lo que
+                    hagas.<span class="guide-row__alias"
+                      >Ver tus números: /stats</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/daily</code>
+                  <p>
+                    Tu racha de recompensa diaria. Se pierde si dejas de entrar.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/votar</code>
+                  <p>
+                    Vota diariamente en las listas oficiales para recibir
+                    Dragmas, llaves de cofres ExcellentCrates y botín
+                    especial.<span class="guide-row__alias"
+                      >También: /vote, /voto40</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/kit</code>
+                  <p>
+                    Los kits mensuales que te toquen por rango.<span
+                      class="guide-row__alias"
+                      >También: /kits</span
+                    ><span class="guide-tag guide-tag--vip">Según rango</span>
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="social">
+              <h2 id="seccion-9">Social y chat</h2>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/marry &lt;jugador&gt;</code>
+                  <p>
+                    Pídele matrimonio a alguien. Da teletransporte mutuo y algún
+                    gesto.<span class="guide-row__alias"
+                      >Ir con tu pareja: /marry tp · Casa común: /marry home ·
+                      Separarse: /marry divorce · Gestos: /marry hug, /marry
+                      kiss</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/team</code>
+                  <p>
+                    Equipos de BetterTeams: crear, invitar y gestionar.<span
+                      class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ignore &lt;jugador&gt;</code>
+                  <p>Dejas de ver lo que escribe. No avisa a nadie.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/msgtoggle</code>
+                  <p>Cierra los privados del todo.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/me &lt;texto&gt;</code>
+                  <p>
+                    Deshabilitado para jugadores para evitar suplantaciones de
+                    avisos.<span class="guide-row__alias"
+                      >Usa /msg &lt;jugador&gt; para susurrar en privado</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/mail</code>
+                  <p>
+                    Correo interno para quien no está conectado.<span
+                      class="guide-row__alias"
+                      >Enviar: /mail send &lt;jugador&gt; &lt;texto&gt;</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/helpop &lt;texto&gt;</code>
+                  <p>
+                    Llama al staff conectado. Para lo urgente; lo demás, al foro
+                    de Discord.<span class="guide-row__alias"
+                      >También: /ac</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Aldeanos realistas</code>
+                  <p>
+                    Interactúa con aldeanos haciendo clic derecho o Shift+Clic:
+                    poseen nombres propios, profesiones, niveles y árboles de
+                    diálogo e intercambio dinámicos (RealisticVillagers).<span
+                      class="guide-tag guide-tag--survival"
+                      >Modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="traduccion">
+              <h2 id="seccion-10">Traducir el chat</h2>
+              <p class="guide-section__note">
+                El servidor traduce en vivo. Si juegas con gente que no habla tu
+                idioma, esto es lo que buscas.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/wwct &lt;idioma&gt;</code>
+                  <p>
+                    Traduce a tu idioma todo lo que se escriba en el chat.<span
+                      class="guide-row__alias"
+                      >También: /translate · Apagarlo: /wwct stop</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/wwctci &lt;idioma&gt;</code>
+                  <p>
+                    Traduce solo lo que te llega, sin tocar lo que tú escribes.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/wwctco &lt;idioma&gt;</code>
+                  <p>
+                    Traduce solo lo que tú escribes, para que te entiendan los
+                    demás.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/wwcl &lt;idioma&gt;</code>
+                  <p>Fija tu idioma para todo lo anterior de una vez.</p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="drakescraft">
+              <h2 id="seccion-11">Lo que solo existe aquí</h2>
+              <p class="guide-section__note">
+                Sistemas escritos para DrakesCraft. No los vas a encontrar en
+                otro servidor.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/arcana</code>
+                  <p>
+                    El códice de magia elemental: hechizos, elementos y tus
+                    habilidades.<span class="guide-row__alias"
+                      >También: /arc, /magia</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/dioses</code>
+                  <p>
+                    El panteón. Eliges deidad y ella te cambia cómo juegas.<span
+                      class="guide-row__alias"
+                      >También: /dios, /panteon</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/bosswarp</code>
+                  <p>
+                    Entra a la arena de un jefe. Cada arena está aislada: nadie
+                    te va a robar el botín.<span
+                      class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/cosmeticos</code>
+                  <p>
+                    Equipa o retira auras, rastros de partículas y efectos
+                    visuales de muerte desbloqueados por rango VIP o adquiridos
+                    en /papatrueque. Usa <code>none</code> para desactivar.<span
+                      class="guide-row__alias"
+                      >Sintaxis: /cosmeticos &lt;aura|rastro|muerte&gt;
+                      &lt;nombre|none&gt; · Ejemplo: /cosmeticos rastro
+                      dragon</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >VIP o Papa de mar</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/music</code>
+                  <p>
+                    El reproductor de música con discos.<span
+                      class="guide-row__alias"
+                      >También: /jukebox</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/eenchants list</code>
+                  <p>
+                    El catálogo de los 81 encantamientos propios del servidor:
+                    qué hace cada uno, en qué objetos entra y hasta qué nivel
+                    sube. No salen descritos en el objeto, así que esta lista es
+                    la única forma de conocerlos.<span class="guide-row__alias"
+                      >También: /excellentenchants list · Tope: 5 encantamientos
+                      propios por objeto en el yunque</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/brew</code>
+                  <p>
+                    Destilería de BreweryX: consulta recetas fermentadas, nivel
+                    de embriaguez actual o sella botellas para su venta
+                    comercial.<span class="guide-row__alias"
+                      >También: /brew info, /brew seal, /brew stats</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/papademar</code>
+                  <p>
+                    La Papa de mar. Si preguntas para qué sirve, ya es
+                    tarde.<span class="guide-row__alias">También: /pdm</span>
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/reencarnar</code>
+                  <p>
+                    Rito de Reencarnación y Prestigio de Odysseia. Reinicia tu
+                    nivel para ganar prestigio acumulativo y resguardar
+                    reliquias selectas en tu Cápsula de Recuerdos.<span
+                      class="guide-row__alias"
+                      >También: /prestigio, /ascender, /reborn</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >Modalidad Slimefun</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/restart30</code>
+                  <p>
+                    Pide un reinicio avisado con cuenta atrás y guardado previo.
+                    Úsalo solo si el servidor va realmente mal.<span
+                      class="guide-row__alias"
+                      >También: /reiniciar, /reinicio</span
+                    ><span class="guide-tag guide-tag--vip">Según rango</span>
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="comodidad">
+              <h2 id="seccion-12">Comodidades</h2>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/sit</code>
+                  <p>
+                    Te sientas donde estés.<span class="guide-row__alias"
+                      >Familia entera: /lay, /layback, /crawl, /spin,
+                      /bellyflop</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/skin &lt;nombre&gt;</code>
+                  <p>
+                    Te pone la skin de otra cuenta. Útil sobre todo en
+                    Bedrock.<span class="guide-row__alias"
+                      >Quitarla: /skin clear</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/offhand</code>
+                  <p>
+                    Pasa el objeto en mano a tu segunda mano (mano izquierda).
+                    Esencial para jugadores en Bedrock que no disponen de la
+                    tecla F de Java.<span class="guide-row__alias"
+                      >También: /geyser offhand</span
+                    ><span class="guide-tag guide-tag--bedrock"
+                      >Bedrock &amp; Java</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/hat</code>
+                  <p>
+                    Te pones en la cabeza lo que lleves en la mano.<span
+                      class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >Desde Hércules</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/fly</code>
+                  <p>
+                    Vuelo en el mundo sin gastar cohetes ni élitros.<span
+                      class="guide-tag guide-tag--vip"
+                      >Desde Hermes</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/feed</code>
+                  <p>
+                    Rellena por completo tu barra de hambre.<span
+                      class="guide-tag guide-tag--vip"
+                      >Desde Hefesto</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/heal</code>
+                  <p>
+                    Cura toda tu salud y corazones.<span
+                      class="guide-tag guide-tag--vip"
+                      >Desde Zeus</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/repair</code>
+                  <p>
+                    Repara el objeto que sostienes en la mano.<span
+                      class="guide-row__alias"
+                      >Reparar todo el inventario: /repair all (Zeus)</span
+                    ><span class="guide-tag guide-tag--vip"
+                      >Desde Afrodita</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/getpos</code>
+                  <p>
+                    Tus coordenadas exactas.<span class="guide-row__alias"
+                      >También: /coords</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/near</code>
+                  <p>
+                    Quién anda cerca de ti.<span
+                      class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/seen &lt;jugador&gt;</code>
+                  <p>Cuándo se conectó por última vez.</p>
+                </div>
+                <div class="guide-row">
+                  <code>/imageframe</code>
+                  <p>
+                    Convierte una imagen en un cuadro de mapas. Respeta las
+                    normas con lo que subas.<span class="guide-row__alias"
+                      >También: /if, /frame</span
+                    ><span class="guide-tag guide-tag--survival"
+                      >No disponible en Clásico</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/recipe &lt;objeto&gt;</code>
+                  <p>
+                    La receta vanilla de algo. Para Slimefun usa /sf guide.<span
+                      class="guide-tag guide-tag--vip"
+                      >Desde Hércules</span
+                    >
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/itemdb</code>
+                  <p>
+                    Qué objeto llevas en la mano y cuánta durabilidad le
+                    queda.<span class="guide-row__alias">También: /dura</span>
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="comunidad-discord">
+              <h2 id="seccion-13">Comunidad en Discord y Bot SAORI</h2>
+              <p class="guide-section__note">
+                El bot SAORI conecta Minecraft y Discord en tiempo real con 53
+                comandos de aplicación nativos (<code>/</code>) y el canal
+                <code>#🏪・ɪɴᴛᴇʀᴀᴄᴄɪᴏɴᴇs-ʏ-ᴄᴏᴍᴇʀᴄɪᴏ</code>.
+              </p>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>/smenu</code>
+                  <p>
+                    Abre el panel interactivo de Saori en Discord con acceso
+                    directo a vinculación, perfiles y enlaces.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sperfil</code>
+                  <p>
+                    Consulta tu estado de jugador, rango, tiempo jugado y
+                    estadísticas desde cualquier chat de Discord.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/stps</code>
+                  <p>
+                    Comprueba el rendimiento en vivo, TPS y memoria del
+                    servidor.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sclaim</code>
+                  <p>
+                    Información y ayuda sobre tus protecciones de
+                    ProtectionStones directamente en Discord.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sbuscar &lt;término&gt;</code>
+                  <p>
+                    Busca guías, ítems de Slimefun o comandos en la base de
+                    conocimientos oficial.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/sinteracciones</code>
+                  <p>
+                    Guía de uso del canal
+                    <code>#🏪・ɪɴᴛᴇʀᴀᴄᴄɪᴏɴᴇs-ʏ-ᴄᴏᴍᴇʀᴄɪᴏ</code> para publicar
+                    proyectos, compra/venta de ítems, chismes y ofertas de
+                    trabajo.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>/ssugerir &lt;texto&gt;</code>
+                  <p>
+                    Envía sugerencias directas al canal de sugerencias para
+                    votación comunitaria y revisión del staff.
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="guide-section" id="permisos">
+              <h2 id="seccion-14">Si un comando no te funciona</h2>
+              <div class="guide-rows">
+                <div class="guide-row">
+                  <code>«No tienes permiso»</code>
+                  <p>
+                    El comando existe pero tu rango no lo alcanza, o estás en
+                    una modalidad donde está cerrado a propósito. Mira la
+                    etiqueta que lleva al lado en esta página.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>«Unknown command»</code>
+                  <p>
+                    Eso sí es raro: significa que el plugin no cargó. Dilo en el
+                    foro de Discord con el nombre exacto que escribiste.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Funciona en una modalidad y en otra no</code>
+                  <p>
+                    Algunos sistemas están separados a propósito. La casa de
+                    subastas sí funciona en cada modalidad, pero muestra un
+                    mercado distinto en cada una; las bóvedas y el mercado de
+                    materiales Slimefun conservan sus restricciones.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>Mi inventario «desapareció»</code>
+                  <p>
+                    Comprueba primero la modalidad: cada una carga un inventario
+                    distinto. No vuelvas a cambiar de mundo mientras aparece el
+                    mensaje de respaldo. Si falta algo después, reporta jugador,
+                    hora, modalidad de origen y destino.
+                  </p>
+                </div>
+                <div class="guide-row">
+                  <code>La máquina no hace nada</code>
+                  <p>
+                    Revisa la receta exacta en <code>/sf guide</code>,
+                    investigación, energía, espacio de salida, multibloque y
+                    límite de entidades. Al reportarlo indica mundo,
+                    coordenadas, nombre exacto de la máquina y hora.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
-      <p class="guide-empty is-hidden" id="guide-empty">No encontramos nada con eso. Prueba con otra palabra.</p>
-    </div>
-
-    <section class="container guide-section" id="basicos">
-      <h2>Lo básico</h2>
-      <p class="guide-section__note">Lo que vas a escribir todos los días. Si eres nuevo, con esta sección te basta para empezar.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/spawn</code><p>Te lleva al punto de aparición de la modalidad en la que estés, no al lobby. En SkyBlock y OneBlock no hay spawn: se entra directo a la isla.</p></div>
-        <div class="guide-row"><code>/lobby</code><p>Te devuelve al hub principal (SpawnWarps), donde se elige modalidad.<span class="guide-row__alias">También: /hub, /l</span></p></div>
-        <div class="guide-row"><code>/discord</code><p>Enlace oficial de la comunidad de Discord y vinculación de tu cuenta con el bot SAORI.<span class="guide-row__alias">Comunidad y soporte</span></p></div>
-        <div class="guide-row"><code>/sethome &lt;nombre&gt;</code><p>Guarda donde estás como hogar. Cuántos puedes tener depende de tu rango.<span class="guide-row__alias">Borrar: /delhome &lt;nombre&gt; · Renombrar: /renamehome</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/home &lt;nombre&gt;</code><p>Te lleva a un hogar guardado. Sin nombre, al principal.<span class="guide-row__alias">Ver todos: /homes</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/back</code><p>Vuelve al último sitio del que te teletransportaste, o a donde moriste.<span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/graves</code><p>Tus tumbas. Al morir no sueltas nada al suelo: todo queda guardado en una tumba con tu cabeza, incluida la experiencia. Aguanta <strong>7 días</strong> antes de desaparecer y solo tú puedes abrirla.<span class="guide-row__alias">Listado con coordenadas: /axgraves list · Ir a una: /axgraves tp &lt;mundo&gt; &lt;x&gt; &lt;y&gt; &lt;z&gt;</span></p></div>
-        <div class="guide-row"><code>/tpa &lt;jugador&gt;</code><p>Pide permiso para teletransportarte a alguien.<span class="guide-row__alias">Al revés: /tpahere · Aceptar: /tpaccept · Rechazar: /tpdeny</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/msg &lt;jugador&gt; &lt;texto&gt;</code><p>Mensaje privado.<span class="guide-row__alias">También: /w, /m, /t, /pm · Responder: /r</span></p></div>
-        <div class="guide-row"><code>/list</code><p>Quién está conectado ahora mismo.</p></div>
-        <div class="guide-row"><code>/afk</code><p>Te marca como ausente para que nadie te espere.</p></div>
-        <div class="guide-row"><code>/ping</code><p>Tu latencia con el servidor. Útil antes de decir que el servidor va mal.</p></div>
-        <div class="guide-row"><code>/playtime</code><p>Cuánto has jugado en total. Es lo que cuenta para los rangos de veteranía.</p></div>
-        <div class="guide-row"><code>/rules</code><p>Las normas. Están cortas a propósito.<span class="guide-row__alias">También: /reglas, /normas</span></p></div>
-        <div class="guide-row"><code>/motd</code><p>El mensaje del día.</p></div>
-        <div class="guide-row"><code>/help</code><p>El listado que genera el propio servidor.<span class="guide-row__alias">También: /ayuda, /comandos</span></p></div>
+    </main>
+    <footer class="op-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <a class="op-brand" href="/"
+              ><img
+                src="/assets/logo-drakescraft.png"
+                alt=""
+                width="43"
+                height="48"
+              /><span
+                ><strong>DrakesCraft</strong><small>JAVA + BEDROCK</small></span
+              ></a
+            >
+            <p>Cinco mundos. Una comunidad. Un legado que sigue creciendo.</p>
+            <code>mc.drakescraft.cl</code>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>EXPLORA</h2>
+            <a href="/guia.html">El servidor</a
+            ><a href="/guia-comandos.html">Comandos</a
+            ><a href="/guia-rangos.html">Rangos</a
+            ><a href="/guia-slimefun.html">Slimefun</a
+            ><a href="/cultivation.html">Cultivation</a>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>COMUNIDAD</h2>
+            <a href="/discord.html">Discord</a
+            ><a href="/metricas.html">Métricas</a
+            ><a href="/apoya.html">Apoyar</a
+            ><a href="/ojo-de-atenea.html">Atenea</a>
+          </div>
+          <div class="col-12 col-lg-3">
+            <h2>TIENDA Y AYUDA</h2>
+            <a href="/store.html">Tienda</a
+            ><a href="/support.html">Soporte de compras</a
+            ><a href="/terms.html">Términos y condiciones</a
+            ><a
+              href="https://github.com/DrakesCraft-Labs"
+              target="_blank"
+              rel="noopener"
+              >DrakesCraft Labs ↗</a
+            >
+          </div>
+        </div>
+        <div class="op-footer-bottom">
+          <span>DrakesCraft · Portal oficial</span
+          ><span>Java + Bedrock · mc.drakescraft.cl</span>
+        </div>
       </div>
-    </section>
-    <section class="container guide-section" id="modalidades">
-      <h2>Moverte entre las 5 modalidades</h2>
-      <p class="guide-section__note">Slimefun, Clásico, SkyBlock, OneBlock y Laboratorio son mundos aislados con inventario separado para proteger tu progreso y la economía.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/modalidades</code><p>El menú visual para saltar entre las 5 modalidades del servidor.<span class="guide-row__alias">También: /modalidad, /modos</span></p></div>
-        <div class="guide-row"><code>/survival</code><p>Directo a la modalidad principal con Slimefun, magia y jefes.<span class="guide-row__alias">También: /slimefun, /principal, /polis, /main</span></p></div>
-        <div class="guide-row"><code>/clasico</code><p>Directo al survival clásico tradicional sin Slimefun ni máquinas.<span class="guide-row__alias">Muévete con /rtp</span></p></div>
-        <div class="guide-row"><code>/island</code><p>Tu isla de SkyBlock. La primera vez te la crea.<span class="guide-row__alias">También: /is, /skyblock, /sb</span><span class="guide-tag guide-tag--survival">SkyBlock</span></p></div>
-        <div class="guide-row"><code>/ob</code><p>Tu isla de OneBlock.<span class="guide-row__alias">También: /oneblock</span><span class="guide-tag guide-tag--survival">OneBlock</span></p></div>
-        <div class="guide-row"><code>/warp laboratorio</code><p>🧪 Laboratorio de pruebas en modo creativo, pacífico y sin mobs.<span class="guide-row__alias">Acceso a trucos de Slimefun: /sf cheat</span><span class="guide-tag guide-tag--survival">Laboratorio</span></p></div>
-        <div class="guide-row"><code>/sf cheat</code><p>🎁 Abre el Cheat Sheet para sacar cualquier máquina o ítem de Slimefun con un clic. En Laboratorio todas las investigaciones aparecen desbloqueadas temporalmente.<span class="guide-tag guide-tag--survival">Solo en Laboratorio</span></p></div>
-        <div class="guide-row"><code>Cambio seguro</code><p>Al cambiar de modalidad debes quedarte quieto unos segundos mientras se respalda el inventario de origen. Inventario, ender chest, experiencia, vida, hambre, estadísticas y avances se cargan por separado; el dinero y el rango sí son globales.</p></div>
-        <div class="guide-row"><code>/rtp</code><p>Te lanza a un punto aleatorio, lejos de todo.<span class="guide-row__alias">También: /wild, /randomtp</span><span class="guide-tag guide-tag--bedrock">Bedrock: hasta 150.000 bloques</span></p></div>
-        <div class="guide-row"><code>/warps</code><p>Los puntos públicos del servidor.<span class="guide-row__alias">Ir a uno: /warp &lt;nombre&gt;</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/pw</code><p>Los warps que abren otros jugadores, y los tuyos.<span class="guide-row__alias">Crear el tuyo: /pw set &lt;nombre&gt;</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="islas">
-      <h2>Tu isla: SkyBlock y OneBlock</h2>
-      <p class="guide-section__note">Las dos modalidades de isla usan los mismos comandos: en SkyBlock empiezan por <code>/is</code> y en OneBlock por <code>/ob</code>. Lo único que cambia es el tamaño de la isla, que depende de tu rango, y los comandos de fase, que solo existen en OneBlock.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/is</code><p>Te lleva a tu isla. La primera vez que lo escribes, te la crea.<span class="guide-row__alias">También: /island, /skyblock, /sb · En OneBlock: /ob, /oneblock</span></p></div>
-        <div class="guide-row"><code>/is go</code><p>Vuelve a tu isla desde donde estés.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is spawn</code><p>Te lleva al spawn de la modalidad, fuera de las islas.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is near</code><p>Los nombres de las islas vecinas a la tuya.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is sethome &lt;nombre&gt;</code><p>Guarda un punto dentro de tu isla. Puedes tener varios.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is homes</code><p>Lista los puntos que has guardado en tu isla.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is deletehome &lt;nombre&gt;</code><p>Borra uno de esos puntos.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is renamehome &lt;nombre&gt;</code><p>Le cambia el nombre a un punto guardado.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is info</code><p>Quién es el dueño, quién está en el equipo y desde cuándo existe.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is setname &lt;nombre&gt;</code><p>Le pones nombre a tu isla; es el que ven los demás.<span class="guide-row__alias">Quitarlo: /is resetname · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is settings</code><p>Las reglas de dentro: quién puede abrir cofres, romper bloques o entrar.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is lock</code><p>Cierra la isla para que no entre nadie ajeno al equipo.<span class="guide-row__alias">Vuelve a abrirla con el mismo comando · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is language</code><p>Elige el idioma de los mensajes de isla.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is reset</code><p>Borra tu isla y te da una nueva. No hay vuelta atrás y pierdes todo lo construido.<span class="guide-row__alias">Tienes un número limitado de reinicios</span><span class="guide-tag guide-tag--bedrock">Irreversible</span></p></div>
-        <div class="guide-row"><code>/is level</code><p>Recalcula el nivel de tu isla según los bloques colocados. Solo se actualiza al usar el comando o al entrar al servidor, con 60 s de espera entre cálculos.<span class="guide-row__alias">Igual en OneBlock con /ob. Detalles completos en la guía general</span></p></div>
-        <div class="guide-row"><code>/is top</code><p>El ranking de islas de la modalidad.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is value</code><p>Cuánto suma al nivel el bloque que llevas en la mano.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is detail</code><p>El desglose del nivel: qué bloques aportan y cuánto, incluidos spawners, lo sumergido y lo que está sobre el nivel del mar.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is generator</code><p>El menú de generadores de piedra, con lo que puedes desbloquear según tu nivel.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is biome</code><p>Abre el panel interactivo para cambiar el bioma de tu isla, chunk o área (afecta el cielo, césped, agua y tipos de criaturas que aparecen).<span class="guide-row__alias">También: /is biomes · En OneBlock: /ob biome (disponible tras el próximo reinicio)</span></p></div>
-        <div class="guide-row"><code>/is team</code><p>Muestra tu equipo y en qué rango está cada uno.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team invite &lt;jugador&gt;</code><p>Invita a alguien a tu isla.<span class="guide-row__alias">Quien recibe: /is team accept o /is team reject · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team kick &lt;jugador&gt;</code><p>Saca a alguien del equipo.<span class="guide-row__alias">Salir tú: /is team leave · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team promote &lt;jugador&gt;</code><p>Le sube el rango dentro de la isla y con él lo que puede tocar.<span class="guide-row__alias">Bajarlo: /is team demote · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team setowner &lt;jugador&gt;</code><p>Le cede la propiedad de la isla. Piénsalo dos veces: dejas de mandar tú.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team coop &lt;jugador&gt;</code><p>Acceso temporal a tu isla; se pierde al desconectar.<span class="guide-row__alias">Quitarlo: /is team uncoop · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is team trust &lt;jugador&gt;</code><p>Acceso permanente sin meterlo en el equipo.<span class="guide-row__alias">Quitarlo: /is team untrust · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is expel &lt;jugador&gt;</code><p>Echa de tu isla a quien esté dentro ahora mismo.<span class="guide-row__alias">Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/is ban &lt;jugador&gt;</code><p>Le impide volver a entrar.<span class="guide-row__alias">Levantarlo: /is unban · Ver la lista: /is banlist · Igual en OneBlock con /ob</span></p></div>
-        <div class="guide-row"><code>/ob count</code><p>Cuántos bloques llevas rotos y cuánto falta para la siguiente fase.<span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
-        <div class="guide-row"><code>/ob phases</code><p>Todas las fases del OneBlock y en cuál estás.<span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
-        <div class="guide-row"><code>/ob respawnblock</code><p>Devuelve el bloque si se te perdió por un accidente.<span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
-        <div class="guide-row"><code>/ob bossbar</code><p>Muestra u oculta el contador de la fase en la barra superior.<span class="guide-row__alias">En la barra de acción: /ob actionbar</span><span class="guide-tag guide-tag--survival">Solo OneBlock</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="protecciones">
-      <h2>Proteger tu base</h2>
-      <p class="guide-section__note">DrakesCraft usa ProtectionStones: proteges poniendo un bloque, no dibujando una región. Consigue el bloque de protección y colócalo en el centro de lo que quieras defender.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/ps get</code><p>Te da un bloque de protección de los que tengas disponibles.<span class="guide-row__alias">También: /claim, /claims, /proteccion</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/tiendaprot</code><p>Abre el menú para adquirir menas de protección adicionales con Dragmas.<span class="guide-row__alias">También: /protecciones, /menuprotes</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps info</code><p>Quién manda en la protección donde estás parado.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps members add &lt;jugador&gt;</code><p>Deja construir a alguien dentro de tu protección.<span class="guide-row__alias">Quitar: /ps members remove &lt;jugador&gt;</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps owners add &lt;jugador&gt;</code><p>Le da control total, incluido romper la protección. Piénsalo dos veces.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps home</code><p>Te lleva a tu protección.<span class="guide-row__alias">Fijar el punto: /ps sethome</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps list</code><p>Todas tus protecciones.<span class="guide-row__alias">Cuántas te quedan: /ps count</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps flag</code><p>Configura o consulta las reglas de tu protección (ej. spawn de mobs, pvp, explosiones o mensaje de bienvenida). Usa <code>/ps flags</code> para ver la lista de banderas disponibles.<span class="guide-row__alias">Sintaxis: /ps flag &lt;bandera&gt; &lt;allow|deny|valor&gt; · Ejemplo: /ps flag mob-spawning deny · Lista: /ps flags</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps unclaim</code><p>Retira la protección y te devuelve el bloque. No hay confirmación doble.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ps merge</code><p>Une dos protecciones tuyas que se tocan en una sola.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/borde</code><p>Enseña u oculta el borde de cristal de tu protección para ver dónde acaba.<span class="guide-row__alias">También: /bordes, /border, /limite</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>Límites en Clásico</code><p>Los límites de menas (4 en Polis, 10 en OldSchool) y de hogares (6 u 8) en <strong>Survival Clásico</strong> son totalmente independientes de los usados en Slimefun: no consumen tu cupo principal.<span class="guide-tag guide-tag--survival">Exclusivo Clásico</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="guardar">
-      <h2>Guardar y mover cosas</h2>
-      <p class="guide-section__note">Inventarios, cofres de ender y bóvedas se resuelven por modalidad. Un objeto guardado en Slimefun no aparecerá en Clásico, OneBlock, SkyBlock o Laboratorio.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/pv</code><p>Abre las bóvedas personales de la modalidad actual. Cada modalidad mantiene contenido independiente.<span class="guide-row__alias">También: /vault, /playervault</span><span class="guide-tag guide-tag--survival">Bloqueado en Laboratorio</span></p></div>
-        <div class="guide-row"><code>/enderchest</code><p>Tu cofre de ender de siempre, sin tener que llevarlo encima.<span class="guide-row__alias">También: /echest</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span><span class="guide-tag guide-tag--vip">Desde Hermes</span></p></div>
-        <div class="guide-row"><code>/disposal</code><p>Una papelera portátil. Lo que metas ahí no vuelve.<span class="guide-row__alias">También: /trash</span><span class="guide-tag guide-tag--vip">Desde Hefesto</span></p></div>
-        <div class="guide-row"><code>/workbench</code><p>Mesa de crafteo portátil.<span class="guide-row__alias">También: /craft, /wb</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span><span class="guide-tag guide-tag--vip">Desde Hermes</span></p></div>
-        <div class="guide-row"><code>/anvil</code><p>Yunque portátil.<span class="guide-row__alias">Otros: /grindstone, /stonecutter, /loom, /cartographytable, /smithingtable</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span><span class="guide-tag guide-tag--vip">Desde Hefesto</span></p></div>
-        <div class="guide-row"><code>/condense</code><p>Convierte lo que lleves en bloques: lingotes a bloques, etc.<span class="guide-row__alias">También: /compact, /blocks</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span><span class="guide-tag guide-tag--vip">Desde Hefesto</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="dinero">
-      <h2>Dinero, tiendas y subastas</h2>
-      <p class="guide-section__note">Los Dragmas son globales. Los objetos no: cada modalidad tiene su propia casa de subastas y el Laboratorio no permite comerciar para evitar convertir objetos de prueba en dinero real.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/balance</code><p>Tu dinero.<span class="guide-row__alias">También: /bal, /money</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/baltop</code><p>Quién tiene más. Actualízalo antes de presumir.<span class="guide-row__alias">También: /balancetop</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/pay &lt;jugador&gt; &lt;cantidad&gt;</code><p>Le pasas dinero a alguien. No hay devoluciones.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/sbank</code><p>El banco central: depósitos, retiros e <strong>intereses pasivos automáticos</strong> sobre tus Dragmas guardados.<span class="guide-row__alias">También: /banco, /bank, /sb, /bank deposit &lt;monto&gt;, /bank withdraw &lt;monto&gt;</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/ah</code><p>La casa de subastas de tu modalidad. Publica ítems con <code>/ah sell &lt;precio&gt;</code>.<span class="guide-row__alias">También: /crazyauctions, /ca</span></p></div>
-        <div class="guide-row"><code>/sfmercado</code><p>Mercado algorítmico dinámico especializado en materiales y tecnología de Slimefun. Compra y vende recursos con precios fluctuantes según oferta y demanda.<span class="guide-row__alias">También: /mercado, /sm</span><span class="guide-tag guide-tag--survival">Slimefun, SkyBlock y OneBlock</span></p></div>
-        <div class="guide-row"><code>/sellgui</code><p>Abre una venta selectiva: deposita solo lo que quieras vender. Al cerrar, vende los objetos reconocidos y devuelve los que no tengan precio.<span class="guide-tag guide-tag--survival">Bloqueado en Laboratorio</span></p></div>
-        <div class="guide-row"><code>/qs</code><p>Crea y gestiona tus tiendas de cofre con <strong>QuickShop-Hikari</strong>. Sostén el ítem, mira un cofre y pon el precio.<span class="guide-row__alias">Comandos: /qs create &lt;precio&gt;, /qs setprice &lt;precio&gt;, /qs find &lt;item&gt;</span><span class="guide-tag guide-tag--survival">Slimefun, SkyBlock y OneBlock</span></p></div>
-        <div class="guide-row"><code>/sellall</code><p>Vende de golpe todos los minerales, madera, cultivos y materiales compatibles del inventario principal.<span class="guide-row__alias">También: /sellinv, /venderinv</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span><span class="guide-tag guide-tag--vip">Desde Afrodita</span></p></div>
-        <div class="guide-row"><code>/worth</code><p>Cuánto vale lo que tienes en la mano antes de venderlo.<span class="guide-row__alias">También: /price</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span><span class="guide-tag guide-tag--vip">Desde Afrodita</span></p></div>
-        <div class="guide-row"><code>/sell</code><p>Vende lo que llevas en la mano.<span class="guide-tag guide-tag--survival">Slimefun y Clásico</span><span class="guide-tag guide-tag--vip">Desde Afrodita</span></p></div>
-        <div class="guide-row"><code>/menu</code><p>El catálogo y menú interactivo principal del servidor: rangos, protecciones, kits, servicios y accesos directos.<span class="guide-row__alias">También: /tienda, /drakestienda</span></p></div>
-        <div class="guide-row"><code>/buy</code><p>El enlace a la tienda web.<span class="guide-row__alias">También: /comprar, /store, /shop</span></p></div>
-        <div class="guide-row"><code>/pwarp</code><p>Comercios de otros jugadores. Si la lista sale vacía no es un fallo: nadie ha creado un warp todavía en esa modalidad, tiene que hacerlo primero el dueño de la tienda.<span class="guide-row__alias">También: /pwarps, /playerwarp, /playerwarps</span></p></div>
-        <div class="guide-row"><code>/papatrueque</code><p>Canjea las papas de mar que el servidor reparte automáticamente (una cada 15 minutos por jugador conectado) por kits de oficio, provisiones, rangos temporales o cosméticos como el Rastro del Dragón y la Corona del Rey Papa. Solo cuentan las papas con marca del servidor.<span class="guide-row__alias">Los cosméticos adquiridos se equipan con /cosmeticos</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="slimefun">
-      <h2>Slimefun</h2>
-      <p class="guide-section__note">Slimefun funciona en Slimefun, SkyBlock y OneBlock. En Clásico está apagado para conservar una experiencia vanilla; Laboratorio es una zona de pruebas aislada.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/sf guide</code><p>Abre la guía de recetas de Slimefun.<span class="guide-row__alias">También: /slimefun guide</span><span class="guide-tag guide-tag--survival">Slimefun, islas y Laboratorio</span></p></div>
-        <div class="guide-row"><code>/sf search &lt;texto&gt;</code><p>Busca un objeto por nombre sin navegar categorías.<span class="guide-tag guide-tag--survival">Slimefun, islas y Laboratorio</span></p></div>
-        <div class="guide-row"><code>/sf give · /sf research</code><p>Son herramientas administrativas, no métodos de juego. En Laboratorio usa <code>/sf cheat</code>; las investigaciones se desbloquean allí de forma virtual y no alteran tu progreso real.</p></div>
-        <div class="guide-row"><code>Laboratorio seguro</code><p>No permite subastas, tiendas, ventas, bóvedas, ender chest, homes ni teletransportes económicos. Solo puedes alternar entre creativo y survival; explosivos y máquinas de alto riesgo muestran su efecto sin causar explosiones reales.</p></div>
-        <div class="guide-row"><code>/sfcalc</code><p>Calcula todo lo necesario para fabricar algo, incluidos pasos intermedios.<span class="guide-row__alias">También: /sfc</span><span class="guide-tag guide-tag--survival">Modalidades con Slimefun</span></p></div>
-        <div class="guide-row"><code>/sfa</code><p>Tus logros de Slimefun: qué has desbloqueado y qué te falta.<span class="guide-row__alias">También: /sfadvancements</span><span class="guide-tag guide-tag--survival">Modalidades con Slimefun</span></p></div>
-        <div class="guide-row"><code>Networks</code><p>Almacenamiento, transporte y cuadrículas. No tiene comando de jugador: cada máquina y su receta salen en <code>/sf guide</code>.<span class="guide-tag guide-tag--survival">Modalidades con Slimefun</span></p></div>
-        <div class="guide-row"><code>/nex</code><p>El sistema de investigación de Nexcavate.<span class="guide-row__alias">También: /nexcavate</span><span class="guide-tag guide-tag--survival">Solo modalidad Slimefun</span></p></div>
-        <div class="guide-row"><code>/stb</code><p>Los comandos de SensibleToolbox.<span class="guide-tag guide-tag--survival">Solo modalidad Slimefun</span></p></div>
-        <div class="guide-row"><code>/dank</code><p>Gestiona tus Dank Tech.<span class="guide-row__alias">También: /dt, /danktech2</span><span class="guide-tag guide-tag--survival">Solo modalidad Slimefun</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="progresion">
-      <h2>Trabajos, misiones y habilidades</h2>
-      <p class="guide-section__note">Tres sistemas distintos que suman a la vez: no tienes que elegir uno.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/jobs</code><p>Los oficios. Te pagan por lo que ya haces: minar, talar, construir, cazar.<span class="guide-row__alias">Apuntarte: /jobs join &lt;oficio&gt;</span><span class="guide-tag guide-tag--survival">Slimefun y Clásico</span></p></div>
-        <div class="guide-row"><code>/quests</code><p>Las misiones del servidor.<span class="guide-row__alias">También: /q, /quest</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/skills</code><p>Tus habilidades de AuraSkills: suben solas según lo que hagas.<span class="guide-row__alias">Ver tus números: /stats</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/daily</code><p>Tu racha de recompensa diaria. Se pierde si dejas de entrar.</p></div>
-        <div class="guide-row"><code>/votar</code><p>Vota diariamente en las listas oficiales para recibir Dragmas, llaves de cofres ExcellentCrates y botín especial.<span class="guide-row__alias">También: /vote, /voto40</span></p></div>
-        <div class="guide-row"><code>/kit</code><p>Los kits mensuales que te toquen por rango.<span class="guide-row__alias">También: /kits</span><span class="guide-tag guide-tag--vip">Según rango</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="social">
-      <h2>Social y chat</h2>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/marry &lt;jugador&gt;</code><p>Pídele matrimonio a alguien. Da teletransporte mutuo y algún gesto.<span class="guide-row__alias">Ir con tu pareja: /marry tp · Casa común: /marry home · Separarse: /marry divorce · Gestos: /marry hug, /marry kiss</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/team</code><p>Equipos de BetterTeams: crear, invitar y gestionar.<span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/ignore &lt;jugador&gt;</code><p>Dejas de ver lo que escribe. No avisa a nadie.</p></div>
-        <div class="guide-row"><code>/msgtoggle</code><p>Cierra los privados del todo.</p></div>
-        <div class="guide-row"><code>/me &lt;texto&gt;</code><p>Deshabilitado para jugadores para evitar suplantaciones de avisos.<span class="guide-row__alias">Usa /msg &lt;jugador&gt; para susurrar en privado</span></p></div>
-        <div class="guide-row"><code>/mail</code><p>Correo interno para quien no está conectado.<span class="guide-row__alias">Enviar: /mail send &lt;jugador&gt; &lt;texto&gt;</span></p></div>
-        <div class="guide-row"><code>/helpop &lt;texto&gt;</code><p>Llama al staff conectado. Para lo urgente; lo demás, al foro de Discord.<span class="guide-row__alias">También: /ac</span></p></div>
-        <div class="guide-row"><code>Aldeanos realistas</code><p>Interactúa con aldeanos haciendo clic derecho o Shift+Clic: poseen nombres propios, profesiones, niveles y árboles de diálogo e intercambio dinámicos (RealisticVillagers).<span class="guide-tag guide-tag--survival">Modalidad Slimefun</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="traduccion">
-      <h2>Traducir el chat</h2>
-      <p class="guide-section__note">El servidor traduce en vivo. Si juegas con gente que no habla tu idioma, esto es lo que buscas.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/wwct &lt;idioma&gt;</code><p>Traduce a tu idioma todo lo que se escriba en el chat.<span class="guide-row__alias">También: /translate · Apagarlo: /wwct stop</span></p></div>
-        <div class="guide-row"><code>/wwctci &lt;idioma&gt;</code><p>Traduce solo lo que te llega, sin tocar lo que tú escribes.</p></div>
-        <div class="guide-row"><code>/wwctco &lt;idioma&gt;</code><p>Traduce solo lo que tú escribes, para que te entiendan los demás.</p></div>
-        <div class="guide-row"><code>/wwcl &lt;idioma&gt;</code><p>Fija tu idioma para todo lo anterior de una vez.</p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="drakescraft">
-      <h2>Lo que solo existe aquí</h2>
-      <p class="guide-section__note">Sistemas escritos para DrakesCraft. No los vas a encontrar en otro servidor.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/arcana</code><p>El códice de magia elemental: hechizos, elementos y tus habilidades.<span class="guide-row__alias">También: /arc, /magia</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/dioses</code><p>El panteón. Eliges deidad y ella te cambia cómo juegas.<span class="guide-row__alias">También: /dios, /panteon</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/bosswarp</code><p>Entra a la arena de un jefe. Cada arena está aislada: nadie te va a robar el botín.<span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/cosmeticos</code><p>Equipa o retira auras, rastros de partículas y efectos visuales de muerte desbloqueados por rango VIP o adquiridos en /papatrueque. Usa <code>none</code> para desactivar.<span class="guide-row__alias">Sintaxis: /cosmeticos &lt;aura|rastro|muerte&gt; &lt;nombre|none&gt; · Ejemplo: /cosmeticos rastro dragon</span><span class="guide-tag guide-tag--vip">VIP o Papa de mar</span></p></div>
-        <div class="guide-row"><code>/music</code><p>El reproductor de música con discos.<span class="guide-row__alias">También: /jukebox</span></p></div>
-        <div class="guide-row"><code>/eenchants list</code><p>El catálogo de los 81 encantamientos propios del servidor: qué hace cada uno, en qué objetos entra y hasta qué nivel sube. No salen descritos en el objeto, así que esta lista es la única forma de conocerlos.<span class="guide-row__alias">También: /excellentenchants list · Tope: 5 encantamientos propios por objeto en el yunque</span></p></div>
-        <div class="guide-row"><code>/brew</code><p>Destilería de BreweryX: consulta recetas fermentadas, nivel de embriaguez actual o sella botellas para su venta comercial.<span class="guide-row__alias">También: /brew info, /brew seal, /brew stats</span><span class="guide-tag guide-tag--survival">Modalidad Slimefun</span></p></div>
-        <div class="guide-row"><code>/papademar</code><p>La Papa de mar. Si preguntas para qué sirve, ya es tarde.<span class="guide-row__alias">También: /pdm</span></p></div>
-        <div class="guide-row"><code>/reencarnar</code><p>Rito de Reencarnación y Prestigio de Odysseia. Reinicia tu nivel para ganar prestigio acumulativo y resguardar reliquias selectas en tu Cápsula de Recuerdos.<span class="guide-row__alias">También: /prestigio, /ascender, /reborn</span><span class="guide-tag guide-tag--survival">Modalidad Slimefun</span></p></div>
-        <div class="guide-row"><code>/restart30</code><p>Pide un reinicio avisado con cuenta atrás y guardado previo. Úsalo solo si el servidor va realmente mal.<span class="guide-row__alias">También: /reiniciar, /reinicio</span><span class="guide-tag guide-tag--vip">Según rango</span></p></div>
-      </div>
-    </section>
-    <section class="container guide-section" id="comodidad">
-      <h2>Comodidades</h2>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/sit</code><p>Te sientas donde estés.<span class="guide-row__alias">Familia entera: /lay, /layback, /crawl, /spin, /bellyflop</span></p></div>
-        <div class="guide-row"><code>/skin &lt;nombre&gt;</code><p>Te pone la skin de otra cuenta. Útil sobre todo en Bedrock.<span class="guide-row__alias">Quitarla: /skin clear</span></p></div>
-        <div class="guide-row"><code>/offhand</code><p>Pasa el objeto en mano a tu segunda mano (mano izquierda). Esencial para jugadores en Bedrock que no disponen de la tecla F de Java.<span class="guide-row__alias">También: /geyser offhand</span><span class="guide-tag guide-tag--bedrock">Bedrock &amp; Java</span></p></div>
-        <div class="guide-row"><code>/hat</code><p>Te pones en la cabeza lo que lleves en la mano.<span class="guide-tag guide-tag--survival">No disponible en Clásico</span><span class="guide-tag guide-tag--vip">Desde Hércules</span></p></div>
-        <div class="guide-row"><code>/fly</code><p>Vuelo en el mundo sin gastar cohetes ni élitros.<span class="guide-tag guide-tag--vip">Desde Hermes</span></p></div>
-        <div class="guide-row"><code>/feed</code><p>Rellena por completo tu barra de hambre.<span class="guide-tag guide-tag--vip">Desde Hefesto</span></p></div>
-        <div class="guide-row"><code>/heal</code><p>Cura toda tu salud y corazones.<span class="guide-tag guide-tag--vip">Desde Zeus</span></p></div>
-        <div class="guide-row"><code>/repair</code><p>Repara el objeto que sostienes en la mano.<span class="guide-row__alias">Reparar todo el inventario: /repair all (Zeus)</span><span class="guide-tag guide-tag--vip">Desde Afrodita</span></p></div>
-        <div class="guide-row"><code>/getpos</code><p>Tus coordenadas exactas.<span class="guide-row__alias">También: /coords</span></p></div>
-        <div class="guide-row"><code>/near</code><p>Quién anda cerca de ti.<span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/seen &lt;jugador&gt;</code><p>Cuándo se conectó por última vez.</p></div>
-        <div class="guide-row"><code>/imageframe</code><p>Convierte una imagen en un cuadro de mapas. Respeta las normas con lo que subas.<span class="guide-row__alias">También: /if, /frame</span><span class="guide-tag guide-tag--survival">No disponible en Clásico</span></p></div>
-        <div class="guide-row"><code>/recipe &lt;objeto&gt;</code><p>La receta vanilla de algo. Para Slimefun usa /sf guide.<span class="guide-tag guide-tag--vip">Desde Hércules</span></p></div>
-        <div class="guide-row"><code>/itemdb</code><p>Qué objeto llevas en la mano y cuánta durabilidad le queda.<span class="guide-row__alias">También: /dura</span></p></div>
-      </div>
-    </section>
-
-    <section class="container guide-section" id="comunidad-discord">
-      <h2>Comunidad en Discord y Bot SAORI</h2>
-      <p class="guide-section__note">El bot SAORI conecta Minecraft y Discord en tiempo real con 53 comandos de aplicación nativos (<code>/</code>) y el canal <code>#🏪・ɪɴᴛᴇʀᴀᴄᴄɪᴏɴᴇs-ʏ-ᴄᴏᴍᴇʀᴄɪᴏ</code>.</p>
-      <div class="guide-rows">
-        <div class="guide-row"><code>/smenu</code><p>Abre el panel interactivo de Saori en Discord con acceso directo a vinculación, perfiles y enlaces.</p></div>
-        <div class="guide-row"><code>/sperfil</code><p>Consulta tu estado de jugador, rango, tiempo jugado y estadísticas desde cualquier chat de Discord.</p></div>
-        <div class="guide-row"><code>/stps</code><p>Comprueba el rendimiento en vivo, TPS y memoria del servidor.</p></div>
-        <div class="guide-row"><code>/sclaim</code><p>Información y ayuda sobre tus protecciones de ProtectionStones directamente en Discord.</p></div>
-        <div class="guide-row"><code>/sbuscar &lt;término&gt;</code><p>Busca guías, ítems de Slimefun o comandos en la base de conocimientos oficial.</p></div>
-        <div class="guide-row"><code>/sinteracciones</code><p>Guía de uso del canal <code>#🏪・ɪɴᴛᴇʀᴀᴄᴄɪᴏɴᴇs-ʏ-ᴄᴏᴍᴇʀᴄɪᴏ</code> para publicar proyectos, compra/venta de ítems, chismes y ofertas de trabajo.</p></div>
-        <div class="guide-row"><code>/ssugerir &lt;texto&gt;</code><p>Envía sugerencias directas al canal de sugerencias para votación comunitaria y revisión del staff.</p></div>
-      </div>
-    </section>
-
-    <section class="container guide-section" id="permisos">
-      <h2>Si un comando no te funciona</h2>
-      <div class="guide-rows">
-        <div class="guide-row"><code>«No tienes permiso»</code><p>El comando existe pero tu rango no lo alcanza, o estás en una modalidad donde está cerrado a propósito. Mira la etiqueta que lleva al lado en esta página.</p></div>
-        <div class="guide-row"><code>«Unknown command»</code><p>Eso sí es raro: significa que el plugin no cargó. Dilo en el foro de Discord con el nombre exacto que escribiste.</p></div>
-        <div class="guide-row"><code>Funciona en una modalidad y en otra no</code><p>Algunos sistemas están separados a propósito. La casa de subastas sí funciona en cada modalidad, pero muestra un mercado distinto en cada una; las bóvedas y el mercado de materiales Slimefun conservan sus restricciones.</p></div>
-        <div class="guide-row"><code>Mi inventario «desapareció»</code><p>Comprueba primero la modalidad: cada una carga un inventario distinto. No vuelvas a cambiar de mundo mientras aparece el mensaje de respaldo. Si falta algo después, reporta jugador, hora, modalidad de origen y destino.</p></div>
-        <div class="guide-row"><code>La máquina no hace nada</code><p>Revisa la receta exacta en <code>/sf guide</code>, investigación, energía, espacio de salida, multibloque y límite de entidades. Al reportarlo indica mundo, coordenadas, nombre exacto de la máquina y hora.</p></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>Una guía viva. Si falta algo, dínoslo en Discord.</p></div><div class="site-footer__links"><a href="store.html">Tienda</a><a href="support.html">Soporte</a><a href="terms.html">Términos</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor"><span>Apoya el proyecto</span><iframe src="https://github.com/sponsors/DrakesCraft-Labs/button" title="Patrocinar a DrakesCraft-Labs" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe><iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Patrocinar a JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe></div></div></footer>
-  <script src="scripts/site.js?v=20260824-nav-v1"></script>
-  <script src="scripts/guia.js?v=20260824-comandos"></script>
-</body>
+    </footer>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="/scripts/experience.js" defer></script>
+    <script src="/scripts/guia.js" defer></script>
+  </body>
 </html>
