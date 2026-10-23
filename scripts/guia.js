@@ -121,27 +121,24 @@
         },
         onechunk: {
             icon: "🧱",
-            name: "OneChunk (Territorio Vertical 16x16)",
+            name: "OneChunk (minar a través de un chunk)",
             command: "/onechunk",
-            alias: "/ch, /onechunk, /chunkblock",
+            alias: "/oc, /onechunk",
             gradient: "linear-gradient(90deg, #ea580c, #f97316)",
-            summary: "Supervivencia vertical en un único chunk (16x16 bloques) en el vacío con un Bloque Mágico infinito y 20 fases biómicas. Desbloquea chunks adyacentes completando anillos concéntricos con créditos ganados por nivel de isla y /rankup.",
+            summary: "Mina a través de un chunk de 16x16 generado para ti (el primero es un bosque con árboles, hierro, carbón y piedra). Al agotarlo aparece el siguiente y cada 3 chunks cambia el bioma, con mobs cada vez más peligrosos.",
             available: [
-                "Parcela de 16x16 bloques que abarca desde el cielo (Y=320) hasta el fondo del abismo (Y=-64).",
-                "Bloque Mágico central con 20 fases biómicas (/ch count, /ch phases, /ch respawn-block).",
-                "Sistema de Anillos (Rings): golpea el borde para reclamar chunks adyacentes usando créditos (/ch chunks).",
-                "Trofeos y títulos de isla al completar anillos 3x3 y 5x5 (/ch title).",
-                "Registro de aportes de miembros del equipo (/ch ledger).",
-                "Slimefun habilitado o estilo clásico sin máquinas.",
-                "Expansión de protección al subir de nivel en /rankup."
+                "Primer chunk con recursos garantizados: árboles, hierro, carbón, piedra y tierra.",
+                "Lo que picas no se regenera: se mina a través del chunk; al agotarlo aparece el siguiente.",
+                "Cinco biomas que rotan cada 3 chunks: bosque, desierto, tundra nevada, jungla y cavernas profundas.",
+                "Menas más ricas con el progreso (redstone, oro, lapislázuli y diamante en chunks avanzados).",
+                "Slimefun habilitado."
             ],
             locked: [
-                "❌ El paso fuera de los chunks desbloqueados está restringido por una barrera perimetral.",
-                "❌ Si tu nivel cae drásticamente por muertes, los chunks externos pueden re-bloquearse temporalmente.",
-                "❌ No se usan piedras de protección (gestión exclusiva vía ChunkBlock)."
+                "❌ No hay piedras de protección: tu isla está protegida por el propio sistema de islas.",
+                "❌ Los mobs hostiles de cada chunk aumentan en número y peligro con el progreso."
             ],
             mechanics: [
-                "Bucle dimensional vertical infinito: si excavas hasta el fondo no mueres en el vacío, el sistema te redirige de forma segura.",
+                "Si el chunk se agota mientras estás dentro, el siguiente aparece encima de ti: te llevan a la superficie con seguridad.",
                 "Economía de Dragmas y rangos VIP compartidos; inventario propio."
             ]
         },
@@ -233,7 +230,7 @@
             mods = ["all"];
             if (rowCode.startsWith("/is") || tagText.includes("skyblock")) mods.push("skyblock");
             if (rowCode.startsWith("/ob") || tagText.includes("oneblock")) mods.push("oneblock");
-            if (rowCode.startsWith("/ch") || tagText.includes("onechunk") || text.includes("chunkblock")) mods.push("onechunk");
+            if (rowCode.startsWith("/oc") || rowCode.startsWith("/onechunk") || tagText.includes("onechunk")) mods.push("onechunk");
             if (tagText.includes("clásico") || text.includes("clásico")) mods.push("clasico");
             if (rowCode.startsWith("/sf") || tagText.includes("slimefun") || text.includes("slimefun")) mods.push("slimefun", "skyblock", "oneblock", "onechunk", "laboratorio");
             if (rowCode.includes("laboratorio") || tagText.includes("laboratorio") || rowCode.includes("/sf cheat")) mods.push("laboratorio");
