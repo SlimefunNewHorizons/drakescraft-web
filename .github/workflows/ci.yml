@@ -30,7 +30,7 @@ jobs:
       - name: Validar JavaScript
         run: npm run check
 
-      - name: Probar servidor y rutas publicas
+      - name: Smoke tests: rutas, HTML y enlaces
         shell: bash
         run: |
           set -euo pipefail
@@ -45,10 +45,7 @@ jobs:
             sleep 0.5
           done
 
-          curl --fail --silent http://127.0.0.1:18080/ >/dev/null
-          curl --fail --silent http://127.0.0.1:18080/api/store >/dev/null
-          curl --fail --silent http://127.0.0.1:18080/dioses.html >/dev/null
-          curl --fail --silent http://127.0.0.1:18080/slimefun.html >/dev/null
+          PORT=18080 node scripts/smoke-tests.js
 
   seguridad:
     permissions:
