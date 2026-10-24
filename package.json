@@ -8,7 +8,7 @@
     "check": "node --check server.js && node --check scripts/site.js && node --check scripts/store.js && node --check scripts/bosses.js && node --check scripts/dioses.js && node --check scripts/halloween-fx.js && node --check scripts/christmas-fx.js && node scripts/verify-store-catalog.mjs"
   },
   "dependencies": {
-    "@fastify/static": "^10.1.2",
-    "fastify": "^5.12.5"
+    "@fastify/static": "^10.1.7",
+    "fastify": "^5.12.7"
   }
 }
