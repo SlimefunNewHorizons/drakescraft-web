@@ -39,16 +39,23 @@ const EXPECTED_REDIRECTS = new Set([
 let errors = [];
 let passed = 0;
 
-async function fetch(urlStr) {
+async function fetch(urlStr, { method = 'GET', headers = {}, body = null } = {}) {
   return new Promise((resolve, reject) => {
     const reqUrl = new url.URL(urlStr);
     const options = {
       hostname: reqUrl.hostname,
       port: reqUrl.port,
       path: reqUrl.pathname + reqUrl.search,
-      method: 'GET',
+      method,
+      headers: { ...headers },
       timeout: 5000,
     };
+    if (body) {
+      if (!options.headers['Content-Type']) {
+        options.headers['Content-Type'] = 'application/json';
+      }
+      options.headers['Content-Length'] = Buffer.byteLength(body);
+    }
 
     const req = http.request(options, (res) => {
       let data = '';
@@ -65,6 +72,7 @@ async function fetch(urlStr) {
       req.destroy();
       reject(new Error('Request timeout'));
     });
+    if (body) req.write(body);
     req.end();
   });
 }
@@ -208,6 +216,150 @@ async function testLinks() {
   console.log(`✓ ${linksPassed}/${allLinks.size} internal links valid`);
 }
 
+async function testStoreApi() {
+  console.log('\n🛒 Testing Store & Checkout API...');
+
+  // 1. GET /api/store catalog
+  try {
+    const res = await fetch(`${BASE_URL}/api/store`);
+    if (res.status !== 200) {
+      errors.push(`/api/store: HTTP ${res.status}`);
+    } else {
+      const data = JSON.parse(res.body);
+      if (!Array.isArray(data.products) || data.products.length < 50) {
+        errors.push(`/api/store: expected at least 50 products, got ${data.products?.length}`);
+      } else {
+        passed++;
+        console.log(`✓ /api/store (${data.products.length} products verified)`);
+      }
+    }
+  } catch (err) {
+    errors.push(`/api/store: ${err.message}`);
+  }
+
+  // 2. POST /api/store/tebex/checkout validation: empty items
+  try {
+    const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+      method: 'POST',
+      headers: { 'cf-connecting-ip': '127.0.1.1' },
+      body: JSON.stringify({})
+    });
+    if (res.status !== 400) {
+      errors.push(`/api/store/tebex/checkout empty: expected HTTP 400, got ${res.status}`);
+    } else {
+      const data = JSON.parse(res.body);
+      if (data.error !== 'Selecciona al menos un producto.') {
+        errors.push(`/api/store/tebex/checkout empty: unexpected error message "${data.error}"`);
+      } else {
+        passed++;
+        console.log('✓ /api/store/tebex/checkout validates empty items');
+      }
+    }
+  } catch (err) {
+    errors.push(`/api/store/tebex/checkout empty: ${err.message}`);
+  }
+
+  // 3. POST /api/store/tebex/checkout validation: invalid nick
+  try {
+    const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+      method: 'POST',
+      headers: { 'cf-connecting-ip': '127.0.1.2' },
+      body: JSON.stringify({ items: ['hercules'], nick: '!' })
+    });
+    if (res.status !== 400) {
+      errors.push(`/api/store/tebex/checkout invalid nick: expected HTTP 400, got ${res.status}`);
+    } else {
+      const data = JSON.parse(res.body);
+      if (!data.error || !data.error.includes('Escribe un nick válido')) {
+        errors.push(`/api/store/tebex/checkout invalid nick: unexpected error message "${data.error}"`);
+      } else {
+        passed++;
+        console.log('✓ /api/store/tebex/checkout validates Minecraft username regex');
+      }
+    }
+  } catch (err) {
+    errors.push(`/api/store/tebex/checkout invalid nick: ${err.message}`);
+  }
+
+  // 4. POST /api/store/tebex/checkout validation: honeypot bot trap
+  try {
+    const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+      method: 'POST',
+      headers: { 'cf-connecting-ip': '127.0.1.3' },
+      body: JSON.stringify({ items: ['hercules'], nick: 'JackPlayer', website: 'spam.org' })
+    });
+    if (res.status !== 204) {
+      errors.push(`/api/store/tebex/checkout honeypot: expected HTTP 204, got ${res.status}`);
+    } else {
+      passed++;
+      console.log('✓ /api/store/tebex/checkout blocks bots via honeypot (HTTP 204)');
+    }
+  } catch (err) {
+    errors.push(`/api/store/tebex/checkout honeypot: ${err.message}`);
+  }
+
+  // 5. POST /api/store/tebex/checkout rate-limit protection (5 attempts allowed, 6th blocked)
+  try {
+    const rateLimitIp = '127.0.1.99';
+    let lastStatus = 0;
+    let lastBody = '';
+    for (let i = 0; i < 6; i++) {
+      const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+        method: 'POST',
+        headers: { 'cf-connecting-ip': rateLimitIp },
+        body: JSON.stringify({})
+      });
+      lastStatus = res.status;
+      lastBody = res.body;
+    }
+    if (lastStatus !== 429) {
+      errors.push(`/api/store/tebex/checkout rate-limit: expected HTTP 429, got ${lastStatus}`);
+    } else {
+      const data = JSON.parse(lastBody);
+      if (!data.error || !data.error.includes('Demasiados intentos')) {
+        errors.push(`/api/store/tebex/checkout rate-limit: unexpected error "${data.error}"`);
+      } else {
+        passed++;
+        console.log('✓ /api/store/tebex/checkout rate-limit activates (HTTP 429 Retry-After)');
+      }
+    }
+  } catch (err) {
+    errors.push(`/api/store/tebex/checkout rate-limit: ${err.message}`);
+  }
+
+  // 6. POST /api/store/checkout (legacy payment retired)
+  try {
+    const res = await fetch(`${BASE_URL}/api/store/checkout`, {
+      method: 'POST',
+      body: JSON.stringify({ items: ['hercules'], nick: 'JackPlayer' })
+    });
+    if (res.status !== 410) {
+      errors.push(`/api/store/checkout legacy: expected HTTP 410, got ${res.status}`);
+    } else {
+      passed++;
+      console.log('✓ /api/store/checkout legacy gateway retired (HTTP 410 Gone)');
+    }
+  } catch (err) {
+    errors.push(`/api/store/checkout legacy: ${err.message}`);
+  }
+
+  // 7. POST /api/store/paypal/checkout (legacy payment retired)
+  try {
+    const res = await fetch(`${BASE_URL}/api/store/paypal/checkout`, {
+      method: 'POST',
+      body: JSON.stringify({ items: ['hercules'], nick: 'JackPlayer' })
+    });
+    if (res.status !== 410) {
+      errors.push(`/api/store/paypal/checkout legacy: expected HTTP 410, got ${res.status}`);
+    } else {
+      passed++;
+      console.log('✓ /api/store/paypal/checkout legacy gateway retired (HTTP 410 Gone)');
+    }
+  } catch (err) {
+    errors.push(`/api/store/paypal/checkout legacy: ${err.message}`);
+  }
+}
+
 async function main() {
   console.log(`🔍 Smoke tests starting on ${BASE_URL}\n`);
 
@@ -220,8 +372,11 @@ async function main() {
   // Test internal links
   await testLinks();
 
+  // Test Store & Checkout API
+  await testStoreApi();
+
   // Resumen
-  console.log(`\n📊 Results: ${passed}/${ROUTES.length} routes passed`);
+  console.log(`\n📊 Results: ${passed} checks passed`);
 
   if (errors.length > 0) {
     console.error(`\n❌ ${errors.length} error(s) found:\n`);
