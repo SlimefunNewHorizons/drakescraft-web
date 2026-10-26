@@ -349,3 +349,102 @@
         document.querySelectorAll("[data-year]").forEach((node) => { node.textContent = String(new Date().getFullYear()); });
     });
 }());
+
+
+/* --- DrakesCraft Universal Analytics & Telemetry Engine --- */
+(function () {
+  'use strict';
+  try {
+    const CONFIG = {
+      endpoint: '/api/analytics/collect',
+      gaMeasurementId: window.GA_MEASUREMENT_ID || document.querySelector('meta[name="ga-measurement-id"]')?.getAttribute('content') || null,
+      sampleRate: 1.0
+    };
+
+    if (CONFIG.gaMeasurementId && !window.gtag) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(CONFIG.gaMeasurementId);
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', CONFIG.gaMeasurementId, { anonymize_ip: true, send_page_view: true });
+    } else if (!window.gtag) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+    }
+
+    function getUtmParams() {
+      try {
+        const p = new URLSearchParams(window.location.search);
+        const utm = {};
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
+          const v = p.get(k);
+          if (v) utm[k] = v.slice(0, 100);
+        });
+        return utm;
+      } catch (_) {
+        return {};
+      }
+    }
+
+    function getSessionId() {
+      try {
+        let sid = sessionStorage.getItem('drakes_session_id');
+        if (!sid) {
+          sid = 's_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+          sessionStorage.setItem('drakes_session_id', sid);
+        }
+        return sid;
+      } catch (_) {
+        return 'anon_' + Date.now();
+      }
+    }
+
+    function sendBeacon(eventData) {
+      if (Math.random() > CONFIG.sampleRate) return;
+      const payload = JSON.stringify(Object.assign({}, eventData, {
+        ts: Date.now(),
+        session: getSessionId(),
+        path: window.location.pathname,
+        title: document.title,
+        referrer: document.referrer || '',
+        screen: (window.screen ? window.screen.width + 'x' + window.screen.height : ''),
+        lang: navigator.language || '',
+        utm: getUtmParams()
+      }));
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(CONFIG.endpoint, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(CONFIG.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        }).catch(function () {});
+      }
+    }
+
+    window.trackEvent = function (name, props) {
+      if (window.gtag && CONFIG.gaMeasurementId) {
+        window.gtag('event', name, props || {});
+      }
+      sendBeacon({ type: 'custom', event: name, props: props || {} });
+    };
+
+    function recordPageView() {
+      sendBeacon({ type: 'pageview' });
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      recordPageView();
+    } else {
+      document.addEventListener('DOMContentLoaded', recordPageView, { once: true });
+    }
+  } catch (e) {
+    // Analytics failure should never break site UX
+  }
+})();

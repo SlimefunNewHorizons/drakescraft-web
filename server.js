@@ -612,6 +612,27 @@ app.get('/api/internal/odysseia/status', async (request, reply) => {
   };
 });
 
+
+app.post('/api/analytics/collect', async (request, reply) => {
+  try {
+    const rawBody = request.body;
+    const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : (rawBody || {});
+    const record = {
+      ts: Date.now(),
+      ip_masked: (request.ip || '').split('.').slice(0, 3).join('.') + '.0',
+      ua: request.headers['user-agent'] || '',
+      cf_country: request.headers['cf-ipcountry'] || '',
+      cf_city: request.headers['cf-ipcity'] || '',
+      ...body
+    };
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.appendFile(path.join(dataDir, 'analytics.jsonl'), JSON.stringify(record) + String.fromCharCode(10), 'utf8');
+    return { ok: true };
+  } catch (err) {
+    return { ok: false };
+  }
+});
+
 app.get('/api/overview', async (request, reply) => {
   const seen = request.headers.cookie?.includes('drakes_seen=1');
   if (!seen) {
