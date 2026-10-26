@@ -8,7 +8,7 @@
 import http from 'http';
 import url from 'url';
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 
 // Rutas principales a probar
