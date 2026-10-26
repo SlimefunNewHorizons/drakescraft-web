@@ -6,7 +6,7 @@
   <meta name="description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft 1.21.11+: maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
   <title>Slimefun &amp; StarSuites · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/guia-slimefun.html">
-  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,13 +38,14 @@
     .guide-callout--info { background: rgba(59, 130, 246, .08); border-left-color: #3b82f6; }
     .guide-callout--gold { background: rgba(255, 212, 121, .08); border-left-color: #ffd479; }
   </style>
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261018-v8">
+  <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
+  <link href="/styles/olympus.css?v=20260909-3d" rel="stylesheet" />
 </head>
-<body class="page-shell" data-page="guia" data-section="slimefun">
+<body class="op-page" data-design="olympus-3d">
   <nav class="site-nav" aria-label="Navegación principal">
     <div class="container site-nav__bar">
       <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="">
+        <img class="brand__mark" src="assets/logo-drakescraft.png" alt="">
         <span class="brand__meta"><strong>DrakesCraft</strong><span>Guía Slimefun · StarSuites</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
@@ -890,8 +891,9 @@
 
     <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>Una guía viva de ingeniería. Si falta algo o detectas un comportamiento inesperado, avísanos en Discord.</p></div><div class="site-footer__links"><a href="store.html">Tienda</a><a href="support.html">Soporte</a><a href="terms.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor"><span>Apoya el proyecto</span><iframe src="https://github.com/sponsors/SlimefunNewHorizons/button" title="Patrocinar a DrakesCraft-Labs" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe><iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Patrocinar a JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe></div></div></footer>
   </main>
-  <script src="scripts/site.js?v=20261018-v8"></script>
-  <script src="scripts/guia.js?v=20261018-v8"></script>
+  <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="/scripts/experience.js" defer></script>
+  <script src="/scripts/guia.js" defer></script>
 
   <script>
   // Slimefun Lake Interactive Client
