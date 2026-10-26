@@ -143,9 +143,25 @@ async function testRoute(route) {
       return;
     }
 
-    if (['/', '/guia.html', '/store.html'].includes(route) &&
+    const ACCESSIBLE_KEYBOARD_ROUTES = [
+      '/',
+      '/index.html',
+      '/guia.html',
+      '/guia-comandos.html',
+      '/guia-plugins.html',
+      '/guia-rangos.html',
+      '/guia-slimefun.html',
+      '/apoya.html',
+      '/store.html',
+      '/terms.html',
+      '/privacidad.html',
+      '/support.html',
+      '/metricas.html'
+    ];
+
+    if (ACCESSIBLE_KEYBOARD_ROUTES.includes(route) &&
         (!response.body.includes('class="skip-link" href="#main-content"') ||
-         !response.body.includes('<main id="main-content">'))) {
+         !response.body.includes('<main id="main-content"'))) {
       errors.push(`${route}: missing keyboard skip link or main-content target`);
       return;
     }

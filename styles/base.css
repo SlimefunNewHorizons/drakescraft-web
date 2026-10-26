@@ -69,6 +69,26 @@ body {
     transform: translateY(0);
 }
 
+/* Accesibilidad: foco visible universal para navegación por teclado (WCAG 2.4.7 AA) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(88, 215, 255, 0.72);
+    outline-offset: 3px;
+}
+
+/* Accesibilidad: respeto a preferencia de movimiento reducido (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 body::before {
     content: "";
     position: fixed;
