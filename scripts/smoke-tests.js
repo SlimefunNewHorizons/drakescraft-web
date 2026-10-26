@@ -143,6 +143,13 @@ async function testRoute(route) {
       return;
     }
 
+    if (['/', '/guia.html', '/store.html'].includes(route) &&
+        (!response.body.includes('class="skip-link" href="#main-content"') ||
+         !response.body.includes('<main id="main-content">'))) {
+      errors.push(`${route}: missing keyboard skip link or main-content target`);
+      return;
+    }
+
     passed++;
     console.log(`✓ ${route}`);
   } catch (err) {

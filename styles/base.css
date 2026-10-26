@@ -53,6 +53,22 @@ body {
     max-width: 100%;
 }
 
+.skip-link {
+    position: fixed;
+    z-index: 10000;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #06110e;
+    background: #f4c95d;
+    font-weight: 700;
+    transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
 body::before {
     content: "";
     position: fixed;
