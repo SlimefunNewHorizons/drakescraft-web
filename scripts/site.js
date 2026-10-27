@@ -58,7 +58,7 @@
             discordItem.appendChild(discordLink);
             fragment.appendChild(discordItem);
 
-            const isTranslated = document.cookie.includes('googtrans=/es/en');
+            const isTranslated = isEnglishSelected();
             const langItem = document.createElement("li");
             const langBtn = document.createElement("button");
             langBtn.className = "nav-lang-btn";
@@ -66,6 +66,8 @@
             langBtn.id = "nav-lang-toggle";
             langBtn.innerHTML = `🌐 <span>${isTranslated ? 'ES' : 'EN'}</span>`;
             langBtn.title = isTranslated ? "Cambiar a Español" : "Translate to English";
+            langBtn.setAttribute("aria-label", langBtn.title);
+            langBtn.setAttribute("aria-pressed", String(isTranslated));
             langBtn.addEventListener("click", () => {
                 if (isTranslated) {
                     resetGoogleTranslate();
@@ -152,6 +154,11 @@
         document.cookie = `googtrans=/es/${lang}; path=/; domain=${domain};`;
     }
 
+    function isEnglishSelected() {
+        return document.cookie.includes('googtrans=/es/en')
+            || localStorage.getItem('drakes_lang_choice') === 'en';
+    }
+
     function applyGoogleTranslate(lang) {
         localStorage.setItem('drakes_lang_choice', lang);
         setGoogleTranslateCookie(lang);
@@ -224,7 +231,7 @@
             document.body.appendChild(s);
         }
 
-        const isAlreadyEn = document.cookie.includes('googtrans=/es/en') || localStorage.getItem('drakes_lang_choice') === 'en';
+        const isAlreadyEn = isEnglishSelected();
         if (isAlreadyEn && !document.cookie.includes('googtrans=/es/en')) {
             setGoogleTranslateCookie('en');
         }
