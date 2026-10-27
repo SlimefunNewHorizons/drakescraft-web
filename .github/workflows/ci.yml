@@ -30,7 +30,7 @@ jobs:
       - name: Validar JavaScript
         run: npm run check
 
-      - name: Smoke tests: rutas, HTML y enlaces
+      - name: "Smoke tests: rutas, HTML y enlaces"
         shell: bash
         run: |
           set -euo pipefail
