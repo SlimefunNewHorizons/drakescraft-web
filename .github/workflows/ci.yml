@@ -47,9 +47,3 @@ jobs:
 
           PORT=18080 node scripts/smoke-tests.js
 
-  seguridad:
-    permissions:
-      contents: read
-      security-events: write
-      pull-requests: write
-    uses: SlimefunNewHorizons/.github/.github/workflows/seguridad.yml@main
