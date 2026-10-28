@@ -232,6 +232,8 @@
         }
 
         const isAlreadyEn = isEnglishSelected();
+        // Keep assistive technology aligned with the language selected by the site toggle.
+        document.documentElement.lang = isAlreadyEn ? 'en' : 'es';
         if (isAlreadyEn && !document.cookie.includes('googtrans=/es/en')) {
             setGoogleTranslateCookie('en');
         }
