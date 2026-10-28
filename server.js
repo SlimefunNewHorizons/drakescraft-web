@@ -959,6 +959,7 @@ await app.register(fastifyStatic, {
       'guia-slimefun.html',
       'guia-plugins.html',
       '404.html',
+      '404-en.html',
       '500.html',
       'maintenance.html',
       'metricas.html',

@@ -27,6 +27,7 @@ const ROUTES = [
   '/support.html',
   '/metricas.html',
   '/404.html',
+  '/404-en.html',
   '/500.html',
   '/maintenance.html',
 ];
@@ -147,6 +148,10 @@ async function testRoute(route) {
 
     // Validar HTML
     const htmlIssues = validateHtml(response.body);
+    if (route === '/404-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Dimension Not Found'))) {
+      errors.push(`${route}: missing English language metadata or translated content`);
+      return;
+    }
     if (htmlIssues.length > 0) {
       errors.push(`${route}: ${htmlIssues.join('; ')}`);
       return;
@@ -167,6 +172,7 @@ async function testRoute(route) {
       '/support.html',
       '/metricas.html',
       '/404.html',
+      '/404-en.html',
       '/500.html',
       '/maintenance.html'
     ];
