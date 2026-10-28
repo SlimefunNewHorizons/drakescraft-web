@@ -28,6 +28,7 @@ const ROUTES = [
   '/metricas.html',
   '/404.html',
   '/500.html',
+  '/maintenance.html',
 ];
 
 // Rutas con redirects esperados
@@ -164,7 +165,10 @@ async function testRoute(route) {
       '/terms.html',
       '/privacidad.html',
       '/support.html',
-      '/metricas.html'
+      '/metricas.html',
+      '/404.html',
+      '/500.html',
+      '/maintenance.html'
     ];
 
     if (ACCESSIBLE_KEYBOARD_ROUTES.includes(route) &&
