@@ -25,6 +25,7 @@ const ROUTES = [
   '/terms.html',
   '/privacidad.html',
   '/support.html',
+  '/support-en.html',
   '/metricas.html',
   '/404.html',
   '/404-en.html',
@@ -153,6 +154,10 @@ async function testRoute(route) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
     }
+    if (route === '/support-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Support &amp;') || !response.body.includes('Security Protocol'))) {
+      errors.push(`${route}: missing English language metadata or translated content`);
+      return;
+    }
     if (route === '/404-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Dimension Not Found'))) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
@@ -175,6 +180,7 @@ async function testRoute(route) {
       '/terms.html',
       '/privacidad.html',
       '/support.html',
+      '/support-en.html',
       '/metricas.html',
       '/404.html',
       '/404-en.html',

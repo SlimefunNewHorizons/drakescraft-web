@@ -965,6 +965,7 @@ await app.register(fastifyStatic, {
       'maintenance.html',
       'metricas.html',
       'support.html',
+      'support-en.html',
       'terms.html',
       'bannerdrakes.jpg',
       'dragon_fly.webp',
