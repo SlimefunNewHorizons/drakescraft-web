@@ -1,0 +1,22 @@
+/* Temporada 2 + Bedrock. Acento "End infectado" (DESIGN_SYSTEM: Saori #9B59B6->#E056FD, Infinity #8B5CF6). */
+.t2 { --t2-v: #8b5cf6; --t2-m: #e056fd; --t2-deep: #1e1e2e; margin-bottom: 2.5rem; scroll-margin-top: 4.5rem; }
+.t2 > h2 { background: linear-gradient(90deg, #9b59b6, #e056fd); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; display: inline-block; }
+.t2 > h2::after { content: attr(data-glitch); position: absolute; left: 0; top: 0; color: #e056fd; opacity: 0; -webkit-text-fill-color: #e056fd; pointer-events: none; animation: t2-glitch 7s steps(1) infinite; }
+@keyframes t2-glitch { 0%, 94%, 100% { opacity: 0; transform: none; } 95% { opacity: .55; transform: translate(2px, -1px); clip-path: inset(10% 0 55% 0); } 97% { opacity: .5; transform: translate(-2px, 1px); clip-path: inset(55% 0 10% 0); } }
+.t2-lead { max-width: 60rem; opacity: .85; line-height: 1.65; }
+.t2-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); margin: 1.25rem 0; }
+.t2-card { background: linear-gradient(160deg, rgba(139, 92, 246, .10), rgba(30, 30, 46, .55)); border: 1px solid rgba(224, 86, 253, .22); border-left: 3px solid var(--t2-v); padding: 1.1rem 1.2rem; box-sizing: border-box; transition: border-color .2s, box-shadow .2s; }
+.t2-card:hover { border-color: rgba(224, 86, 253, .55); box-shadow: 0 0 22px rgba(139, 92, 246, .18); }
+.t2-card h3 { margin: 0 0 .15rem; font-size: 1.15rem; }
+.t2-card .t2-tag { display: inline-block; font-family: var(--font-mono, monospace); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: #e056fd; margin-bottom: .5rem; }
+.t2-card p { margin: 0 0 .6rem; font-size: .93rem; line-height: 1.6; opacity: .88; }
+.t2-card ul { margin: 0; padding-left: 1.1rem; font-size: .88rem; line-height: 1.65; opacity: .8; }
+.t2-note { border: 1px dashed rgba(224, 86, 253, .35); padding: .8rem 1rem; font-size: .9rem; line-height: 1.6; background: rgba(139, 92, 246, .06); }
+.bedrock-box { border: 1px solid rgba(139, 92, 246, .35); background: linear-gradient(160deg, rgba(139, 92, 246, .12), rgba(30, 30, 46, .6)); padding: 1.2rem 1.4rem; margin: 1.25rem 0; }
+.bedrock-box h3 { margin: 0 0 .4rem; }
+.bedrock-box ol, .bedrock-box ul { line-height: 1.7; font-size: .93rem; }
+.bedrock-cta { display: inline-block; padding: .75rem 1.4rem; font-weight: 700; text-decoration: none; color: #fff; background: linear-gradient(90deg, #8b5cf6, #e056fd); border: 0; box-shadow: 0 0 18px rgba(224, 86, 253, .35); }
+.bedrock-cta[aria-disabled="true"] { background: rgba(255, 255, 255, .08); box-shadow: none; color: inherit; opacity: .85; }
+.bedrock-status { font-size: .85rem; opacity: .75; margin: .6rem 0 0; }
+.t2-tag-test { display: inline-block; font-size: .72rem; padding: .05rem .5rem; border: 1px solid #e056fd; color: #e056fd; margin-left: .35rem; }
+@media (prefers-reduced-motion: reduce) { .t2 > h2::after { animation: none; } .t2-card { transition: none; } }

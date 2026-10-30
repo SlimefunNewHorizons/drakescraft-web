@@ -563,6 +563,22 @@ app.get('/api/server-status', async (_request, reply) => {
   return { host: MC_HOST, puerto: MC_PUERTO, ...estado };
 });
 
+// Enlace de entrada Bedrock (Warden/NetherNet). Lo escribe otro agente en ai-hub/state; si falta, la web usa su fallback.
+// Solo se expone un https sin enlaces de reclamo (/claim/).
+const BEDROCK_LINK_FILE = process.env.BEDROCK_LINK_FILE || '/aihub-state/bedrock_link.json';
+app.get('/bedrock-link.json', async (_request, reply) => {
+  reply.header('cache-control', 'public, max-age=30');
+  try {
+    const j = JSON.parse(await fs.readFile(BEDROCK_LINK_FILE, 'utf8'));
+    const url = String(j.url || j.link || j.join_url || '');
+    if (!/^https:\/\//.test(url) || /\/claim\//i.test(JSON.stringify(j))) return { available: false };
+    const upd = j.updated_at || j.updated || null;
+    return { available: true, url, updated_at: typeof upd === 'string' || typeof upd === 'number' ? upd : null };
+  } catch {
+    return { available: false };
+  }
+});
+
 // Odysseia is hosted outside Star, so it reaches this existing HTTPS endpoint
 // with an HMAC. The accepted payload deliberately excludes players, UUIDs and
 // Tebex transaction identifiers.
@@ -899,6 +915,9 @@ for (const alias of ['/metricas', '/stats', '/estadisticas']) {
 for (const alias of ['/guia']) {
   app.get(alias, async (_request, reply) => reply.sendFile('guia.html'));
 }
+for (const alias of ['/guide', '/en/guide']) {
+  app.get(alias, async (_request, reply) => reply.sendFile('guide-en.html'));
+}
 // /comandos se anuncia in-game y ahora tiene pagina propia: la de guia.html se quedo
 // corta en cuanto entraron los addons porteados.
 for (const alias of ['/comandos', '/commands', '/cmds']) {
@@ -967,6 +986,7 @@ await app.register(fastifyStatic, {
       'metricas-en.html',
       'support.html',
       'support-en.html',
+      'guide-en.html',
       'terms.html',
       'bannerdrakes.jpg',
       'dragon_fly.webp',
