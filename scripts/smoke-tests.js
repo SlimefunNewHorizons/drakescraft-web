@@ -15,6 +15,7 @@ const BASE_URL = `http://127.0.0.1:${PORT}`;
 const ROUTES = [
   '/',
   '/index.html',
+  '/index-en.html',
   '/guia.html',
   '/guia-comandos.html',
   '/guia-plugins.html',
