@@ -89,7 +89,7 @@
         return '<tr' + (j.nuevo ? ' class="es-nuevo"' : '') + '>'
              + '<td class="jug__nick">' + limpio(j.nick)
              + (j.nuevo ? ' <span class="etiqueta-nueva">new</span>' : '') + '</td>'
-             + '<td class="jug__pais">' + (j.bandera || '') + ' ' + limpio(nombrePais({ iso2: j.iso2, codigo: j.pais_codigo, country_code: j.country_code, nombre: j.pais_nombre }) || '—') + '</td>'
+             + '<td class="jug__pais">' + (j.bandera || '') + ' ' + limpio(nombrePais({ iso: j.pais, iso2: j.iso2, codigo: j.pais_codigo, country_code: j.country_code, nombre: j.pais_nombre }) || '—') + '</td>'
              + '<td>' + j.dias + '</td>'
              + '<td>' + fechaCorta(j.primera) + '</td>'
              + '<td>' + fechaCorta(j.ultima) + '</td>'
@@ -107,7 +107,7 @@
   }
 
   function nombrePais(p) {
-    var code = p.iso2 || p.codigo || p.country_code;
+    var code = p.iso || p.iso2 || p.codigo || p.country_code;
     if (code && typeof Intl.DisplayNames === 'function') {
       try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code); } catch (e) {}
     }
