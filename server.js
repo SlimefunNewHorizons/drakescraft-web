@@ -971,9 +971,12 @@ await app.register(fastifyStatic, {
   allowedPath: (pathname) => {
     const publicFiles = new Set([
       'index.html',
+      'index-en.html',
       'store.html',
+      'store-en.html',
       'guia.html',
       'apoya.html',
+      'apoya-en.html',
       'guia-comandos.html',
       'guia-rangos.html',
       'guia-slimefun.html',
@@ -989,6 +992,7 @@ await app.register(fastifyStatic, {
       'support-en.html',
       'guide-en.html',
       'terms.html',
+      'terms-en.html',
       'bannerdrakes.jpg',
       'dragon_fly.webp',
       'robots.txt',
