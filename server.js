@@ -570,10 +570,11 @@ app.get('/bedrock-link.json', async (_request, reply) => {
   reply.header('cache-control', 'public, max-age=30');
   try {
     const j = JSON.parse(await fs.readFile(BEDROCK_LINK_FILE, 'utf8'));
-    const url = String(j.url || j.link || j.join_url || '');
-    if (!/^https:\/\//.test(url) || /\/claim\//i.test(JSON.stringify(j))) return { available: false };
-    const upd = j.updated_at || j.updated || null;
-    return { available: true, url, updated_at: typeof upd === 'string' || typeof upd === 'number' ? upd : null };
+    const cands = [j.enlace, j.url, j.link, ...Object.values(j.enlaces && typeof j.enlaces === 'object' ? j.enlaces : {})];
+    const url = cands.find((u) => typeof u === 'string' && /^https:\/\//.test(u) && !/\/claim\//i.test(u));
+    if (!url) return { available: false };
+    const upd = j.fecha || j.updated_at || null;
+    return { available: true, url, updated_at: typeof upd === 'string' ? upd : null };
   } catch {
     return { available: false };
   }
