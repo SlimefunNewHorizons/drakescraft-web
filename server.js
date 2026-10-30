@@ -964,6 +964,7 @@ await app.register(fastifyStatic, {
       '500-en.html',
       'maintenance.html',
       'metricas.html',
+      'metricas-en.html',
       'support.html',
       'support-en.html',
       'terms.html',

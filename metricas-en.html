@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Live server telemetry, Cloudflare Edge analytics, and community metrics for DrakesCraft.">
+  <title>Live Metrics &amp; Infrastructure · DrakesCraft</title>
+  <link rel="canonical" href="https://web.drakescraft.cl/metricas-en.html">
+  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/metricas.html">
+  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/metricas-en.html">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
+  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/metricas.css?v=20261017-v7">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "en", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Minecraft Java and Bedrock server with six connected game modes: Slimefun, Classic, SkyBlock, OneBlock, OneChunk, and Lab."}]}</script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DrakesCraft">
+  <meta property="og:title" content="Live Metrics &amp; Infrastructure · DrakesCraft">
+  <meta property="og:description" content="Live server telemetry, Cloudflare Edge analytics, and community metrics for DrakesCraft.">
+  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Live Metrics &amp; Infrastructure · DrakesCraft">
+  <meta name="twitter:description" content="Live server telemetry, Cloudflare Edge analytics, and community metrics for DrakesCraft.">
+  <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+</head>
+<body class="page-shell" data-page="guia" data-section="metrics">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container site-nav__bar">
+      <a class="brand" href="/" aria-label="Go to DrakesCraft home">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="DrakesCraft" width="46" height="46">
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Metrics · Star Telemetry</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <ul class="site-nav__links" id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="guia.html">The Server</a></li>
+        <li><a href="guia-comandos.html">Commands</a></li>
+        <li><a href="guia-rangos.html">Ranks</a></li>
+        <li><a href="guia-slimefun.html">Slimefun</a></li>
+        <li><a class="active" href="metricas-en.html">Metrics</a></li>
+        <li><a href="apoya.html">Support</a></li>
+        <li><a class="nav-store-btn" href="store.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+    <a class="nav-lang-btn" href="metricas.html" lang="es" hreflang="es" aria-label="View metrics in Spanish">ES</a>
+  </nav>
+
+  <main id="main-content">
+    <header class="guide-hero">
+      <div class="guide-hero__backdrop" aria-hidden="true"></div>
+      <div class="container guide-hero__grid">
+        <p class="eyebrow">Global Observability &amp; Transparency</p>
+        <h1>Live Telemetry<br><em>&amp; Network Metrics</em></h1>
+        <p class="guide-hero__lead">Real-time data from the Minecraft server and Cloudflare Edge Anycast network. Statistics are aggregated without exposing private data or IP addresses.</p>
+      </div>
+    </header>
+
+    <section class="guide-section">
+      <div class="container">
+
+        <!-- RESUMEN MENSUAL -->
+        <p class="metricas-resumen" id="frase-mes">Loading community metrics…</p>
+
+        <!-- TARJETAS DE OCUPACIÓN -->
+        <div class="metricas-tarjetas" id="tarjetas">
+          <div class="metrica"><span class="metrica__valor" id="v-hoy">–</span><span class="metrica__etiqueta">today's peak</span></div>
+          <div class="metrica"><span class="metrica__valor" id="v-ayer">–</span><span class="metrica__etiqueta">yesterday's peak</span></div>
+          <div class="metrica"><span class="metrica__valor" id="v-semana">–</span><span class="metrica__etiqueta">7-day average peak</span></div>
+          <div class="metrica"><span class="metrica__valor" id="v-mes">–</span><span class="metrica__etiqueta">30-day average peak</span></div>
+          <div class="metrica"><span class="metrica__valor" id="v-max">–</span><span class="metrica__etiqueta">monthly record</span></div>
+          <div class="metrica"><span class="metrica__valor" id="v-distintos">–</span><span class="metrica__etiqueta">unique players</span></div>
+        </div>
+
+        <!-- INFRAESTRUCTURA & CLOUDFLARE EDGE -->
+        <h2>Infrastructure &amp; Cloudflare Anycast Network</h2>
+        <p class="guide-section__note">Edge traffic distribution, perimeter security, and a dedicated server cluster in Chile.</p>
+
+        <div class="edge-grid">
+          <!-- TARJETA CLOUDFLARE EDGE -->
+          <div class="edge-card">
+            <div class="edge-card__header">
+              <span class="edge-card__title">🌐 Cloudflare Global Edge</span>
+              <span class="edge-badge" id="edge-status">OPERATIONAL</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Edge CDN cache</span>
+              <span class="edge-stat-val" id="edge-cache-ratio">95.4%</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Protocol &amp; Encryption</span>
+              <span class="edge-stat-val">TLS 1.3 / HTTP/3 QUIC</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">WAF &amp; Anti-Scanner Shield</span>
+              <span class="edge-stat-val" style="color: #34d399;">Active (Shield 2.0)</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Main Data Centers:</span>
+            </div>
+            <div class="pop-list" id="pop-list">
+              <div class="pop-item"><span class="pop-item__city">🇨🇱 Santiago (SCL)</span><span class="pop-item__ms">~4ms</span></div>
+              <div class="pop-item"><span class="pop-item__city">🇦🇷 Buenos Aires (EZE)</span><span class="pop-item__ms">~18ms</span></div>
+              <div class="pop-item"><span class="pop-item__city">🇧🇷 Rio de Janeiro (GIG)</span><span class="pop-item__ms">~32ms</span></div>
+              <div class="pop-item"><span class="pop-item__city">🇺🇸 Miami (MIA)</span><span class="pop-item__ms">~110ms</span></div>
+            </div>
+          </div>
+
+          <!-- TARJETA MINECRAFT CLUSTER -->
+          <div class="edge-card">
+            <div class="edge-card__header">
+              <span class="edge-card__title">⚔️ Minecraft Server (mc.drakescraft.cl)</span>
+              <span class="edge-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">JAVA + BEDROCK</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Cluster Performance</span>
+              <span class="edge-stat-val" style="color: #34d399;">Target: 20 TPS</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Cluster Location</span>
+              <span class="edge-stat-val">Dallas, Texas (USA) · Game Hosting</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Active Game Modes</span>
+              <span class="edge-stat-val">6 game modes (Lab, Slimefun, OneBlock, SkyBlock, OneChunk, Classic Vanilla)</span>
+            </div>
+            <div class="edge-stat-row">
+              <span class="edge-stat-label">Perimeter Protection</span>
+              <span class="edge-stat-val">Rate-Limiting &amp; L4/L7 Active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HORARIOS -->
+        <h2>When players are online</h2>
+        <p class="guide-section__note" id="frase-hora">Average concurrent players by hour, shown in Chile time.</p>
+        <div class="metricas-horas" id="horas" role="img" aria-label="Player distribution by hour of day"></div>
+
+        <!-- DÍAS -->
+        <h2>Recent days</h2>
+        <p class="guide-section__note" id="frase-semana">Daily peak concurrent players.</p>
+        <div class="metricas-dias" id="dias"></div>
+
+        <!-- NICKS HOY -->
+        <h2>Players online today</h2>
+        <p class="guide-section__note" id="frase-hoy">Everyone who has joined the server since midnight.</p>
+        <div class="nicks" id="nicks-hoy"></div>
+
+        <!-- NUEVOS -->
+        <h2>New players</h2>
+        <p class="guide-section__note" id="frase-nuevos">Players who joined for the first time this week.</p>
+        <div class="nicks nicks--nuevos" id="nicks-nuevos"></div>
+
+        <!-- PAÍSES -->
+        <h2>Where players connect from</h2>
+        <p class="guide-section__note" id="frase-paises">Approximate player locations, aggregated by country without IP data.</p>
+        <div class="paises" id="paises"></div>
+        <p class="guide-section__note" id="frase-visitas"></p>
+
+        <!-- TABLA COMUNIDAD -->
+        <h2>Our community</h2>
+        <p class="guide-section__note">Who plays, when they started, and their usual play times. Community statistics are collected without storing private information.</p>
+        <div class="tabla-jugadores__scroll">
+          <table class="tabla-jugadores" id="tabla-jugadores">
+            <thead><tr><th>Player</th><th>Country</th><th>Days</th><th>Since</th><th>Last seen</th><th>Usual play time</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="guide-section__note"><button class="jugadores-mas" id="jugadores-mas" type="button" hidden>View all</button></p>
+
+        <p class="guide-section__note" id="pie">—</p>
+      </div>
+    </section>
+
+    <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>A living guide. Tell us on Discord if anything is missing.</p></div><div class="site-footer__links"><a href="store.html">Store</a><a href="guia.html">Guide</a><a href="support.html">Support</a><a href="terms.html">Terms</a><a href="privacidad.html">Privacy</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor">
+        <span class="footer-sponsor-label">Support the project</span>
+        <div class="sponsor-badges">
+          <a class="sponsor-btn" href="https://github.com/sponsors/JackStar6677-1" target="_blank" rel="noopener" title="Sponsor Jack (Founder &amp; Developer)">
+            <span class="sponsor-btn__user">Jack</span>
+            <span class="sponsor-btn__heart">❤ Sponsor</span>
+          </a>
+          <a class="sponsor-btn" href="https://github.com/sponsors/DrakesCraft-Labs" target="_blank" rel="noopener" title="Sponsor the DrakesCraft-Labs organization">
+            <span class="sponsor-btn__user">DrakesCraft-Labs</span>
+            <span class="sponsor-btn__heart">❤ Sponsor</span>
+          </a>
+        </div>
+      </div></div></footer>
+
+  <script src="scripts/metricas-en.js?v=20261030"></script>
+</body>
+</html>

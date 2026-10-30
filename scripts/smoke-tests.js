@@ -27,6 +27,7 @@ const ROUTES = [
   '/support.html',
   '/support-en.html',
   '/metricas.html',
+  '/metricas-en.html',
   '/404.html',
   '/404-en.html',
   '/500.html',
@@ -150,6 +151,10 @@ async function testRoute(route) {
 
     // Validar HTML
     const htmlIssues = validateHtml(response.body);
+    if (route === '/metricas-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Live Telemetry') || !response.body.includes('Players online today'))) {
+      errors.push(`${route}: missing English language metadata or translated metrics content`);
+      return;
+    }
     if (route === '/500-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Scheduled'))) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
@@ -182,6 +187,7 @@ async function testRoute(route) {
       '/support.html',
       '/support-en.html',
       '/metricas.html',
+      '/metricas-en.html',
       '/404.html',
       '/404-en.html',
       '/500.html',
