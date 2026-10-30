@@ -23,6 +23,7 @@ const ROUTES = [
   '/apoya.html',
   '/store.html',
   '/terms.html',
+  '/terms-en.html',
   '/privacidad.html',
   '/privacidad-en.html',
   '/support.html',
