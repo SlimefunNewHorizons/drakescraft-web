@@ -973,6 +973,7 @@ await app.register(fastifyStatic, {
       'robots.txt',
       'sitemap.xml',
       'privacidad.html',
+      'privacidad-en.html',
       'logodrakescraft.webp',
       'previewdiscord1.png',
       'previewdiscord2.png',

@@ -24,6 +24,7 @@ const ROUTES = [
   '/store.html',
   '/terms.html',
   '/privacidad.html',
+  '/privacidad-en.html',
   '/support.html',
   '/support-en.html',
   '/metricas.html',
@@ -163,6 +164,10 @@ async function testRoute(route) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
     }
+    if (route === '/privacidad-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Privacy &amp; Cookies Policy') || !response.body.includes('Merchant of Record'))) {
+      errors.push(`${route}: missing English language metadata or translated content`);
+      return;
+    }
     if (route === '/404-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Dimension Not Found'))) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
@@ -184,6 +189,8 @@ async function testRoute(route) {
       '/store.html',
       '/terms.html',
       '/privacidad.html',
+      '/privacidad-en.html',
+  '/privacidad-en.html',
       '/support.html',
       '/support-en.html',
       '/metricas.html',
