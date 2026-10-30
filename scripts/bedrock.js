@@ -10,7 +10,8 @@
     const ok = j && j.available && typeof j.url === 'string' && /^https:\/\//.test(j.url) && !j.url.includes('/claim/');
     if (!ok) throw new Error('sin enlace');
     btns.forEach((b) => { b.href = j.url; b.removeAttribute('aria-disabled'); b.target = '_blank'; b.rel = 'noopener'; });
-    say(j.updated_at ? `${btns[0].dataset.fresh || 'Updated'}: ${new Date(j.updated_at).toLocaleString()}` : '');
+    const d = new Date(String(j.updated_at || "").replace(/([+-]\d\d)(\d\d)$/, "$1:$2"));
+    say(isNaN(d) ? "" : `${btns[0].dataset.fresh || "Updated"}: ${d.toLocaleString()}`);
   } catch {
     btns.forEach((b) => b.setAttribute('aria-disabled', 'true'));
     say(btns[0].dataset.fallback || '');
