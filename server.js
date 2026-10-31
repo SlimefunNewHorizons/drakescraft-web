@@ -986,6 +986,8 @@ await app.register(fastifyStatic, {
       'guia-slimefun-en.html',
       'guia-plugins.html',
       'guia-plugins-en.html',
+      'ojo-de-atenea.html',
+      'ojo-de-atenea-en.html',
       '404.html',
       '404-en.html',
       '500.html',

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👁️ Athena's Divine Eye · SaoriStar Live HUD & 3D Voxel</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://web.drakescraft.cl/ojo-de-atenea-en.html">
+  <meta name="description" content="Internal observation panel of DrakesCraft.">
+  <link rel="stylesheet" href="/styles/ojo-de-atenea.css?v=20261017-v7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="/three.min.js"></script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DrakesCraft">
+  <meta property="og:title" content="👁️ Athena's Divine Eye · SaoriStar Live HUD & 3D Voxel">
+  <meta property="og:description" content="Internal observation panel of DrakesCraft.">
+  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="👁️ Athena's Divine Eye · SaoriStar Live HUD & 3D Voxel">
+  <meta name="twitter:description" content="Internal observation panel of DrakesCraft.">
+  <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+<style>.skip-link{position:fixed;z-index:10000;top:.75rem;left:.75rem;padding:.75rem 1rem;color:#06110e;background:#f4c95d;font-weight:700;transform:translateY(-200%)}.skip-link:focus{transform:translateY(0)}a:focus-visible,button:focus-visible{outline:3px solid #f4c95d;outline-offset:2px}</style>
+</head>
+<body class="cyber-greek-theme">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="hud-scanlines"></div>
+  <div class="hud-vignette"></div>
+
+  <!-- Top Status Bar -->
+  <header class="hud-header">
+    <div class="logo-box">
+      <div class="aegis-shield-icon">🛡️</div>
+      <div class="title-group">
+        <h1>ATHENA'S DIVINE EYE</h1>
+        <div class="subtitle">TELEMETRY, 3D RECONSTRUCTION & LIVE COGNITION SYSTEM · SAORISTAR</div>
+      </div>
+    </div>
+
+    <div class="header-status-pill">
+      <span class="status-dot pulsating"></span>
+      <span id="conn-status">NEURAL LINK ACTIVE</span>
+      <span class="divider">|</span>
+      <span id="server-dim" class="dim-badge">WORLD</span>
+    </div>
+  </header>
+
+  <!-- Main HUD Container -->
+  <main id="main-content" class="hud-grid">
+
+    <!-- Left Panel: Vital Signs & Position -->
+    <section class="hud-card vitals-panel">
+      <div class="card-header">
+        <span class="icon">🏛️</span>
+        <h2>VITAL STATUS</h2>
+      </div>
+
+      <!-- Health & Food -->
+      <div class="vital-row">
+        <div class="vital-label">
+          <span>DIVINE HEALTH</span>
+          <span id="health-val" class="val-highlight">26.0 / 20</span>
+        </div>
+        <div class="meter-bar"><div id="health-fill" class="meter-fill health-glow" style="width: 100%;"></div></div>
+      </div>
+
+      <div class="vital-row">
+        <div class="vital-label">
+          <span>SATURATION</span>
+          <span id="food-val" class="val-highlight">20 / 20</span>
+        </div>
+        <div class="meter-bar"><div id="food-fill" class="meter-fill food-glow" style="width: 100%;"></div></div>
+      </div>
+
+      <!-- Spatial Coordinates -->
+      <div class="coords-box">
+        <div class="coord-item">
+          <span class="axis">X</span>
+          <span id="coord-x" class="coord-num">0</span>
+        </div>
+        <div class="coord-item">
+          <span class="axis">Y</span>
+          <span id="coord-y" class="coord-num">0</span>
+        </div>
+        <div class="coord-item">
+          <span class="axis">Z</span>
+          <span id="coord-z" class="coord-num">0</span>
+        </div>
+      </div>
+
+      <!-- Solar / Lunar Cycle -->
+      <div class="time-box">
+        <div class="time-header">
+          <span id="time-icon">☀️</span>
+          <span id="time-text">SOLAR DAY</span>
+          <span id="time-tick" class="sub-tick">Tick: 0</span>
+        </div>
+        <div class="meter-bar"><div id="time-fill" class="meter-fill time-glow" style="width: 50%;"></div></div>
+      </div>
+
+      <!-- Quick Arsenal Summary -->
+      <div class="quick-arsenal">
+        <div class="arsenal-title">ACTIVE ARSENAL</div>
+        <div id="arsenal-items" class="arsenal-tags">
+          <span class="tag-item">⚔️ On guard</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Center Panel: 3D Voxel Viewport & Tactical Radar -->
+    <section class="hud-card radar-panel">
+      <div class="card-header radar-header">
+        <div class="header-left">
+          <span class="icon">👁️</span>
+          <h2 id="view-title">LIVE 3D RECONSTRUCTION</h2>
+        </div>
+
+        <!-- View Mode Selector -->
+        <div class="view-switch-tabs">
+          <button id="btn-mode-3d" class="tab-btn active">🌐 3D VOXEL</button>
+          <button id="btn-mode-2d" class="tab-btn">🎯 2D RADAR</button>
+        </div>
+
+        <div class="radar-controls">
+          <button id="btn-cam-reset" class="hud-btn-mini" title="Reset 3D Camera">↺</button>
+          <button id="btn-zoom-in" class="hud-btn-mini">+</button>
+          <button id="btn-zoom-out" class="hud-btn-mini">-</button>
+          <span id="zoom-level" class="zoom-tag">16m</span>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper">
+        <!-- 3D Viewport with Three.js -->
+        <div id="three-viewport" class="three-container"></div>
+        <!-- 2D Classic Radar Canvas -->
+        <canvas id="radar-canvas" width="500" height="500" style="display: none;"></canvas>
+
+        <div class="viewport-overlay-info">
+          <span class="badge-cam">Drag to rotate · Scroll to zoom</span>
+        </div>
+      </div>
+
+      <!-- Detection Legend -->
+      <div class="radar-legend">
+        <span class="legend-item"><span class="dot dot-saori"></span> SaoriStar (Athena)</span>
+        <span class="legend-item"><span class="dot dot-hostile"></span> Hostiles</span>
+        <span class="legend-item"><span class="dot dot-player"></span> Players</span>
+        <span class="legend-item"><span class="dot dot-resource"></span> Voxels / Resources</span>
+      </div>
+    </section>
+
+    <!-- Right Panel: Cognitive Flow & Divine Orders -->
+    <section class="hud-card cognition-panel">
+      <div class="card-header">
+        <span class="icon">🧠</span>
+        <h2>ATHENA'S THOUGHTS</h2>
+      </div>
+
+      <!-- Live Thought Stream -->
+      <div id="thought-stream" class="thought-stream">
+        <div class="thought-entry system">
+          <span class="time">[12:00:00]</span>
+          <span class="content">Synchronizing with SaoriStar's senses...</span>
+        </div>
+      </div>
+
+      <!-- Quick Orders -->
+      <div class="quick-orders">
+        <div class="orders-title">⚡ DIVINE QUICK ORDERS</div>
+        <div class="orders-grid">
+          <button class="btn-divine" onclick="sendQuickAction('SAY', 'Let the light of Athena guide your steps!')">☀️ Solar Day</button>
+          <button class="btn-divine" onclick="sendQuickAction('SAY', 'Returning to the temple of Spawn.')">🏛️ Go to Spawn</button>
+          <button class="btn-divine" onclick="sendQuickAction('SAY', 'Greetings noble mortals of DrakesCraft!')">💬 Greeting</button>
+          <button class="btn-divine" onclick="sendQuickAction('SAY', 'Analyzing the environment with Athena\'s Eye.')">💥 Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Panel: Full Physical Inventory (36 Slots) -->
+    <section class="hud-card inventory-panel">
+      <div class="card-header inv-header">
+        <div class="header-left">
+          <span class="icon">🎒</span>
+          <h2>PHYSICAL INVENTORY</h2>
+        </div>
+        <div class="inv-summary">
+          <span id="total-food-count">🥩 Food: 0</span>
+          <span class="divider">|</span>
+          <span id="total-mats-count">🪵 Materials: 0</span>
+        </div>
+      </div>
+
+      <div class="inv-container">
+        <!-- Main Grid of 27 Slots -->
+        <div id="inv-grid-main" class="inv-grid main-grid"></div>
+        <!-- Quick Bar / Hotbar of 9 Slots -->
+        <div id="inv-grid-hotbar" class="inv-grid hotbar-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/scripts/ojo-de-atenea.js?v=20261017-v7.0"></script>
+  <script src="scripts/season-lite.js?v=20261017-v7"></script>
+</body>
+</html>
