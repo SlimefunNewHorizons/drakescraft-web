@@ -983,6 +983,7 @@ await app.register(fastifyStatic, {
       'guia-rangos-en.html',
       'guia-slimefun.html',
       'guia-plugins.html',
+      'guia-plugins-en.html',
       '404.html',
       '404-en.html',
       '500.html',

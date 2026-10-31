@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official encyclopedia of plugins, StarSuites and sovereign modifications in DrakesCraft 1.21.11+. Canonical upstream documentation and exclusive Star Architecture patches.">
+  <title>Plugins &amp; Suites · DrakesCraft</title>
+  <link rel="canonical" href="https://web.drakescraft.cl/guia-plugins-en.html">
+  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia-plugins.html">
+  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/guia-plugins-en.html">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
+  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "en", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-plugins-en.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Minecraft Java and Bedrock server with StarSuites architecture, Chilean CLP economy, 26 pantheonic deities, and six isolated gamemodes."}]}</script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DrakesCraft">
+  <meta property="og:title" content="Plugins &amp; Suites · DrakesCraft">
+  <meta property="og:description" content="Official encyclopedia of plugins, StarSuites and sovereign modifications in DrakesCraft 1.21.11+. Canonical upstream documentation and exclusive Star Architecture patches.">
+  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Plugins &amp; Suites · DrakesCraft">
+  <meta name="twitter:description" content="Official encyclopedia of plugins, StarSuites and sovereign modifications in DrakesCraft 1.21.11+. Canonical upstream documentation and exclusive Star Architecture patches.">
+  <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <style>
+    .plugin-entry { display: flex; flex-direction: column; gap: 1.25rem; }
+    .plugin-badge-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .25rem; }
+    .plugin-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: .5rem; }
+    .plugin-subbox { background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .08); border-radius: .65rem; padding: 1rem; }
+    .plugin-subbox--upstream { border-left: 3px solid #60a5fa; }
+    .plugin-subbox--sovereign { border-left: 3px solid var(--accent, #6ee7a2); background: rgba(110, 231, 162, .03); }
+    .plugin-subbox h4 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; }
+    .plugin-subbox h4.upstream-title { color: #93c5fd; }
+    .plugin-subbox h4.sovereign-title { color: #86efac; }
+    .plugin-subbox p { margin: 0 0 .65rem; font-size: .88rem; line-height: 1.55; opacity: .88; }
+    .plugin-subbox p:last-child { margin-bottom: 0; }
+    .plugin-link-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .75rem; border-radius: .4rem; background: rgba(96, 165, 250, .15); border: 1px solid rgba(96, 165, 250, .35); color: #bfdbfe; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s; }
+    .plugin-link-btn:hover { background: rgba(96, 165, 250, .28); color: #fff; }
+    .plugin-feat-list { list-style: none; padding: 0; margin: .5rem 0 0; display: flex; flex-direction: column; gap: .4rem; }
+    .plugin-feat-list li { font-size: .86rem; line-height: 1.45; position: relative; padding-left: 1.25rem; }
+    .plugin-feat-list li::before { content: "▹"; position: absolute; left: 0; color: var(--accent, #6ee7a2); font-weight: bold; }
+    .plugin-feat-list li code { font-family: 'DM Mono', monospace; font-size: .82rem; color: #ffd479; }
+    .guide-accordion__badge--emerald { color: #6ee7a2; background: rgba(110, 231, 162, .16); }
+    .guide-accordion__badge--crimson { color: #fda4af; background: rgba(244, 63, 94, .16); }
+    .guide-accordion__badge--blue { color: #93c5fd; background: rgba(59, 130, 246, .16); }
+  </style>
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+</head>
+<body class="page-shell" data-page="guia" data-section="plugins">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container site-nav__bar">
+      <a class="brand" href="/index-en.html" aria-label="Go to DrakesCraft Home">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Plugins &amp; Suites Encyclopedia</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <ul class="site-nav__links" id="nav-menu">
+        <li><a href="/index-en.html">Home</a></li>
+        <li><a href="guide-en.html">The Server</a></li>
+        <li><a href="guia-comandos-en.html">Commands</a></li>
+        <li><a href="guia-rangos-en.html">Ranks</a></li>
+        <li><a href="guia-slimefun.html">Slimefun</a></li>
+        <li><a class="active" href="guia-plugins-en.html">Plugins &amp; Suites</a></li>
+        <li><a href="apoya-en.html">Sponsors</a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP SHOP ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+    <div class="lang-switcher">
+      <a href="guia-plugins.html" class="lang-btn" data-lang="es" title="Switch to Spanish">ES</a>
+      <a href="guia-plugins-en.html" class="lang-btn is-active" data-lang="en" title="English">EN</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <header class="guide-hero">
+      <div class="guide-hero__backdrop" aria-hidden="true"></div>
+      <div class="container guide-hero__grid">
+        <p class="eyebrow">StarSuites Architecture &amp; Technological Canon</p>
+        <h1>Encyclopedia of <em>Plugins &amp; Suites</em></h1>
+        <p class="guide-hero__lead">At DrakesCraft, 167 software components operate seamlessly, orchestrated by Star Architecture. To ensure no player or creator gets lost, here we detail the <strong>official canonical documentation (upstream)</strong> for each project along with the <strong>proprietary sovereign modifications</strong> developed exclusively for our cluster.</p>
+      </div>
+    </header>
+
+    <nav class="guide-tabs" aria-label="Guide sections">
+      <a href="guia-comandos-en.html">Commands</a>
+      <a href="guide-en.html">The Server</a>
+      <a href="guia-rangos-en.html">Ranks</a>
+      <a href="guia-slimefun.html">Slimefun</a>
+      <a href="guia-plugins-en.html" class="is-active">Plugins &amp; Suites</a>
+    </nav>
+
+    <div class="container">
+      <div class="guide-search">
+        <label class="sr-only" for="guide-q">Search in the plugin encyclopedia</label>
+        <input type="search" id="guide-q" placeholder="Search for a plugin, original author, suite or sovereign patch (e.g., Slimefun, BentoBox, S.I.I., Rust, Infinity)..." autocomplete="off">
+        <p class="guide-search__count" id="guide-count"></p>
+      </div>
+
+      <div class="guide-filters" role="group" aria-label="Filter by architecture">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="starsuites" aria-pressed="false">StarSuites (Slimefun)</button>
+        <button type="button" data-filter="bosses" aria-pressed="false">Bosses &amp; Olympus</button>
+        <button type="button" data-filter="economia" aria-pressed="false">Chilean Economy &amp; S.I.I.</button>
+        <button type="button" data-filter="islas" aria-pressed="false">Islands (BentoBox)</button>
+        <button type="button" data-filter="almacenamiento" aria-pressed="false">Vaults &amp; Graves</button>
+        <button type="button" data-filter="chat-ia" aria-pressed="false">Chat &amp; SAORI AI</button>
+        <button type="button" data-filter="seguridad" aria-pressed="false">Security &amp; Anti-Abuse</button>
+      </div>
+
+      <div class="guide-controls">
+        <span style="font-size: .88rem; opacity: .8;">📚 <strong>Integrity Canon:</strong> Absolute respect for original authors + high-performance sovereign patches.</span>
+        <div class="guide-controls__btns">
+          <button type="button" class="guide-btn-action" id="btn-expand-all">Expand all</button>
+          <button type="button" class="guide-btn-action" id="btn-collapse-all">Collapse all</button>
+        </div>
+      </div>
+
+      <p class="guide-empty is-hidden" id="guide-empty">No components matched your search criteria.</p>
+
+      <!-- STARSUITES / SLIMEFUN SECTION -->
+      <section class="guide-section" data-cat="starsuites">
+        <h2>🏛️ StarSuites (Drakes-Suites Monorepo)</h2>
+        <p class="guide-section__note">Monumental consolidation of over 180 micro-repositories and Slimefun addons into high-performance modular suites. JackStar is not the original creator of Slimefun, but the rescue architect who resolved the Paper 1.21.11 collapse and implemented native Rust acceleration.</p>
+
+        <!-- SUITE 0: CORE -->
+        <details class="guide-accordion" data-cat="starsuites" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">⚙️</span>
+              <span><strong>Suite 0 · Kernel &amp; Engine</strong> (<code>drakes-core.jar</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--cyan">Core Kernel</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">FFM Native</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Upstream Authorship: TheBusyBiscuit &amp; Slimefun Community</span>
+                <span class="guide-tag guide-tag--vip">Suites Architect: JackStar6677-1</span>
+                <span class="guide-tag guide-tag--bedrock">Java 21 LTS + FFM Rust</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>Slimefun 4 is the most comprehensive technology and magic base plugin in the Minecraft ecosystem, designed to emulate industrial modpack depth without requiring client-side mods.</p>
+                  <a class="plugin-link-btn" href="https://github.com/Slimefun/Slimefun4/wiki" target="_blank" rel="noopener">
+                    <span>↗ Official Slimefun 4 Wiki (GitHub)</span>
+                  </a>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <p>In Paper 1.21.11+, 70+ async tickers and massive NBT calls collapsed the Garbage Collector (GC). Our suite introduces:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong><code>SuiteTickerEngine</code>:</strong> Synchronized single-ticker eliminating micro-stutters and TPS drops.</li>
+                    <li><strong>FFM Java 21 / Rust Bindings:</strong> Drastically reduces GC overhead during energy grid calculations.</li>
+                    <li><strong>SQLite WAL Persistence:</strong> Safe transactional persistence ensuring zero block losses during hard restarts.</li>
+                    <li><strong>100% PDC Preservation:</strong> Retains full compatibility with existing <code>slimefun:slimefun_item</code> persistent data container keys.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SUITE 1: TECH -->
+        <details class="guide-accordion" data-cat="starsuites">
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">⚡</span>
+              <span><strong>Suite 1 · Technology &amp; Quantum Networks</strong> (<code>drakes-tech.jar</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--purple">Networks &amp; Infinity</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Absorbs: Networks, InfinityExpansion, DynaTech, FastMachines, Supreme, FluffyMachines</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>Inventory automation, logistical conduits, singularity reactors, and advanced heavy industry.</p>
+                  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                    <a class="plugin-link-btn" href="https://github.com/Slimefun-Addon-Community/Networks/wiki" target="_blank" rel="noopener">↗ Networks Wiki</a>
+                    <a class="plugin-link-btn" href="https://github.com/Mooy1/InfinityExpansion/wiki" target="_blank" rel="noopener">↗ InfinityExpansion Wiki</a>
+                  </div>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong><code>Slimefun-Rust</code> (<code>libslimefun_ffi.so</code>):</strong> Off-heap resolution of Networks logistical graphs using SIMD in Rust, allowing thousands of conduits without impacting server TPS.</li>
+                    <li><strong>Anti-Duplication Buffer Protection:</strong> Eradication of the legacy duplication exploit when breaking Quantum Storage during massive energy transfers.</li>
+                    <li><strong>Per-Chunk Safety Limit:</strong> 120 machines per chunk quota to ensure balance and fairness among neighboring bases.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SUITE 2: BIO -->
+        <details class="guide-accordion" data-cat="starsuites">
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🌱</span>
+              <span><strong>Suite 2 · Bioengineering &amp; Genetics</strong> (<code>drakes-bio.jar</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--emerald">Genetics T0-T9</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Absorbs: GeneticChickengineering, ExoticGarden, Cultivation, SlimyBees, MobCapturer</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>Chicken DNA manipulation for ore production, exotic culinary trees/crops, and advanced apiculture.</p>
+                  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                    <a class="plugin-link-btn" href="https://github.com/Slimefun-Addon-Community/GeneticChickengineering/wiki" target="_blank" rel="noopener">↗ GCE Wiki</a>
+                    <a class="plugin-link-btn" href="https://github.com/Slimefun-Addon-Community/ExoticGarden/wiki" target="_blank" rel="noopener">↗ ExoticGarden Wiki</a>
+                  </div>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Async Tier 0 to 9 Chickens:</strong> Chromosome splicing offloaded to background threads to prevent lag spikes in colossal genetic farms.</li>
+                    <li><strong>Hitbox Normalization in 1.21.11+:</strong> Resolved the Paper engine issue where ExoticGarden berry bushes pushed or trapped players when harvesting while crouching.</li>
+                    <li><strong>Anti Boss-Trapping in MobCapturer:</strong> Strict capture prevention for divine avatars from DrakesBosses and world raid bosses.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SUITE MULTIVERSE -->
+        <details class="guide-accordion" data-cat="starsuites">
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🌌</span>
+              <span><strong>Suite Multiverse · Logistics, Creatures &amp; Automation</strong> (<code>drakes-multiverse.jar</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Sovereign Author: Chagui68</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Author: Chagui68 (Chagui)</span>
+                <span class="guide-tag guide-tag--vip">Standalone · No Slimefun Dependency</span>
+                <span class="guide-tag guide-tag--bedrock">Vanilla 3x3 Crafting Recipes</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📦 MultiverseNets — Digital Networks &amp; Storage</h4>
+                  <p>Comprehensive logistics and item distribution system without Slimefun overhead or entity lag:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Network Controller &amp; Cables:</strong> The central brain manages high-speed cable topologies interconnecting chests and bulk warehouses.</li>
+                    <li><strong>Digital &amp; Wireless Terminals:</strong> Access your entire base inventory from a single interactive block or remotely.</li>
+                    <li><strong>Storage Cells:</strong> Storage drives from 1k up to 256k with massive item compression for millions of items.</li>
+                    <li><strong>In-Game Guide:</strong> Use <code>/mvnets guide en</code> or <code>/mvnets guide es</code> to receive the official illustrated manual.</li>
+                  </ul>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🐉 MultiverseCreatures — Boss Pantheon &amp; Dimensions</h4>
+                  <p>Mythological creatures, dimensional bosses and tactical combat:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Epic Bosses:</strong> Challenge legendary entities like Kinger, Nix, JackStarBoss, and the Obsidian Sentinel with advanced mechanics.</li>
+                    <li><strong>Rituals and Seals:</strong> Summon bosses by constructing sacred altars and using Arcane Seals without relying on commands.</li>
+                    <li><strong>Penetrating Attacks:</strong> Abilities with true damage piercing through invulnerable armor to prevent AFK exploits.</li>
+                    <li><strong>Exclusive Music Discs:</strong> Immersive original music tracks obtainable as rare loot upon victory in dark dimensions.</li>
+                  </ul>
+                </div>
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">🔨 MultiverseTinker — Modular Forge &amp; Metallurgy</h4>
+                  <p>Modular tools and armor forged piece by piece:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Smeltery and Casts:</strong> Melt pure metals to produce magical alloys and pour them into specific casts.</li>
+                    <li><strong>Alloy Codex:</strong> Check exact smelting ratios at any time with <code>/mvtink codex</code> (available to all players).</li>
+                    <li><strong>Part Evolution:</strong> Each component of your gear contributes unique traits such as sharpness, durability, regeneration, and mining speed.</li>
+                  </ul>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🤖 MultiverseProgramming — Robotics &amp; Automation</h4>
+                  <p>Digital computers and builder robots to automate complex construction tasks:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Builder Turtles:</strong> Programmable miniature automata to mine, chop wood, and place structures in your base.</li>
+                    <li><strong>Digital Blueprints:</strong> Manage shareable building blueprints using <code>/computer blueprint list</code>.</li>
+                    <li><strong>Quota Control:</strong> Check your safe compute quota on the cluster using <code>/computer quota</code>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- DRAKESVIP++ -->
+        <details class="guide-accordion" data-cat="starsuites">
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">👑</span>
+              <span><strong>DrakesVIP++ · Divine Abilities &amp; Interactive Menu</strong> (<code>DrakesVIPPlusPlus.jar</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Sovereign DrakesCraft</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Architecture: JackStar6677-1</span>
+                <span class="guide-tag guide-tag--vip">VIP Ranks of Olympus and Titans</span>
+                <span class="guide-tag guide-tag--bedrock">GUI /vip 100% Configurable</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">⚡ Divine Abilities &amp; Active Boosters</h4>
+                  <p>Official module endowing each VIP tier with unique abilities corresponding to their patron deity:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Active Divine Power:</strong> Unleash your deity's active combat power by pressing <code>Sneak + F</code> (Crouch + Swap Hand).</li>
+                    <li><strong>Passive Buffs &amp; Health:</strong> Permanent bonus health hearts and continuous beneficial ambient aura effects.</li>
+                    <li><strong>Economy &amp; XP Multipliers:</strong> Passive bonus multiplier on Drachmas earnings, experience levels, and AuraSkills progression. View your stats with <code>/vip info</code>.</li>
+                  </ul>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🎮 Interactive GUI Menu (/vip)</h4>
+                  <p>Customize your gameplay experience without memorizing complex commands:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Visual Menu <code>/vip</code>:</strong> 27-slot visual panel with interactive ON/OFF switches for each of your unlocked perks.</li>
+                    <li><strong>Cosmic Particle Aura:</strong> Toggle your orbital cosmic particle aura on or off to keep your screen clear while building or in combat.</li>
+                    <li><strong>Cosmic Double Jump:</strong> Aerial jump boost with a clean wind trail, toggleable at will.</li>
+                    <li><strong>Action Effects:</strong> Configure Join Burst and Kill Flourish effects with persistence across server restarts.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- JEFES & OLYMPUS ASCENDANCY -->
+      <section class="guide-section" data-cat="bosses">
+        <h2>⚔️ DrakesBosses &amp; Olympus Ascendancy (Tier 10)</h2>
+        <p class="guide-section__note">The martial counterweight to Slimefun's AFK farming philosophy. 26 pantheonic deities, kinetic adaptation, and definitive endgame convergence at the Primordial Forge.</p>
+
+        <details class="guide-accordion" data-cat="bosses" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">⚡</span>
+              <span><strong>DrakesBosses · Divine Pantheons &amp; Mahoraga</strong></span>
+              <span class="guide-accordion__badge guide-accordion__badge--crimson">26 Deities</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Anti-Infinity</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Sovereign Development: JackStar6677-1</span>
+                <span class="guide-tag guide-tag--vip">5 Pantheons: Greek, Norse, Egyptian, Cataclysmic, Original</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Combat Mechanics &amp; Spawning</h4>
+                  <p>Unlike linear vanilla bosses, our deities possess telegraphed kinetic intelligence and 3 summoning mechanisms:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Overworld Altars:</strong> Built with Crying Obsidian, Lodestone, and Beacons, activated by sacred offerings (Lightning strike $\rightarrow$ Zeus, Trident $\rightarrow$ Poseidon).</li>
+                    <li><strong>Celestial Descents:</strong> Rare natural spawns in <code>world</code> and <code>world_nether</code> accompanied by screen shakes and cinematic thunder.</li>
+                    <li><strong>Olympus Arenas (<code>/bosswarp</code>):</strong> Isolated battle domes for fair duels with entrance fees in Drachmas and spectator mode (<code>/bosswarp spectate</code>).</li>
+                  </ul>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ Active Anti-Infinity Code (True Damage)</h4>
+                  <p>Slimefun usually allows players with Infinity Singularity or SlimeTinker gear to become invulnerable and kill bosses while AFK. At DrakesCraft:</p>
+                  <ul class="plugin-feat-list">
+                    <li><strong><code>FullInfinityArmorCounter</code>:</strong> Detects full Infinity sets and applies <strong>True Damage</strong> that pierces through artificial invulnerability.</li>
+                    <li><strong>Kinetic Learning (Mahoraga / Obsidian Sentinel):</strong> The boss dynamically adapts to incoming damage types (quantum swords, ranged bows, or spells), requiring weapon rotation.</li>
+                    <li><strong>Tier 10 "Olympus Ascendancy":</strong> Stellar cores dropped by deities combine at the <strong>7x7x5 Primordial Forge</strong> powered by nuclear reactors to craft server-endgame equipment.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- ECONOMIA CHILENA & SII -->
+      <section class="guide-section" data-cat="economia">
+        <h2>💰 Chilean Economy, S.I.I. &amp; Commercial Corporations</h2>
+        <p class="guide-section__note">DrakesCraft's financial model replicates the stability, nomenclature, and tax rigor of the Chilean economy in CLP, discouraging monopolies and rewarding entrepreneurial initiative.</p>
+
+        <details class="guide-accordion" data-cat="economia" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🏦</span>
+              <span><strong>Star Economy &amp; S.I.I.</strong> (Scale 1 Luca = $1,000 CLP)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">S.I.I. 19% VAT</span>
+              <span class="guide-accordion__badge guide-accordion__badge--cyan">SpA / Ltda Corps</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Engine: Star-Server / ChileanEconomyScale</span>
+                <span class="guide-tag guide-tag--vip">Taxation: SIITaxEngine</span>
+                <span class="guide-tag guide-tag--bedrock">Vault &amp; SBank Compatible</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Macroeconomic Foundation</h4>
+                  <p>Standard server economies frequently suffer from runaway hyperinflation and abstract numbers disconnected from reality. At DrakesCraft, the official currency is the <strong>Chilean Peso (CLP / Drachmas)</strong> with institutional banking formatting (thousands dot separators).</p>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ Sovereign S.I.I. &amp; Corporate Mechanics</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Real x1000 Scale ("La Luca"):</strong> 1 currency unit equals <strong>$1,000 CLP</strong>. Starting starter balance is randomly granted between <strong>$50,000 and $250,000 CLP</strong>.</li>
+                    <li><strong>19% VAT (IVA):</strong> Purchases in player chest shops and the dynamic market apply official 19% VAT, with guaranteed tax credits on sales for producers.</li>
+                    <li><strong>Transfer Tax on <code>/pay</code> (3%):</strong> Discourages informal transactions outside the official banking infrastructure.</li>
+                    <li><strong>Commercial Corporations (SpA &amp; Ltda):</strong> Players can incorporate legal corporate entities with official Chilean RUT numbers verified by the Modulo 11 checksum algorithm (e.g., <code>76.000.001-3</code>), corporate balance sheets, and automated dividend distribution to partners.</li>
+                    <li><strong>DrakesSlimeMarket (<code>/sm</code>):</strong> 777 regulated items governed by circulation exponential smoothing ($\alpha = 0.30$) dynamically adjusting pricing based on supply and demand.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- ISLAS: BENTOBOX-DRAKE -->
+      <section class="guide-section" data-cat="islas">
+        <h2>🏝️ BentoBox-Drake (SkyBlock, OneBlock, AcidIsland, CaveBlock)</h2>
+        <p class="guide-section__note">Sovereign engine for floating worlds and isolated survival, customized with critical patches preventing item loss in modern Paper builds.</p>
+
+        <details class="guide-accordion" data-cat="islas" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🏝️</span>
+              <span><strong>BentoBox-Drake · Adaptive Island Engine</strong></span>
+              <span class="guide-accordion__badge guide-accordion__badge--emerald">Sovereign Fork</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Anti-Void Patch</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Upstream Author: tastybento &amp; BentoBoxWorld</span>
+                <span class="guide-tag guide-tag--vip">Maintained by: DrakesCraft-Labs</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>BentoBox is the global gold standard for SkyBlock, OneBlock, and custom isolated biome islands in Spigot and Paper.</p>
+                  <a class="plugin-link-btn" href="https://docs.bentobox.world/" target="_blank" rel="noopener">↗ Official BentoBox Docs (Upstream)</a>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Paper Data Components Critical Patch (Incident #276):</strong> Starting in 1.20.5/1.21, Paper replaced legacy NBT with Data Components. In upstream BentoBox, Slimefun items or items with custom lore were destroyed during island resets or teleports. Our sovereign fork patches <code>ItemStackTypeAdapter</code>, ensuring 0% item loss.</li>
+                    <li><strong>Ore Chunks Compatibility:</strong> Calibrated mineral generators providing ore chunk drops fully compatible with StarSuites smelteries.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- ALMACENAMIENTO Y BOVEDAS -->
+      <section class="guide-section" data-cat="almacenamiento">
+        <h2>📦 Storage, Vaults &amp; Graves</h2>
+        <p class="guide-section__note">Physical protection and quantum isolation of player assets across gamemodes.</p>
+
+        <details class="guide-accordion" data-cat="almacenamiento" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🔐</span>
+              <span><strong>PlayerVaultZ-Drake &amp; AxGraves-Drakes</strong></span>
+              <span class="guide-accordion__badge guide-accordion__badge--cyan">SQLite WAL Isolation</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Vaults: PlayerVaultZ-Drake (<code>/pv</code>)</span>
+                <span class="guide-tag guide-tag--survival">Graves: AxGraves-Drakes</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>Standard systems for portable virtual vaults (<code>/pv 1</code>) and temporary player graves preserving items upon death.</p>
+                  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                    <a class="plugin-link-btn" href="https://github.com/darbyjack/PlayerVaults" target="_blank" rel="noopener">↗ PlayerVaults Wiki</a>
+                    <a class="plugin-link-btn" href="https://github.com/Artillex-Studios/AxGraves" target="_blank" rel="noopener">↗ AxGraves Docs</a>
+                  </div>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Strictly Partitioned Vaults (<code>modality-vaults.db</code>):</strong> Your <code>/pv</code> in Slimefun is strictly isolated from your <code>/pv</code> in Classic or SkyBlock, preventing intermodal item smuggling.</li>
+                    <li><strong>Atomic Preservation in Graves:</strong> Compressed NBT and PDC serialization ensuring nested backpacks and magical charms never corrupt when graves expire.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- CHAT, REDES E IA -->
+      <section class="guide-section" data-cat="chat-ia">
+        <h2>🌐 Bilingual Chat, Networks &amp; SAORI SRE Orchestrator</h2>
+        <p class="guide-section__note">Unified real-time community across Minecraft, Discord, and WhatsApp with instant multilingual support.</p>
+
+        <details class="guide-accordion" data-cat="chat-ia" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🌸</span>
+              <span><strong>SAORI Autonomous SRE &amp; WorldwideChat-Drake</strong></span>
+              <span class="guide-accordion__badge guide-accordion__badge--purple">Multichannel AI</span>
+              <span class="guide-accordion__badge guide-accordion__badge--cyan">LibreTranslate Engine</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">S.A.O.R.I. · Star Server (Star Architecture)</span>
+                <span class="guide-tag guide-tag--vip">Bridge: DiscordSRV + WorldwideChat</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>DiscordSRV connects in-game chat directly with Discord channels. WorldwideChat translates messages on screen.</p>
+                  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                    <a class="plugin-link-btn" href="https://discordsrv.com/" target="_blank" rel="noopener">↗ DiscordSRV Docs</a>
+                    <a class="plugin-link-btn" href="https://github.com/3773-Elit/WorldwideChat" target="_blank" rel="noopener">↗ WorldwideChat Docs</a>
+                  </div>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ DrakesCraft Sovereign Modifications</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>SAORI (Server Autonomous Orchestrator):</strong> Autonomous SRE agent with the persona of a protective wolf goddess, trained in technical and Chilean idioms to assist players and moderate channels.</li>
+                    <li><strong>Intelligent Bilingual Bridge:</strong> Private LibreTranslate instance hosted on Star Server with pre-flight heuristics to distinguish casual Spanish and Chilean slang without false Portuguese positives or quota exhaustion.</li>
+                    <li><strong>Native Rust ChatFilterEngine:</strong> Anti-spam and malicious keyword filtering evaluated natively before touching Spigot's main thread.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- SEGURIDAD Y ANTICHEAT -->
+      <section class="guide-section" data-cat="seguridad">
+        <h2>🛡️ Enterprise Security &amp; Anti-Cheat</h2>
+        <p class="guide-section__note">Industrial-grade defense against bot attacks, session hijacking, and kinetic cheat modifications.</p>
+
+        <details class="guide-accordion" data-cat="seguridad" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">🔒</span>
+              <span><strong>nLogin Suite (Licensed) &amp; Predictive GrimAC</strong></span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Commercial Lifetime License</span>
+              <span class="guide-accordion__badge guide-accordion__badge--emerald">GrimAC Packet-Level</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">nLogin Premium (NickUC) · Official License Paid by Jack</span>
+                <span class="guide-tag guide-tag--vip">Predictive GrimAC 1.21.11+</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">📖 Official Guide &amp; Canonical Upstream</h4>
+                  <p>Account authentication security and predictive illegal client modification detection.</p>
+                  <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+                    <a class="plugin-link-btn" href="https://nickuc.com/nlogin" target="_blank" rel="noopener">↗ NickUC nLogin Official</a>
+                    <a class="plugin-link-btn" href="https://github.com/GrimAnticheat/Grim" target="_blank" rel="noopener">↗ GrimAC GitHub</a>
+                  </div>
+                </div>
+                <div class="plugin-subbox plugin-subbox--sovereign">
+                  <h4 class="sovereign-title">🛡️ Sovereign Configuration &amp; Tuning</h4>
+                  <ul class="plugin-feat-list">
+                    <li><strong>Hybrid Java/Bedrock Authentication:</strong> Seamless integration with Geyser and Floodgate allowing mobile and console players to connect without redundant captcha hurdles.</li>
+                    <li><strong>GrimAC Kinetic Calibration:</strong> Precision tolerance tuned for Slimefun quantum armor acceleration, jetpack thrust, and deity jumps, preventing rubberbanding while blocking flight and illegal speed hacks.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand brand--footer" href="/index-en.html" aria-label="Go to DrakesCraft Home">
+          <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="">
+          <span class="brand__meta"><strong>DrakesCraft</strong><span>Minecraft Java &amp; Bedrock Server</span></span>
+        </a>
+        <p class="site-footer__lead">Six gamemodes, StarSuites technology, Chilean CLP economy, and 26 pantheonic deities. Engineered with technical rigor and community care.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Quick links in footer">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="guide-en.html">The Server</a></li>
+          <li><a href="guia-comandos-en.html">Commands</a></li>
+          <li><a href="guia-rangos-en.html">Ranks</a></li>
+          <li><a href="guia-slimefun.html">Slimefun</a></li>
+          <li><a href="guia-plugins-en.html">Plugins &amp; Suites</a></li>
+          <li><a href="metricas-en.html">SRE Telemetry</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Community and support">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Official Discord</a></li>
+          <li><a href="store-en.html">VIP Shop</a></li>
+          <li><a href="apoya-en.html">Sponsors</a></li>
+          <li><a href="terms-en.html">Terms of Service</a></li>
+          <li><a href="privacidad-en.html">Privacy Policy</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container site-footer__bottom">
+      <p>© 2026 DrakesCraft. Star Engine Architecture by JackStar6677-1. Not affiliated with Mojang AB or Microsoft.</p>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js?v=20261017-v7"></script>
+  <script src="scripts/guia.js?v=20261017-v7"></script>
+</body>
+</html>
