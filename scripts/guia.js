@@ -298,9 +298,10 @@
 
         empty?.classList.toggle("is-hidden", visible > 0);
         if (count) {
+            const isEn = document.documentElement.lang === "en";
             count.textContent = terms.length || category !== "all" || activeModality !== "all"
-                ? `${visible} de ${index.length} entradas encontradas`
-                : `${index.length} mecánicas y recetas catalogadas`;
+                ? (isEn ? `${visible} of ${index.length} entries found` : `${visible} de ${index.length} entradas encontradas`)
+                : (isEn ? `${index.length} commands and mechanics cataloged` : `${index.length} mecánicas y recetas catalogadas`);
         }
     }
 

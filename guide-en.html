@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Season 2 Datapacks &amp; Bedrock Access · DrakesCraft</title>
+  <title>Server Guide &amp; 6 Game Modes · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/guide-en.html">
-  <meta name="description" content="DrakesCraft Season 2: what each datapack adds (Slimefun worlds only) and how to join from Bedrock 26.60+.">
+  <meta name="description" content="Complete player guide for DrakesCraft: commands, 6 game modes in 1 (Slimefun, Classic Vanilla, SkyBlock, OneBlock, OneChunk, Lab), economy, protection, magic, and Season 2.">
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,78 +14,639 @@
   <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
   <link rel="stylesheet" href="styles/t2.css?v=20261030-v1">
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
-  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia.html#temporada-2">
+  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia.html">
   <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/guide-en.html">
 </head>
 <body class="page-shell" data-page="guia" data-section="server">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container site-nav__bar">
-      <a class="brand" href="/" aria-label="Go to DrakesCraft home">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="">
+      <a class="brand" href="/index-en.html" aria-label="Go to DrakesCraft home">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="DrakesCraft Brand Mark" width="46" height="46">
         <span class="brand__meta"><strong>DrakesCraft</strong><span>Server guide</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
       <ul class="site-nav__links" id="nav-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="guia-comandos.html">Commands</a></li>
-        <li><a href="guia.html#temporada-2" lang="es" hreflang="es">ES</a></li>
-        <li><a class="nav-store-btn" href="store.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
+        <li><a href="/index-en.html">Home</a></li>
+        <li><a class="active" href="#comandos">Commands</a></li>
+        <li><a href="guia-rangos.html">Ranks</a></li>
+        <li><a href="guia-slimefun.html">Slimefun</a></li>
+        <li><a href="apoya-en.html">Sponsors</a></li>
+        <li><a href="guia.html" lang="es" hreflang="es" title="Cambiar a Español">ES</a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
     </div>
   </nav>
+
   <main id="main-content">
-    <header class="guide-hero"><div class="container guide-hero__grid">
-      <p class="eyebrow">Season 2</p>
-      <h1>Datapacks and <em>Bedrock access</em></h1>
-      <p class="guide-hero__lead">What each Season 2 datapack adds, and how to join from Bedrock.</p>
-    </div></header>
+    <header class="guide-hero">
+      <div class="guide-hero__backdrop" aria-hidden="true"></div>
+      <div class="container guide-hero__grid">
+        <p class="eyebrow">Everything you can write &amp; explore</p>
+        <h1>Commands Guide<br>and 6 Game Modes</h1>
+        <p class="guide-hero__lead">Search any command, see how it works and where it applies. Slimefun, Classic, SkyBlock, OneBlock, OneChunk, and Creative Lab all live together on the same host.</p>
+      </div>
+    </header>
+
+    <nav class="guide-tabs" aria-label="Guide sections">
+      <a href="#comandos" class="is-active">Commands</a>
+      <a href="#servidor">The Server</a>
+      <a href="#season-2">Season 2</a>
+      <a href="#modalidades">Modalities</a>
+      <a href="#sistemas">Magic &amp; Bosses</a>
+      <a href="guia-rangos.html">Ranks</a>
+      <a href="guia-slimefun.html">Slimefun</a>
+      <a href="guia-plugins.html">Plugins &amp; Suites</a>
+    </nav>
+
+    <section class="container" id="comandos">
+      <div class="guide-search">
+        <label class="sr-only" for="guide-q">Search a command</label>
+        <input type="search" id="guide-q" placeholder="Type a command or action: home, sell, island, protect, bank…" autocomplete="off">
+        <p class="guide-search__count" id="guide-count"></p>
+      </div>
+
+      <div class="guide-filters" role="group" aria-label="Filter by category">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="basico" aria-pressed="false">Basics</button>
+        <button type="button" data-filter="modalidades" aria-pressed="false">Modalities</button>
+        <button type="button" data-filter="proteccion" aria-pressed="false">Protection</button>
+        <button type="button" data-filter="economia" aria-pressed="false">Economy</button>
+        <button type="button" data-filter="slimefun" aria-pressed="false">Slimefun</button>
+        <button type="button" data-filter="drakes" aria-pressed="false">Magic &amp; Bosses</button>
+        <button type="button" data-filter="social" aria-pressed="false">Social</button>
+        <button type="button" data-filter="extra" aria-pressed="false">Extras</button>
+      </div>
+
+      <p class="guide-empty is-hidden" id="guide-empty">No commands found matching that search. Try another word.</p>
+
+      <section class="guide-section" data-cat="basico">
+        <h2>Basics</h2>
+        <p class="guide-section__note">The core essentials you will need first. Classic retains personal homes and land protection, but restricts advanced teleport shortcuts to keep its progression natural.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/spawn</code><p>Takes you to the spawn point of your current game mode, not to the main lobby.</p></div>
+          <div class="guide-row"><code>/lobby</code><p>Returns you to the central hub where you can select game modes.<span class="guide-row__alias">Also: /hub, /l</span></p></div>
+          <div class="guide-row"><code>/discord</code><p>Official Discord server invite link and Minecraft account linking via the SAORI bot.</p></div>
+          <div class="guide-row"><code>/sethome &lt;name&gt;</code><p>Saves your current location as a home. The number of allowed homes scales with your rank.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/home &lt;name&gt;</code><p>Teleports to a saved home. Without parameters, takes you to your primary home.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/delhome &lt;name&gt;</code><p>Deletes an existing saved home.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/back</code><p>Returns you to the last location you teleported from or where you died. Operates independently per mode.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/rtp</code><p>Teleports you to a safe, random point in the wilderness.<span class="guide-row__alias">Also: /wild</span><span class="guide-tag guide-tag--bedrock">Bedrock: up to 150,000 blocks</span></p></div>
+          <div class="guide-row"><code>/tpa &lt;player&gt;</code><p>Requests teleportation to another player. On <strong>Bedrock</strong>, travel beyond 150,000 blocks is prevented to avoid floating-point client desync. <strong>Java</strong> players can reach Bedrock players anywhere.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/tpaccept</code><p>Accepts an incoming teleport request.<span class="guide-row__alias">Decline: /tpdeny</span><span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/warps</code><p>Lists public server warp points.<span class="guide-row__alias">Travel: /warp &lt;name&gt;</span><span class="guide-tag guide-tag--survival">Not available in Classic</span></p></div>
+          <div class="guide-row"><code>/ayuda</code><p>In-game help menu.<span class="guide-row__alias">Also: /comandos, /helpo, /help</span></p></div>
+          <div class="guide-row"><code>/lista</code><p>Displays currently online players and staff.<span class="guide-row__alias">Also: /list</span></p></div>
+          <div class="guide-row"><code>/kit</code><p>Claim your rank kit. Each rank has its own kit with a 30-day renewal cycle.<span class="guide-row__alias">Also: /kits</span><span class="guide-tag guide-tag--survival">Not available in Classic</span></p></div>
+          <div class="guide-row"><code>/daily</code><p>Daily streak reward. Log in daily to maintain and boost your streak bonus.</p></div>
+          <div class="guide-row"><code>/misiones</code><p>Opens the quests panel.<span class="guide-row__alias">Also: /quests, /q</span></p></div>
+          <div class="guide-row"><code>/papatrueque</code><p>The Sea Potato Merchant barter interface. Can also be accessed by speaking to him at spawn.<span class="guide-row__alias">Deposit potatoes to hoard beyond inventory limits</span></p></div>
+          <div class="guide-row"><code>/arcana</code><p>Your magic school, archetype, and spiritual progress. Every account receives an elemental affinity upon joining.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="modalidades">
+        <h2>Modalities (6 in 1)</h2>
+        <p class="guide-section__note">Slimefun, Classic, SkyBlock, OneBlock, OneChunk, and Lab coexist on the same dedicated host. Only your rank and Dragmas balance are global; physical inventories and mechanics are isolated to preserve distinct economies.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/modalidades</code><p>Visual GUI menu to transition smoothly between all 6 server modes.<span class="guide-row__alias">Also: /modalidad, /modos</span></p></div>
+          <div class="guide-row"><code>/slimefun</code><p>The flagship survival mode: machinery, magic, bosses, and full technological progression. <strong>Previously known as Survival</strong>; legacy aliases remain functional.<span class="guide-row__alias">Also: /survival, /principal, /polis</span></p></div>
+          <div class="guide-row"><code>/clasico</code><p>Traditional pure Minecraft: <strong>no Slimefun, no industrial machines, and no modified mobs</strong>. Terralith terrain generation, custom biomes, and a 200,000-block border.<span class="guide-row__alias">Travel with /rtp</span></p></div>
+          <div class="guide-row"><code>/is</code><p>Your <strong>SkyBlock</strong> island. If you don't have one, it creates it instantly.<span class="guide-row__alias">Also: /skyblock. Note: distinct from /ob</span></p></div>
+          <div class="guide-row"><code>/ob</code><p>Your <strong>OneBlock</strong> island, featuring an infinite block that evolves through 21 phases.<span class="guide-row__alias">Also: /oneblock</span></p></div>
+          <div class="guide-row"><code>/onechunk</code><p><strong>OneChunk</strong>: Mine through a generated 16x16 chunk with trees, iron, coal, and stone. When depleted, the next chunk manifests with rotating biomes (forest, desert, tundra, jungle, caverns).<span class="guide-row__alias">Also: /oc · Fully Slimefun-compatible</span></p></div>
+          <div class="guide-row"><code>/warp laboratorio</code><p>🧪 <strong>Creative Lab</strong>: Peaceful flat sandbox world without hostile mobs and with permanent creative mode. Perfect for engineering, testing nuclear reactors, and designing Slimefun networks without risking survival resources.<span class="guide-row__alias">Cheat Sheet access with /sf cheat</span></p></div>
+          <div class="guide-row"><code>/sf cheat</code><p>🎁 <strong>Slimefun Cheat Sheet</strong>: Opens the entire Slimefun catalog to withdraw any item or machine with one click. Can also be triggered via <strong>Shift + Right Click</strong> holding the Slimefun guide.<span class="guide-tag guide-tag--survival">Creative Lab only</span></p></div>
+          <div class="guide-row"><code>/is level</code><p><strong>Recalculates</strong> your island level by auditing placed blocks in your world. The number does not update automatically during play; run this command to refresh.<span class="guide-row__alias">In OneBlock: /ob level</span></p></div>
+          <div class="guide-row"><code>/is biome</code><p>Changes the biome of your island or current chunk (updates sky, foliage, water tint, and mob spawning tables).<span class="guide-row__alias">Also: /is biomes · In OneBlock: /ob biome</span></p></div>
+          <div class="guide-row"><code>/is team</code><p>Invite friends to your island and manage team permissions.</p></div>
+          <div class="guide-row"><code>/is settings</code><p>Configure island security: visitor interactions, construction, and container access.</p></div>
+          <div class="guide-row"><code>/is sethome</code><p>Sets your island teleport landing coordinate.</p></div>
+          <div class="guide-row"><code>/is reset</code><p><strong>Wipes your island to start fresh.</strong> Requires confirmation; cannot be undone.</p></div>
+          <div class="guide-row"><code>/pv</code><p>Personal storage vaults. <strong>Each modality maintains independent vaults</strong>: items stored in SkyBlock or Lab do not appear in Slimefun.<span class="guide-row__alias">Also: /vault</span></p></div>
+        </div>
+
+        <h3>How Island Level Works (SkyBlock &amp; OneBlock)</h3>
+        <p class="guide-section__note">The number one community question: <strong>«I have been building for hours and my level hasn't changed»</strong>. This is normal. The island level is computed on demand rather than on every block place to preserve performance. Here is the canonical breakdown:</p>
+
+        <div class="guide-table">
+          <div class="guide-row"><code>Calculated On Demand</code><p>The island level recalculates when you explicitly execute <code>/is level</code> (or <code>/ob level</code> in OneBlock) and automatically upon logging into the server. In between calculations, rankings display the last saved snapshot.</p></div>
+          <div class="guide-row"><code>60-Second Cooldown</code><p>There is a <strong>1-minute cooldown</strong> between level scans. Requesting scans repeatedly will prompt a wait timer.</p></div>
+          <div class="guide-row"><code>Placed Blocks Count, Not Mined</code><p>Level calculations audit blocks <strong>physically placed within your island territory</strong>. Breaking or storing blocks does not contribute; valuable materials must remain placed.</p></div>
+          <div class="guide-row"><code>100 Points = 1 Island Level</code><p>The total point value of placed blocks is divided by 100. Reference values: <strong>Diamond Blocks and Beacons = 300 pts</strong>; <strong>Netherite, Gold, Emerald Blocks, Ender Chests, Enchanting Tables, and Dragon Eggs = 150 pts</strong>. In contrast, <strong>Stone, Cobblestone, Netherrack, and Logs = 0 pts</strong> (preventing filler exploit inflation).</p></div>
+          <div class="guide-row"><code>Chest Inventories Ignored</code><p>The scanner strictly audits world blocks, ignoring contents inside chests, barrels, and shulkers.</p></div>
+          <div class="guide-row"><code>Nether &amp; End Do Not Count</code><p>Only the primary Overworld island structure contributes to the level calculation.</p></div>
+          <div class="guide-row"><code>Deaths Deduct 1 Level</code><p>Each death deducts 100 points (1 full level). In team islands, only deaths by the <strong>island leader</strong> deduct points.</p></div>
+          <div class="guide-row"><code>Starting Island Value Normalized</code><p>Starter schematic blocks are excluded so all players begin equally at level 0.</p></div>
+          <div class="guide-row"><code>Anti-Spam Block Caps</code><p>Caps of 10,000 cobblestone and 1,000 netherrack ensure clean architectural progression over filler spam.</p></div>
+        </div>
+
+        <h3>Village Raids on SkyBlock Islands</h3>
+        <p class="guide-section__note">Raids are fully enabled in SkyBlock, but floating void environments require proper spawning foundations per vanilla Minecraft rules:</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>Initiating a Raid</code><p>Drink an <strong>Ominous Bottle</strong> (Bad Omen) and enter your village (villagers with claimed beds/workstations). The raid starts within 30 seconds.</p></div>
+          <div class="guide-row"><code>Island Settings</code><p>Ensure <strong>«Natural monster spawning»</strong> and <strong>«Raid trigger»</strong> are allowed in <code>/is settings</code> for your rank.</p></div>
+          <div class="guide-row"><code>Spawn Platforms Required</code><p>Minecraft searches for the highest solid blocks around the village boundary. In the void, this search drops to Y=0 and cancels if no platform exists. Build a wide, solid platform at village height (open to the sky with 3 blocks clearance) 10–40 blocks away from the village center.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="proteccion">
+        <h2>Protection</h2>
+        <p class="guide-section__note">In Slimefun and Classic, claims use ProtectionStones. Islands are protected natively by BentoBox.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/tiendaprot</code><p>Protection stone marketplace, purchasable with Dragmas.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/ps get &lt;name&gt;</code><p>Purchases a specific protection block from the catalog.<span class="guide-tag guide-tag--survival">Slimefun and Classic</span></p></div>
+          <div class="guide-row"><code>/ps home</code><p>Lists your claims and teleports you to your chosen base in Slimefun or Classic.</p></div>
+          <div class="guide-row"><code>/ps info</code><p>Detailed status and flags of the claim you are standing in.</p></div>
+          <div class="guide-row"><code>Slimefun Interactions</code><p>Owners and trusted members can safely interact with ChickenNet, runes, and energy networks within their claim without needing the global `use` flag.</p></div>
+          <div class="guide-row"><code>/ps add &lt;player&gt;</code><p>Grants build and access permissions to a player.<span class="guide-row__alias">Revoke: /ps remove &lt;player&gt;</span></p></div>
+          <div class="guide-row"><code>/ps flag</code><p>Configure region flags: PvP, explosions, monster spawning.<span class="guide-row__alias">Example: /ps flag mob-spawning deny</span></p></div>
+          <div class="guide-row"><code>/ps unclaim</code><p>Removes the protection and refunds the protection block.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="economia">
+        <h2>Economy, Money &amp; Commerce</h2>
+        <p class="guide-section__note">The official currency is <strong>Dragmas (₯)</strong>. It is a unified, global balance across all modes.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/balance</code><p>Check your current liquid Dragmas wallet.<span class="guide-row__alias">Also: /bal, /money</span></p></div>
+          <div class="guide-row"><code>/baltop</code><p>Network wealth leaderboard.<span class="guide-row__alias">Also: /balancetop</span></p></div>
+          <div class="guide-row"><code>/pay &lt;player&gt; &lt;amount&gt;</code><p>Direct, secure currency transfer to another online player.</p></div>
+          <div class="guide-row"><code>/jobs</code><p>Browse and join professional careers to earn passive Dragmas and XP as you play.<span class="guide-row__alias">Commands: /jobs browse, /jobs join, /jobs stats</span></p></div>
+          <div class="guide-row"><code>/qs</code><p>Create and manage <strong>QuickShop-Hikari chest shops</strong>. Hold an item, punch a chest, and set your price.<span class="guide-row__alias">Search items: /qs find &lt;item&gt;</span></p></div>
+          <div class="guide-row"><code>/ah</code><p>The modality <strong>Auction House</strong>. Buy, sell, and bid on rare goods.<span class="guide-row__alias">List item: /ah sell &lt;price&gt;</span></p></div>
+          <div class="guide-row"><code>/sbank</code><p>The <strong>Central Bank</strong>: deposit Dragmas to generate <strong>passive interest dividends</strong> over time.<span class="guide-row__alias">Commands: /bank, /banco, /bank deposit &lt;amount&gt;, /bank withdraw &lt;amount&gt;</span></p></div>
+          <div class="guide-row"><code>/sellgui</code><p>Virtual quick-sell chest: deposit bulk materials and close to sell instantly.</p></div>
+          <div class="guide-row"><code>/sellall</code><p>Sell all sellable raw materials in your inventory.<span class="guide-row__alias">Also: /sellinv</span></p></div>
+          <div class="guide-row"><code>/sfmercado</code><p>Algorithmic Slimefun Market: supply-and-demand automated commodity trading.<span class="guide-tag guide-tag--survival">Slimefun, SkyBlock, OneBlock</span></p></div>
+          <div class="guide-row"><code>/quests</code><p>Daily and weekly progression contracts rewarding Dragmas and XP.<span class="guide-row__alias">Also: /misiones</span></p></div>
+          <div class="guide-row"><code>/daily</code><p>Claim daily loyalty rewards to keep your login streak going.</p></div>
+          <div class="guide-row"><code>/vote</code><p>Vote for the server on official sites to receive bonus Dragmas and crate keys.<span class="guide-row__alias">Also: /votar</span></p></div>
+          <div class="guide-row"><code>/pv &lt;1-N&gt;</code><p>Secure personal storage vaults managed by Odysseia.<span class="guide-row__alias">Also: /vault</span></p></div>
+          <div class="guide-row"><code>/tienda</code><p>Main commercial menu: protection stones, auctions, Slimefun, warps, and kits.<span class="guide-row__alias">Also: /menu</span></p></div>
+          <div class="guide-row"><code>/pwarp</code><p>Community warps: visit shops, XP farms, and malls built by players.<span class="guide-row__alias">Also: /pw</span></p></div>
+        </div>
+
+        <h3>8 Paths to Wealth &amp; Economic Growth</h3>
+        <div class="guide-table">
+          <div class="guide-row"><code>1. Jobs (/jobs)</code><p>Choose from Miner, Woodcutter, Hunter, Farmer, Fisherman, Builder, Weaponsmith, and Excavator.</p></div>
+          <div class="guide-row"><code>2. Chest Shops (/qs)</code><p>Sell goods 24/7 with QuickShop-Hikari chest shops, earning while offline.</p></div>
+          <div class="guide-row"><code>3. Auction House (/ah)</code><p>Sell high-tier Slimefun machinery, enchanted gear, and boss drops.</p></div>
+          <div class="guide-row"><code>4. Direct Sales (/sellgui &amp; /sellall)</code><p>Instantly liquidate mob drops, mined ores, and harvested crops.</p></div>
+          <div class="guide-row"><code>5. Slimefun Market (/sfmercado)</code><p>Profit from market volatility by supplying in-demand industrial materials.</p></div>
+          <div class="guide-row"><code>6. Quests &amp; Streaks (/quests &amp; /daily)</code><p>Complete daily mission objectives for consistent cash flow.</p></div>
+          <div class="guide-row"><code>7. Banking &amp; Interest (/sbank)</code><p>Deposit wealth in <code>/sbank</code> to generate compounding passive interest.</p></div>
+          <div class="guide-row"><code>8. Live ChatGames</code><p>Be the fastest player to answer trivia, math, and unscramble puzzles in global chat.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="slimefun">
+        <h2>Slimefun &amp; Technology</h2>
+        <p class="guide-section__note">Maintained and ported to Paper 1.21.11 / 26.x in-house with over 40 expansions active.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/sf guide</code><p>Provides a replacement Slimefun Guide book if lost.</p></div>
+          <div class="guide-row"><code>/sf search &lt;text&gt;</code><p>Searches recipes and item names across all active addons.</p></div>
+          <div class="guide-row"><code>/sf stats</code><p>Review personal research unlocked and progression percentage.</p></div>
+          <div class="guide-row"><code>/sf cheat</code><p>Sandbox testing catalog available exclusively in the Creative Lab.</p></div>
+          <div class="guide-row"><code>/skills</code><p>AuraSkills personal skill stats: Mining, Combat, Farming, Agility, and more.</p></div>
+        </div>
+
+        <h3>Accelerating Crops &amp; Machinery</h3>
+        <p class="guide-section__note"><strong>Cultivation</strong> crossbreeds follow intentional growth timers. Use the <strong>Garden Cloche</strong> to accelerate breeding cycles. For standard agricultural crops, Slimefun <strong>Growth Accelerators</strong> are active and verified at full efficiency.</p>
+      </section>
+
+      <section class="guide-section" data-cat="social">
+        <h2>Social &amp; Chat</h2>
+        <div class="guide-table">
+          <div class="guide-row"><code>/msg &lt;player&gt; &lt;text&gt;</code><p>Direct private message.<span class="guide-row__alias">Reply: /r &lt;text&gt;</span></p></div>
+          <div class="guide-row"><code>/translate on &lt;lang&gt;</code><p><strong>Native multi-language translator.</strong> Read chat in English with <code>/translate on en</code> or Spanish with <code>/translate on es</code>. Disable with <code>/translate off</code> or translate outgoing messages with <code>/translate me &lt;lang&gt; &lt;msg&gt;</code>.<span class="guide-row__alias">100+ languages supported · Java &amp; Bedrock native</span></p></div>
+          <div class="guide-row"><code>/team</code><p>Form and manage player teams with dedicated channels and shared chests.</p></div>
+          <div class="guide-row"><code>/tc</code><p>Team chat toggle or single-message broadcast.<span class="guide-row__alias">Also: /team chat</span></p></div>
+          <div class="guide-row"><code>/ac</code><p>Ally team chat channel.<span class="guide-row__alias">Also: /team allychat</span></p></div>
+          <div class="guide-row"><code>!message</code><p>Quick chat shortcuts: start with <code>!</code> for team chat, <code>?</code> for ally chat.</p></div>
+          <div class="guide-row"><code>/ignore &lt;player&gt;</code><p>Mutes incoming messages from a specific player.</p></div>
+          <div class="guide-row"><code>/mail</code><p>Internal offline mail messaging system.<span class="guide-row__alias">Send: /mail send &lt;player&gt; &lt;text&gt;</span></p></div>
+          <div class="guide-row"><code>/rules</code><p>In-game server rules and behavioral guidelines.</p></div>
+          <div class="guide-row"><code>Litematica / Client Mods</code><p>Visual schematic projection (hologram) is 100% legal. Automated block placement (<em>Easy Place / Printer</em>) is blocked by GrimAC for stability and balance. Sodium, Iris, and cave-radar-free minimaps are fully permitted.</p></div>
+          <div class="guide-row"><code>/marry &lt;player&gt;</code><p>Player marriage system with partner teleportation (<code>/marry tp</code>), shared home, and emote gestures.<span class="guide-tag guide-tag--survival">Not available in Classic</span></p></div>
+          <div class="guide-row"><code>/seen &lt;player&gt;</code><p>Check the last online timestamp of a player.</p></div>
+          <div class="guide-row"><code>/playtime</code><p>Displays total accumulated playtime on DrakesCraft.</p></div>
+          <div class="guide-row"><code>Realistic Villagers</code><p>Named villagers with levels and dialogue interactions operate <strong>strictly in the Warp World</strong>. In regular survival worlds, villagers behave with vanilla mechanics.</p></div>
+          <div class="guide-row"><code>Zombie Villagers</code><p>Zombie curing conversion probability follows vanilla world difficulty: 100% on Hard (Slimefun), variable on Normal/Easy.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="drakes">
+        <h2>Custom DrakesCraft Systems</h2>
+        <p class="guide-section__note">Magic, gods, and adaptive bosses coded exclusively for DrakesCraft.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>/arcana</code><p>Opens the <strong>Arcana Codex</strong>: elemental affinities, spiritual energy, abilities, and cooldowns.<span class="guide-row__alias">Also: /arc, /magia</span></p></div>
+          <div class="guide-row"><code>/arcana guide</code><p>Usage manual for your Arcane Catalyst and the six elemental affinities.</p></div>
+          <div class="guide-row"><code>/arcana spirit</code><p>Inspect spiritual essence progress.<span class="guide-row__alias">Recovery: /arcana book, /arcana catalyst</span></p></div>
+          <div class="guide-row"><code>/arcana meditate</code><p>Initiate spiritual meditation to replenish energy when conditions are met.</p></div>
+          <div class="guide-row"><code>/dioses</code><p>Opens the <strong>Divine Codex</strong>. Select pantheons, choose deities, equip abilities, and manage favor upkeep.<span class="guide-row__alias">Also: /gods, /panteon</span></p></div>
+          <div class="guide-row"><code>/bosswarp precios</code><p>Inspect all 26 bosses and required entry fees before booking an arena session.</p></div>
+          <div class="guide-row"><code>/bosswarp &lt;boss&gt; solo</code><p>Reserves an isolated instanced arena for solo boss combat.</p></div>
+          <div class="guide-row"><code>/bosswarp &lt;boss&gt; grupo &lt;players...&gt;</code><p>Creates a private party arena where each member pays entry.</p></div>
+          <div class="guide-row"><code>/bosswarp spectate &lt;player&gt;</code><p>Spectate an active boss battle from safe observation perches.</p></div>
+          <div class="guide-row"><code>/reencarnar</code><p>Odysseia Reincarnation and Prestige Rite. Reset your level to gain permanent prestige and preserve chosen relics in your Memory Capsule.<span class="guide-row__alias">Also: /prestige, /reborn</span><span class="guide-tag guide-tag--survival">Slimefun mode</span></p></div>
+          <div class="guide-row"><code>/brew</code><p>BreweryX distillation: recipes, inebriation tracking, and commercial barrel aging.<span class="guide-tag guide-tag--survival">Slimefun mode</span></p></div>
+          <div class="guide-row"><code>/cosmeticos</code><p>Equip unlocked auras, projectile trails, and death animations (VIP or Sea Potato tokens).<span class="guide-tag guide-tag--vip">VIP &amp; Sea Potato</span></p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="extra">
+        <h2>Extras &amp; Cosmetics</h2>
+        <div class="guide-table">
+          <div class="guide-row"><code>/ec</code><p>Remote Ender Chest access. <strong>Unique per modality.</strong><span class="guide-row__alias">Also: /enderchest</span><span class="guide-tag guide-tag--vip">From Hermes rank</span></p></div>
+          <div class="guide-row"><code>/sit</code><p>Sit anywhere on stairs or flat blocks.<span class="guide-row__alias">Also: /lay, /crawl, /bellyflop</span></p></div>
+          <div class="guide-row"><code>/skin &lt;name&gt;</code><p>Change your visible skin to any Minecraft account. Essential for Bedrock players.<span class="guide-row__alias">Reset: /skin clear</span></p></div>
+          <div class="guide-row"><code>/offhand</code><p>Swaps your held item to your offhand. Essential for Bedrock players lacking the Java 'F' key.<span class="guide-tag guide-tag--bedrock">Bedrock &amp; Java</span></p></div>
+          <div class="guide-row"><code>/eenchants list</code><p>Interactive catalog of all 81 server-custom enchantments.<span class="guide-row__alias">Also: /excellentenchants list</span></p></div>
+          <div class="guide-row"><code>/fly</code><p>Creative flight toggle.<span class="guide-tag guide-tag--vip">From Hermes rank</span></p></div>
+          <div class="guide-row"><code>/feed</code><p>Replenish hunger bar.<span class="guide-tag guide-tag--vip">From Hephaestus rank</span></p></div>
+          <div class="guide-row"><code>/nick &lt;name&gt;</code><p>Set a custom colored nickname.<span class="guide-tag guide-tag--vip">From Hestia rank</span></p></div>
+          <div class="guide-row"><code>/jb</code><p>Custom Jukebox music player with hundreds of tracks.<span class="guide-row__alias">Also: /jukebox</span></p></div>
+          <div class="guide-row"><code>/afk</code><p>Mark yourself as away from keyboard.</p></div>
+          <div class="guide-row"><code>/exc</code><p>Manage reward crates and open mystery keys.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="basico">
+        <h2>Reporting Bugs</h2>
+        <p class="guide-section__note">If something is broken, please report it in our <strong>Discord report forum</strong> rather than in-game chat. This ensures issues receive tracked tickets, automated diagnostic checks, and resolution confirmations.</p>
+        <div class="guide-table">
+          <div class="guide-row"><code>What happened</code><p>One clear sentence explaining the unexpected behavior.</p></div>
+          <div class="guide-row"><code>Where</code><p>The modality and coordinates if relevant.</p></div>
+          <div class="guide-row"><code>With what</code><p>The exact item, machine, or command name.</p></div>
+          <div class="guide-row"><code>When</code><p>Approximate timestamp (CLT) to locate corresponding server logs.</p></div>
+          <div class="guide-row"><code>Screenshots</code><p>A visual screenshot or clip saves significant diagnostic time.</p></div>
+        </div>
+      </section>
+
+      <section class="guide-section" data-cat="basico">
+        <h2>Official Discord Channels</h2>
+        <div class="guide-table">
+          <div class="guide-row"><code>#⛏️・ᴀɴᴜɴᴄɪᴏs-ᴍɪɴᴇᴄʀᴀғᴛ</code><p>In-game Minecraft updates, patches, economic tunings, and mechanics announcements. Tags <strong>@⛏️ ︱ AVISOS MC</strong>.</p></div>
+          <div class="guide-row"><code>#📢・ᴀɴᴜɴᴄɪᴏs-ᴅɪsᴄᴏʀᴅ</code><p>Community announcements, events, Discord roles, and SAORI intelligence updates. Tags <strong>@📢 ︱ AVISOS DISCORD</strong>.</p></div>
+          <div class="guide-row"><code>#🚀・sᴇʀᴠᴇʀ-ᴄʜᴀɴɢᴇʟᴏɢ</code><p>Technical engine changelog and optimization commits. Tags <strong>@🚀 ︱ ACTUALIZACIONES</strong>.</p></div>
+          <div class="guide-row"><code>#💡・sᴜɢᴇʀᴇɴᴄɪᴀs</code><p>Community suggestion box using <code>ssugerencia &lt;idea&gt;</code> with interactive upvote/downvote polling.</p></div>
+          <div class="guide-row"><code>#🏪・ɪɴᴛᴇʀᴀᴄᴄɪᴏɴᴇs-ʏ-ᴄᴏᴍᴇʀᴄɪᴏ</code><p>Player marketplace, builder hiring, and commodity trade negotiations.</p></div>
+          <div class="guide-row"><code>#🎫・ᴛɪᴄᴋᴇᴛs-sᴏᴘᴏʀᴛᴇ</code><p>Private support tickets for inventory recovery (/irp) and administrative inquiries.</p></div>
+        </div>
+      </section>
+    </section>
 
     <section class="container t2" id="season-2">
-      <h2 data-glitch="Season 2: datapacks">Season 2: datapacks</h2>
-      <p class="t2-lead">Season 2 adds datapacks to the <strong>Slimefun worlds only</strong>. <strong>Classic</strong> stays vanilla with Terralith terrain. New worlds and unexplored chunks use the new generation; areas you already explored do not change.</p>
+      <h2 data-glitch="Season 2: datapacks">Season 2: Datapacks</h2>
+      <p class="t2-lead">Season 2 introduces enhanced datapacks <strong>exclusively in Slimefun worlds</strong>. <strong>Classic</strong> retains pure vanilla mechanics with Terralith terrain. New worlds and unexplored chunks generate with the new features; established player builds remain untouched.</p>
       <div class="t2-grid">
         <article class="t2-card"><span class="t2-tag">Terrain</span><h3>Terratonic</h3>
-          <p>Rewrites the Overworld relief (density and noise functions): bolder, more varied landscapes.</p>
-          <ul><li>Only affects chunks not generated yet.</li><li>Works alongside Terralith biomes.</li></ul></article>
+          <p>Overhauls Overworld relief using density and noise functions for dramatic, grand landscapes.</p>
+          <ul><li>Only affects newly generated chunks.</li><li>Operates harmoniously with Terralith biomes.</li></ul></article>
         <article class="t2-card"><span class="t2-tag">Nether</span><h3>Incendium</h3>
-          <p>Reworks the Nether with new biomes, structures, mobs and items.</p>
+          <p>Complete Nether reconstruction with unique biomes, fortresses, and custom mobs.</p>
           <ul><li>Biomes: Ash Barrens, Infernal Dunes, Inverted Forest, Quartz Flats, Toxic Heap, Volcanic Deltas, Weeping Valley, Withered Forest.</li><li>Structures: Forbidden Castle, Sanctum, Infernal Altar, Nether Reactor, Piglin Village, Quartz Kitchen, Ruined Lab, Abandoned Tower.</li></ul></article>
         <article class="t2-card"><span class="t2-tag">End</span><h3>Stellarity</h3>
-          <p>An End expansion with new mechanics, aimed at experienced players.</p>
-          <ul><li><strong>Altars</strong>: the Altar of the Accursed (dark magic, cursed crafting) and the Altar of the Sacred.</li><li><strong>Cauldron</strong>: special recipes brewed in the cauldron.</li><li><strong>Void fishing</strong>: fish in the void with its own loot table.</li><li>The dragon, pillars and crystals stay <strong>vanilla</strong>.</li></ul></article>
+          <p>End dimension expansion offering advanced endgame mechanics for veteran adventurers.</p>
+          <ul><li><strong>Altars</strong>: Altar of the Accursed (dark magic &amp; cursed crafting) and Altar of the Sacred.</li><li><strong>Cauldron</strong>: Special mystical alchemical brewing recipes.</li><li><strong>Void Fishing</strong>: Fish directly into the void with dedicated loot tables.</li><li>Ender Dragon, pillars, and crystals retain vanilla stability.</li></ul></article>
         <article class="t2-card"><span class="t2-tag">Structures</span><h3>Yggdrasil Structure</h3>
-          <p>Huge Norse-themed dungeons and cities spread across the world.</p>
-          <ul><li>Asgard, Helheim, Vanaheim, Folkvangr, Glaosheimr, Alfheim Tree, Runic Labyrinth, Dokkalfar Ruins, Neogard and more.</li><li>Each has its own loot.</li></ul></article>
+          <p>Gigantic Norse-themed dungeons and subterranean cities scattered across the world.</p>
+          <ul><li>Asgard, Helheim, Vanaheim, Folkvangr, Glaosheimr, Alfheim Tree, Runic Labyrinth, Dokkalfar Ruins, Neogard, and more.</li><li>Each labyrinth features custom lore loot.</li></ul></article>
         <article class="t2-card"><span class="t2-tag">Powers</span><h3>SVM Powers</h3>
-          <p>Active powers with their own menu: pick and bind abilities to your playstyle.</p>
-          <ul><li>Fire, ice, water, lightning, gravity, telekinesis, time, void, healing, invisibility, flora, snow, explosion, blood, death and more.</li><li>Abilities unlock as advancements.</li></ul></article>
-        <article class="t2-card"><span class="t2-tag">Ambient horror</span><h3>From the Fog</h3>
-          <p>Unsettling atmosphere: sightings, ghost doors, sinister signs, chilled candles and ghost miners.</p>
-          <ul><li>Rare structures: Mossy Pyramid, Sand Pyramid, Leafless Grove, Torch Cave.</li><li>Ambient horror with <strong>no grief</strong>: it is not meant to destroy your builds.</li></ul></article>
-        <article class="t2-card"><span class="t2-tag">Detail</span><h3>Spawn Animations</h3>
-          <p>Mobs appear with an animation (for example rising from the ground) instead of popping in.</p>
-          <ul><li>Does not affect players or items.</li></ul></article>
+          <p>Active superpower matrix with dedicated GUI menu: bind powers to suit your combat style.</p>
+          <ul><li>Fire, ice, water, lightning, gravity, telekinesis, time, void, healing, invisibility, flora, snow, explosion, blood, death, and more.</li><li>Abilities unlock naturally through achievements.</li></ul></article>
+        <article class="t2-card"><span class="t2-tag">Ambient Horror</span><h3>From the Fog</h3>
+          <p>Atmospheric psychological mystery: subtle sightings, haunted doors, sinister glyphs, chilled candles, and phantom miners.</p>
+          <ul><li>Rare structures: Mossy Pyramid, Sand Pyramid, Leafless Grove, Torch Cave.</li><li>Strictly ambient horror with <strong>zero block griefing</strong>: your constructions are completely safe.</li></ul></article>
+        <article class="t2-card"><span class="t2-tag">Visuals</span><h3>Spawn Animations</h3>
+          <p>Monsters spawn with cinematic animations (such as rising from the dirt) rather than abruptly popping into existence.</p>
+          <ul><li>Client-side visual polish; zero alteration to player combat hitboxes.</li></ul></article>
       </div>
-      <p class="t2-note">Not active yet: <strong>Enchants+</strong> was removed (not compatible with 26.2) and <strong>More Mobs</strong> is not installed yet.</p>
+      <p class="t2-note">Note: <strong>Enchants+</strong> was retired for 26.x stability, and <strong>More Mobs</strong> is undergoing compatibility staging.</p>
     </section>
 
     <section class="container t2" id="bedrock">
       <h2 data-glitch="Join from Bedrock">Join from Bedrock</h2>
       <div class="bedrock-box">
-        <p>From <strong>Bedrock 26.60</strong> you no longer join by typing an IP and port. You join through a <strong>link</strong> (Warden/NetherNet) that we publish on Discord in <strong>#bedrock-unirse</strong> and here on the website.</p>
+        <p>From <strong>Bedrock 26.60+</strong>, connections use direct seamless links (Warden / NetherNet) published on Discord in <strong>#bedrock-unirse</strong> and here on the website.</p>
         <p><a class="bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="No link published yet. Look for it in #bedrock-unirse on Discord." data-fresh="Updated">Join from Bedrock</a></p>
-        <p class="bedrock-status" data-bedrock-status>Looking for the link…</p>
+        <p class="bedrock-status" data-bedrock-status>Checking connection status…</p>
         <ul>
-          <li>Skins with <code>/skin</code> <span class="t2-tag-test">testing</span></li>
-          <li>Offhand with <code>/offhand</code> <span class="t2-tag-test">testing</span></li>
+          <li>Custom skin sync with <code>/skin</code> <span class="t2-tag-test">active</span></li>
+          <li>Dual wielding offhand with <code>/offhand</code> <span class="t2-tag-test">active</span></li>
         </ul>
       </div>
     </section>
+
+    <section class="container guide-section" id="modalidades">
+      <h2>How the 6 Modalities Work</h2>
+      <p class="guide-section__note">All modes operate on the same unified host. You don't switch servers or IPs: switch environments seamlessly with <code>/modalidades</code> while Odysseia securely snapshots your inventory.</p>
+
+      <div class="guide-modes">
+        <article class="guide-mode" style="--mode-accent:#9ce6a4;">
+          <h3>Slimefun</h3>
+          <p>The primary and most expansive survival mode. Previously named Survival.</p>
+          <ul>
+            <li>Full Slimefun ecosystem with 60+ addons</li>
+            <li>Magic systems, pantheon gods, and boss arenas</li>
+            <li>ProtectionStones land claim management</li>
+            <li>Community auctions, markets, and player warps</li>
+            <li><strong>Difficulty</strong>: Hard</li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#7fc98f;">
+          <h3>Classic</h3>
+          <p>Pure traditional Minecraft. Just you, your tools, and the wilderness.</p>
+          <ul>
+            <li><strong>Zero Slimefun</strong>: no machines, no guides, no tech</li>
+            <li><strong>Pure Vanilla Mobs</strong>: no level scaling, no infernals, no bosses</li>
+            <li>Terralith world generation with breathtaking biomes</li>
+            <li>200,000-block world border with dedicated <code>/rtp</code></li>
+            <li>Personal homes via <code>/sethome</code>, <code>/home</code>, <code>/delhome</code></li>
+            <li>Player teleports with <code>/tpa</code>, <code>/tpaccept</code>, <code>/tpdeny</code></li>
+            <li>Independent land protection claims (4 to 10 claims)</li>
+            <li><strong>Difficulty</strong>: Easy</li>
+            <li>Enter with <code>/clasico</code></li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#8ad8ff;">
+          <h3>SkyBlock</h3>
+          <p>Your private island floating in the void. Start from scratch with minimal supplies.</p>
+          <ul>
+            <li>Island territory expands as you rank up in /rankup</li>
+            <li>Dedicated Nether and End void dimensions</li>
+            <li>Slimefun fully enabled</li>
+            <li><strong>Difficulty</strong>: Normal</li>
+            <li>Enter with <code>/is</code></li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#d9a4ff;">
+          <h3>OneBlock</h3>
+          <p>A solitary infinite block beneath your feet that continuously evolves.</p>
+          <ul>
+            <li>21 progressive stages with escalating rewards</li>
+            <li>From serene Plains to hazardous Nether and End stages</li>
+            <li>Island boundary auto-expands with /rankup</li>
+            <li><strong>Difficulty</strong>: Easy</li>
+            <li>Enter with <code>/ob</code></li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#ea580c;">
+          <h3>OneChunk</h3>
+          <p>Dig down through an isolated 16x16 chunk with rotating biomes.</p>
+          <ul>
+            <li>Guaranteed starting ores: iron, coal, wood, and stone</li>
+            <li>When mined out, the next chunk manifests automatically</li>
+            <li>5 rotating biomes: Forest, Desert, Tundra, Jungle, Deep Caverns</li>
+            <li>Slimefun compatible</li>
+            <li>Enter with <code>/onechunk</code></li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#f43f5e;">
+          <h3>Creative Lab</h3>
+          <p>Peaceful flat sandbox for stress-testing complex machines and networks.</p>
+          <ul>
+            <li>Full item withdrawal via <code>/sf cheat</code></li>
+            <li>All researches unlocked within this session</li>
+            <li>Strictly isolated creative inventory</li>
+            <li>Zero destructive terrain explosions</li>
+            <li><strong>Difficulty</strong>: Peaceful</li>
+            <li>Enter with <code>/warp laboratorio</code></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="guide-split">
+        <div class="guide-split__card">
+          <h3>What Carries Over Between Modes</h3>
+          <ul>
+            <li><strong>Your Rank</strong> and all granted perks/cosmetics</li>
+            <li><strong>Your Money</strong>: Dragmas (₯) currency is unified network-wide</li>
+          </ul>
+        </div>
+        <div class="guide-split__card">
+          <h3>What Remains Strictly Isolated</h3>
+          <ul>
+            <li><strong>Your Inventory</strong> and XP levels</li>
+            <li><strong>Your Ender Chest</strong> contents</li>
+            <li><strong>Your Personal Vaults</strong> <code>/pv</code></li>
+            <li><strong>Health, hunger, game mode, stats, and advancements</strong></li>
+            <li><strong>Jobs, skills, and research progress</strong></li>
+            <li><strong>Auctions</strong>: each mode features its own economy</li>
+            <li><strong>Land Claims</strong>: managed per world</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container guide-section" id="sistemas">
+      <h2>Magic, Gods, Bosses &amp; Anime Ranks</h2>
+      <p class="guide-section__note">Unique interconnected custom systems engineered for DrakesCraft.</p>
+
+      <div class="guide-modes">
+        <article class="guide-mode" style="--mode-accent:#ffd479;">
+          <h3>DrakesRankup · 100 Anime Ranks</h3>
+          <p>Personal progression ladder unlocked via Dragmas. 10 divisions and 100 ranks with titles, Ki abilities, and prestige.</p>
+          <ul>
+            <li>GUI catalog with <code>/ranks</code> or <code>/srangos</code></li>
+            <li>Advance with <code>/rankup</code> or max out with <code>/rankup max</code></li>
+            <li>Balanced costs from 10,000 ₯ (Senku) to 1,500,000,000 ₯ (KamiSama)</li>
+            <li>100% compatible with VIP ranks: never overwrites donor perks</li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:var(--dk-verde);">
+          <h3>Arcana · Elemental Magic</h3>
+          <p>Magic progression with custom particle domains across 6 affinities: Fire, Earth, Air, Water, Ice, and Lightning.</p>
+          <ul>
+            <li>Open the codex with <code>/arcana</code></li>
+            <li>Elemental affinity assigned on your first server login</li>
+            <li>Catalyst activates abilities; commands provide telemetry</li>
+            <li>PvE-focused spells that respect claim protections</li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#ffd479;">
+          <h3>Gods · The Divine Pantheon</h3>
+          <p>Choose your patron deity, accumulate <strong>divine favor</strong>, and equip transcendent abilities.</p>
+          <ul>
+            <li>Access pantheons with <code>/dioses</code></li>
+            <li>Weekly favor upkeep scales with progression</li>
+            <li>Renouncing a deity resets favor with a 48-hour cooldown</li>
+            <li>PvP divine offensive powers are disabled in Slimefun</li>
+            <li>Titan ranks multiply divine favor gain by <strong>×5</strong></li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#ff6b6b;">
+          <h3>Bosses · Instanced Arenas</h3>
+          <p>Battle 26 legendary bosses in <code>drakes_bosses</code> across isolated instances.</p>
+          <ul>
+            <li>Check current rates with <code>/bosswarp precios</code></li>
+            <li>In group raids, each member contributes their entry fee</li>
+            <li>Failsafe auto-refund if arena allocation encounters an obstacle</li>
+            <li>Custom adaptive combat phases and attack telegraphs</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3 class="rank-subhead">BossArena Entry Fees</h3>
+      <p class="guide-section__note">Fees per player. Run <code>/bosswarp precios</code> in-game for live rates.</p>
+      <div class="boss-price-grid" aria-label="Boss arena entrance fees">
+        <span data-boss="circe" data-fee="3500"><strong>Circe</strong><b>3,500 ₯</b></span>
+        <span data-boss="polifemo" data-fee="5000"><strong>Polyphemus</strong><b>5,000 ₯</b></span>
+        <span data-boss="jax" data-fee="5000"><strong>Jax / Ajax</strong><b>5,000 ₯</b></span>
+        <span data-boss="dios_corrupto" data-fee="10000"><strong>Corrupted God</strong><b>10,000 ₯</b></span>
+        <span data-boss="ares" data-fee="15000"><strong>Ares</strong><b>15,000 ₯</b></span>
+        <span data-boss="poseidon" data-fee="18000"><strong>Poseidon</strong><b>18,000 ₯</b></span>
+        <span data-boss="loki" data-fee="20000"><strong>Loki</strong><b>20,000 ₯</b></span>
+        <span data-boss="zeus" data-fee="25000"><strong>Zeus</strong><b>25,000 ₯</b></span>
+        <span data-boss="hades" data-fee="28000"><strong>Hades</strong><b>28,000 ₯</b></span>
+        <span data-boss="thor" data-fee="35000"><strong>Thor</strong><b>35,000 ₯</b></span>
+        <span data-boss="heimdall" data-fee="40000"><strong>Heimdall</strong><b>40,000 ₯</b></span>
+        <span data-boss="hidra" data-fee="40000"><strong>Hydra</strong><b>40,000 ₯</b></span>
+        <span data-boss="cerbero" data-fee="45000"><strong>Cerberus</strong><b>45,000 ₯</b></span>
+        <span data-boss="artemisa" data-fee="45000"><strong>Artemis</strong><b>45,000 ₯</b></span>
+        <span data-boss="prometeo" data-fee="50000"><strong>Prometheus</strong><b>50,000 ₯</b></span>
+        <span data-boss="coloso_end" data-fee="50000"><strong>End Colossus</strong><b>50,000 ₯</b></span>
+        <span data-boss="ra" data-fee="55000"><strong>Ra</strong><b>55,000 ₯</b></span>
+        <span data-boss="isis" data-fee="55000"><strong>Isis</strong><b>55,000 ₯</b></span>
+        <span data-boss="anubis" data-fee="60000"><strong>Anubis</strong><b>60,000 ₯</b></span>
+        <span data-boss="set" data-fee="60000"><strong>Set</strong><b>60,000 ₯</b></span>
+        <span data-boss="odin" data-fee="75000"><strong>Odin</strong><b>75,000 ₯</b></span>
+        <span data-boss="kratos" data-fee="90000"><strong>Kratos</strong><b>90,000 ₯</b></span>
+        <span data-boss="tifon" data-fee="100000"><strong>Typhon</strong><b>100,000 ₯</b></span>
+        <span data-boss="dragon" data-fee="120000"><strong>Elder Dragon</strong><b>120,000 ₯</b></span>
+        <span data-boss="wither_storm" data-fee="150000"><strong>Wither Storm</strong><b>150,000 ₯</b></span>
+        <span data-boss="garou" data-fee="200000"><strong>Cosmic Garou</strong><b>200,000 ₯</b></span>
+      </div>
+
+      <h3 class="rank-subhead">In-Game Visual Menus</h3>
+      <div class="guide-table">
+        <div class="guide-row"><code>/tienda</code><p>Central commercial hub with access to protections, auctions, Slimefun, warps, materials, jobs, skills, enchantments, and kits.</p></div>
+        <div class="guide-row"><code>/modalidades</code><p>Visual modality switcher displaying inventory preservation status.</p></div>
+        <div class="guide-row"><code>/kit</code><p>Inspects your available and countdown kits.<span class="guide-tag guide-tag--survival">Not available in Classic</span></p></div>
+        <div class="guide-row"><code>/cosmeticos</code><p>Equip and preview unlocked cosmetic auras and trails.</p></div>
+        <div class="guide-row"><code>/arcana</code> · <code>/dioses</code><p>Arcane Codex and Divine Pantheon with full progress telemetry.</p></div>
+        <div class="guide-row"><code>/sf guide</code><p>Interactive Slimefun encyclopedia with full recipe search.</p></div>
+      </div>
+    </section>
+
+    <section class="container guide-section" id="servidor">
+      <h2>What is DrakesCraft</h2>
+      <p class="guide-section__note">A high-performance Minecraft <strong>1.21.11</strong> network running multiple seamless modalities on a single dedicated instance without proxy friction.</p>
+
+      <div class="guide-modes">
+        <article class="guide-mode" style="--mode-accent:#ffb03c;">
+          <h3>Custom In-House Slimefun</h3>
+          <p>We maintain our own optimized Slimefun 1.21.11 / 26.x fork with 40+ addons, rescuing abandoned plugins.</p>
+          <ul>
+            <li>Networks, InfinityExpansion, DynaTech</li>
+            <li>SlimeTinker, FluffyMachines, FoxyMachines</li>
+            <li>EcoPower, LiteXpansion, ExoticGarden</li>
+            <li>Gastronomicon, Cultivation, Supreme</li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:var(--dk-verde);">
+          <h3>Proprietary Plugins</h3>
+          <p>Substantial parts of the gameplay are programmed exclusively for this network.</p>
+          <ul>
+            <li><strong>Odysseia</strong>: core hub, kits, cosmetics, security</li>
+            <li><strong>DrakesBosses</strong> &amp; <strong>DiosesDrakes</strong>: bosses &amp; divine favor</li>
+            <li><strong>ArcanaDrakes</strong>: elemental magic engine</li>
+            <li><strong>DrakesSlimeMarket</strong>: real-time economy</li>
+          </ul>
+        </article>
+        <article class="guide-mode" style="--mode-accent:#8ad8ff;">
+          <h3>Space &amp; Exploration</h3>
+          <p>Build multi-stage rockets and travel to real extraterrestrial celestial bodies with Galactifun.</p>
+          <ul>
+            <li>The Moon, Mars, Venus, Io</li>
+            <li>Titan, Enceladus, Earth orbit</li>
+            <li>Custom Nether &amp; End dimensions</li>
+            <li>Instanced boss arenas</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="guide-split">
+        <div class="guide-split__card">
+          <h3>Progression</h3>
+          <ul>
+            <li><strong>AuraSkills</strong>: level up stats as you play</li>
+            <li><strong>Jobs</strong>: earn Dragmas by mining, farming, and hunting</li>
+            <li><strong>Quests</strong> with <code>/quests</code></li>
+            <li><strong>Daily Streaks</strong> via <code>/daily</code></li>
+            <li><strong>Bosses</strong> with unique relic loot</li>
+          </ul>
+        </div>
+        <div class="guide-split__card">
+          <h3>Economy</h3>
+          <ul>
+            <li>Global currency: <strong>Dragmas (₯)</strong></li>
+            <li>Player chest shops via QuickShop</li>
+            <li>Auction House with <code>/ah</code></li>
+            <li>Passive interest banking with <code>/bank</code></li>
+            <li>Dynamic Slimefun Market with <code>/sfmercado</code></li>
+          </ul>
+        </div>
+        <div class="guide-split__card">
+          <h3>Base Protection</h3>
+          <ul>
+            <li>Land protection stones scale with rank</li>
+            <li>Granular flag rules: PvP, explosions, mob spawning</li>
+            <li>Invite trusted friends with <code>/ps add</code></li>
+            <li><strong>CoreProtect</strong>: full immutable action audit logging</li>
+            <li>Grave recovery: 7-day corpse retention with <code>/graves</code></li>
+          </ul>
+        </div>
+        <div class="guide-split__card">
+          <h3>Connection Info</h3>
+          <ul>
+            <li>Server Address: <strong>mc.drakescraft.cl</strong></li>
+            <li>Java and <strong>Bedrock</strong> (mobile, console, PC)</li>
+            <li>Bedrock 26.60+: direct join link via <a href="#bedrock">Bedrock section</a> or Discord <strong>#bedrock-unirse</strong></li>
+            <li><strong>Semi-premium</strong>: open to official and offline accounts</li>
+            <li>Real-time chat translation in 100+ languages</li>
+          </ul>
+        </div>
+        <div class="guide-split__card">
+          <h3>Client Mods &amp; Litematica</h3>
+          <ul>
+            <li><strong>Litematica (Hologram Guide)</strong>: 100% legal for projecting schematics.</li>
+            <li><strong>Easy Place / Printer</strong>: Blocked by GrimAC to prevent air-liquid placement and packet desync.</li>
+            <li><strong>Manual Construction</strong>: Place blocks against real physical blocks.</li>
+            <li><strong>Permitted Mods</strong>: Sodium, Iris, Lithium, OptiFine, radar-free minimaps.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="guide-section__note" style="margin-top:1.5rem;">Daily automated maintenance restart occurs at <strong>08:00 Chile Time (CLT / UTC-4)</strong>. Warnings broadcast starting at 07:45, with automated safe shutdowns protecting inventories and machines.</p>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>A living guide. If something is missing, tell us on Discord.</p></div><div class="site-footer__links"><a href="store.html">Store</a><a href="support-en.html">Support</a><a href="privacidad-en.html">Privacy</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div></div></footer>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <strong>DrakesCraft</strong>
+        <p>A living guide. If something is missing, let us know on Discord.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="store-en.html">Store</a>
+        <a href="support-en.html">Support</a>
+        <a href="terms-en.html">Terms</a>
+        <a href="privacidad-en.html">Privacy</a>
+        <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <div class="site-footer__sponsor">
+        <span>Support the project</span>
+        <iframe src="https://github.com/sponsors/SlimefunNewHorizons/button" title="Sponsor DrakesCraft-Labs" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe>
+        <iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Sponsor JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe>
+      </div>
+    </div>
+  </footer>
+
   <script src="scripts/site.js?v=20261017-v7"></script>
+  <script src="scripts/guia.js?v=20261017-v7"></script>
   <script src="scripts/bedrock.js?v=20261030-v1"></script>
 </body>
 </html>
