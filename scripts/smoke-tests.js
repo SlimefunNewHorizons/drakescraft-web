@@ -42,6 +42,7 @@ const ROUTES = [
   '/500.html',
   '/500-en.html',
   '/maintenance.html',
+  '/maintenance-en.html',
 ];
 
 // Rutas con redirects esperados
@@ -180,6 +181,10 @@ async function testRoute(route) {
       errors.push(`${route}: missing English language metadata or translated content`);
       return;
     }
+    if (route === '/maintenance-en.html' && (!response.body.includes('<html lang="en">') || !response.body.includes('Scheduled <span>Maintenance</span>'))) {
+      errors.push(`${route}: missing English language metadata or translated content`);
+      return;
+    }
     if (htmlIssues.length > 0) {
       errors.push(`${route}: ${htmlIssues.join('; ')}`);
       return;
@@ -210,7 +215,8 @@ async function testRoute(route) {
       '/404-en.html',
       '/500.html',
       '/500-en.html',
-      '/maintenance.html'
+      '/maintenance.html',
+      '/maintenance-en.html'
     ];
 
     if (ACCESSIBLE_KEYBOARD_ROUTES.includes(route) &&
