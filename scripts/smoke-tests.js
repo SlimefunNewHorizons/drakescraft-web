@@ -25,6 +25,7 @@ const ROUTES = [
   '/guia-rangos.html',
   '/guia-rangos-en.html',
   '/guia-slimefun.html',
+  '/guia-slimefun-en.html',
   '/apoya.html',
   '/apoya-en.html',
   '/store.html',

@@ -928,6 +928,7 @@ for (const [alias, file] of [
   ['/apoya', 'apoya.html'], ['/apoyar', 'apoya.html'], ['/donar', 'apoya.html'], ['/sponsors', 'apoya.html'],
   ['/rangos', 'guia-rangos.html'], ['/ranks', 'guia-rangos.html'],
   ['/slimefun', 'guia-slimefun.html'], ['/sf', 'guia-slimefun.html'],
+  ['/slimefun-en', 'guia-slimefun-en.html'], ['/sf-en', 'guia-slimefun-en.html'],
   ['/plugins', 'guia-plugins.html'], ['/suites', 'guia-plugins.html'],
 ]) {
   app.get(alias, async (_request, reply) => reply.sendFile(file));
@@ -982,6 +983,7 @@ await app.register(fastifyStatic, {
       'guia-rangos.html',
       'guia-rangos-en.html',
       'guia-slimefun.html',
+      'guia-slimefun-en.html',
       'guia-plugins.html',
       'guia-plugins-en.html',
       '404.html',

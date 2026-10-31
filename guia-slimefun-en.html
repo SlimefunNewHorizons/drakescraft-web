@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="keywords" content="minecraft server, minecraft chile, minecraft latam, slimefun guide english, bedrock server, purpur 1.21, drakescraft, slimefun addons, survival minecraft servers">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Master guide to Slimefun, StarSuites and 60+ addons in DrakesCraft 1.21.11+: machinery, reactors, Networks digital logistics, genetics, AlchimiaVitae, DrakesBosses, and Tier 10 Olympus.">
+  <title>Slimefun &amp; 49 Addons Guide in English | Machines, Networks &amp; Energy · DrakesCraft</title>
+  <link rel="canonical" href="https://web.drakescraft.cl/guia-slimefun-en.html">
+  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia-slimefun.html">
+  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/guia-slimefun-en.html">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
+  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "en", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-slimefun-en.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Minecraft Java and Bedrock server featuring StarSuites architecture, Networks digital logistics, nuclear reactors, biological genetics, and Tier 10 endgame convergence."}]}</script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DrakesCraft">
+  <meta property="og:title" content="Slimefun &amp; StarSuites · DrakesCraft">
+  <meta property="og:description" content="Master guide to Slimefun, StarSuites and 60+ addons in DrakesCraft 1.21.11+: machinery, reactors, Networks digital logistics, genetics, AlchimiaVitae, DrakesBosses, and Tier 10 Olympus.">
+  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Slimefun &amp; StarSuites · DrakesCraft">
+  <meta name="twitter:description" content="Master guide to Slimefun, StarSuites and 60+ addons in DrakesCraft 1.21.11+: machinery, reactors, Networks digital logistics, genetics, AlchimiaVitae, DrakesBosses, and Tier 10 Olympus.">
+  <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <style>
+    .guide-accordion__badge--emerald { color: #6ee7a2; background: rgba(110, 231, 162, .16); }
+    .guide-accordion__badge--crimson { color: #fda4af; background: rgba(244, 63, 94, .16); }
+    .guide-accordion__badge--blue { color: #93c5fd; background: rgba(59, 130, 246, .16); }
+    .guide-accordion__badge--gold { color: #ffd479; background: rgba(255, 212, 121, .16); }
+    .guide-accordion__badge--purple { color: #d8c9ff; background: rgba(150, 120, 255, .15); }
+    .guide-accordion__badge--cyan { color: #a5f3fc; background: rgba(34, 211, 238, .16); }
+    .guide-callout { background: rgba(16, 185, 129, .08); border-left: 3px solid #10b981; padding: .85rem 1.1rem; border-radius: .4rem; margin: 0 0 1rem; font-size: .9rem; line-height: 1.55; }
+    .guide-callout--alert { background: rgba(244, 63, 94, .08); border-left-color: #f43f5e; }
+    .guide-callout--info { background: rgba(59, 130, 246, .08); border-left-color: #3b82f6; }
+    .guide-callout--gold { background: rgba(255, 212, 121, .08); border-left-color: #ffd479; }
+  </style>
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+</head>
+<body class="page-shell" data-page="guia" data-section="slimefun">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container site-nav__bar">
+      <a class="brand" href="/index-en.html" aria-label="Go to DrakesCraft Home">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Slimefun Guide · StarSuites</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <ul class="site-nav__links" id="nav-menu">
+        <li><a href="/index-en.html">Home</a></li>
+        <li><a href="guide-en.html">The Server</a></li>
+        <li><a href="guia-comandos-en.html">Commands</a></li>
+        <li><a href="guia-rangos-en.html">Ranks</a></li>
+        <li><a class="active" href="guia-slimefun-en.html">Slimefun</a></li>
+        <li><a href="guia-plugins-en.html">Plugins &amp; Suites</a></li>
+        <li><a href="apoya-en.html">Sponsors</a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP SHOP ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+    <div class="lang-switcher">
+      <a href="guia-slimefun.html" class="lang-btn" data-lang="es" title="Switch to Spanish">ES</a>
+      <a href="guia-slimefun-en.html" class="lang-btn is-active" data-lang="en" title="English">EN</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <header class="guide-hero">
+      <div class="guide-hero__backdrop" aria-hidden="true"></div>
+      <div class="container guide-hero__grid">
+        <p class="eyebrow">StarSuites Engineering · Addons &amp; Mechanics</p>
+        <h1>Slimefun &amp; StarSuites <em>Guide</em></h1>
+        <p class="guide-hero__lead">Consolidation of over 60 Slimefun addons under the StarSuites architecture. Native processing for logistics networks, energy formulas, and high-engineering recipes balanced for Paper 1.21.11+.</p>
+      </div>
+    </header>
+
+    <nav class="guide-tabs" aria-label="Guide sections">
+      <a href="guia-comandos-en.html">Commands</a>
+      <a href="guide-en.html">The Server</a>
+      <a href="guia-rangos-en.html">Ranks</a>
+      <a href="guia-slimefun-en.html" class="is-active">Slimefun</a>
+      <a href="guia-plugins-en.html">Plugins &amp; Suites</a>
+    </nav>
+
+    <div class="container">
+      <div class="guide-search">
+        <label class="sr-only" for="guide-q">Search in the Slimefun guide</label>
+        <input type="search" id="guide-q" placeholder="Search for a machine, item, recipe, plant, chicken or spell (e.g., Quantum, Singularity, Alchimia, Anvil, Forge, Zeus)..." autocomplete="off">
+        <p class="guide-search__count" id="guide-count"></p>
+      </div>
+
+      <div class="guide-filters" role="group" aria-label="Filter by category">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="logistica" aria-pressed="false">Logistics &amp; Networks</button>
+        <button type="button" data-filter="energia" aria-pressed="false">Energy &amp; Reactors</button>
+        <button type="button" data-filter="genetica" aria-pressed="false">Genetics &amp; Farming</button>
+        <button type="button" data-filter="arcano" aria-pressed="false">Arcane &amp; Magic</button>
+        <button type="button" data-filter="combate" aria-pressed="false">Combat &amp; Deities</button>
+        <button type="button" data-filter="tier10" aria-pressed="false">Tier 10 Olympus</button>
+        <button type="button" data-filter="almacenamiento" aria-pressed="false">Storage</button>
+        <button type="button" data-filter="esenciales" aria-pressed="false">Lab &amp; Rules</button>
+        <button type="button" data-filter="qol" aria-pressed="false">QoL &amp; Utilities</button>
+      </div>
+
+      <div class="guide-controls">
+        <span style="font-size: .88rem; opacity: .8;">📚 <strong>StarSuites Canon:</strong> Energy formulas, unraveled code logic, and verified anti-dupe rules.</span>
+        <div class="guide-controls__btns">
+          <button type="button" class="guide-btn-action" id="btn-expand-all">Expand all</button>
+          <button type="button" class="guide-btn-action" id="btn-collapse-all">Collapse all</button>
+        </div>
+      </div>
+
+      <p class="guide-empty is-hidden" id="guide-empty">No results found matching that term. Try another keyword.</p>
+
+      <!-- SECTION: CREATIVE LAB & CHEAT MODE -->
+      <details class="guide-accordion" data-cat="esenciales" id="laboratorio-cheat" open>
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🧪</span>
+            <span>Creative Lab &amp; Cheat Mode</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--emerald">Safe Environment</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p class="guide-section__note">The <strong>Laboratory</strong> (<code>/warp laboratorio</code>) is an isolated test environment for Slimefun. You can switch between creative and survival, but adventure or spectator modes are disabled. Strict boundaries protect the server and prevent free items from entering the survival economy.</p>
+          <div class="guide-rows">
+            <div class="guide-row">
+              <code>/sf cheat</code>
+              <p>Opens the Slimefun <strong>Cheat Sheet</strong>, allowing you to withdraw machines, materials, and items. All researches appear unlocked while in this world, without modifying your external progression.<span class="guide-tag guide-tag--survival">Lab Only</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Shift + Right Click with Guide</code>
+              <p>While holding the Slimefun Guide (<code>/sf guide</code>), <strong>sneak (Shift) and right-click</strong> to open the full cheat catalog directly without typing commands.<span class="guide-tag guide-tag--survival">Lab Only</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Secure Isolation (InvSwitcher)</code>
+              <p>The gamemode engine backs up and isolates your inventory, ender chest, experience, health, hunger, statistics, and advancements. Remain still during the transfer and avoid alternate teleports.</p>
+            </div>
+            <div class="guide-row">
+              <code>Restricted Commands</code>
+              <p><code>/sf give</code> and <code>/sf research</code> are administrative commands. Auctions, shops, player trade, virtual vaults, ender chests, and homes are blocked to prevent item smuggling. Use <code>/sf cheat</code>.</p>
+            </div>
+            <div class="guide-row">
+              <code>120-Block Limit per Chunk</code>
+              <p>There is a strict cap of 120 Slimefun blocks per chunk. High-risk explosives, explosive armaments, accelerators, and chunk loaders are restricted: visual effects render, but physical blast damage and server lag are neutralized.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: GOLDEN RULES & ANTI-DUPE -->
+      <details class="guide-accordion" data-cat="esenciales" id="reglas-anti-dupe">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🛡️</span>
+            <span>Golden Rules, Anti-Dupe &amp; SRE Diagnostics</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--crimson">Critical</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--alert">
+            <strong>⚠️ CANONICAL ANVIL RULE:</strong> Never use Vanilla Minecraft anvils to combine or repair Slimefun tools, weapons, or armor. Vanilla anvils do not parse <code>PersistentDataContainer</code> (PDC) tags, stripping the internal <code>slimefun:slimefun_item</code> key and permanently destroying custom enchantments, energy buffers, and technological attributes. Always use the <strong>Slimefun Anvil</strong> or the <strong>InfinityExpansion Advanced Anvil</strong>.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row">
+              <code>Quantum Pusher Rule (Anti-Dupe)</code>
+              <p>Why can't you push items into a Quantum Storage unit using a Networks Pusher? In <code>NetworkTransportUtils.java</code>, Quantum Storage units are <strong>explicitly blacklisted as targets for external Pushers</strong> to prevent infinite item duplication exploits (#230/#240). The canonical network design is to connect the Quantum Storage directly via <strong>Network Cable</strong> (the network populates it automatically without needing a Pusher). If used in standalone mode, feed it with a <strong>Vanilla Hopper pointing directly into the top face (Slot 1)</strong>.</p>
+            </div>
+            <div class="guide-row">
+              <code>Chunk Hibernation (SuiteTickerEngine)</code>
+              <p>Unlike legacy Slimefun which ran infinite Bukkit tasks for every machine consuming 100% CPU, <code>SuiteTickerEngine</code> indexes machines by active chunk. If no player is near the chunk, machines enter zero-CPU passive hibernation and instantly wake up when you return without losing tick progress.</p>
+            </div>
+            <div class="guide-row">
+              <code>Stalled Machines: 4-Step Diagnostic</code>
+              <p>1. <strong>Research:</strong> Open <code>/sf guide</code> and verify the item is unlocked.<br>
+              2. <strong>Power Grid:</strong> Ensure the generator and machine are connected via cable and capacitor. Check your Joules buffer with <code>SlimeHUD</code>.<br>
+              3. <strong>Output Slots:</strong> If the output inventory is full, the machine stalls defensively to prevent item loss.<br>
+              4. <strong>Mob Cap:</strong> Electric Spawners pause automatically if 7 or more identical entities are clustered nearby.</p>
+            </div>
+            <div class="guide-row">
+              <code>Anti-Explosion &amp; Protections</code>
+              <p>Machines and networks respect 100% of island protections (BentoBox) and territory claims. Unauthorized players cannot place pushers or extractors to siphon items from your protected chests.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: NETWORKS & MULTIVERSENETS (SUITE 1) -->
+      <details class="guide-accordion" data-cat="logistica" id="networks">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🌐</span>
+            <span>Networks &amp; MultiverseNets: Digital Logistics &amp; Auto-Crafting</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--blue">Suite 1 Tech</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--info">
+            <strong>Digital Architecture:</strong> Networks digitizes your entire item inventory into a unified bus (similar to Applied Energistics or Refined Storage), featuring native graph-optimized pathfinding.
+          </div>
+          <div class="guide-callout guide-callout--alert">
+            <strong>⚠️ Mecánica Crítica de Transporte: Pushers vs Quantum Storage (Anti-Dupe)</strong><br>
+            <strong>¿Por qué el Pusher rechaza el Quantum Storage?</strong> En <code>NetworkTransportUtils.java</code>, los Quantum Storage (Tiers I a VIII) y Celdas de Almacenamiento están explícitamente bloqueados como destino de Pushers para erradicar bucles de duplicación infinita (Incidentes SRE #230 y #240).<br>
+            <strong>¿Cómo almacenar ítems masivamente de forma correcta?</strong>
+            <ul style="margin: 6px 0 0 1.2rem; padding: 0;">
+              <li><strong>🔌 Conexión Canónica a Red:</strong> Conecta el Quantum Storage directamente a tu red con un <em>Cable de Red</em> o <em>Network Bridge</em>. Una vez conectado, la red deposita automáticamente los materiales desde Grids, Grabbers y máquinas sin requerir ningún Pusher.</li>
+              <li><strong>📦 Alimentación Standalone (Sin Red):</strong> Si usas el Quantum Storage fuera de una red digital, coloca una <strong>Tolva (Hopper) vanilla</strong> apuntando directamente a su cara superior (Slot 1 / Entrada).</li>
+              <li><strong>⚙️ Máquinas de Slimefun vs Contenedores Vanilla:</strong> Para alimentar máquinas de Slimefun (Extractor de Polvo Eléctrico, Horno Eléctrico, etc.), utiliza siempre el <strong>Pusher</strong> estándar de Slimefun. Las variantes <em>Vanilla Pusher / Vanilla Grabber</em> están diseñadas <strong>únicamente</strong> para cofres, barriles y tolvas tradicionales.</li>
+            </ul>
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row"><code>Network Controller</code><p>The mandatory core of any digital network. Each network requires exactly one controller: indexes up to 10,000 nodes and orchestrates Joules distribution across all connected infrastructure.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Quantum Storage I–VIII</code><p>Deep mass storage for <strong>a single item type</strong>. Top slot (Slot 1) for input and bottom slot (Slot 2) for extraction. Tier I through Tier VIII scales capacity from 4,096 up to 2,147,483,647 items. <em>SRE Notice: Wire directly to network cables; does not accept external Pushers (anti-dupe). Feed with a vanilla hopper in standalone mode.</em><span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Network Grid &amp; Crafting Grid</code><p>The central user interface terminal. Displays all digitized materials across the network with instant fuzzy search, sorting, and extraction. The Crafting Grid includes a 3x3 workbench fed directly from digital inventory.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Auto Crafter &amp; Recipe Encoder</code><p>Continuous loop crafting automation. Encode the recipe onto a <strong>Crafting Blueprint</strong> using the Recipe Encoder and insert it into the Auto Crafter. The <em>Withholding</em> toggle reserves required inputs to avoid production stalls.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Grabber &amp; Pusher (Vanilla)</code><p>Automated input (Grabber) and output (Pusher) between vanilla containers and the digital grid. <em>Note: Pushers only push into conventional external inventories (furnaces, chests), never into Quantum Storage or Storage Cells.</em> Use the <strong>Configurator</strong> tool to set side orientation, filters, and tick frequency.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Greedy Block</code><p>Highest-priority routing sink: pulls a specified material into its attached container the instant it enters the digital network, keeping materials channeled into designated storage.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Remote &amp; Interdimensional Access</code><p>Wireless access remotes (Remote, Empowered, Pristine, and Ultimate) allow viewing and withdrawing items from anywhere in the world. The <em>Interdimensional Presence</em> module bridges dimensional boundaries across Nether, End, and Overworld.<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>MultiverseNets (Autoría: Chagui68)</code><p><strong>Quantum Digital Network &amp; Mass Storage:</strong> Authored by Chagui68, MultiverseNets provides high-performance native digital logistics. Features quantum storage cells (T1 to T6) storing up to 2 billion items, wireless pocket terminals, and dual-mode import (Grabbers) and export (Pushers) nodes that interface with vanilla chests and automated Slimefun machinery (input and output slots). Canonical documentation is available in the <a href="https://github.com/SlimefunNewHorizons/MultiverseNets/tree/main/Wiki-es" target="_blank" rel="noopener" style="color:#38BDF8;text-decoration:underline;">Official Wiki</a> and <a href="https://github.com/SlimefunNewHorizons/MultiverseNets/blob/main/Wiki-es/Recipes.md" target="_blank" rel="noopener" style="color:#38BDF8;text-decoration:underline;">Recipe Catalog</a>.<span class="guide-row__alias">Multiverse</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECCIÓN: INFINITYEXPANSION & ENDGAME REACTORS -->
+      <details class="guide-accordion" data-cat="energia" id="infinityexpansion">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">♾️</span>
+            <span>InfinityExpansion, Nuclear Technology &amp; SlimeTinker Supreme (Endgame)</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--purple">Quantum Tier</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--alert">
+            <strong>⚠️ DrakesCraft Endgame Canon &amp; Balance Overhaul:</strong><br>
+            All technical cheat recipes have been migrated to authentic 6x6 Infinity Workbench endgame recipes requiring multi-addon synthesis. Creative generators are strictly prohibited. Fuel burn rates have been exponentially accelerated, singularity quotas scaled to a strict 15,000-item standard, XP research unlocked strictly via experience points, and environmental radiation hazards activated across high-tier nuclear and infinite reactors.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row">
+              <code>Infinity Reactor (120,000 J/s · 100M Buffer)</code>
+              <p>The pinnacle of energy generation in Slimefun. Generates a sustained <strong>120,000 J/s</strong> with a massive <strong>100,000,000 Joule</strong> internal buffer. Legitimate 6x6 crafting in the <em>Infinity Workbench</em> requires: <code>Supreme Core</code>, <code>Energized Thornium</code>, <code>Cetrus Lux</code>, <code>Netherite Singularity</code>, <code>Magic Singularity</code>, <code>Void Glass</code>, <code>Infinite Core</code>, and <code>Celestial Panels</code>.<br>
+              <strong>⚡ Hyper-Burn Fuel Consumption:</strong> Consumes 1 <em>Infinite Ingot</em> every 2 minutes (2,400 ticks, accelerated from 196k ticks) and 1 <em>Void Ingot</em> every 30 seconds (600 ticks, accelerated from 32k ticks).<br>
+              <strong>☢️ Cosmic Radiation Hazard:</strong> Emits lethal cosmic radiation pulses to any unshielded players within an 8-block radius (inflicts Wither, Nausea, Slowness, and true damage unless wearing a full Hazmat Suit).<span class="guide-row__alias">InfinityExpansion</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Infinite Solar Panel (32,768 J/s Day / 16,384 J/s Night)</code>
+              <p>Continuous quantum photovoltaic array. Generates <strong>32,768 J/s</strong> during daytime and <strong>16,384 J/s</strong> under nighttime or stormy skies. Legitimate 6x6 recipe requires 4 <code>Celestial Panels</code>, <code>Supreme Core</code>, <code>Energized Thornium</code>, <code>Infinite Ingot</code>, <code>Netherite Singularity</code>, and <code>Void Glass</code>.<span class="guide-row__alias">InfinityExpansion</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Nuclear Reactor: Active Gamma Radiation Pulse</code>
+              <p>Slimefun's base <strong>Nuclear Reactor</strong> now actively radiates during power generation cycles. Any player within a <strong>7-block radius</strong> without a full Hazmat suit accumulates acute radiation exposure every tick, suffering progressive nausea, withering, and lethal radiation poisoning.<span class="guide-row__alias">Slimefun Core</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Singularity Standard Quota: 15,000 Items</code>
+              <p>To eliminate rapid early endgame rushes, Singularity Constructors now require a standardized <strong>15,000 items</strong> for basic metals and minerals (Iron, Copper, Gold, Zinc, Tin, Aluminum, Silver, Magnesium, Lead, Coal, Redstone, Lapis, Quartz), 5,000 items for Diamond and Emerald, 1,500 ingots for Netherite, and 500 singularities for the Infinity Singularity. Researches are strictly gated by player experience points (<code>enable-researches: true</code>).<span class="guide-row__alias">InfinityExpansion</span></p>
+            </div>
+            <div class="guide-row">
+              <code>SlimeTinker x Supreme: Modular Smeltery Integration</code>
+              <p>High-end metallurgy integration unlocking four Supreme metals in the <em>Tinkers Smeltery</em>:<br>
+              • <strong>Aurum:</strong> <code>Prosperity</code> (+50% Tool &amp; Player EXP, raw gold mining bonus) &amp; <code>Gilded Ward</code> (damage-to-absorption conversion).<br>
+              • <strong>Adamantium:</strong> <code>Adamant Will</code> (+75% damage, 50% durability resist) &amp; <code>Indomitable Shell</code> (-25% flat damage mitigation).<br>
+              • <strong>Thornium:</strong> <code>Static Discharge</code> (electrical shockwaves dealing 4 true damage) &amp; <code>Retribution Field</code> (35% thorns reflection).<br>
+              • <strong>Supreme:</strong> <code>Overdrive</code> (Unbreakable, +150% damage, 3x3 vein mining, AoE monster shockwave) &amp; <code>Aegis of the Sovereign</code> (-40% damage taken, health regeneration).<span class="guide-row__alias">SlimeTinker</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Cosmic Hybrid Alloy (Liquid Infinity + Liquid Supreme)</code>
+              <p>A transcendent alloy synthesized in the Smeltery basin by fusing <strong>Liquid Infinity</strong> (1) and <strong>Liquid Supreme</strong> (1).<br>
+              • <strong>Celestial Singularity (Head):</strong> Unbreakable, +300% Weapon Damage, +200% Tool EXP, and spatial vortex disintegration cleaving all nearby hostiles.<br>
+              • <strong>Event Horizon (Plates):</strong> Flat 50% damage reduction and reflects 50% of incoming damage back to the attacker with a gravitational pulse.<br>
+              • <strong>Omnipresence (Links):</strong> Constant Speed II and Strength II while in combat.<span class="guide-row__alias">SlimeTinker</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Advanced Anvil (NBT &amp; PDC Preservation)</code>
+              <p>The only authorized anvil for Slimefun equipment. Repairs and combines tools, bows, weapons, and armor while preserving 100% of <code>slimefun:slimefun_item</code> PDC tags and custom enchantments without downgrade.<span class="guide-row__alias">InfinityExpansion</span></p>
+            </div>
+            <div class="guide-row">
+              <code>Mob Simulation Chambers</code>
+              <p>Digital simulation matrix synthesizing entity drops (Wither, Ender Dragon, Shulkers, Blazes) via encrypted data cards without spawning physical entities. Zero tick latency and zero entity overhead.<span class="guide-row__alias">InfinityExpansion</span></p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECCIÓN: DYNATECH, FASTMACHINES & SUPREME (SUITE 1) -->
+      <details class="guide-accordion" data-cat="logistica" id="dynatech-fastmachines">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">⚙️</span>
+            <span>DynaTech, FastMachines &amp; Supreme: Automatización Extrema</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--blue">Suite 1 Tech</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p class="guide-section__note">Generación continua de recursos básicos, hornos industriales de inducción y fabricación masiva sin pérdidas de rendimiento.</p>
+          <div class="guide-rows">
+            <div class="guide-row"><code>Generadores de Recursos DynaTech</code><p>Generadores eléctricos dedicados que producen automáticamente <strong>Adoquín, Basalto, Agua Infinita y Lava</strong> consumiendo entre 24 y 64 J/t. Erradican la necesidad de generadores de agua/lava vanilla con pistones y agua fluyendo que saturan los ticks de físicas.<span class="guide-row__alias">DynaTech</span></p></div>
+            <div class="guide-row"><code>Wireless Energy Chargers</code><p>Torres de inducción inalámbrica que cargan automáticamente las baterías de tu armadura, jetpacks y herramientas mientras estés dentro del radio configurado.<span class="guide-row__alias">DynaTech</span></p></div>
+            <div class="guide-row"><code>Auto-Kitchen DynaTech</code><p>Cocina automatizada que procesa ingredientes culinarios de ExoticGarden en lote sin requerir interacción manual.<span class="guide-row__alias">DynaTech</span></p></div>
+            <div class="guide-row"><code>FastMachines: Maquinaria Overclockeada</code><p>Trituradoras, Compresores y Hornos Eléctricos de inducción de alta velocidad. Tienen buffers ampliados de Joules y procesan hasta 8x más rápido que las máquinas estándar de Slimefun.<span class="guide-row__alias">FastMachines</span></p></div>
+            <div class="guide-row"><code>Supreme: Cores Eléctricos Rebalanceados</code><p>Fabricador de Cores Eléctricos con cuadrícula 3×3. En DrakesCraft, las 9 casillas piden el mismo requerimiento balanceado, corrigiendo el bug histórico donde la netherita pedía 576 lingotes por una limitación del stack size.<span class="guide-row__alias">Supreme</span></p></div>
+            <div class="guide-row"><code>GlobiaMachines 3-en-1</code><p>Combina molino, cribado y lavado mineral en un único bloque transaccional. Reduce 3 pasos de maquinaria a 1 solo bloque optimizado.<span class="guide-row__alias">Globia</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: ENERGY MATRIX & ORECHUNKS (SUITE 4) -->
+      <details class="guide-accordion" data-cat="energia" id="matriz-energetica">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">⚡</span>
+            <span>Energy Matrix: Solar Arrays, Nuclear Fission &amp; OreChunks</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--gold">Suite 4 Generators</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--gold">
+            <strong>Power Generation &amp; Grid Design:</strong> Energy is measured in Joules per tick (J/t). Electrical grids require generators, energy capacitors (battery buffers), and energy connectors. Construct networks without recursive feedback loops for optimal tick rates.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row"><code>Solar &amp; Biofuel Generators</code><p>Basic and advanced day/night solar panels, biofuel combustion engines (EcoPower), and steam turbines. Ideal for bootstrapping your early industrial outpost.<span class="guide-row__alias">EcoPower / SF</span></p></div>
+            <div class="guide-row"><code>Nuclear Power Plant (LiteXpansion &amp; UG2)</code><p>Generates over 50,000 J/t via controlled nuclear fission. Operates using <strong>Uranium Fuel Rods</strong> and cryogenic <strong>Coolant Cells</strong>.<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Anti-Meltdown Safety Protocol</code><p>If a nuclear reactor depletes its Coolant Cells, core temperature surges exponentially. Reaching thermal critical limits causes a catastrophic Core Meltdown, venting lethal gamma radiation and vaporizing the chamber. Always equip full Hazmat suits and automate coolant injection.<span class="guide-row__alias">Safety</span></p></div>
+            <div class="guide-row"><code>SlimefunOreChunks: Geological Multiplication</code><p>Registers 11 raw geological mineral chunks. Mining ores with Fortune yields raw <strong>Ore Chunks</strong>; crush them in an Ore Crusher and wash them in an Ore Washer to triple or quadruple ingot yields compared to direct furnace smelting.<span class="guide-row__alias">OreChunks</span></p></div>
+            <div class="guide-row"><code>Capacitors &amp; Quantum Energy Banks</code><p>Scales from 1,000 J capacitors up to 50,000,000 J quantum accumulators. Stores excess peak generation to keep quarries and processing lines operational through the night.<span class="guide-row__alias">Generators</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: GENETIC CHICKENGINEERING (SUITE 2) -->
+      <details class="guide-accordion" data-cat="genetica" id="pollos">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🧬</span>
+            <span>Genetic Chickengineering: T0 to T9 Avian Genetics</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--emerald">Suite 2 Bio</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p style="margin:0 0 1rem;opacity:.85;">There are <strong>no static recipe tables</strong>: this is simulated genetic inheritance modeled on <strong>6 binary alleles</strong> (2⁶ = 64 possible genotypes). When crossbreeding two specimens, each parent contributes gametes per gene locus and offspring inherit the resulting combination.</p>
+          <p style="margin:0 0 1rem;opacity:.85;">On DrakesCraft, biological mutation rate is calibrated to <strong>30%</strong>, with a ceiling of <strong>2 mutated alleles per offspring</strong>. The more inactive recessive alleles (0), the rarer and more valuable the resource laid by the chicken (Feather Chicken is 63 · 111111; Netherite Chicken is 0 · 000000). Utilize the <strong>Electric Incubator</strong> to accelerate hatching and the <strong>DNA Extractor</strong> to preserve pure lineages.</p>
+          <div class="guide-rows">
+<div class="guide-row"><code>63 · 111111</code><p>Feather <span class="guide-row__alias">6 active alleles</span></p></div>
+            <div class="guide-row"><code>31 · 011111</code><p>Bone <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>47 · 101111</code><p>Cobblestone <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>55 · 110111</code><p>Dirt <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>59 · 111011</code><p>Flint <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>61 · 111101</code><p>Sand <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>62 · 111110</code><p>Water <span class="guide-row__alias">5 active alleles</span></p></div>
+            <div class="guide-row"><code>15 · 001111</code><p>Coal <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>23 · 010111</code><p>String <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>27 · 011011</code><p>Leather <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>29 · 011101</code><p>Sugar <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>30 · 011110</code><p>Sponge <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>39 · 100111</code><p>Diorite <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>43 · 101011</code><p>Andesite <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>45 · 101101</code><p>Gravel <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>46 · 101110</code><p>Ice <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>51 · 110011</code><p>Granite <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>53 · 110101</code><p>Clay <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>54 · 110110</code><p>Oak Log <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>57 · 111001</code><p>Gunpowder <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>58 · 111010</code><p>Kelp <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code>60 · 111100</code><p>Slime Ball <span class="guide-row__alias">4 active alleles</span></p></div>
+            <div class="guide-row"><code> 7 · 000111</code><p>Gold <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>11 · 001011</code><p>Netherrack <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>13 · 001101</code><p>Glass <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>14 · 001110</code><p>Lapis <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>19 · 010011</code><p>Iron <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>21 · 010101</code><p>Iron Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>22 · 010110</code><p>Gold Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>25 · 011001</code><p>Silver Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>26 · 011010</code><p>Zinc Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>28 · 011100</code><p>Cake <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>35 · 100011</code><p>Obsidian <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>37 · 100101</code><p>Copper Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>38 · 100110</code><p>Magnesium Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>41 · 101001</code><p>Lava <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>42 · 101010</code><p>Tin Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>44 · 101100</code><p>Snowball <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>49 · 110001</code><p>Redstone <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>50 · 110010</code><p>Cactus <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>52 · 110100</code><p>Aluminum Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code>56 · 111000</code><p>Lead Dust <span class="guide-row__alias">3 active alleles</span></p></div>
+            <div class="guide-row"><code> 3 · 000011</code><p>Blackstone <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code> 5 · 000101</code><p>Soul Soil <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code> 9 · 001001</code><p>Blaze Rod <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>17 · 010001</code><p>Ghast Tear <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>33 · 100001</code><p>Sulfate <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code> 6 · 000110</code><p>Shroomlight <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>10 · 001010</code><p>Quartz <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>18 · 010010</code><p>Basalt <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>34 · 100010</code><p>Crying Obsidian <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>12 · 001100</code><p>Soul Sand <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>20 · 010100</code><p>Ender Pearl <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>36 · 100100</code><p>Nether Wart <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>24 · 011000</code><p>Phantom Membrane <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>40 · 101000</code><p>Magma Cream <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code>48 · 110000</code><p>Glowstone Dust <span class="guide-row__alias">2 active alleles</span></p></div>
+            <div class="guide-row"><code> 1 · 000001</code><p>Diamond <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code> 2 · 000010</code><p>End Stone <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code> 4 · 000100</code><p>Prismarine Crystals <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code> 8 · 001000</code><p>Prismarine Shard <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code>16 · 010000</code><p>Experience <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code>32 · 100000</code><p>Emerald <span class="guide-row__alias">1 active alleles</span></p></div>
+            <div class="guide-row"><code> 0 · 000000</code><p>Netherite <span class="guide-row__alias">0 active alleles</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: CULTIVATION, EXOTICGARDEN & SLIMYBEES (SUITE 2) -->
+      <details class="guide-accordion" data-cat="genetica" id="cultivation">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🌿</span>
+            <span>Cultivation, ExoticGarden &amp; SlimyBees: Botany &amp; Apiculture</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--emerald">Suite 2 Bio</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--info">
+            <strong>All 82 authentic Cultivation botanical crosses</strong> extracted directly from the DrakesCraft source code. Plant the two parent seeds <strong>diagonally</strong> on tilled soil and allow them to fully mature: each growth cycle has a 5% to 10% cross-pollination probability. Three crosses feature <strong>two randomized outcomes</strong>: <code>Cow + Sheep</code> (Pig or Bee), <code>Coal + Earth</code> (Raw Iron or Raw Copper), and <code>Cobblestone + Earth</code> (Gravel or Deepslate).
+          </div>
+          <div class="guide-callout guide-callout--gold">
+            <strong>ExoticGarden Golden Rule:</strong> To harvest fruit from wild ExoticGarden bushes and trees, <strong>right-click the mature bush without crouching</strong>. Never left-click (punch) the plant, as this uproots it entirely and requires replanting.
+          </div>
+          <div class="guide-rows">
+<div class="guide-row"><code>Air + Light</code><p>Chicken</p></div>
+            <div class="guide-row"><code>Amethyst + Emerald</code><p>Echo</p></div>
+            <div class="guide-row"><code>Blaze + Magma Cube</code><p>Ghast</p></div>
+            <div class="guide-row"><code>Chicken + Earth</code><p>Rabbit</p></div>
+            <div class="guide-row"><code>Chicken + Water</code><p>Turtle</p></div>
+            <div class="guide-row"><code>Coal + Earth</code><p>Raw Copper</p></div>
+            <div class="guide-row"><code>Coal + Earth</code><p>Raw Iron</p></div>
+            <div class="guide-row"><code>Cobblestone + Earth</code><p>Deepslate</p></div>
+            <div class="guide-row"><code>Cobblestone + Earth</code><p>Gravel</p></div>
+            <div class="guide-row"><code>Cobblestone + Enderman</code><p>End Stone</p></div>
+            <div class="guide-row"><code>Cobblestone + Fire</code><p>Igneous</p></div>
+            <div class="guide-row"><code>Cow + Chicken</code><p>Sheep</p></div>
+            <div class="guide-row"><code>Cow + Sheep</code><p>Bee</p></div>
+            <div class="guide-row"><code>Cow + Sheep</code><p>Pig</p></div>
+            <div class="guide-row"><code>Creeper + Phantom</code><p>Blaze</p></div>
+            <div class="guide-row"><code>Darkness + Air</code><p>Skeleton</p></div>
+            <div class="guide-row"><code>Darkness + Darkness</code><p>Spider</p></div>
+            <div class="guide-row"><code>Darkness + Earth</code><p>Zombie</p></div>
+            <div class="guide-row"><code>Darkness + Fire</code><p>Creeper</p></div>
+            <div class="guide-row"><code>Darkness + Light</code><p>Spectrum</p></div>
+            <div class="guide-row"><code>Deepslate + Scrappy</code><p>Reinforced</p></div>
+            <div class="guide-row"><code>Dirt + Darkness</code><p>Mud</p></div>
+            <div class="guide-row"><code>Dirt + Earth</code><p>Sand</p></div>
+            <div class="guide-row"><code>Dirt + Fire</code><p>Netherrack</p></div>
+            <div class="guide-row"><code>Dirt + Flower</code><p>Vine</p></div>
+            <div class="guide-row"><code>Dirt + Light</code><p>Sapling</p></div>
+            <div class="guide-row"><code>Dirt + Water</code><p>Grass</p></div>
+            <div class="guide-row"><code>Drowned + Turtle</code><p>Guardian</p></div>
+            <div class="guide-row"><code>Dusty + Water</code><p>Concrete</p></div>
+            <div class="guide-row"><code>Earth + Spectrum</code><p>Amethyst</p></div>
+            <div class="guide-row"><code>Earth + Water</code><p>Dirt</p></div>
+            <div class="guide-row"><code>End Stone + Shulker</code><p>Purpur</p></div>
+            <div class="guide-row"><code>Enderman + Power</code><p>Ender Dragon</p></div>
+            <div class="guide-row"><code>Enderman + Turtle</code><p>Shulker</p></div>
+            <div class="guide-row"><code>Fire + Earth</code><p>Coal</p></div>
+            <div class="guide-row"><code>Fire + Water</code><p>Cobblestone</p></div>
+            <div class="guide-row"><code>Fish + Cow</code><p>Squid</p></div>
+            <div class="guide-row"><code>Flower + Slime</code><p>Mushroom</p></div>
+            <div class="guide-row"><code>Flower + Wither</code><p>Wither Rose</p></div>
+            <div class="guide-row"><code>Frog + Light</code><p>Dim Lit</p></div>
+            <div class="guide-row"><code>Glass + Rainbow</code><p>Stained</p></div>
+            <div class="guide-row"><code>Grass + Cobblestone</code><p>Moss</p></div>
+            <div class="guide-row"><code>Grass + Light</code><p>Cow</p></div>
+            <div class="guide-row"><code>Grass + Water</code><p>Flower</p></div>
+            <div class="guide-row"><code>Gravel + Water</code><p>Clay</p></div>
+            <div class="guide-row"><code>Guardian + Power</code><p>Elder Guardian</p></div>
+            <div class="guide-row"><code>Igneous + Fire</code><p>Blackstone</p></div>
+            <div class="guide-row"><code>Lapis + Darkness</code><p>Nether Quartz</p></div>
+            <div class="guide-row"><code>Lapis + Wealth</code><p>Diamond</p></div>
+            <div class="guide-row"><code>Magma Cube + Netherrack</code><p>Magma</p></div>
+            <div class="guide-row"><code>Nether Quartz + Power</code><p>Scrappy</p></div>
+            <div class="guide-row"><code>Netherrack + Cobblestone</code><p>Basalt</p></div>
+            <div class="guide-row"><code>Netherrack + Grass</code><p>Dark Grass</p></div>
+            <div class="guide-row"><code>Phantom + Darkness</code><p>Enderman</p></div>
+            <div class="guide-row"><code>Pig + Squid</code><p>Slime</p></div>
+            <div class="guide-row"><code>Rainbow + Bee</code><p>Waxy</p></div>
+            <div class="guide-row"><code>Rainbow + Earth</code><p>Terra</p></div>
+            <div class="guide-row"><code>Rainbow + Sheep</code><p>Woolly</p></div>
+            <div class="guide-row"><code>Raw Gold + Flower</code><p>Redstone</p></div>
+            <div class="guide-row"><code>Raw Iron + Raw Copper</code><p>Raw Gold</p></div>
+            <div class="guide-row"><code>Redstone + Raw Gold</code><p>Lapis</p></div>
+            <div class="guide-row"><code>Sand + Earth</code><p>Red Sand</p></div>
+            <div class="guide-row"><code>Sand + Fire</code><p>Glass</p></div>
+            <div class="guide-row"><code>Sand + Netherrack</code><p>Soul</p></div>
+            <div class="guide-row"><code>Sheep + Power</code><p>Goat</p></div>
+            <div class="guide-row"><code>Skeleton + Power</code><p>Wither Skeleton</p></div>
+            <div class="guide-row"><code>Slime + Fire</code><p>Magma Cube</p></div>
+            <div class="guide-row"><code>Spectrum + Spectrum</code><p>Rainbow</p></div>
+            <div class="guide-row"><code>Spider + Chicken</code><p>Phantom</p></div>
+            <div class="guide-row"><code>Squid + Bee</code><p>Frog</p></div>
+            <div class="guide-row"><code>Squid + Light</code><p>Glow Squid</p></div>
+            <div class="guide-row"><code>Terra + Fire</code><p>Glazed</p></div>
+            <div class="guide-row"><code>Terra + Sand</code><p>Dusty</p></div>
+            <div class="guide-row"><code>Villager + Fire</code><p>Witch</p></div>
+            <div class="guide-row"><code>Villager + Villager</code><p>Darkness</p></div>
+            <div class="guide-row"><code>Villager + Wealth</code><p>Emerald</p></div>
+            <div class="guide-row"><code>Vine + Light</code><p>Glowing Vine</p></div>
+            <div class="guide-row"><code>Vine + Netherrack</code><p>Dark Flora</p></div>
+            <div class="guide-row"><code>Water + Light</code><p>Fish</p></div>
+            <div class="guide-row"><code>Wither Skeleton + Power</code><p>Wither</p></div>
+            <div class="guide-row"><code>Zombie + Light</code><p>Villager</p></div>
+            <div class="guide-row"><code>Zombie + Water</code><p>Drowned</p></div>
+          </div>
+          <h3 style="margin:1.4rem 0 .6rem;font-size:1rem;opacity:.9;">FluffyMachines: Water Sprinkler &amp; SlimyBees</h3>
+          <div class="guide-rows">
+            <div class="guide-row"><code>Fluffy Water Sprinkler</code><p>Sprinkles and accelerates growth across all compatible crops in the vicinity every 7 minutes. <strong>Base range:</strong> 7×7 radius consuming 64 J. Equipping the <strong>Chunk Irrigation Module</strong> scales coverage to the full 16×16 chunk, consuming 256 J per sweep.<span class="guide-row__alias">FluffyMachines</span></p></div>
+            <div class="guide-row"><code>SlimyBees: Apicultural Genetics</code><p>Cría abejas obreras combinando especies para obtener panales minerales de hierro, oro, redstone, diamante y slime. Usa la Centrifugadora Apícola para procesar la miel y extraer los materiales puros sin matar a los enjambres.<span class="guide-row__alias">SlimyBees</span></p></div>
+            <div class="guide-row"><code>SlimyTreeTaps</code><p>Grifos extractores montados en troncos para cosechar resina, ámbar y savia silvestre sin talar los bosques.<span class="guide-row__alias">TreeTaps</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECCIÓN: ARCANO & MAGIA (SUITE 3) -->
+      <details class="guide-accordion" data-cat="arcano" id="arcano">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🔮</span>
+            <span>Magia, Alquimia &amp; Arcano: Crystamae, AlchimiaVitae &amp; Altar</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--purple">Suite 3 Magic</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--info">
+            <strong>Crystamae Historia v1.0.1:</strong> All 69 canonical spells active in production. Unlocked by recounting lore to environmental blocks and synthesizing crystal catalysts at the Realization Table.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row"><code>Ancient Altar &amp; Pedestals</code><p>Slimefun multiblock ritual structure featuring the Ancient Altar surrounded by 8 Pedestals. Crafted at the Magic Workbench. Arrange reagents on the pedestals and right-click the altar holding the catalyst item specified in <code>/sf guide</code>. If a ritual stalls, remove an item to reset the altar.<span class="guide-row__alias">Slimefun Core</span></p></div>
+            <div class="guide-row"><code>AlchimiaVitae: Transmutation &amp; Souls</code><p>Harvest biological life essences using the <strong>Ritual Dagger</strong> on living creatures. Construct the <strong>Transmutation Cauldron</strong> to transmute botanical flora and brew elixirs of physical regeneration and temporal damage immunity.<span class="guide-row__alias">AlchimiaVitae</span></p></div>
+            <div class="guide-row"><code>Potion Expansion: Alchemic Station</code><p>Insert <strong>Ancient Debris Powder</strong> (crushed at an Enhanced Crafting Table with a Pestle + Ancient Debris) into slot 2 of the bottom dispenser, and 1 to 3 mundane potions into slots 7, 8, and 9. Right-click the station to distill.<span class="guide-row__alias">PotionExp</span></p></div>
+            <div class="guide-row"><code>RelicsOfCthonia &amp; SoulJars</code><p>Blood sacrifice rituals at chthonic shrines to unlock abyssal relics. <strong>SoulJars</strong> capture mob essences, allowing safe transport of living entities in pressurized vials without corrupting chunk data.<span class="guide-row__alias">Cthonia / SoulJars</span></p></div>
+            <div class="guide-row"><code>Netheopoiesis: Nether Purification</code><p>Ecological biome restoration of the Nether dimension utilizing <strong>73 bioclimatic seed cultivars</strong> and the Civilization Core. Cleanses nether corruption to transform lava lakes into thermal springs and sprout ancestral flora.<span class="guide-row__alias">Netheopoiesis</span></p></div>
+          </div>
+          <h3 style="margin:1.4rem 0 .6rem;font-size:1rem;opacity:.9;">The 69 Spells of Crystamae Historia</h3>
+          <div class="guide-rows">
+<div class="guide-row"><code>Abstract Void</code></div>
+            <div class="guide-row"><code>Air Nova</code></div>
+            <div class="guide-row"><code>Air Sprite</code></div>
+            <div class="guide-row"><code>Ancient Defence</code></div>
+            <div class="guide-row"><code>Animaniacs</code></div>
+            <div class="guide-row"><code>Anti Prism</code></div>
+            <div class="guide-row"><code>Battering Ram</code></div>
+            <div class="guide-row"><code>Blood Magics</code></div>
+            <div class="guide-row"><code>Bobulate</code></div>
+            <div class="guide-row"><code>Break</code></div>
+            <div class="guide-row"><code>Bright</code></div>
+            <div class="guide-row"><code>Call Lightning</code></div>
+            <div class="guide-row"><code>Cascada</code></div>
+            <div class="guide-row"><code>Chaos</code></div>
+            <div class="guide-row"><code>Chill Wind</code></div>
+            <div class="guide-row"><code>Compass</code></div>
+            <div class="guide-row"><code>Curification Ritual</code></div>
+            <div class="guide-row"><code>Deity</code></div>
+            <div class="guide-row"><code>Earth Nova</code></div>
+            <div class="guide-row"><code>Easter Egg</code></div>
+            <div class="guide-row"><code>Endermans Veil</code></div>
+            <div class="guide-row"><code>Escape Rope</code></div>
+            <div class="guide-row"><code>Ethereal Flow</code></div>
+            <div class="guide-row"><code>Fan Of Arrows</code></div>
+            <div class="guide-row"><code>Fireball</code></div>
+            <div class="guide-row"><code>Fire Nova</code></div>
+            <div class="guide-row"><code>Flame Sprite</code></div>
+            <div class="guide-row"><code>Frost Nova</code></div>
+            <div class="guide-row"><code>Gravity</code></div>
+            <div class="guide-row"><code>Grow Up</code></div>
+            <div class="guide-row"><code>Heal</code></div>
+            <div class="guide-row"><code>Healing Mist</code></div>
+            <div class="guide-row"><code>Hearthstone</code></div>
+            <div class="guide-row"><code>Hellscape</code></div>
+            <div class="guide-row"><code>Holy Cow</code></div>
+            <div class="guide-row"><code>Imbue Void</code></div>
+            <div class="guide-row"><code>Gyroscopic</code></div>
+            <div class="guide-row"><code>Harmonys Sonata</code></div>
+            <div class="guide-row"><code>Harvest Moon</code></div>
+            <div class="guide-row"><code>Knowledge Share</code></div>
+            <div class="guide-row"><code>Launch</code></div>
+            <div class="guide-row"><code>Lava Lake</code></div>
+            <div class="guide-row"><code>Leech Bomb</code></div>
+            <div class="guide-row"><code>Love Potion</code></div>
+            <div class="guide-row"><code>Oviparous</code></div>
+            <div class="guide-row"><code>Phantoms Flight</code></div>
+            <div class="guide-row"><code>Philosophers Stone</code></div>
+            <div class="guide-row"><code>Plutos Descent</code></div>
+            <div class="guide-row"><code>Poison Nova</code></div>
+            <div class="guide-row"><code>Prism</code></div>
+            <div class="guide-row"><code>Protectorate</code></div>
+            <div class="guide-row"><code>Push</code></div>
+            <div class="guide-row"><code>Quake</code></div>
+            <div class="guide-row"><code>Rain Of Fire</code></div>
+            <div class="guide-row"><code>Ravage</code></div>
+            <div class="guide-row"><code>Remnant Of War</code></div>
+            <div class="guide-row"><code>Shroud</code></div>
+            <div class="guide-row"><code>Spawn Fiends</code></div>
+            <div class="guide-row"><code>Squall</code></div>
+            <div class="guide-row"><code>Star Fall</code></div>
+            <div class="guide-row"><code>Strip Mine</code></div>
+            <div class="guide-row"><code>Summon Golem</code></div>
+            <div class="guide-row"><code>Teleport</code></div>
+            <div class="guide-row"><code>Tempest</code></div>
+            <div class="guide-row"><code>Time Compression</code></div>
+            <div class="guide-row"><code>Time Dilation</code></div>
+            <div class="guide-row"><code>Tracer</code></div>
+            <div class="guide-row"><code>Vacuum</code></div>
+            <div class="guide-row"><code>Wither Weather</code></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: SLIMETINKER (SUITE 6) -->
+      <details class="guide-accordion" data-cat="combate" id="tinker">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🔨</span>
+            <span>SlimeTinker: Modular Metallurgy &amp; 96 Materials</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--crimson">Suite 6 Combat</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p style="margin:0 0 1rem;opacity:.85;">Every modular tool is assembled from four distinct components: <strong>Head</strong> (governs base attack damage, harvest level, and mining speed), <strong>Rod</strong> (durability coefficient multiplier), <strong>Plates</strong> (damage mitigation and resilience), and <strong>Links</strong> (special traits, passive bonuses, and magical affinities). Each alloy grants completely distinct attributes depending on which slot it is forged into.</p>
+          <div class="guide-rows">
+<div class="guide-row"><code>Adamantite</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Advanced Alloy</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Aluminum</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Aluminum Brass</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Aluminum Bronze</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Aluminum Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Anniversarium</code><p><strong>Plates:</strong> Plates<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Billon</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Boomerite</code><p><strong>Head:</strong> Head · <strong>Plates:</strong> Plates<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Brass</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Bronze</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Cobalt</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Copper</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Copper Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Corinthian Bronze</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Cringleium</code><p><strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Damascus Steel</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Daxi Absorption</code><p><strong>Plates:</strong> Tns Daxi Absorption<span class="guide-row__alias">TranscEndence</span></p></div>
+            <div class="guide-row"><code>Daxi Fortitude</code><p><strong>Plates:</strong> Tns Daxi Fortitude<span class="guide-row__alias">TranscEndence</span></p></div>
+            <div class="guide-row"><code>Daxi Regeneration</code><p><strong>Plates:</strong> Tns Daxi Regeneration<span class="guide-row__alias">TranscEndence</span></p></div>
+            <div class="guide-row"><code>Daxi Saturation</code><p><strong>Plates:</strong> Tns Daxi Saturation<span class="guide-row__alias">TranscEndence</span></p></div>
+            <div class="guide-row"><code>Daxi Strength</code><p><strong>Head:</strong> Tns Daxi Strength<span class="guide-row__alias">TranscEndence</span></p></div>
+            <div class="guide-row"><code>Duralumin</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Earth Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Ferrosilicon</code><p><strong>Head:</strong> Head · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Fortune Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Gold</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Gold Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Hardened Metal</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Infinity</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Infinity Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Iridium</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Iron</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Iron Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Lead</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Lead Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Liquid Love</code><p><strong>Links:</strong> Love Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Mag Thor</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Magic Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Magnesium</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Magnesium Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Magnonium</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Magsteel</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Metal Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Mixed Metal</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Mythril</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Niceinium</code><p><strong>Head:</strong> Head<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Nickel</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Osmium</code><p><strong>Head:</strong> Sfw Head · <strong>Rod:</strong> Sfw Rod · <strong>Plates:</strong> Sfw Plates · <strong>Links:</strong> Sfw Links<span class="guide-row__alias">SlimefunWarfare</span></p></div>
+            <div class="guide-row"><code>Osmium Superalloy</code><p><strong>Head:</strong> Sfw Head · <strong>Rod:</strong> Sfw Rod · <strong>Plates:</strong> Sfw Plates · <strong>Links:</strong> Sfw Links<span class="guide-row__alias">SlimefunWarfare</span></p></div>
+            <div class="guide-row"><code>Redstone Alloy</code><p><strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Refined Iron</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Reinforced Alloy</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Reinforced Draconium</code><p><strong>Head:</strong> Infinity Head<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Reinforced Slimesteel</code><p><strong>Head:</strong> Sfw Head · <strong>Rod:</strong> Sfw Rod · <strong>Plates:</strong> Sfw Plates · <strong>Links:</strong> Sfw Links<span class="guide-row__alias">SlimefunWarfare</span></p></div>
+            <div class="guide-row"><code>Scrap</code><p><strong>Head:</strong> Lite Head · <strong>Rod:</strong> Lite Rod · <strong>Plates:</strong> Lite Plates · <strong>Links:</strong> Lite Links<span class="guide-row__alias">LiteXpansion</span></p></div>
+            <div class="guide-row"><code>Sefirite</code><p><strong>Plates:</strong> Plates<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Segganesson</code><p><strong>Head:</strong> Sfw Head · <strong>Rod:</strong> Sfw Rod · <strong>Plates:</strong> Sfw Plates · <strong>Links:</strong> Sfw Links<span class="guide-row__alias">SlimefunWarfare</span></p></div>
+            <div class="guide-row"><code>Silver</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Silver Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Smithium</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Solder</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Stainless Steel</code><p><strong>Head:</strong> Dyn Head · <strong>Rod:</strong> Dyn Rod · <strong>Plates:</strong> Dyn Plates · <strong>Links:</strong> Dyn Links<span class="guide-row__alias">Dynatech</span></p></div>
+            <div class="guide-row"><code>Steel</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Tin</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Tin Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Titanium</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Ultimaninium</code><p><strong>Links:</strong> Ntw Utlimaninium<span class="guide-row__alias">Networks</span></p></div>
+            <div class="guide-row"><code>Unpatentablium</code><p><strong>Head:</strong> Sfw Head · <strong>Rod:</strong> Sfw Rod · <strong>Plates:</strong> Sfw Plates · <strong>Links:</strong> Sfw Links<span class="guide-row__alias">SlimefunWarfare</span></p></div>
+            <div class="guide-row"><code>Void</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+            <div class="guide-row"><code>Zinc</code><p><strong>Head:</strong> Head · <strong>Rod:</strong> Rod · <strong>Plates:</strong> Plates · <strong>Links:</strong> Links<span class="guide-row__alias">Core</span></p></div>
+            <div class="guide-row"><code>Zinc Singularity</code><p><strong>Head:</strong> Infinity Head · <strong>Rod:</strong> Infinity Rod · <strong>Plates:</strong> Infinity Plates · <strong>Links:</strong> Infinity Links<span class="guide-row__alias">Infinity</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: TACTICAL ARSENAL, GALAXYFUN & NEXCAVATE (SUITE 6) -->
+      <details class="guide-accordion" data-cat="combate" id="arsenal-espacio">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🚀</span>
+            <span>Tactical Arsenal, Galaxyfun Space &amp; Nexcavate</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--crimson">Suite 6 Combat</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p class="guide-section__note">Heavy ballistic armaments, obsidian alloy composite plating, archaeological excavation, and interplanetary space travel.</p>
+          <div class="guide-rows">
+            <div class="guide-row"><code>SlimefunWarfare: Ballistics &amp; Firearms</code><p>Tactical firearms, ballistic ammunition magazines, and electromagnetic railguns powered by Slimefun energy buffers. Available strictly in the Slimefun gamemode (disabled in Classic; friendly fire and claim damage blocked).<span class="guide-row__alias">Warfare</span></p></div>
+            <div class="guide-row"><code>Galaxyfun: Interplanetary Exploration</code><p>Assemble multiblock launchpads and rockets, load pressurized rocket fuel, and charge oxygen canisters in your spacesuit prior to liftoff. Journey to the Moon, Mars, and deep-space asteroids featuring altered gravity dynamics and alien minerals.<span class="guide-row__alias">Galaxyfun</span></p></div>
+            <div class="guide-row"><code>Nexcavate: Nether Archaeology</code><p>The <strong>Archaeological Pickaxe</strong> and <strong>Drill</strong> extract Ancient Shards embedded within polished blackstone (50%), polished bricks (40%), and gilded blackstone (30%). Reassemble forgotten relics at the Assembly Machine.<span class="guide-row__alias">Nexcavate</span></p></div>
+            <div class="guide-row"><code>FluffyMachines: Adaptive Paxel</code><p>All-in-one composite multi-tool that morphs dynamically into a shovel, pickaxe, or axe depending on the targeted block. Locks into battle-axe form during mob combat for uninterrupted swings.<span class="guide-row__alias">FluffyMachines</span></p></div>
+            <div class="guide-row"><code>Bump: Appraisal &amp; Quality Tiers</code><p>Reveal hidden item affixes and quality tiers using the Quality Identifier, appraise rolled modifiers with the Appraisal Instrument, and sharpen weapon traits at the Attribute Grindstone.<span class="guide-row__alias">Bump</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: DRAKESBOSSES VS SLIMEFUN (SUITE 6) -->
+      <details class="guide-accordion" data-cat="combate" id="drakesbosses">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">⚔️</span>
+            <span>DrakesBosses vs Slimefun: The Martial Counterweight &amp; Anti-AFK</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--crimson">Anti-Infinity Active</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--alert">
+            <strong>⚖️ THE MARTIAL COUNTERWEIGHT:</strong> On typical servers, endgame Slimefun degenerates into passive AFK farming behind invulnerable gear. On DrakesCraft, <strong>DrakesBosses was engineered specifically as the active martial counterweight to Slimefun technology</strong>.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row">
+              <code>Active Anti-Infinity Combat Logic</code>
+              <p>Combat engine classes <code>FullInfinityArmorCounter.java</code> and <code>SlimefunArmorAdaptation.java</code> actively inspect player loadouts for <em>Infinity Singularity</em> or high-tier SlimeTinker armor. During boss encounters against the 26 pantheonic deities, mathematical invulnerability is shattered: divine strikes pierce armor ratings as <strong>True Damage</strong>, preventing automated or passive victories.</p>
+            </div>
+            <div class="guide-row">
+              <code>26 Deities across 5 Pantheons</code>
+              <p><strong>Greek:</strong> Zeus, Hades, Poseidon, Ares.<br>
+              <strong>Norse:</strong> Thor, Odin, Kratos.<br>
+              <strong>Egyptian:</strong> Ra, Anubis, Isis, Set.<br>
+              <strong>Cataclysmic:</strong> Hydra, Wither Storm, Ancestral Dragon, Typhon.<br>
+              <strong>Mythic &amp; Sovereign:</strong> Cosmic Garou, Jax, Obsidian Sentinel, and the legendary Mahoraga featuring real-time kinetic adaptation.</p>
+            </div>
+            <div class="guide-row">
+              <code>Method 1: Physical Overworld Shrines</code>
+              <p>Construidos por jugadores con Pedestales sagrados (Crying Obsidian, Lodestone o Blackstone pulido). Ofrenda sagrada en mano: <em>Lightning Rod</em> para invocar a Zeus, <em>Trident</em> para Poseidón, <em>Netherite Ingot</em> para Ares o <em>Wither Skull</em> para Hades. Se desata una tormenta de rayos y pentagramas celestiales.</p>
+            </div>
+            <div class="guide-row">
+              <code>Método 2: Spawns Celestiales Naturales</code>
+              <p>Apariciones esporádicas en biomas salvajes de <code>world</code>, <code>world_nether</code> y <code>world_the_end</code> con alertas globales en el chat, relámpagos y títulos cinemáticos.</p>
+            </div>
+            <div class="guide-row">
+              <code>Método 3: Arenas del Olimpo (/bosswarp)</code>
+              <p>Domos de combate no destructivos con cobro de entrada en Dragmas vía Vault. Permite a los jugadores desafiar a los dioses en celdas seguras y cuenta con modo espectador interactivo (<code>/bosswarp spectate &lt;jugador&gt;</code>) y salida de emergencia (<code>/bosswarp leave</code>).</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECCIÓN: TIER 10 OLYMPUS ASCENDANCY -->
+      <details class="guide-accordion" data-cat="tier10" id="tier10-olympus">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">🏛️</span>
+            <span>Tier 10: "Olympus Ascendancy" — La Convergencia Definitiva</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--gold">Fin de Progresión</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-callout guide-callout--gold">
+            <strong>La Fusión de Tres Mundos:</strong> El techo de cristal de Infinity se rompe en DrakesCraft. En lugar de que Slimefun y los Dioses operen como islas separadas, el <strong>Tier 10 Olympus Ascendancy</strong> une la energía de Suite 4, las aleaciones cuánticas de Suite 1 y los núcleos estelares divinos de Suite 6.
+          </div>
+          <div class="guide-rows">
+            <div class="guide-row">
+              <code>La Forja Primordial (Multibloque 7×7×5)</code>
+              <p>Estructura monumental de ingeniería construida con reactores de vacío, bloques cuánticos y pedestales de contención divina. Es la única forja del universo capaz de fundir materiales de Tier 10.</p>
+            </div>
+            <div class="guide-row">
+              <code>Ingredientes Tripartitos de la Convergencia</code>
+              <p>1. <strong>Energía Extrema:</strong> Requiere millones de Joules provenientes de Centrales Nucleares o Reactores de Vacío de <code>DrakesGenerators</code> (Suite 4).<br>
+              2. <strong>Materia Cuántica:</strong> Singularidades puras forjadas en <code>DrakesTech</code> (Suite 1).<br>
+              3. <strong>Núcleos Estelares Divinos:</strong> Esencias divinas que <em>únicamente dropean los 26 dioses panteónicos</em> al ser abatidos en combate cuerpo a cuerpo en <code>DrakesBosses</code> (Suite 6).</p>
+            </div>
+            <div class="guide-row">
+              <code>Equipo Primordial (Tier 10)</code>
+              <p>Herramientas y armaduras primordiales que trascienden el Infinity Singularity: daño cósmico irreducible, mitigación activa ante Daño Verdadero y afinidad elemental con el Olimpo.</p>
+            </div>
+            <div class="guide-row">
+              <code>Prestigio Cósmico (Paragón)</code>
+              <p>Al llegar al máximo de la tecnología, los jugadores pueden sacrificar un set completo de Infinity Singularity en el Altar de Dallas para ascender en el sistema de <strong>Paragón</strong>, desbloqueando cosméticos celestiales, títulos míticos y pasivas de cuenta permanentes.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECCIÓN: ALMACENAMIENTO SEGURO (SUITE 5) -->
+      <details class="guide-accordion" data-cat="almacenamiento" id="almacenamiento-seguro">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">📦</span>
+            <span>Almacenamiento Seguro: Mochilas Tintables, EnderChests &amp; Bóvedas</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--cyan">Suite 5 Utility</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <p class="guide-section__note">Soluciones de almacenamiento ordenadas de menor a mayor escala, con protección transaccional anti-duplicación.</p>
+          <div class="guide-rows">
+            <div class="guide-row"><code>DyedBackpacks (96 Variantes)</code><p>Mochilas portátiles que viajan en tu inventario. Disponibles en varios niveles de capacidad y teñibles con los 16 tintes vanilla. Cuentan con protección anti-duplicación que impide abrir una mochila dentro de otra.<span class="guide-row__alias">DyedBackpacks</span></p></div>
+            <div class="guide-row"><code>ColoredEnderChests (4.096 Frecuencias)</code><p>Cofres de Ender sintonizables mediante 3 bloques de lana de colores en su parte superior. Permiten compartir inventarios instantáneos entre compañeros de isla o miembros de una misma facción.<span class="guide-row__alias">ColoredEnder</span></p></div>
+            <div class="guide-row"><code>ChestTerminal</code><p>Visual chest indexer terminal that scans and aggregates items from adjacent physical chests without requiring a full cable network.<span class="guide-row__alias">ChestTerminal</span></p></div>
+            <div class="guide-row"><code>DankTech2 &amp; PrivateStorage</code><p>Ultra-compact single-item mass vaults and personal safes protected with owner UUID signatures that only the legitimate owner can unlock.<span class="guide-row__alias">DankTech / Private</span></p></div>
+            <div class="guide-row"><code>PlayerVaultZ (/pv)</code><p>Secure virtual vault storage backed by SQLite WAL within the Star Engine. Strictly isolated per gamemode to eliminate cross-dimensional item leaks.<span class="guide-row__alias">Star Engine</span></p></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- SECTION: QOL & UTILITIES -->
+      <details class="guide-accordion" data-cat="qol" id="qol-utilidades">
+        <summary class="guide-accordion__summary">
+          <div class="guide-accordion__header-left">
+            <span class="guide-accordion__icon">💡</span>
+            <span>Quality of Life (QoL), Calculators &amp; Diagnostics</span>
+          </div>
+          <span class="guide-accordion__badge guide-accordion__badge--emerald">Utilities</span>
+          <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></span>
+        </summary>
+        <div class="guide-accordion__content">
+          <div class="guide-rows">
+            <div class="guide-row"><code>/sfcalc &lt;item&gt;</code><p>Instant Slimefun craft breakdown: calculates the exact total quantities of base raw materials and sequential intermediate steps required to craft any machine or alloy.<span class="guide-row__alias">SFCalc</span></p></div>
+            <div class="guide-row"><code>SlimeHUD</code><p>Dynamic floating HUD displaying real-time stored Joules, power draw per tick, percentage completion, and stall reasons for the targeted machine.<span class="guide-row__alias">SlimeHUD</span></p></div>
+            <div class="guide-row"><code>/sfa (SlimefunAdvancements)</code><p>Visual achievement tree and quest roadmaps guiding player development from primitive copper tools up to the quantum era.<span class="guide-row__alias">Advancements</span></p></div>
+            <div class="guide-row"><code>SlimeFrame</code><p>Hardened item frames that preserve PDC item metadata without stripping custom Slimefun attributes when popped off walls.<span class="guide-row__alias">SlimeFrame</span></p></div>
+            <div class="guide-row"><code>SimpleUtils: Elevators &amp; Wrench</code><p>Elevator blocks for teleporting up and down vertical floors by jumping or crouching, plus an ergonomic wrench to rotate machines without breaking them.<span class="guide-row__alias">SimpleUtils</span></p></div>
+            <div class="guide-row"><code>SensibleToolbox (/stb)</code><p>Industrial furnaces and processors compatible with energized ingots. Use <code>/stb friend &lt;player&gt;</code> to grant co-op access to your toolboxes.<span class="guide-row__alias">STB</span></p></div>
+            <div class="guide-row"><code>SFPortalGun: Portal &amp; Gravity Gun</code><p>Utility technological devices: <strong>Portal Gun</strong> bridges blue and orange portals within your claimed lands; <strong>Gravity Gun</strong> (golden hoe) grabs blocks and entities on right-click, releases them with the drop key (<code>Q</code>), or propels them forward with <code>Shift + Q</code>.<span class="guide-row__alias">SFPortalGun</span></p></div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>A living engineering guide. If you notice any missing mechanics or unexpected behavior, let us know on Discord.</p></div><div class="site-footer__links"><a href="store-en.html">Store</a><a href="support-en.html">Support</a><a href="terms-en.html">Terms</a><a href="privacidad-en.html">Privacy</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor"><span>Support the Project</span><iframe src="https://github.com/sponsors/SlimefunNewHorizons/button" title="Sponsor DrakesCraft-Labs" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe><iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Sponsor JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe></div></div></footer>
+  </main>
+  <script src="scripts/site.js?v=20261017-v7"></script>
+  <script src="scripts/guia.js?v=20261017-v7"></script>
+</body>
+</html>
