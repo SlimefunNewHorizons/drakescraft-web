@@ -978,6 +978,7 @@ await app.register(fastifyStatic, {
       'apoya.html',
       'apoya-en.html',
       'guia-comandos.html',
+      'guia-comandos-en.html',
       'guia-rangos.html',
       'guia-slimefun.html',
       'guia-plugins.html',
