@@ -279,8 +279,8 @@ async function testStoreApi() {
       errors.push(`/api/store: HTTP ${res.status}`);
     } else {
       const data = JSON.parse(res.body);
-      if (!Array.isArray(data.products) || data.products.length < 50) {
-        errors.push(`/api/store: expected at least 50 products, got ${data.products?.length}`);
+      if (!Array.isArray(data.products) || data.products.length < 49) {
+        errors.push(`/api/store: expected at least 49 products, got ${data.products?.length}`);
       } else {
         passed++;
         console.log(`✓ /api/store (${data.products.length} products verified)`);

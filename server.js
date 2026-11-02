@@ -139,8 +139,7 @@ const tebexPackageIds = {
   'keys-hermes-5': 7697434,
   'keys-zeus-3': 7697435,
   'booster-money-1h': 7697436,
-  'booster-exp-1h': 7697437,
-  'kit-halloween-tartaro': 7707436
+  'booster-exp-1h': 7697437
 };
 // Los bloqueos excepcionales se declaran aquí para impedir que un producto llegue al checkout.
 // protection-481 fue verificada contra el alias vipzeus de ProtectionStones.

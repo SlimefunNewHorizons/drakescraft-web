@@ -1,6 +1,6 @@
 /* Tema estacional minimo para paginas SIN site.js (404, 500, mantenimiento, ojo de atenea).
-   Misma regla de calendario que site.js (America/Santiago): octubre halloween, noviembre birthday,
-   1 dic - 15 ene christmas, febrero valentines. Solo pone la clase del tema; los efectos los carga site.js. */
+   Regla de calendario (America/Santiago): 1 al 31 de diciembre -> christmas (con apagado manual),
+   resto del ano -> default (tema estandar T2). */
 (function () {
     var q = new URLSearchParams(window.location.search).get('theme');
     var month, day;
@@ -9,15 +9,13 @@
         month = Number(parts.filter(function (x) { return x.type === 'month'; })[0].value) - 1;
         day = Number(parts.filter(function (x) { return x.type === 'day'; })[0].value);
     } catch (e) { var n = new Date(); month = n.getMonth(); day = n.getDate(); }
-    var theme = 'default';
-    if (month === 9) theme = 'halloween';
-    else if (month === 10) theme = 'birthday';
-    else if (month === 11 || (month === 0 && day <= 15)) theme = 'christmas';
-    else if (month === 1) theme = 'valentines';
-    if (q && ['halloween', 'birthday', 'christmas', 'valentines', 'default'].indexOf(q.toLowerCase()) >= 0) theme = q.toLowerCase();
+    var disabled = false;
+    try { disabled = localStorage.getItem('drakes_christmas_disabled') === '1'; } catch (e) {}
+    var theme = (month === 11 && day >= 1 && day <= 31 && !disabled) ? 'christmas' : 'default';
+    if (q && ['christmas', 'default'].indexOf(q.toLowerCase()) >= 0) theme = q.toLowerCase();
     function apply() {
-        document.body.classList.remove('theme-halloween', 'theme-birthday', 'theme-christmas', 'theme-valentines');
-        if (theme !== 'default') document.body.classList.add('theme-' + theme);
+        document.body.classList.remove('theme-birthday', 'theme-christmas', 'theme-valentines');
+        if (theme === 'christmas') document.body.classList.add('theme-christmas');
     }
     if (document.body) apply(); else document.addEventListener('DOMContentLoaded', apply);
 })();

@@ -1,308 +1,346 @@
 /* ==========================================================================
-   DRAKESCRAFT CHRISTMAS & HIEMAL SOLSTICE ATMOSPHERIC ENGINE
-   - Partículas de nieve y cristales de hielo (Canvas ultraliviano 60fps)
-   - Resplandor auroral y copos con deriva sinusoidal
-   - Banner interactivo de Solsticio Hiemal y Kit de Navidad
-   - Auto-activación programada: Diciembre y hasta el 15 de Enero
+   DRAKESCRAFT CHRISTMAS & HIEMAL SOLSTICE ATMOSPHERIC ENGINE (FASE 2)
+   - Auto-activación programada: 1 al 31 de Diciembre (America/Santiago)
+   - Apagado manual persistente (localStorage: drakes_christmas_disabled)
+   - Nieve ligera en Canvas con pausa en pestaña oculta y bajo consumo móvil
+   - Respeto estricto a prefers-reduced-motion
+   - Sonido de campanas cristalinas 100% OPT-IN con botón (nunca autoplay)
    ========================================================================== */
 (function () {
     'use strict';
 
-    // Misma regla que site.js (calendario de Chile, ?theme= solo en la pestana). Si site.js no esta cargado, se
-    // replica la parte necesaria.
-    function isSeason() {
-        if (typeof window.drakesDetectSeasonalTheme === 'function') return window.drakesDetectSeasonalTheme() === 'christmas';
-        const q = new URLSearchParams(window.location.search).get('theme');
-        if (q) return q.toLowerCase() === 'christmas';
+    const isEn = (document.documentElement.lang || '').toLowerCase().startsWith('en');
+
+    function isDecemberWindow() {
+        if (typeof window.drakesCalendarTheme === 'function') {
+            return window.drakesCalendarTheme() === 'christmas';
+        }
         let month, day;
         try {
-            const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+            const parts = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'America/Santiago',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(new Date());
             month = Number(parts.find((x) => x.type === 'month').value) - 1;
             day = Number(parts.find((x) => x.type === 'day').value);
-        } catch (e) { const n = new Date(); month = n.getMonth(); day = n.getDate(); }
-        return month === 11 || (month === 0 && day <= 15);
+        } catch (e) {
+            const n = new Date();
+            month = n.getMonth();
+            day = n.getDate();
+        }
+        return month === 11 && day >= 1 && day <= 31;
     }
 
-    if (!isSeason()) return;
+    function isPreviewChristmas() {
+        const q = new URLSearchParams(window.location.search).get('theme');
+        if (q && q.toLowerCase() === 'christmas') return true;
+        try {
+            return sessionStorage.getItem('drakes_seasonal_preview') === 'christmas';
+        } catch (e) {
+            return false;
+        }
+    }
 
-    function initChristmasFX() {
+    function isManuallyDisabled() {
+        if (isPreviewChristmas()) return false;
+        try {
+            return localStorage.getItem('drakes_christmas_disabled') === '1';
+        } catch (e) {
+            return false;
+        }
+    }
+
+    if (!isDecemberWindow() && !isPreviewChristmas()) return;
+
+    const reducedMotionQuery = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : { matches: false };
+
+    let snowCanvas = null;
+    let animFrame = null;
+    let snowRunning = false;
+    let resizeHandler = null;
+
+    // Web Audio API opt-in bells (NUNCA autoplay; solo al pulsar el botón)
+    let audioCtx = null;
+    let bellsEnabled = false;
+    let bellsTimer = null;
+
+    function playChimeChord() {
+        if (!bellsEnabled || document.hidden) return;
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!audioCtx) {
+            audioCtx = new AudioCtor();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume().catch(() => {});
+        }
+        const now = audioCtx.currentTime;
+        // Acorde cristalino invernal suave (E6, G#6, B6, E7)
+        const notes = [1318.51, 1661.22, 1975.53, 2637.02];
+        notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.14);
+            gain.gain.setValueAtTime(0.0001, now + idx * 0.14);
+            gain.gain.exponentialRampToValueAtTime(0.035, now + idx * 0.14 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.14 + 1.45);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.14);
+            osc.stop(now + idx * 0.14 + 1.5);
+        });
+    }
+
+    function stopBells() {
+        bellsEnabled = false;
+        if (bellsTimer) {
+            clearInterval(bellsTimer);
+            bellsTimer = null;
+        }
+    }
+
+    function toggleBells(btn) {
+        if (bellsEnabled) {
+            stopBells();
+        } else {
+            bellsEnabled = true;
+            playChimeChord();
+            bellsTimer = setInterval(playChimeChord, 11000);
+        }
+        updateControlsUI(btn?.closest('#drakes-christmas-widget'));
+    }
+
+    function stopSnowCanvas() {
+        snowRunning = false;
+        if (animFrame) {
+            cancelAnimationFrame(animFrame);
+            animFrame = null;
+        }
+        if (resizeHandler) {
+            window.removeEventListener('resize', resizeHandler);
+            resizeHandler = null;
+        }
+        if (snowCanvas && snowCanvas.parentNode) {
+            snowCanvas.parentNode.removeChild(snowCanvas);
+        }
+        snowCanvas = null;
+    }
+
+    function startSnowCanvas() {
+        if (reducedMotionQuery.matches || isManuallyDisabled()) {
+            stopSnowCanvas();
+            return;
+        }
         if (document.getElementById('drakes-christmas-canvas')) return;
 
-        // 1. Canvas para copos de nieve y cristales de hielo
+        const isMobile = window.innerWidth < 768;
         const canvas = document.createElement('canvas');
         canvas.id = 'drakes-christmas-canvas';
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100vw';
-        canvas.style.height = '100vh';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.zIndex = '99997';
-        canvas.style.opacity = '0.85';
+        canvas.setAttribute('aria-hidden', 'true');
+        canvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9998;opacity:0.82;';
         document.body.appendChild(canvas);
+        snowCanvas = canvas;
 
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
 
-        window.addEventListener('resize', () => {
+        resizeHandler = () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-        });
+        };
+        window.addEventListener('resize', resizeHandler, { passive: true });
 
-        // 2. Copos de nieve y cristales
+        // Bajo consumo en móvil: máximo 16 copos sin shadowBlur
+        const maxFlakes = isMobile ? 16 : 42;
         const flakes = [];
-        const MAX_FLAKES = window.innerWidth < 768 ? 24 : 50;
-
-        for (let i = 0; i < MAX_FLAKES; i++) {
+        for (let i = 0; i < maxFlakes; i++) {
             flakes.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                radius: Math.random() * 2.5 + 1.0,
-                speedY: Math.random() * 1.2 + 0.6,
-                speedX: Math.random() * 0.5 - 0.25,
-                opacity: Math.random() * 0.6 + 0.3,
-                sway: Math.random() * 2.0,
-                swaySpeed: Math.random() * 0.02 + 0.01,
-                isCrystal: Math.random() > 0.75
+                radius: Math.random() * (isMobile ? 1.8 : 2.3) + 0.9,
+                speedY: Math.random() * 0.95 + 0.45,
+                speedX: Math.random() * 0.4 - 0.2,
+                opacity: Math.random() * 0.5 + 0.28,
+                sway: Math.random() * Math.PI * 2,
+                swaySpeed: Math.random() * 0.018 + 0.008,
+                isCrystal: Math.random() > 0.78
             });
         }
 
-        let animFrame;
+        snowRunning = true;
+
         function renderSnow() {
+            if (!snowRunning) return;
+            if (document.hidden || reducedMotionQuery.matches) {
+                animFrame = null;
+                return;
+            }
             ctx.clearRect(0, 0, width, height);
 
             for (let i = 0; i < flakes.length; i++) {
                 const f = flakes[i];
                 f.sway += f.swaySpeed;
                 f.y += f.speedY;
-                f.x += f.speedX + Math.sin(f.sway) * 0.4;
+                f.x += f.speedX + Math.sin(f.sway) * 0.35;
 
-                if (f.y > height + 5) {
-                    f.y = -5;
+                if (f.y > height + 6) {
+                    f.y = -6;
                     f.x = Math.random() * width;
                 }
-                if (f.x > width + 5) f.x = -5;
-                if (f.x < -5) f.x = width + 5;
+                if (f.x > width + 6) f.x = -6;
+                if (f.x < -6) f.x = width + 6;
 
-                ctx.save();
                 ctx.globalAlpha = f.opacity;
-                if (f.isCrystal) {
-                    ctx.fillStyle = '#bae6fd';
-                    ctx.shadowColor = '#38bdf8';
-                    ctx.shadowBlur = 6;
-                    ctx.beginPath();
-                    ctx.arc(f.x, f.y, f.radius * 1.2, 0, Math.PI * 2);
-                    ctx.fill();
-                } else {
-                    ctx.fillStyle = '#f0f9ff';
-                    ctx.shadowColor = '#e0f2fe';
-                    ctx.shadowBlur = 3;
-                    ctx.beginPath();
-                    ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-                ctx.restore();
+                ctx.fillStyle = f.isCrystal ? '#bae6fd' : '#f0f9ff';
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.isCrystal ? f.radius * 1.15 : f.radius, 0, Math.PI * 2);
+                ctx.fill();
             }
-
+            ctx.globalAlpha = 1;
             animFrame = requestAnimationFrame(renderSnow);
         }
 
         renderSnow();
 
-        // 3. Widget interactivo del Kit de Navidad (Solsticio Hiemal)
-        injectChristmasKitWidget();
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && snowRunning && !animFrame && !reducedMotionQuery.matches) {
+                animFrame = requestAnimationFrame(renderSnow);
+            }
+        });
     }
 
-    function injectChristmasKitWidget() {
-        if (document.getElementById('drakes-christmas-widget')) return;
+    function updateControlsUI(widget) {
+        if (!widget) return;
+        const disabled = isManuallyDisabled();
+        const toggleBtn = widget.querySelector('#drakes-christmas-toggle');
+        const bellsBtn = widget.querySelector('#drakes-christmas-bells');
 
-        const widget = document.createElement('div');
-        widget.id = 'drakes-christmas-widget';
-        widget.innerHTML = `
-            <div class="christmas-badge" title="Kit de Navidad & Solsticio Hiemal" role="button" tabindex="0">
-                <span class="christmas-badge__icon">❄️</span>
-                <span class="christmas-badge__label">Kit Navidad</span>
-            </div>
-            <div class="christmas-modal" id="drakes-christmas-modal" style="display:none;" aria-hidden="true">
-                <div class="christmas-modal__card">
-                    <button class="christmas-modal__close" id="drakes-christmas-close" aria-label="Cerrar">&times;</button>
-                    <div class="christmas-modal__header">
-                        <span class="christmas-modal__tag">🎄 SOLSTICIO HIEMAL 2026</span>
-                        <h3 class="christmas-modal__title">Kit de Navidad Exclusivo</h3>
-                        <p class="christmas-modal__desc">Celebración invernal en los 5 reinos de DrakesCraft con bendición de la Diosa Atenea.</p>
-                    </div>
-                    <div class="christmas-modal__content">
-                        <ul class="christmas-kit-list">
-                            <li><span class="kit-item-icon">⚔️</span> <strong>Hoja de Escarcha Arcana:</strong> Espada legendaria con filo helado e impacto criogénico.</li>
-                            <li><span class="kit-item-icon">🛡️</span> <strong>Égida Glacial:</strong> Escudo tallado en hielo perenne de la Cima Olímpica.</li>
-                            <li><span class="kit-item-icon">✨</span> <strong>100,000 Monedas & 5x Llaves Cósmicas:</strong> Para abrir cofres estelares en el Spawn.</li>
-                            <li><span class="kit-item-icon">🎁</span> <strong>Caja de Regalo de Navidad:</strong> Mochila decorativa repleta de consumibles y néctar.</li>
-                        </ul>
-                    </div>
-                    <div class="christmas-modal__footer">
-                        <a href="store.html" class="christmas-modal__btn">Ver en la Tienda Oficial</a>
-                    </div>
-                </div>
-            </div>
-        `;
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-pressed', String(!disabled));
+            toggleBtn.textContent = disabled
+                ? (isEn ? '❄️ Enable Christmas' : '❄️ Activar Navidad')
+                : (isEn ? '❄️ Snow: ON' : '❄️ Nieve: ON');
+            toggleBtn.title = disabled
+                ? (isEn ? 'Turn seasonal snow & theme back on' : 'Volver a activar tema y nieve de Navidad')
+                : (isEn ? 'Turn off Christmas mode manually' : 'Apagar modo Navidad manualmente');
+        }
+        if (bellsBtn) {
+            bellsBtn.style.display = disabled ? 'none' : 'inline-flex';
+            bellsBtn.setAttribute('aria-pressed', String(bellsEnabled));
+            bellsBtn.textContent = bellsEnabled
+                ? (isEn ? '🔔 Bells: ON' : '🔔 Campanas: ON')
+                : (isEn ? '🔕 Bells' : '🔕 Campanas');
+        }
+    }
+
+    function injectChristmasControls() {
+        if (document.getElementById('drakes-christmas-widget')) return;
 
         const style = document.createElement('style');
         style.textContent = `
             #drakes-christmas-widget {
                 position: fixed;
-                bottom: 24px;
-                left: 24px;
-                z-index: 99999;
-                font-family: inherit;
-            }
-            .christmas-badge {
+                bottom: 18px;
+                left: 18px;
+                z-index: 9999;
                 display: flex;
                 align-items: center;
-                gap: 8px;
-                background: linear-gradient(135deg, rgba(12, 38, 64, 0.95), rgba(8, 25, 45, 0.95));
-                border: 2px solid #38bdf8;
+                gap: 6px;
+                font-family: var(--font-mono, monospace);
+            }
+            .christmas-ctrl-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: rgba(8, 20, 36, 0.9);
+                border: 1px solid rgba(56, 189, 248, 0.45);
                 border-radius: 999px;
-                padding: 10px 18px;
+                padding: 7px 13px;
                 color: #e0f2fe;
-                font-size: 0.92rem;
+                font-size: 0.75rem;
                 font-weight: 600;
                 cursor: pointer;
-                box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                user-select: none;
-            }
-            .christmas-badge:hover {
-                transform: translateY(-2px) scale(1.03);
-                box-shadow: 0 6px 26px rgba(56, 189, 248, 0.55);
-            }
-            .christmas-badge__icon {
-                font-size: 1.25rem;
-                animation: drakes-spin-pulse 3s infinite ease-in-out;
-            }
-            @keyframes drakes-spin-pulse {
-                0%, 100% { transform: rotate(0deg) scale(1); }
-                50% { transform: rotate(180deg) scale(1.15); }
-            }
-            .christmas-modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: rgba(3, 7, 18, 0.75);
                 backdrop-filter: blur(8px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 100000;
-                padding: 16px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+                transition: border-color 0.2s ease, background 0.2s ease;
             }
-            .christmas-modal__card {
-                background: linear-gradient(135deg, #091a2e 0%, #0c2b42 100%);
-                border: 2px solid #38bdf8;
-                border-radius: 18px;
-                padding: 28px;
-                max-width: 480px;
-                width: 100%;
-                box-shadow: 0 16px 48px rgba(56, 189, 248, 0.3);
-                position: relative;
-                color: #f0f9ff;
+            .christmas-ctrl-btn:hover {
+                border-color: #7dd3fc;
+                background: rgba(12, 34, 58, 0.96);
             }
-            .christmas-modal__close {
-                position: absolute;
-                top: 14px;
-                right: 18px;
-                background: none;
-                border: none;
-                color: #7dd3fc;
-                font-size: 1.8rem;
-                cursor: pointer;
-                line-height: 1;
+            .christmas-ctrl-btn[aria-pressed="true"] {
+                border-color: #38bdf8;
+                box-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
             }
-            .christmas-modal__tag {
-                display: inline-block;
-                background: rgba(56, 189, 248, 0.15);
-                border: 1px solid #38bdf8;
-                border-radius: 999px;
-                padding: 3px 12px;
-                font-size: 0.72rem;
-                font-weight: 700;
-                color: #38bdf8;
-                letter-spacing: 0.08em;
-                margin-bottom: 8px;
-            }
-            .christmas-modal__title {
-                margin: 0 0 6px 0;
-                font-size: 1.4rem;
-                color: #e0f2fe;
-            }
-            .christmas-modal__desc {
-                margin: 0 0 16px 0;
-                font-size: 0.88rem;
-                color: #94a3b8;
-                line-height: 1.45;
-            }
-            .christmas-kit-list {
-                list-style: none;
-                padding: 0;
-                margin: 0 0 20px 0;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .christmas-kit-list li {
-                background: rgba(15, 23, 42, 0.6);
-                border: 1px solid rgba(56, 189, 248, 0.2);
-                border-radius: 10px;
-                padding: 10px 14px;
-                font-size: 0.86rem;
-                line-height: 1.4;
-                color: #cbd5e1;
-            }
-            .kit-item-icon {
-                margin-right: 6px;
-                font-size: 1rem;
-            }
-            .christmas-modal__btn {
-                display: block;
-                text-align: center;
-                background: linear-gradient(135deg, #0284c7, #0f766e);
-                color: #fff !important;
-                border: 1px solid #7dd3fc;
-                border-radius: 10px;
-                padding: 12px 20px;
-                font-weight: 600;
-                text-decoration: none;
-                box-shadow: 0 4px 18px rgba(56, 189, 248, 0.4);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-            }
-            .christmas-modal__btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 24px rgba(56, 189, 248, 0.6);
+            @media (max-width: 760px) {
+                #drakes-christmas-widget {
+                    bottom: 82px;
+                    left: 12px;
+                }
+                .christmas-ctrl-btn {
+                    padding: 6px 10px;
+                    font-size: 0.7rem;
+                }
             }
         `;
         document.head.appendChild(style);
+
+        const widget = document.createElement('div');
+        widget.id = 'drakes-christmas-widget';
+        widget.setAttribute('role', 'region');
+        widget.setAttribute('aria-label', isEn ? 'Christmas seasonal controls' : 'Controles del modo Navidad');
+        widget.innerHTML = `
+            <button type="button" class="christmas-ctrl-btn" id="drakes-christmas-toggle"></button>
+            <button type="button" class="christmas-ctrl-btn" id="drakes-christmas-bells" aria-pressed="false" title="${isEn ? 'Toggle soft winter chimes (opt-in sound)' : 'Alternar sonido suave de campanas (opt-in)'}"></button>
+        `;
         document.body.appendChild(widget);
 
-        const badge = widget.querySelector('.christmas-badge');
-        const modal = widget.querySelector('#drakes-christmas-modal');
-        const closeBtn = widget.querySelector('#drakes-christmas-close');
+        const toggleBtn = widget.querySelector('#drakes-christmas-toggle');
+        const bellsBtn = widget.querySelector('#drakes-christmas-bells');
 
-        badge.addEventListener('click', () => {
-            modal.style.display = 'flex';
-            modal.setAttribute('aria-hidden', 'false');
-        });
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            modal.setAttribute('aria-hidden', 'true');
-        });
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
+        toggleBtn.addEventListener('click', () => {
+            const nextDisabled = !isManuallyDisabled();
+            if (nextDisabled) {
+                stopBells();
+                stopSnowCanvas();
+                if (typeof window.drakesSetChristmasDisabled === 'function') {
+                    window.drakesSetChristmasDisabled(true);
+                } else {
+                    try { localStorage.setItem('drakes_christmas_disabled', '1'); } catch (e) {}
+                    document.body.classList.remove('theme-christmas');
+                }
+            } else {
+                if (typeof window.drakesSetChristmasDisabled === 'function') {
+                    window.drakesSetChristmasDisabled(false);
+                } else {
+                    try { localStorage.removeItem('drakes_christmas_disabled'); } catch (e) {}
+                    document.body.classList.add('theme-christmas');
+                }
+                startSnowCanvas();
             }
+            updateControlsUI(widget);
         });
+
+        bellsBtn.addEventListener('click', () => toggleBells(bellsBtn));
+        updateControlsUI(widget);
+    }
+
+    function initChristmasFX() {
+        injectChristmasControls();
+        if (!isManuallyDisabled()) {
+            startSnowCanvas();
+        }
+        if (reducedMotionQuery.addEventListener) {
+            reducedMotionQuery.addEventListener('change', (ev) => {
+                if (ev.matches) stopSnowCanvas();
+                else if (!isManuallyDisabled()) startSnowCanvas();
+            });
+        }
     }
 
     if (document.readyState === 'loading') {

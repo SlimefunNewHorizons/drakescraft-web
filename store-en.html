@@ -133,25 +133,8 @@
           </div>
         </div>
 
-        <!-- Dynamic Seasonal Event Banner -->
-        <div id="store-seasonal-banner-container" class="store-halloween-banner seasonal-banner" style="background: linear-gradient(135deg, rgba(35, 10, 45, 0.95), rgba(75, 18, 20, 0.95)); border: 2px solid #ff7700; border-radius: 14px; padding: 22px 28px; margin-bottom: 25px; box-shadow: 0 0 30px rgba(255, 119, 0, 0.25); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-          <div style="display: flex; align-items: center; gap: 18px;">
-            <span style="font-size: 2.8rem; filter: drop-shadow(0 0 10px #ff7700);">🎃</span>
-            <div>
-              <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 119, 0, 0.2); border: 1px solid #ff7700; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: #ffaa33; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">
-                <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ff7700; box-shadow: 0 0 8px #ff7700;"></span>
-                Limited Special Edition · October 2026
-              </div>
-              <h3 style="margin: 0; font-size: 1.45rem; color: #fff; font-family: 'Space Grotesk', sans-serif;">The Eternal Night of Tartarus has begun</h3>
-              <p style="margin: 4px 0 0; color: #d0c0d8; font-size: 0.92rem; max-width: 650px;">
-                In DrakesCraft, sunlight has been banished throughout October. Discover the <strong>Legendary Kit: Shadows of Tartarus</strong>, featuring the divine armor of the King of Tartarus (+10 Hearts and total immunity to radiation and fire), Charon's Spectral Scythe with true damage, and the legendary Spectral Sea Potato.
-              </p>
-            </div>
-          </div>
-          <a href="#catalogo" onclick="window.storeSelectCategory && window.storeSelectCategory('halloween')" style="background: linear-gradient(135deg, #ff7700, #b30000); color: #fff; font-weight: 700; padding: 12px 24px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 15px rgba(255, 119, 0, 0.4); border: 1px solid #ffaa33; white-space: nowrap; transition: transform 0.2s, box-shadow 0.2s;">
-            View Tartarus Kit US$29.99 ➔
-          </a>
-        </div>
+        <!-- Dynamic Seasonal Event Banner (hidden by default outside December) -->
+        <div id="store-seasonal-banner-container" class="seasonal-banner" style="display: none;" aria-live="polite"></div>
 
         <div class="store-section-header">
           <div>
