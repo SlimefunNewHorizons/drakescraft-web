@@ -12,8 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
-  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-plugins.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con arquitectura StarSuites, economía chilena en CLP, 26 dioses panteónicos y seis modalidades aisladas."}]}</script>
 
   <meta property="og:type" content="website">
@@ -32,25 +33,25 @@
     .plugin-entry { display: flex; flex-direction: column; gap: 1.25rem; }
     .plugin-badge-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .25rem; }
     .plugin-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: .5rem; }
-    .plugin-subbox { background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .08); border-radius: .65rem; padding: 1rem; }
-    .plugin-subbox--upstream { border-left: 3px solid #60a5fa; }
-    .plugin-subbox--sovereign { border-left: 3px solid var(--accent, #6ee7a2); background: rgba(110, 231, 162, .03); }
+    .plugin-subbox { background: rgba(14, 10, 29, .72); border: 1px solid rgba(168, 85, 247, .2); border-radius: 4px; padding: 1rem; }
+    .plugin-subbox--upstream { border-left: 3px solid #00e5ff; }
+    .plugin-subbox--sovereign { border-left: 3px solid #e056fd; background: rgba(139, 92, 246, .08); }
     .plugin-subbox h4 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; }
-    .plugin-subbox h4.upstream-title { color: #93c5fd; }
-    .plugin-subbox h4.sovereign-title { color: #86efac; }
+    .plugin-subbox h4.upstream-title { color: #7dd3fc; }
+    .plugin-subbox h4.sovereign-title { color: #e879f9; }
     .plugin-subbox p { margin: 0 0 .65rem; font-size: .88rem; line-height: 1.55; opacity: .88; }
     .plugin-subbox p:last-child { margin-bottom: 0; }
-    .plugin-link-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .75rem; border-radius: .4rem; background: rgba(96, 165, 250, .15); border: 1px solid rgba(96, 165, 250, .35); color: #bfdbfe; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s; }
-    .plugin-link-btn:hover { background: rgba(96, 165, 250, .28); color: #fff; }
+    .plugin-link-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .75rem; border-radius: 4px; background: rgba(0, 229, 255, .12); border: 1px solid rgba(0, 229, 255, .36); color: #bae6fd; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s; }
+    .plugin-link-btn:hover { background: rgba(0, 229, 255, .24); color: #fff; }
     .plugin-feat-list { list-style: none; padding: 0; margin: .5rem 0 0; display: flex; flex-direction: column; gap: .4rem; }
     .plugin-feat-list li { font-size: .86rem; line-height: 1.45; position: relative; padding-left: 1.25rem; }
-    .plugin-feat-list li::before { content: "▹"; position: absolute; left: 0; color: var(--accent, #6ee7a2); font-weight: bold; }
-    .plugin-feat-list li code { font-family: 'DM Mono', monospace; font-size: .82rem; color: #ffd479; }
+    .plugin-feat-list li::before { content: "▹"; position: absolute; left: 0; color: #e056fd; font-weight: bold; }
+    .plugin-feat-list li code { font-family: 'DM Mono', monospace; font-size: .82rem; color: #ffd700; }
     .guide-accordion__badge--emerald { color: #6ee7a2; background: rgba(110, 231, 162, .16); }
     .guide-accordion__badge--crimson { color: #fda4af; background: rgba(244, 63, 94, .16); }
     .guide-accordion__badge--blue { color: #93c5fd; background: rgba(59, 130, 246, .16); }
   </style>
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
 </head>
 <body class="page-shell" data-page="guia" data-section="plugins">
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -83,9 +84,14 @@
     <header class="guide-hero">
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
-        <p class="eyebrow">Arquitectura StarSuites &amp; Canon Tecnológico</p>
-        <h1>Enciclopedia de <em>Plugins &amp; Suites</em></h1>
-        <p class="guide-hero__lead">En DrakesCraft operan 167 componentes de software orquestados por Star Architecture. Para que ningún jugador ni creador se pierda, aquí detallamos la <strong>documentación canónica oficial (upstream)</strong> de cada proyecto y las <strong>modificaciones soberanas propietarias</strong> creadas exclusivamente para nuestro cluster.</p>
+        <p class="eyebrow">Arquitectura StarSuites &amp; Canon Soberano</p>
+        <h1 class="t2-glitch-title" data-glitch="Enciclopedia de Plugins & Suites">Enciclopedia de <em>Plugins &amp; Suites</em></h1>
+        <p class="guide-hero__lead">En DrakesCraft operan más de 170 módulos orquestados por Star Architecture (1.21.11 en vivo · 195 jars ensayados en T2 Paper 26.2). Aquí detallamos la <strong>documentación oficial upstream</strong> y las <strong>modificaciones soberanas</strong> de nuestro ecosistema.</p>
+        <div class="t2-hud-strip" aria-label="Telemetría de plugins">
+          <span><strong>STACK LIVE</strong> Paper 1.21.11</span>
+          <span><b>STAGING T2</b> 195 Jars Paper 26.2</span>
+          <span><strong>INGENIERÍA</strong> StarSuites</span>
+        </div>
       </div>
     </header>
 
