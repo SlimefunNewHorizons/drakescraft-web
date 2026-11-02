@@ -7,18 +7,19 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://web.drakescraft.cl/404.html">
   <meta name="description" content="El portal o la página que buscas no existe en las coordenadas de DrakesCraft.">
-  <meta name="theme-color" content="#071712">
+  <meta name="theme-color" content="#06040e">
   <meta property="og:type" content="website">
   <meta property="og:title" content="404 - Dimensión no encontrada | DrakesCraft">
-  <meta property="og:description" content="Parece que las coordenadas de este portal se han desvanecido en el Vacío.">
+  <meta property="og:description" content="Parece que las coordenadas de este portal se han desvanecido en el Vacío del End.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/home/hero-aurora-1600.webp">
   <meta property="og:url" content="https://web.drakescraft.cl/404.html">
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261017-v7">
-  <link rel="stylesheet" href="styles/home.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/home.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
   <style>
     .error-hero {
       min-height: 85vh;
@@ -28,7 +29,12 @@
       text-align: center;
       position: relative;
       padding: 6rem 1.5rem 4rem;
-      background: radial-gradient(circle at 50% 35%, rgba(16, 185, 129, 0.08) 0%, rgba(7, 23, 18, 0.95) 70%);
+      background:
+        radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.24) 0%, rgba(224, 86, 253, 0.12) 35%, rgba(6, 4, 14, 0.98) 74%),
+        linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+        #06040e;
+      background-size: 100% 100%, 48px 48px, 48px 48px, 100% 100%;
       overflow: hidden;
     }
     .error-code {
@@ -37,10 +43,10 @@
       font-weight: 800;
       line-height: 1;
       margin: 0;
-      background: linear-gradient(180deg, #fef08a 0%, #ca8a04 50%, #854d0e 100%);
+      background: linear-gradient(135deg, #c084fc 0%, #e056fd 52%, #00e5ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 35px rgba(234, 179, 8, 0.35));
+      filter: drop-shadow(0 0 38px rgba(224, 86, 253, 0.38));
       letter-spacing: 0.05em;
     }
     .error-title {
@@ -50,24 +56,25 @@
       margin: 0.5rem 0 1rem;
     }
     .error-desc {
-      max-width: 540px;
-      margin: 0 auto 2.5rem;
-      font-size: 1.1rem;
-      color: #94a3b8;
-      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+      font-size: 1.08rem;
+      color: #b0acc9;
+      line-height: 1.65;
     }
     .error-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
       max-width: 780px;
-      margin: 0 auto 2.5rem;
+      margin: 1.75rem auto 2.5rem;
       text-align: left;
     }
     .error-card {
-      background: rgba(15, 23, 42, 0.65);
-      border: 1px solid rgba(234, 179, 8, 0.2);
-      border-radius: 12px;
+      background: rgba(14, 10, 29, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-left: 3px solid #00e5ff;
+      border-radius: 8px;
       padding: 1.25rem 1rem;
       color: #f1f5f9;
       text-decoration: none;
@@ -78,29 +85,30 @@
       gap: 0.35rem;
     }
     .error-card:hover {
-      background: rgba(30, 41, 59, 0.85);
-      border-color: rgba(234, 179, 8, 0.6);
+      background: rgba(22, 15, 45, 0.94);
+      border-color: rgba(224, 86, 253, 0.65);
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(234, 179, 8, 0.2);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.55), 0 0 18px rgba(168, 85, 247, 0.28);
     }
     .error-card strong {
-      color: #fef08a;
+      color: #e9d5ff;
       font-family: 'Cinzel', serif;
       font-size: 1.05rem;
     }
     .error-card span {
       font-size: 0.85rem;
-      color: #94a3b8;
+      color: #b0acc9;
     }
     .error-status {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       padding: 0.5rem 1.2rem;
-      background: rgba(2, 6, 23, 0.7);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(10, 7, 22, 0.85);
+      border: 1px solid rgba(0, 229, 255, 0.35);
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
       color: #e2e8f0;
       margin-top: 1.5rem;
     }
@@ -130,7 +138,7 @@
   <meta name="twitter:description" content="El portal o la página que buscas no existe en las coordenadas de DrakesCraft.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
 </head>
 <body class="page-shell">
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -138,7 +146,7 @@
     <div class="container site-nav__bar">
       <a class="brand" href="/" aria-label="Inicio de DrakesCraft">
         <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Portal oficial</span></span>
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Vacío del End · 404</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="site-nav__links" id="nav-menu">
@@ -146,7 +154,8 @@
         <li><a href="guia.html">Guía</a></li>
         <li><a href="guia-slimefun.html">Slimefun</a></li>
         <li><a href="store.html">Tienda</a></li>
-        <li><a href="terms.html">Términos</a><a href="privacidad.html">Privacidad</a></li>
+        <li><a href="terms.html">Términos</a></li>
+        <li><a href="privacidad.html">Privacidad</a></li>
         <li><a href="404-en.html" lang="en" hreflang="en" aria-label="View this page in English">EN</a></li>
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
@@ -156,11 +165,16 @@
   <main id="main-content">
     <section class="error-hero">
       <div class="container">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Dimensión no encontrada</h2>
+        <h1 class="error-code t2-glitch-title" data-glitch="404">404</h1>
+        <h2 class="error-title">Dimensión no encontrada en el Vacío</h2>
         <p class="error-desc">
-          Las coordenadas a las que intentas teletransportarte no existen en DrakesCraft o el portal ha cambiado de ubicación.
+          Las coordenadas a las que intentas teletransportarte han sido absorbidas por la infección del End o el portal cambió de sector.
         </p>
+        <div class="t2-hud-strip" style="justify-content: center; max-width: 680px; margin-inline: auto;" aria-label="Telemetría del portal">
+          <span><strong>SECTOR</strong> End Void · 404</span>
+          <span><b>NEXO</b> mc.drakescraft.cl</span>
+          <span><strong>CROSSPLAY</strong> Java &amp; Bedrock</span>
+        </div>
 
         <div class="error-grid">
           <a class="error-card" href="/">
@@ -239,6 +253,6 @@
       });
     }
   </script>
-  <script src="scripts/season-lite.js?v=20261017-v7"></script>
+  <script src="scripts/season-lite.js?v=20261102-t2"></script>
 </body>
 </html>

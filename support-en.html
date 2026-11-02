@@ -10,9 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
-  <link rel="stylesheet" href="styles/store.css?v=20261017-v7">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/store.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
   <link rel="manifest" href="/site.webmanifest">
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "en", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con seis modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio."}]}</script>
@@ -30,12 +31,18 @@
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
 
   <style>
-    /* Dedicated styling for the Olympus / Star Luxe Support Center */
+    /* Dedicated T2 Cyberpunk + End Infection styling for the Support Center */
     .support-hero {
       position: relative;
       padding: 5rem 0 3.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: radial-gradient(circle at 50% 10%, rgba(192, 132, 252, 0.12) 0%, transparent 60%);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.28);
+      background:
+        radial-gradient(circle at 22% 18%, rgba(139, 92, 246, 0.22) 0%, transparent 55%),
+        radial-gradient(circle at 82% 24%, rgba(224, 86, 253, 0.16) 0%, transparent 50%),
+        linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+        #06040e;
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px, 100% 100%;
       overflow: hidden;
     }
     .support-hero__grid {
@@ -79,12 +86,13 @@
       font-family: var(--font-mono);
     }
     .support-sla-banner {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: linear-gradient(135deg, rgba(14, 10, 29, 0.92), rgba(8, 5, 20, 0.92));
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-left: 3px solid #00e5ff;
       border-radius: 6px;
       padding: 1.5rem;
       backdrop-filter: blur(8px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
     }
     .support-sla-banner h3 {
       font-family: var(--font-heading);
@@ -403,20 +411,20 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container site-nav__bar">
-      <a class="brand" href="/" aria-label="Go to DrakesCraft home">
+      <a class="brand" href="/index-en.html" aria-label="Go to DrakesCraft home">
         <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="Logo DrakesCraft" width="46" height="46">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Support Center · Star Network</span></span>
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Support Center · T2 End Nexus</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
       <ul class="site-nav__links" id="nav-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="guia.html">The Server</a></li>
-        <li><a href="guia-comandos.html">Commands</a></li>
-        <li><a href="guia-rangos.html">Ranks</a></li>
+        <li><a href="/index-en.html">Home</a></li>
+        <li><a href="guide-en.html">The Server</a></li>
+        <li><a href="guia-comandos-en.html">Commands</a></li>
+        <li><a href="guia-rangos-en.html">Ranks</a></li>
         <li><a href="guia-slimefun-en.html">Slimefun</a></li>
         <li><a class="active" href="support-en.html">Support</a></li>
-        <li><a href="apoya.html">Sponsors</a></li>
-        <li><a class="nav-store-btn" href="store.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
+        <li><a href="apoya-en.html">Sponsors</a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
         <li><a href="support.html" lang="es" hreflang="es" aria-label="View this page in Spanish">ES</a></li>
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
@@ -431,8 +439,13 @@
           <span class="support-quick-status">
             <span class="store-pulse-dot"></span> SRE AND MODERATION TEAM ACTIVE
           </span>
-          <h1 class="support-hero__title">Support &amp; <em>Technical Assistance</em></h1>
-          <p class="support-hero__lead">Direct, traceable support with no middlemen. Whether your Tebex VIP package is delayed, you have an inventory incident, or you found a Slimefun bug, our team and autonomous support system will assist you as quickly as possible.</p>
+          <h1 class="support-hero__title t2-glitch-title" data-glitch="Support &amp; Technical Assistance">Support &amp; <em>Technical Assistance</em></h1>
+          <p class="support-hero__lead">Direct, traceable support with no middlemen heading into Season 2 (Paper 26.2). Whether your Tebex VIP package is delayed, you have an inventory incident, or you found a Slimefun bug, our team and SAORI SRE telemetry will assist you promptly.</p>
+          <div class="t2-hud-strip" style="margin-bottom: 1.5rem;" aria-label="Support telemetry">
+            <span><strong>SRE</strong> SAORI 24/7 Active</span>
+            <span><b>GATEWAY</b> Tebex MoR Verified</span>
+            <span><strong>SECURITY</strong> Zero-Trust Protocol</span>
+          </div>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
             <a class="support-btn support-btn--gold" style="width: auto; padding: 0.85rem 1.75rem;" href="#channels">View Support Channels &darr;</a>
             <a class="support-btn support-btn--discord" style="width: auto; padding: 0.85rem 1.75rem;" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Open Official Discord ⚡</a>
@@ -613,12 +626,12 @@
         <p>High-performance infrastructure, traceable support, and continuous development.</p>
       </div>
       <div class="site-footer__links">
-        <a href="/">Home</a>
-        <a href="guia.html">Guide</a>
-        <a href="guia-comandos.html">Commands</a>
-        <a href="store.html">VIP Store</a>
-        <a href="terms.html">Terms</a>
-        <a href="privacidad.html">Privacy</a>
+        <a href="/index-en.html">Home</a>
+        <a href="guide-en.html">Guide</a>
+        <a href="guia-comandos-en.html">Commands</a>
+        <a href="store-en.html">VIP Store</a>
+        <a href="terms-en.html">Terms</a>
+        <a href="privacidad-en.html">Privacy</a>
       </div>
       <div class="site-footer__sponsor">
         <span class="footer-sponsor-label">Support the project</span>
@@ -636,6 +649,6 @@
     </div>
   </footer>
 
-  <script src="scripts/site.js?v=20261017-v7"></script>
+  <script src="scripts/site.js?v=20261102-t2"></script>
 </body>
 </html>

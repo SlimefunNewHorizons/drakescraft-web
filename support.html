@@ -10,9 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
-  <link rel="stylesheet" href="styles/store.css?v=20261017-v7">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/store.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
   <link rel="manifest" href="/site.webmanifest">
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con seis modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio."}]}</script>
@@ -30,12 +31,18 @@
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
 
   <style>
-    /* Estilos dedicados para el Centro de Soporte Olympus / Star Luxe */
+    /* Estilos dedicados T2 Cyberpunk + End Infection para el Centro de Soporte */
     .support-hero {
       position: relative;
       padding: 5rem 0 3.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: radial-gradient(circle at 50% 10%, rgba(192, 132, 252, 0.12) 0%, transparent 60%);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.28);
+      background:
+        radial-gradient(circle at 22% 18%, rgba(139, 92, 246, 0.22) 0%, transparent 55%),
+        radial-gradient(circle at 82% 24%, rgba(224, 86, 253, 0.16) 0%, transparent 50%),
+        linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+        #06040e;
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px, 100% 100%;
       overflow: hidden;
     }
     .support-hero__grid {
@@ -79,12 +86,13 @@
       font-family: var(--font-mono);
     }
     .support-sla-banner {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: linear-gradient(135deg, rgba(14, 10, 29, 0.92), rgba(8, 5, 20, 0.92));
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-left: 3px solid #00e5ff;
       border-radius: 6px;
       padding: 1.5rem;
       backdrop-filter: blur(8px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
     }
     .support-sla-banner h3 {
       font-family: var(--font-heading);
@@ -403,7 +411,7 @@
     <div class="container site-nav__bar">
       <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
         <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="Logo DrakesCraft" width="46" height="46">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Centro de Soporte · Star Network</span></span>
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>Centro de Soporte · T2 End Nexus</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
       <ul class="site-nav__links" id="nav-menu">
@@ -429,8 +437,13 @@
           <span class="support-quick-status">
             <span class="store-pulse-dot"></span> EQUIPO SRE Y MODERACIÓN ACTIVO
           </span>
-          <h1 class="support-hero__title">Centro de Soporte &amp; <em>Asistencia Técnica</em></h1>
-          <p class="support-hero__lead">Atención directa, trazable y sin intermediarios. Ya sea un retraso en la entrega de tu paquete VIP en Tebex, un incidente de inventario o un bug técnico en Slimefun, nuestro equipo e inteligencia autónoma te asisten con la mayor celeridad.</p>
+          <h1 class="support-hero__title t2-glitch-title" data-glitch="Centro de Soporte &amp; Asistencia Técnica">Centro de Soporte &amp; <em>Asistencia Técnica</em></h1>
+          <p class="support-hero__lead">Atención directa, trazable y sin intermediarios rumbo a la Temporada 2 (Paper 26.2). Ya sea un retraso en la entrega de tu paquete VIP en Tebex, una recuperación de inventario o un bug técnico en Slimefun, nuestro equipo y telemetría SAORI SRE te asisten con la mayor celeridad.</p>
+          <div class="t2-hud-strip" style="margin-bottom: 1.5rem;" aria-label="Telemetría de soporte">
+            <span><strong>SRE</strong> SAORI 24/7 Activo</span>
+            <span><b>PAGOS</b> Tebex MoR Verificado</span>
+            <span><strong>SEGURIDAD</strong> Protocolo Zero-Trust</span>
+          </div>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
             <a class="support-btn support-btn--gold" style="width: auto; padding: 0.85rem 1.75rem;" href="#canales">Ver Canales de Atención &darr;</a>
             <a class="support-btn support-btn--discord" style="width: auto; padding: 0.85rem 1.75rem;" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Abrir Discord Oficial ⚡</a>
@@ -634,6 +647,6 @@
     </div>
   </footer>
 
-  <script src="scripts/site.js?v=20261017-v7"></script>
+  <script src="scripts/site.js?v=20261102-t2"></script>
 </body>
 </html>

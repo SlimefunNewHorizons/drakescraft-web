@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://web.drakescraft.cl/maintenance.html">
   <meta name="description" content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones.">
-  <meta name="theme-color" content="#071712">
+  <meta name="theme-color" content="#06040e">
   <meta property="og:type" content="website">
   <meta property="og:title" content="DrakesCraft | Mantenimiento &amp; Sincronización">
   <meta property="og:description" content="Tus datos, inventarios y cofres están completamente seguros. Volvemos en breve.">
@@ -16,15 +16,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
   <style>
     :root {
-      --bg-dark: #071712;
-      --gold-primary: #f59e0b;
-      --gold-light: #fef08a;
-      --gold-glow: rgba(245, 158, 11, 0.4);
-      --emerald-glow: rgba(16, 185, 129, 0.25);
-      --slate-border: rgba(234, 179, 8, 0.3);
-      --card-bg: rgba(10, 20, 24, 0.82);
+      --bg-dark: #06040e;
+      --gold-primary: #e056fd;
+      --gold-light: #e9d5ff;
+      --gold-glow: rgba(224, 86, 253, 0.32);
+      --emerald-glow: rgba(139, 92, 246, 0.34);
+      --slate-border: rgba(168, 85, 247, 0.38);
+      --card-bg: rgba(14, 10, 29, 0.88);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -39,7 +40,12 @@
       padding: 2rem 1.25rem 1.5rem;
       position: relative;
       overflow-x: hidden;
-      background: radial-gradient(circle at 50% 25%, rgba(16, 185, 129, 0.15) 0%, rgba(7, 23, 18, 0.98) 75%);
+      background:
+        radial-gradient(circle at 50% 22%, rgba(139, 92, 246, 0.22) 0%, rgba(224, 86, 253, 0.1) 36%, rgba(6, 4, 14, 0.98) 76%),
+        linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+        #06040e;
+      background-size: 100% 100%, 48px 48px, 48px 48px, 100% 100%;
     }
 
     /* Ambient animated orbs */
@@ -305,10 +311,11 @@
   <meta name="twitter:description" content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
-<style>.skip-link{position:fixed;z-index:10000;top:.75rem;left:.75rem;padding:.75rem 1rem;color:#06110e;background:#f4c95d;font-weight:700;transform:translateY(-200%)}.skip-link:focus{transform:translateY(0)}a:focus-visible,button:focus-visible{outline:3px solid #f4c95d;outline-offset:2px}</style>
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
+<style>.skip-link{position:fixed;z-index:10000;top:.75rem;left:.75rem;padding:.75rem 1rem;color:#06040e;background:#e056fd;font-weight:700;transform:translateY(-200%)}.skip-link:focus{transform:translateY(0)}a:focus-visible,button:focus-visible{outline:3px solid #00e5ff;outline-offset:2px}h1 span{background:linear-gradient(135deg,#c084fc 0%,#e056fd 52%,#00e5ff 100%) !important;-webkit-background-clip:text !important;-webkit-text-fill-color:transparent !important}</style>
 </head>
 <body>
+  <p style="position:relative;z-index:2;font-size:.85rem;font-family:'DM Mono',monospace">ES · <a href="maintenance-en.html" lang="en" hreflang="en" aria-label="View this page in English" style="color:#00e5ff">EN</a></p>
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
   <div class="ambient-orb orb-1" aria-hidden="true"></div>
@@ -319,11 +326,16 @@
       <div class="logo-badge">
         <img src="https://web.drakescraft.cl/assets/logo-drakescraft.webp" alt="DrakesCraft Dragon Emblem" onerror="this.src='assets/logo-drakescraft.webp'">
       </div>
-      <div><span class="badge-label">Sincronización del Nexo · 2026</span></div>
-      <h1>Mantenimiento <span>Programado</span></h1>
+      <div><span class="badge-label">Sincronización End Nexus · Temporada 2</span></div>
+      <h1 class="t2-glitch-title" data-glitch="Mantenimiento Programado">Mantenimiento <span>Programado</span></h1>
       <p class="lead">
-        El portal web y los servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras, nuevos parches y sincronización de dimensiones.
+        El portal web y los servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar parches SRE y sincronización de dimensiones.
       </p>
+      <div class="t2-hud-strip" style="justify-content: center; margin-bottom: 1.5rem;" aria-label="Estado de resguardo">
+        <span><strong>DATOS</strong> Save-All &amp; IRP Verificados</span>
+        <span><b>ESTADO</b> Pausa Técnica Breve</span>
+        <span><strong>NEXO</strong> mc.drakescraft.cl</span>
+      </div>
 
       <div class="status-panel">
         <div class="status-panel__info">
@@ -368,7 +380,7 @@
   </main>
 
   <footer>
-    <p>DrakesCraft · Cinco mundos. Una comunidad. · <a href="https://github.com/SlimefunNewHorizons" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></p>
+    <p>DrakesCraft · Seis modalidades. Una comunidad. · <a href="https://github.com/SlimefunNewHorizons" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></p>
   </footer>
 
   <script>
@@ -394,6 +406,6 @@
       });
     }
   </script>
-  <script src="scripts/season-lite.js?v=20261017-v7"></script>
+  <script src="scripts/season-lite.js?v=20261102-t2"></script>
 </body>
 </html>
