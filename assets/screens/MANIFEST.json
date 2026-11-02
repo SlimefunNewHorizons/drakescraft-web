@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "aspectRatio": "16:9",
+  "variants": {
+    "desktop": { "width": 1600, "height": 900, "format": "webp", "quality": 80, "maxKilobytes": 180 },
+    "mobile": { "width": 960, "height": 540, "format": "webp", "quality": 78, "maxKilobytes": 85 }
+  },
+  "slots": [
+    {
+      "id": "slot-01-spawn-end",
+      "desktop": "assets/screens/slot-01-spawn-end-1600.webp",
+      "mobile": "assets/screens/slot-01-spawn-end-960.webp",
+      "tag": "SLOT 01 // HUB & END RIFT",
+      "title_es": "Santuario Central & Fisura del Vacío",
+      "title_en": "Central Sanctuary & Void Rift",
+      "alt_es": "Vista panorámica del Hub principal de DrakesCraft con arquitectura soberana e iluminación amatista del End",
+      "alt_en": "Panoramic view of the DrakesCraft main Hub featuring sovereign architecture and End amethyst lighting"
+    },
+    {
+      "id": "slot-02-slimefun-quantum",
+      "desktop": "assets/screens/slot-02-slimefun-quantum-1600.webp",
+      "mobile": "assets/screens/slot-02-slimefun-quantum-960.webp",
+      "tag": "SLOT 02 // QUANTUM SLIMEFUN",
+      "title_es": "Ingeniería Cuántica & Redes Networks",
+      "title_en": "Quantum Engineering & Networks",
+      "alt_es": "Complejo industrial de Slimefun con reactores, almacenamiento cuántico y automatización de Networks en DrakesCraft",
+      "alt_en": "Slimefun industrial complex with reactors, quantum storage and Networks automation in DrakesCraft"
+    },
+    {
+      "id": "slot-03-stellarity-end",
+      "desktop": "assets/screens/slot-03-stellarity-end-1600.webp",
+      "mobile": "assets/screens/slot-03-stellarity-end-960.webp",
+      "tag": "SLOT 03 // END INFECTION T2",
+      "title_es": "Dimensión End Infectada (Stellarity)",
+      "title_en": "Infected End Dimension (Stellarity)",
+      "alt_es": "Biomas abisales y altares cósmicos de la expansión Stellarity en la dimensión del End de DrakesCraft",
+      "alt_en": "Abyssal biomes and cosmic altars from the Stellarity expansion in DrakesCraft's End dimension"
+    },
+    {
+      "id": "slot-04-modalidades-islas",
+      "desktop": "assets/screens/slot-04-modalidades-islas-1600.webp",
+      "mobile": "assets/screens/slot-04-modalidades-islas-960.webp",
+      "tag": "SLOT 04 // SKYBLOCK & ONEBLOCK",
+      "title_es": "Islas del Vacío: SkyBlock, OneBlock y OneChunk",
+      "title_en": "Void Islands: SkyBlock, OneBlock & OneChunk",
+      "alt_es": "Islas flotantes personalizadas de SkyBlock y OneBlock con progresión técnica aislada en DrakesCraft",
+      "alt_en": "Custom floating SkyBlock and OneBlock islands with isolated technical progression in DrakesCraft"
+    },
+    {
+      "id": "slot-05-bosses-olimpo",
+      "desktop": "assets/screens/slot-05-bosses-olimpo-1600.webp",
+      "mobile": "assets/screens/slot-05-bosses-olimpo-960.webp",
+      "tag": "SLOT 05 // PANTHEON & ARENAS",
+      "title_es": "Panteón de Dioses, Arenas & Yggdrasil",
+      "title_en": "Pantheon of Gods, Arenas & Yggdrasil",
+      "alt_es": "Estructuras míticas y arenas de jefes del Olimpo y reinos nórdicos dentro de DrakesCraft",
+      "alt_en": "Mythic structures and boss arenas of Olympus and Norse realms inside DrakesCraft"
+    },
+    {
+      "id": "slot-06-comunidad-imperio",
+      "desktop": "assets/screens/slot-06-comunidad-imperio-1600.webp",
+      "mobile": "assets/screens/slot-06-comunidad-imperio-960.webp",
+      "tag": "SLOT 06 // COMMUNITY LEGACY",
+      "title_es": "Ciudades y Proyectos de la Comunidad",
+      "title_en": "Community Cities & Mega-Projects",
+      "alt_es": "Jugadores de Java y Bedrock reunidos frente a una megaconstrucción protegida en DrakesCraft",
+      "alt_en": "Java and Bedrock players gathered in front of a protected mega-build on DrakesCraft"
+    }
+  ]
+}

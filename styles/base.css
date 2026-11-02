@@ -1,20 +1,21 @@
 @import url("seasonal-themes.css");
 
 :root {
-    --bg: #060814;
-    --bg-soft: #0d1224;
-    --panel: rgba(12, 18, 34, 0.82);
-    --panel-strong: rgba(8, 12, 24, 0.92);
-    --line: rgba(255, 255, 255, 0.08);
-    --text: #f4f6fb;
-    --muted: #a7b1c8;
-    --gold: #f4c95d;
-    --cyan: #79d7ff;
-    --rose: #ff9ac3;
-    --violet: #9588ff;
-    --emerald: #64f2bf;
-    --danger: #ff8275;
-    --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    --bg: #06040e;
+    --bg-soft: #0e0a1d;
+    --panel: rgba(14, 10, 29, 0.84);
+    --panel-strong: rgba(8, 6, 18, 0.94);
+    --line: rgba(168, 85, 247, 0.16);
+    --text: #f8f9fa;
+    --muted: #b0acc9;
+    --gold: #ffd700;
+    --cyan: #00e5ff;
+    --rose: #e056fd;
+    --violet: #8b5cf6;
+    --amethyst: #9b59b6;
+    --emerald: #27ae60;
+    --danger: #e74c3c;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.52);
     --radius-xl: 4px;
     --radius-lg: 3px;
     --radius-md: 2px;
@@ -22,9 +23,9 @@
     --font-heading: "Cinzel", serif;
     --font-body: "Instrument Sans", sans-serif;
     --font-mono: "DM Mono", monospace;
-    --page-accent: var(--gold);
-    --page-accent-soft: rgba(244, 201, 93, 0.22);
-    --page-glow: rgba(121, 215, 255, 0.18);
+    --page-accent: var(--violet);
+    --page-accent-soft: rgba(139, 92, 246, 0.22);
+    --page-glow: rgba(224, 86, 253, 0.22);
 }
 
 * {
@@ -43,10 +44,10 @@ body {
     font-family: var(--font-body);
     color: var(--text);
     background:
-        radial-gradient(circle at top, rgba(121, 215, 255, 0.12), transparent 32%),
-        radial-gradient(circle at 85% 20%, rgba(149, 136, 255, 0.14), transparent 26%),
-        radial-gradient(circle at 10% 30%, rgba(244, 201, 93, 0.1), transparent 22%),
-        linear-gradient(180deg, #090d1a 0%, #060814 50%, #04060e 100%);
+        radial-gradient(circle at 18% 0%, rgba(139, 92, 246, 0.16), transparent 36%),
+        radial-gradient(circle at 86% 18%, rgba(224, 86, 253, 0.12), transparent 28%),
+        radial-gradient(circle at 12% 45%, rgba(0, 229, 255, 0.07), transparent 26%),
+        linear-gradient(180deg, #090616 0%, #06040e 52%, #04020a 100%);
     min-height: 100vh;
     overflow-x: hidden;
     width: 100%;
@@ -95,9 +96,11 @@ body::before {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.03) 45%, transparent 48%),
-        linear-gradient(transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
-    opacity: 0.55;
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(125deg, transparent 0%, rgba(224, 86, 253, 0.035) 46%, transparent 50%);
+    background-size: 48px 48px, 48px 48px, 100% 100%;
+    opacity: 0.7;
     mix-blend-mode: screen;
 }
 
