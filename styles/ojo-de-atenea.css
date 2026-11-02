@@ -4,12 +4,14 @@
   --gold-glow: rgba(255, 215, 0, 0.4);
   --cyan-neon: #00e5ff;
   --cyan-glow: rgba(0, 229, 255, 0.3);
-  --bg-deep: #050811;
-  --card-bg: rgba(9, 14, 26, 0.85);
-  --border-gold: rgba(212, 175, 55, 0.3);
-  --border-cyan: rgba(0, 229, 255, 0.3);
-  --text-main: #f0f4f8;
-  --text-muted: #8ca0ba;
+  --violet-end: #8b5cf6;
+  --magenta-end: #e056fd;
+  --bg-deep: #06040e;
+  --card-bg: rgba(12, 9, 26, 0.88);
+  --border-gold: rgba(224, 86, 253, 0.36);
+  --border-cyan: rgba(0, 229, 255, 0.32);
+  --text-main: #f8f9fa;
+  --text-muted: #b0acc9;
   --danger: #ff3366;
 }
 
@@ -18,11 +20,12 @@
 body.cyber-greek-theme {
   background-color: var(--bg-deep);
   background-image: 
+    radial-gradient(circle at 20% 0%, rgba(139, 92, 246, 0.16) 0%, transparent 55%),
+    radial-gradient(circle at 85% 15%, rgba(224, 86, 253, 0.12) 0%, transparent 50%),
     radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 10% 90%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   color: var(--text-main);
   font-family: 'Rajdhani', sans-serif;
   min-height: 100vh;

@@ -12,9 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
-  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
-  <link rel="stylesheet" href="styles/metricas.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/metricas.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "en", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Minecraft Java and Bedrock server with six connected game modes: Slimefun, Classic, SkyBlock, OneBlock, OneChunk, and Lab."}]}</script>
 
   <meta property="og:type" content="website">
@@ -29,7 +30,7 @@
   <meta name="twitter:description" content="Live server telemetry, Cloudflare Edge analytics, and community metrics for DrakesCraft.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
 </head>
 <body class="page-shell" data-page="guia" data-section="metrics">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -59,9 +60,14 @@
     <header class="guide-hero">
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
-        <p class="eyebrow">Global Observability &amp; Transparency</p>
-        <h1>Live Telemetry<br><em>&amp; Network Metrics</em></h1>
+        <p class="eyebrow">Global Observability &amp; Transparency · T2</p>
+        <h1 class="t2-glitch-title" data-text="Live Telemetry">Live Telemetry<br><em>&amp; Network Metrics</em></h1>
         <p class="guide-hero__lead">Real-time data from the Minecraft server and Cloudflare Edge Anycast network. Statistics are aggregated without exposing private data or IP addresses.</p>
+        <div class="t2-hud-strip" aria-label="Telemetry link status">
+          <span class="t2-hud-strip__item t2-hud-strip__item--live"><i></i>Star Telemetry Link</span>
+          <span class="t2-hud-strip__item t2-hud-strip__item--cyan">Cloudflare Edge Anycast</span>
+          <span class="t2-hud-strip__item">Zero Private IPs Exposed</span>
+        </div>
       </div>
     </header>
 

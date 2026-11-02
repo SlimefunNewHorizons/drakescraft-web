@@ -3,17 +3,17 @@
    ========================================================================== */
 
 :root {
-  --met-bg-deep: #08100d;
-  --met-panel-bg: rgba(12, 25, 20, 0.88);
-  --met-border: rgba(216, 182, 90, 0.25);
-  --met-border-focus: rgba(244, 201, 93, 0.65);
-  --met-gold: #f4c95d;
-  --met-gold-glow: rgba(244, 201, 93, 0.25);
+  --met-bg-deep: #06040e;
+  --met-panel-bg: rgba(14, 10, 29, 0.88);
+  --met-border: rgba(168, 85, 247, 0.28);
+  --met-border-focus: rgba(224, 86, 253, 0.72);
+  --met-gold: #ffd700;
+  --met-gold-glow: rgba(224, 86, 253, 0.28);
   --met-emerald: #34d399;
-  --met-cyan: #38bdf8;
-  --met-purple: #a855f7;
-  --met-text-muted: #94a3b8;
-  --met-text-dim: #64748b;
+  --met-cyan: #00e5ff;
+  --met-purple: #e056fd;
+  --met-text-muted: #b8b2d4;
+  --met-text-dim: #7c749e;
 }
 
 /* Panel de aviso / Resumen superior */
