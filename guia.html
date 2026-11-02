@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261026-v8">
-  <link rel="stylesheet" href="styles/guia.css?v=20261017-v7">
-  <link rel="stylesheet" href="styles/t2.css?v=20261030-v1">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-comandos.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con seis modalidades conectadas: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio."}]}</script>
 
   <meta property="og:type" content="website">
@@ -28,7 +28,7 @@
   <meta name="twitter:description" content="Guía completa de DrakesCraft: todos los comandos del servidor y cómo funcionan las seis modalidades: Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio Creativo.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
 </head>
 <body class="page-shell" data-page="guia" data-section="server">
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -55,9 +55,15 @@
     <header class="guide-hero">
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
-        <p class="eyebrow">Todo lo que puedes escribir</p>
-        <h1>Guía de <em>comandos</em><br>y 6 modalidades</h1>
-        <p class="guide-hero__lead">Busca cualquier comando, mira para qué sirve y dónde funciona. Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio Creativo conviven en el mismo host.</p>
+        <p class="eyebrow">Códice Central · Temporada 2 Horizon</p>
+        <h1 class="t2-glitch-title" data-glitch="Guía del Servidor y 6 Modalidades">Guía de <em>comandos</em><br>y 6 modalidades</h1>
+        <p class="guide-hero__lead">Consulta cualquier comando, arquitectura de modalidades, panteones divinos y arenas de jefes. Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio conviven aislados en un mismo nodo dedicado con economía unificada en Dragmas (₯).</p>
+        <div class="t2-hud-strip" aria-label="Estado técnico del ecosistema">
+          <span><strong>LIVE</strong> 1.21.11</span>
+          <span><b>HORIZON T2</b> Paper 26.2 + End Infection</span>
+          <span><strong>MODOS</strong> 6 Aislados</span>
+          <span><b>CROSSPLAY</b> Java &amp; Bedrock</span>
+        </div>
       </div>
     </header>
 
@@ -394,8 +400,8 @@
     </section>
 
 <section class="container guide-section" id="modalidades">
-      <h2>Cómo funcionan las modalidades</h2>
-      <p class="guide-section__note">Las cinco corren en el mismo servidor. No cambias de IP: cambias de entorno con <code>/modalidades</code> y el servidor respalda el inventario antes de llevarte.</p>
+      <h2>Cómo funcionan las 6 modalidades</h2>
+      <p class="guide-section__note">Las seis corren en el mismo nodo dedicado. No cambias de IP: saltas de entorno con <code>/modalidades</code> y Odysseia respalda tu inventario antes de transferirte.</p>
 
       <div class="guide-modes">
         <article class="guide-mode" style="--mode-accent:#9ce6a4;">
@@ -449,6 +455,17 @@
             <li>Entras con <code>/ob</code></li>
           </ul>
         </article>
+        <article class="guide-mode" style="--mode-accent:#e056fd;">
+          <h3>OneChunk</h3>
+          <p>Excava y sobrevive en un chunk aislado de 16×16 con biomas rotativos.</p>
+          <ul>
+            <li>Minerales iniciales garantizados: hierro, carbón, madera y piedra</li>
+            <li>Al vaciarlo, el siguiente chunk se regenera automáticamente</li>
+            <li>5 biomas rotativos: Bosque, Desierto, Tundra, Jungla y Cavernas Profundas</li>
+            <li>100% compatible con progresión Slimefun</li>
+            <li>Entras con <code>/onechunk</code></li>
+          </ul>
+        </article>
         <article class="guide-mode" style="--mode-accent:#ffcf70;">
           <h3>Laboratorio</h3>
           <p>Sandbox creativo para comprobar máquinas y automatizaciones sin afectar la economía.</p>
@@ -490,7 +507,7 @@
     
 <section class="container guide-section" id="sistemas">
       <h2>Magia, dioses, jefes y rangos anime</h2>
-      <p class="guide-section__note">Tres sistemas escritos para este servidor. Se cruzan entre sí: el favor que ganas con un dios alimenta lo que puedes hacer contra los jefes.</p>
+      <p class="guide-section__note">Cuatro sistemas escritos a medida para DrakesCraft. Se cruzan entre sí: tus divisiones anime, tu escuela Arcana y el favor divino alimentan tu poder frente a los 26 jefes en instancia.</p>
 
       <div class="guide-modes">
         <article class="guide-mode" style="--mode-accent:#ffd479;">
@@ -584,7 +601,7 @@
     
 <section class="container guide-section" id="servidor">
       <h2>Qué es DrakesCraft</h2>
-      <p class="guide-section__note">Un servidor de Minecraft <strong>1.21.11</strong> con varias modalidades corriendo en una sola instancia, sin proxy ni servidores separados. Slimefun reúne tecnología, magia y jefes; Clásico conserva la experiencia vanilla con hogares y protección de terreno.</p>
+      <p class="guide-section__note">Un ecosistema de Minecraft en producción viva sobre <strong>Paper 1.21.11</strong> —con arquitectura de <strong>Temporada 2 (Paper 26.2 + End Infection)</strong> ya ensayada en staging— donde seis modalidades operan en un nodo dedicado sin fricción de proxies.</p>
 
       <div class="guide-modes">
         <article class="guide-mode" style="--mode-accent:#ffb03c;">

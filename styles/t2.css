@@ -218,6 +218,40 @@
   color: #00e5ff;
 }
 
+/* ── Interior Page HUD Telemetry Strip ─────────────────────────── */
+.t2-hud-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.15rem;
+  align-items: center;
+  margin-top: 1.35rem;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(90deg, rgba(14, 10, 29, 0.88), rgba(8, 5, 20, 0.82));
+  border: 1px solid rgba(224, 86, 253, 0.32);
+  border-left: 3px solid #00e5ff;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: rgba(248, 249, 250, 0.86);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+}
+
+.t2-hud-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.t2-hud-strip strong {
+  color: #e056fd;
+  font-weight: 600;
+}
+
+.t2-hud-strip b {
+  color: #00e5ff;
+  font-weight: 600;
+}
+
 /* ── Fase 4: Galería HUD de Capturas (assets/screens/) ─────────── */
 .screens-section {
   padding: clamp(4.5rem, 8vw, 7.5rem) 0;
