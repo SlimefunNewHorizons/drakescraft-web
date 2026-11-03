@@ -717,6 +717,45 @@ app.get('/api/sponsors', async () => {
   };
 });
 
+app.get('/api/eventos', async () => {
+  try {
+    const filePath = path.join(root, 'catalog', 'eventos_noviembre_2026.json');
+    const raw = await fs.readFile(filePath, 'utf8');
+    const data = JSON.parse(raw);
+    const now = new Date();
+    const chileFormatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Santiago',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+    const parts = chileFormatter.formatToParts(now);
+    const getPart = (type) => parts.find(p => p.type === type)?.value;
+    const year = parseInt(getPart('year'), 10);
+    const month = parseInt(getPart('month'), 10);
+    const day = parseInt(getPart('day'), 10);
+    const isNovember = (year === 2026 && month === 11);
+    const currentDay = isNovember ? day : 1;
+    const todayEvent = (data.events || []).find(e => e.day === currentDay) || null;
+    return {
+      ok: true,
+      year,
+      month,
+      currentDay,
+      isNovember,
+      serverTimeCLT: `${getPart('hour')}:${getPart('minute')}`,
+      todayEvent,
+      events: data.events || []
+    };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+});
+
 app.post('/api/webhooks/github-sponsors', async (request, reply) => {
   const body = request.body || {};
   const action = body.action || '';
@@ -929,6 +968,8 @@ for (const [alias, file] of [
   ['/slimefun', 'guia-slimefun.html'], ['/sf', 'guia-slimefun.html'],
   ['/slimefun-en', 'guia-slimefun-en.html'], ['/sf-en', 'guia-slimefun-en.html'],
   ['/plugins', 'guia-plugins.html'], ['/suites', 'guia-plugins.html'],
+  ['/eventos', 'eventos.html'], ['/calendario', 'eventos.html'],
+  ['/events', 'events-en.html'], ['/calendar', 'events-en.html'],
 ]) {
   app.get(alias, async (_request, reply) => reply.sendFile(file));
 }
