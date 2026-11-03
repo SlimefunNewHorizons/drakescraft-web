@@ -247,7 +247,7 @@
         }
     }
 
-    const SEASON_THEMES = ["christmas", "default"];
+    const SEASON_THEMES = ["birthday", "christmas", "default"];
 
     // Fecha segun America/Santiago (el servidor es chileno): asi el cambio de tema ocurre a medianoche de Chile
     // para todos los visitantes y no segun la zona horaria de cada uno.
@@ -264,12 +264,19 @@
     }
 
     // Tema por calendario:
+    //   1 al 29 de noviembre .. birthday (modo cumple del fundador + evento comunitario, con apagado manual)
+    //   30 de noviembre ....... default (transicion limpia antes de Navidad)
     //   1 al 31 de diciembre .. christmas (automatico con apagado manual)
     //   resto del ano ......... default (tema estandar T2 Cyberpunk + End)
     function calendarTheme() {
         const { month, day } = chileDate();
+        if (month === 10 && day >= 1 && day <= 29) return "birthday";
         if (month === 11 && day >= 1 && day <= 31) return "christmas";
         return "default";
+    }
+
+    function isBirthdayManuallyDisabled() {
+        try { return localStorage.getItem("drakes_birthday_disabled") === "1"; } catch (e) { return false; }
     }
 
     function isChristmasManuallyDisabled() {
@@ -290,6 +297,9 @@
             localStorage.removeItem("drakes_seasonal_theme");
         } catch (e) {}
         const cal = calendarTheme();
+        if (cal === "birthday" && isBirthdayManuallyDisabled()) {
+            return "default";
+        }
         if (cal === "christmas" && isChristmasManuallyDisabled()) {
             return "default";
         }
@@ -300,8 +310,17 @@
         if (!document.querySelector('link[href*="seasonal-themes.css"]')) {
             const link = document.createElement("link");
             link.rel = "stylesheet";
-            link.href = "styles/seasonal-themes.css?v=20261102-v8";
+            link.href = "styles/seasonal-themes.css?v=20261103-v9";
             document.head.appendChild(link);
+        }
+    }
+
+    function ensureBirthdayFX() {
+        if (!document.getElementById("drakes-birthday-fx-script")) {
+            const script = document.createElement("script");
+            script.id = "drakes-birthday-fx-script";
+            script.src = "scripts/birthday-fx.js?v=20261103";
+            document.head.appendChild(script);
         }
     }
 
@@ -318,6 +337,13 @@
         ensureSeasonalStylesheet();
         const theme = forcedTheme || detectSeasonalTheme();
         document.body.classList.remove("theme-birthday", "theme-christmas", "theme-valentines");
+        if (theme === "birthday") {
+            document.body.classList.add("theme-birthday");
+            ensureBirthdayFX();
+        } else if (calendarTheme() === "birthday") {
+            // Si es del 1 al 29 de noviembre pero el usuario lo apago manualmente, cargamos el control discreto para reactivar.
+            ensureBirthdayFX();
+        }
         if (theme === "christmas") {
             document.body.classList.add("theme-christmas");
             ensureChristmasFX();
@@ -338,6 +364,14 @@
     window.drakesSetSeasonalTheme = function(theme) {
         try { sessionStorage.setItem("drakes_seasonal_preview", theme); } catch (e) {}
         return applySeasonalTheme(theme);
+    };
+    window.drakesSetBirthdayDisabled = function(disabled) {
+        try {
+            if (disabled) localStorage.setItem("drakes_birthday_disabled", "1");
+            else localStorage.removeItem("drakes_birthday_disabled");
+            sessionStorage.removeItem("drakes_seasonal_preview");
+        } catch (e) {}
+        return applySeasonalTheme(disabled ? "default" : "birthday");
     };
     window.drakesSetChristmasDisabled = function(disabled) {
         try {
