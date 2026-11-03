@@ -1018,6 +1018,8 @@ await app.register(fastifyStatic, {
       'guia.html',
       'apoya.html',
       'apoya-en.html',
+      'eventos.html',
+      'events-en.html',
       'guia-comandos.html',
       'guia-comandos-en.html',
       'guia-rangos.html',
