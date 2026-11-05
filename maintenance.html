@@ -58,8 +58,8 @@
       opacity: 0.6;
       animation: float 8s ease-in-out infinite alternate;
     }
-    .orb-1 { width: 450px; height: 450px; top: -100px; left: 15%; background: var(--emerald-glow); }
-    .orb-2 { width: 400px; height: 400px; top: 30%; right: 10%; background: var(--gold-glow); animation-delay: -4s; }
+    .orb-1 { width: min(450px, 70vw); height: min(450px, 70vw); top: -100px; left: 15%; background: var(--emerald-glow); }
+    .orb-2 { width: min(400px, 70vw); height: min(400px, 70vw); top: 30%; right: 10%; background: var(--gold-glow); animation-delay: -4s; }
     @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.08); } }
 
     .main-wrap {
