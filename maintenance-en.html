@@ -8,11 +8,11 @@
   <link rel="canonical" href="https://web.drakescraft.cl/maintenance-en.html">
   <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/maintenance.html">
   <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/maintenance-en.html">
-  <meta name="description" content="DrakesCraft web portal and servers are undergoing brief technical maintenance to apply improvements and dimensional synchronization.">
+  <meta name="description" content="Season 2 is being tested in Dallas on Purpur 26.2. Staff-only whitelist during maintenance; updates on Discord.">
   <meta name="theme-color" content="#06040e">
   <meta property="og:type" content="website">
   <meta property="og:title" content="DrakesCraft | Maintenance &amp; Synchronization">
-  <meta property="og:description" content="Your data, inventories, and chests are completely safe. We will be back shortly.">
+  <meta property="og:description" content="Season 2 maintenance: staff-only testing. Follow Discord for reopening updates.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/home/hero-aurora-1600.webp">
   <link rel="icon" type="image/png" href="https://web.drakescraft.cl/assets/logo-drakescraft.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,13 +304,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
   <meta property="og:title" content="Maintenance &amp; Dimensional Synchronization | DrakesCraft">
-  <meta property="og:description" content="DrakesCraft web portal and servers are undergoing brief technical maintenance to apply improvements and dimensional synchronization.">
+  <meta property="og:description" content="Season 2 is being tested in Dallas on Purpur 26.2. Staff-only whitelist during maintenance; updates on Discord.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Maintenance &amp; Dimensional Synchronization | DrakesCraft">
-  <meta name="twitter:description" content="DrakesCraft web portal and servers are undergoing brief technical maintenance.">
+  <meta name="twitter:description" content="Season 2 maintenance: staff-only testing. Updates on Discord.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
@@ -328,14 +328,14 @@
       <div class="logo-badge">
         <img src="https://web.drakescraft.cl/assets/logo-drakescraft.webp" alt="DrakesCraft Dragon Emblem" onerror="this.src='assets/logo-drakescraft.webp'">
       </div>
-      <div><span class="badge-label">End Nexus Synchronization · Season 2</span></div>
+      <div><span class="badge-label">Season 2 Testing · Purpur 26.2</span></div>
       <h1 data-glitch="Scheduled Maintenance">Scheduled <span>Maintenance</span></h1>
       <p class="lead">
-        The DrakesCraft web portal and servers are undergoing a brief technical pause to apply SRE patches and dimensional synchronization.
+        Season 2 is being tested in Dallas on Purpur 26.2. The whitelist is restricted to staff during maintenance, planned to last no later than November 18. Reopening will be confirmed on Discord; no exact date has been announced.
       </p>
       <div class="t2-hud-strip" style="justify-content: center; margin-bottom: 1.5rem;" aria-label="Protection telemetry">
-        <span><strong>DATA</strong> Save-All &amp; IRP Verified</span>
-        <span><b>STATUS</b> Brief Technical Sync</span>
+        <span><strong>DATA</strong> Season 1 archived</span>
+        <span><b>STATUS</b> Whitelist testing</span>
         <span><strong>NEXUS</strong> mc.drakescraft.cl</span>
       </div>
 
@@ -343,12 +343,12 @@
         <div class="status-panel__info">
           <span class="status-dot" aria-hidden="true"></span>
           <div>
-            <strong>Worlds &amp; Inventories Protected</strong>
-            <small>Full backup of Slimefun machinery and inventories completed.</small>
+            <strong>Temporary staff-only access</strong>
+            <small>The website and guides remain available. Follow official updates on Discord.</small>
           </div>
         </div>
         <div class="timer-badge" id="reconnect-box">
-          Auto-retry in <span id="timer-sec">10</span>s
+          Updates on Discord
         </div>
       </div>
 
@@ -364,6 +364,8 @@
         </button>
       </div>
 
+      <p>Java: <code>mc.drakescraft.cl</code> · Backup address: <code>drakescraft.playghosting.com</code>. Bedrock: port <code>25565</code>. Java 1.21 to 26.x and Bedrock client compatibility is being validated during testing.</p>
+      <p><a href="https://discord.gg/rv3vtXZTk7">Follow updates on Discord</a> · <a href="index-en.html#season-1">Season 1 downloads</a></p>
       <div class="support-grid">
         <a class="support-item" href="https://github.com/SlimefunNewHorizons" target="_blank" rel="noopener">
           <span class="support-item__title">🌟 GitHub Open Source</span>
@@ -389,14 +391,14 @@
     // Countdown timer and soft reload
     let count = 10;
     const secEl = document.getElementById('timer-sec');
-    const timerInterval = setInterval(() => {
+    const timerInterval = secEl ? setInterval(() => {
       count--;
       if (secEl) secEl.textContent = count;
       if (count <= 0) {
         clearInterval(timerInterval);
         location.reload();
       }
-    }, 1000);
+    }, 1000) : null;
 
     // Copy IP
     function copyIp() {

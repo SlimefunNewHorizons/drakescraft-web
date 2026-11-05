@@ -116,6 +116,14 @@ sequenceDiagram
 
 ---
 
+## Estado editorial de T2 (5 de noviembre de 2026)
+
+La T2 con Purpur 26.2 está en pruebas en Dallas, con whitelist solo para staff. La web informa del mantenimiento en español e inglés; la compatibilidad de clientes Java 1.21 a 26.x y Bedrock sigue en validación. La T1 (1.21.11) está archivada y sus enlaces de descarga aún no están disponibles.
+
+Los eventos de noviembre están cancelados: `/api/eventos` conserva HTTP 200 y devuelve `status: cancelled`, `todayEvent: null` y `events: []`. El catálogo histórico permanece intacto. `NOVEMBER_EVENTS_ENABLED=true` permite consultar de nuevo ese catálogo; restaurar toda la presentación requiere revertir el commit editorial. El homenaje anual a Kika del 4 de noviembre es independiente del calendario del juego.
+
+Validación: `npm run check` y `npm test` contra una instancia aislada sin credenciales; las pruebas incluyen el calendario cancelado y la regresión de tienda. El despliegue reconstruye únicamente `drakescraft-web`, conservando la imagen anterior para rollback. No requiere reiniciar Minecraft.
+
 ## 📄 License & Upstream Attribution
 
 This project is a sovereign fork maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons).

@@ -46,6 +46,8 @@ const ROUTES = [
   '/500-en.html',
   '/maintenance.html',
   '/maintenance-en.html',
+  '/eventos.html',
+  '/events-en.html',
 ];
 
 // Rutas con redirects esperados
@@ -429,6 +431,19 @@ async function main() {
 
   // Test Store & Checkout API
   await testStoreApi();
+
+  // A cancelled calendar must not advertise scheduled rewards to old clients.
+  if (process.env.NOVEMBER_EVENTS_ENABLED !== 'true') {
+    const response = await fetch(`${BASE_URL}/api/eventos`);
+    const calendar = JSON.parse(response.body);
+    if (response.status !== 200 || calendar.status !== 'cancelled' ||
+        calendar.todayEvent !== null || !Array.isArray(calendar.events) || calendar.events.length) {
+      errors.push('/api/eventos: cancelled calendar still advertises events');
+    } else {
+      passed++;
+      console.log('✓ /api/eventos cancelled without scheduled rewards');
+    }
+  }
 
   // Resumen
   console.log(`\n📊 Results: ${passed} checks passed`);

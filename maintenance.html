@@ -6,11 +6,11 @@
   <title>Mantenimiento &amp; Sincronización Divina | DrakesCraft</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://web.drakescraft.cl/maintenance.html">
-  <meta name="description" content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones.">
+  <meta name="description" content="La Temporada 2 se prueba en Dallas con Purpur 26.2. Acceso solo para staff durante el mantenimiento; novedades en Discord.">
   <meta name="theme-color" content="#06040e">
   <meta property="og:type" content="website">
   <meta property="og:title" content="DrakesCraft | Mantenimiento &amp; Sincronización">
-  <meta property="og:description" content="Tus datos, inventarios y cofres están completamente seguros. Volvemos en breve.">
+  <meta property="og:description" content="Mantenimiento de Temporada 2: pruebas con acceso solo para staff. Sigue la reapertura en Discord.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/home/hero-aurora-1600.webp">
   <link rel="icon" type="image/png" href="https://web.drakescraft.cl/assets/logo-drakescraft.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -302,13 +302,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
   <meta property="og:title" content="Mantenimiento & Sincronización Divina | DrakesCraft">
-  <meta property="og:description" content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones.">
+  <meta property="og:description" content="La Temporada 2 se prueba en Dallas con Purpur 26.2. Acceso solo para staff durante el mantenimiento; novedades en Discord.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mantenimiento & Sincronización Divina | DrakesCraft">
-  <meta name="twitter:description" content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones.">
+  <meta name="twitter:description" content="La Temporada 2 se prueba en Dallas con Purpur 26.2. Acceso solo para staff durante el mantenimiento; novedades en Discord.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
@@ -326,14 +326,14 @@
       <div class="logo-badge">
         <img src="https://web.drakescraft.cl/assets/logo-drakescraft.webp" alt="DrakesCraft Dragon Emblem" onerror="this.src='assets/logo-drakescraft.webp'">
       </div>
-      <div><span class="badge-label">Sincronización End Nexus · Temporada 2</span></div>
+      <div><span class="badge-label">Pruebas de Temporada 2 · Purpur 26.2</span></div>
       <h1 class="t2-glitch-title" data-glitch="Mantenimiento Programado">Mantenimiento <span>Programado</span></h1>
       <p class="lead">
-        El portal web y los servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar parches SRE y sincronización de dimensiones.
+        La Temporada 2 se está probando en Dallas con Purpur 26.2. La whitelist permite entrar solo al staff durante el mantenimiento, previsto hasta el 18 de noviembre como máximo. La reapertura se confirmará en Discord; no hay una fecha exacta anunciada.
       </p>
       <div class="t2-hud-strip" style="justify-content: center; margin-bottom: 1.5rem;" aria-label="Estado de resguardo">
-        <span><strong>DATOS</strong> Save-All &amp; IRP Verificados</span>
-        <span><b>ESTADO</b> Pausa Técnica Breve</span>
+        <span><strong>DATOS</strong> Temporada 1 archivada</span>
+        <span><b>ESTADO</b> Pruebas con whitelist</span>
         <span><strong>NEXO</strong> mc.drakescraft.cl</span>
       </div>
 
@@ -341,12 +341,12 @@
         <div class="status-panel__info">
           <span class="status-dot" aria-hidden="true"></span>
           <div>
-            <strong>Mundos e Inventarios Protegidos</strong>
-            <small>Volcado completo de máquinas Slimefun e inventarios realizado.</small>
+            <strong>Acceso temporal solo para staff</strong>
+            <small>La web y las guías siguen disponibles. Sigue los avisos oficiales en Discord.</small>
           </div>
         </div>
         <div class="timer-badge" id="reconnect-box">
-          Reintento automático en <span id="timer-sec">10</span>s
+          Novedades en Discord
         </div>
       </div>
 
@@ -362,6 +362,8 @@
         </button>
       </div>
 
+      <p>Java: <code>mc.drakescraft.cl</code> · Respaldo: <code>drakescraft.playghosting.com</code>. Bedrock: puerto <code>25565</code>. Compatibilidad de clientes Java 1.21 a 26.x y Bedrock en validación durante las pruebas.</p>
+      <p><a href="https://discord.gg/rv3vtXZTk7">Seguir novedades en Discord</a> · <a href="index.html#temporada-1">Descargas de la Temporada 1</a></p>
       <div class="support-grid">
         <a class="support-item" href="https://github.com/SlimefunNewHorizons" target="_blank" rel="noopener">
           <span class="support-item__title">🌟 GitHub Open Source</span>
@@ -387,14 +389,14 @@
     // Contador regresivo y recarga suave
     let count = 10;
     const secEl = document.getElementById('timer-sec');
-    const timerInterval = setInterval(() => {
+    const timerInterval = secEl ? setInterval(() => {
       count--;
       if (secEl) secEl.textContent = count;
       if (count <= 0) {
         clearInterval(timerInterval);
         location.reload();
       }
-    }, 1000);
+    }, 1000) : null;
 
     // Copiar IP
     function copyIp() {

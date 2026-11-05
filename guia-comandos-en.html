@@ -45,7 +45,7 @@
         <li><a href="/index-en.html">Home</a></li>
         <li><a href="guide-en.html">The Server</a></li>
         <li><a class="active" href="guia-comandos-en.html">Commands</a></li>
-        <li><a href="events-en.html">Events</a></li>
+        <li><a href="maintenance-en.html">S2 Status</a></li>
         <li><a href="guia-rangos-en.html">Ranks</a></li>
         <li><a href="guia-slimefun-en.html">Slimefun</a></li>
         <li><a href="apoya-en.html">Sponsors</a></li>
@@ -65,7 +65,7 @@
       <div class="container guide-hero__grid">
         <p class="eyebrow">Command Gatekeeper · +140 Audited</p>
         <h1 class="t2-glitch-title" data-glitch="Commands Guide">Commands <em>Guide</em></h1>
-        <p class="guide-hero__lead">Live commands filtered by Star Engine's 6-modality gatekeeper (1.21.11 · Season 2 Paper 26.2 ready). Inspect syntax, effective permissions, and world availability.</p>
+        <p class="guide-hero__lead">Command reference for Star Engine's 6 gamemodes. Season 2 on Purpur 26.2 is in staff-only testing; availability is under validation. Inspect syntax, effective permissions, and world availability.</p>
         <div class="t2-hud-strip" aria-label="Command telemetry">
           <span><strong>COMMANDS</strong> +140 Audited</span>
           <span><b>FILTER</b> 6 Modalities</span>
@@ -156,7 +156,7 @@
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/help</code><p>Native system help menu.<span class="guide-row__alias">Also: /ayuda, /commands</span><span class="guide-tag guide-tag--survival">Universal</span></p></div>
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/graves</code><p>Panel of your graves. When you die, items don't drop to the ground: everything is saved in a protected grave with your head and experience (AxGraves). It's preserved for <strong>7 days</strong>.<span class="guide-row__alias">List of coordinates: /axgraves list · Teleport: /axgraves tp <world> <x> <y> <z></span><span class="guide-tag guide-tag--survival">Universal</span></p></div>
         <div class="guide-row" data-mod="all,slimefun,skyblock,oneblock"><code>/bienvenida [es|en]</code><p>Re-open the welcome menu with the startup guide for Slimefun, SkyBlock and OneBlock. The optional argument forces the language.<span class="guide-tag guide-tag--survival">Universal</span></p></div>
-        <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/evento [hoy|calendario|silenciar|status]</code><p>Access Odysseia's daily event suite and the <a href="events-en.html">November Event Calendar</a> (Chile time). Use <code>/evento hoy</code> for today's scheduled event, <code>/evento calendario &lt;1-30&gt;</code> for any day, and <code>/evento silenciar</code> to mute or restore event BossBars and sounds.<span class="guide-row__alias">Also: /eventos, /odysseiaevento · Tournaments: /evento pvp &lt;join|leave&gt;</span><span class="guide-tag guide-tag--survival">Events</span></p></div>
+        <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/evento [hoy|calendario|silenciar|status]</code><p>The November 2026 calendar is cancelled during S2 maintenance. This command is unavailable in the current deployment. <a href="maintenance-en.html">S2 status and reopening updates</a>.</p></div>
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/niebla &lt;on|off|toggle&gt; [player|all]</code><p>Toggles special event atmospheric fog. Without arguments it toggles personally; with staff permissions it can affect other players or everyone (all).<span class="guide-tag guide-tag--survival">Events</span></p></div>
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/crates [balance]</code><p>Opens the virtual crate menu (DrakesCrates). With <code>balance</code> shows your accumulated virtual keys.<span class="guide-tag guide-tag--survival">Global</span></p></div>
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/oraculo [reclamar]</code><p>Opens the Oracle and the Relics of Olympus. Without arguments opens the GUI; <code>claim</code> claims all your pending rewards.<span class="guide-tag guide-tag--survival">Global</span></p></div>
@@ -171,7 +171,7 @@
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/modalidades</code><p>Opens the graphical selector of the 6 server modalities.<span class="guide-row__alias">Also: /modalidad, /modes</span><span class="guide-tag guide-tag--survival">Universal</span></p></div>
         <div class="guide-row" data-mod="all,slimefun"><code>/survival</code><p>Enter the main modality with Slimefun, industrial machinery, dark magic and pantheon bosses.<span class="guide-row__alias">Also: /slimefun, /principal, /polis, /main</span><span class="guide-tag guide-tag--survival">Slimefun Survival</span></p></div>
-        <div class="guide-row" data-mod="all,clasico"><code>/clasico</code><p>Enter traditional Classic Survival: pure 1.21.11 vanilla experience with Terralith, without machines or Slimefun.<span class="guide-row__alias">Move with /rtp</span><span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
+        <div class="guide-row" data-mod="all,clasico"><code>/clasico</code><p>Enter traditional Classic Survival: pure vanilla experience with Terralith, without machines or Slimefun.<span class="guide-row__alias">Move with /rtp</span><span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
         <div class="guide-row" data-mod="all,skyblock"><code>/skyblock</code><p>Teleports you to your floating island in the void. If you don't have one, starts the creation assistant.<span class="guide-row__alias">Also: /is, /island, /sb</span><span class="guide-tag guide-tag--survival">SkyBlock</span></p></div>
         <div class="guide-row" data-mod="all,oneblock"><code>/oneblock</code><p>Positions you above your infinite Magic Block that evolves through 21 biome phases.<span class="guide-row__alias">Also: /ob</span><span class="guide-tag guide-tag--survival">OneBlock</span></p></div>
         <div class="guide-row" data-mod="all,onechunk"><code>/onechunk</code><p>Takes you to your OneChunk, where you mine through a 16x16 chunk with guaranteed resources. The first time creates your island.<span class="guide-row__alias">Also: /oc</span><span class="guide-tag guide-tag--survival">OneChunk</span></p></div>

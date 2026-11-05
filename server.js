@@ -718,6 +718,18 @@ app.get('/api/sponsors', async () => {
 });
 
 app.get('/api/eventos', async () => {
+  // November was cancelled for the Season 2 maintenance window. Keep the
+  // catalogue archived and the response shape stable for existing clients.
+  if (process.env.NOVEMBER_EVENTS_ENABLED !== 'true') {
+    return {
+      ok: true,
+      status: 'cancelled',
+      isNovember: false,
+      currentDay: null,
+      todayEvent: null,
+      events: []
+    };
+  }
   try {
     const filePath = path.join(root, 'catalog', 'eventos_noviembre_2026.json');
     const raw = await fs.readFile(filePath, 'utf8');

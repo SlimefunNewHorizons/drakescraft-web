@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Calendario oficial de 30 eventos diarios de noviembre 2026 en DrakesCraft. Boosts de XP y Slimefun, maratones Rush, cofres del Olimpo y la Semana del Fundador.">
-  <title>Calendario de Eventos Noviembre 2026 · DrakesCraft</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Eventos de noviembre de 2026 cancelados por el mantenimiento de la Temporada 2. Novedades en Discord.">
+  <title>Eventos de Noviembre Cancelados · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/eventos.html">
   <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/events-en.html">
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
@@ -17,8 +18,8 @@
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
-  <meta property="og:title" content="Calendario de Eventos Noviembre 2026 · DrakesCraft">
-  <meta property="og:description" content="30 eventos programados día a día: 1 evento diario, Semana del Fundador (22-28 nov) y Gala 5X (29 nov). Cero molestias, opt-out nativo.">
+  <meta property="og:title" content="Eventos de Noviembre Cancelados · DrakesCraft">
+  <meta property="og:description" content="Eventos de noviembre de 2026 cancelados por el mantenimiento de la Temporada 2. Novedades en Discord.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <style>
@@ -104,6 +105,7 @@
       padding: 1.5rem;
       margin: 2rem 0;
     }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body class="page-shell" data-page="eventos" data-section="community">
@@ -134,9 +136,9 @@
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
         <p class="eyebrow">Programación Oficial · Noviembre 2026</p>
-        <h1 class="t2-glitch-title" data-glitch="Calendario de Eventos">30 Días de <em>Eventos</em><br>Noviembre 2026</h1>
-        <p class="guide-hero__lead">Un evento programado por día a la misma hora en hora local de Chile (CLT). Maratones Rush sin loops de menas, boosts globales sin inflación, suministros en chunks salvajes seguros y la gran Semana del Fundador (22–29 nov).</p>
-        <div class="t2-hud-strip" aria-label="Garantías de eventos">
+        <h1 class="t2-glitch-title" data-glitch="Calendario de Eventos">Eventos de noviembre <em>cancelados</em></h1>
+        <p class="guide-hero__lead">El calendario de noviembre de 2026 está cancelado por el mantenimiento de la Temporada 2. No hay eventos ni recompensas programados. <a href="maintenance.html">Consulta el estado de las pruebas de T2</a>.</p>
+        <div class="t2-hud-strip" hidden data-event-schedule aria-label="Garantías de eventos">
           <span><strong>HORARIO</strong> America/Santiago (CLT)</span>
           <span><b>SILENCIO</b> /evento silenciar (Opt-Out)</span>
           <span><strong>SEGURIDAD</strong> Cero daño a builds ni inventarios</span>
@@ -147,16 +149,16 @@
     <div class="container" style="padding-top: 1.5rem;">
       <!-- CAJA EVENTO DE HOY -->
       <section id="evento-hoy" class="event-today-box">
-        <h2 id="today-title" style="margin-top: 0; color: #ffaa00; font-size: 1.4rem;">Cargando evento de hoy...</h2>
-        <p id="today-meta" class="event-meta">Sincronizando reloj con servidor central...</p>
-        <p id="today-desc" style="color: #d1dbe5; margin: 0.75rem 0;">Consulta in-game con <code>/evento hoy</code> o <code>/evento status</code>.</p>
-        <div id="today-reward" style="background: rgba(0,0,0,0.3); border-left: 3px solid #ffaa00; padding: 0.75rem; border-radius: 4px; font-size: 0.95rem; color: #f1f5f9;">
+        <h2 id="today-title" style="margin-top: 0; color: #ffaa00; font-size: 1.4rem;">Calendario cancelado</h2>
+        <p id="today-meta" class="event-meta">Mantenimiento de Temporada 2 · Novedades en Discord</p>
+        <p id="today-desc" hidden data-event-schedule style="color: #d1dbe5; margin: 0.75rem 0;">Consulta in-game con <code>/evento hoy</code> o <code>/evento status</code>.</p>
+        <div id="today-reward" hidden data-event-schedule style="background: rgba(0,0,0,0.3); border-left: 3px solid #ffaa00; padding: 0.75rem; border-radius: 4px; font-size: 0.95rem; color: #f1f5f9;">
           <strong>Recompensa:</strong> Cargando...
         </div>
       </section>
 
       <!-- GARANTÍAS Y REGLAS ANTI-MOLESTIA -->
-      <section class="event-rules-box">
+      <section class="event-rules-box" hidden data-event-schedule>
         <h3 style="color: #00d2ff; margin-top: 0;">✦ Garantías Anti-Molestia y Economía Equilibrada</h3>
         <ul style="color: #cbd5e1; line-height: 1.6; margin-bottom: 0; padding-left: 1.25rem;">
           <li><strong>Modo Silencioso (Opt-Out):</strong> Usa <code>/evento silenciar</code> si deseas desactivar BossBars, sonidos o partículas durante el evento.</li>
@@ -167,7 +169,7 @@
       </section>
 
       <!-- CALENDARIO DE LOS 30 DÍAS -->
-      <section style="margin: 3rem 0;">
+      <section style="margin: 3rem 0;" hidden data-event-schedule>
         <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem;">
           <h2 style="margin: 0; font-family: 'Cinzel', serif; color: #f1f5f9;">Calendario Completo (1 al 30 de Noviembre)</h2>
           <span style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: #8fa0b5;">Zona Horaria: America/Santiago</span>
@@ -207,7 +209,8 @@
       try {
         const res = await fetch('/api/eventos');
         const data = await res.json();
-        if (!data.ok) return;
+        if (!data.ok || data.status === 'cancelled') return;
+        document.querySelectorAll('[data-event-schedule]').forEach(node => { node.hidden = false; });
 
         // Evento de Hoy
         if (data.todayEvent) {

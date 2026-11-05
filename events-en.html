@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Official schedule of 30 daily November 2026 events in DrakesCraft. XP & Slimefun boosts, Rush marathons, Olympus supply drops and Founder's Week.">
-  <title>November 2026 Event Calendar · DrakesCraft</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="November 2026 events cancelled for Season 2 maintenance. Updates on Discord.">
+  <title>November Events Cancelled · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/events-en.html">
   <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/eventos.html">
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
@@ -17,8 +18,8 @@
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
-  <meta property="og:title" content="November 2026 Event Calendar · DrakesCraft">
-  <meta property="og:description" content="30 scheduled daily events: 1 daily event, Founder's Week (Nov 22-28) and 5X Birthday Gala (Nov 29). Zero griefing, native opt-out.">
+  <meta property="og:title" content="November Events Cancelled · DrakesCraft">
+  <meta property="og:description" content="November 2026 events cancelled for Season 2 maintenance. Updates on Discord.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <style>
@@ -104,6 +105,7 @@
       padding: 1.5rem;
       margin: 2rem 0;
     }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body class="page-shell" data-page="eventos" data-section="community">
@@ -134,9 +136,9 @@
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
         <p class="eyebrow">Official Calendar · November 2026</p>
-        <h1 class="t2-glitch-title" data-glitch="Event Calendar">30 Days of <em>Events</em><br>November 2026</h1>
-        <p class="guide-hero__lead">One daily event scheduled at canonical CLT time (America/Santiago). Rush marathons without Silk Touch loops, global boosts without inflation, supply drops in safe wild chunks, and Founder's Week (Nov 22–29).</p>
-        <div class="t2-hud-strip" aria-label="Event Guarantees">
+        <h1 class="t2-glitch-title" data-glitch="Event Calendar">November events <em>cancelled</em></h1>
+        <p class="guide-hero__lead">The November 2026 calendar is cancelled for Season 2 maintenance. No scheduled events or rewards. <a href="maintenance-en.html">Follow S2 testing updates</a>.</p>
+        <div class="t2-hud-strip" hidden data-event-schedule aria-label="Event Guarantees">
           <span><strong>TIMEZONE</strong> America/Santiago (CLT)</span>
           <span><b>SILENT</b> /evento silenciar (Opt-Out)</span>
           <span><strong>SAFETY</strong> Zero damage to claims or inventories</span>
@@ -147,16 +149,16 @@
     <div class="container" style="padding-top: 1.5rem;">
       <!-- TODAY'S EVENT BOX -->
       <section id="evento-hoy" class="event-today-box">
-        <h2 id="today-title" style="margin-top: 0; color: #ffaa00; font-size: 1.4rem;">Loading today's event...</h2>
-        <p id="today-meta" class="event-meta">Syncing clock with server...</p>
-        <p id="today-desc" style="color: #d1dbe5; margin: 0.75rem 0;">Check in-game using <code>/evento hoy</code> or <code>/evento status</code>.</p>
-        <div id="today-reward" style="background: rgba(0,0,0,0.3); border-left: 3px solid #ffaa00; padding: 0.75rem; border-radius: 4px; font-size: 0.95rem; color: #f1f5f9;">
+        <h2 id="today-title" style="margin-top: 0; color: #ffaa00; font-size: 1.4rem;">Calendar cancelled</h2>
+        <p id="today-meta" class="event-meta">Season 2 maintenance · Updates on Discord</p>
+        <p id="today-desc" hidden data-event-schedule style="color: #d1dbe5; margin: 0.75rem 0;">Check in-game using <code>/evento hoy</code> or <code>/evento status</code>.</p>
+        <div id="today-reward" hidden data-event-schedule style="background: rgba(0,0,0,0.3); border-left: 3px solid #ffaa00; padding: 0.75rem; border-radius: 4px; font-size: 0.95rem; color: #f1f5f9;">
           <strong>Reward:</strong> Loading...
         </div>
       </section>
 
       <!-- ANTI-ANNOYANCE RULES -->
-      <section class="event-rules-box">
+      <section class="event-rules-box" hidden data-event-schedule>
         <h3 style="color: #00d2ff; margin-top: 0;">✦ Anti-Annoyance Guarantees & Balanced Economy</h3>
         <ul style="color: #cbd5e1; line-height: 1.6; margin-bottom: 0; padding-left: 1.25rem;">
           <li><strong>Silent Mode (Opt-Out):</strong> Run <code>/evento silenciar</code> to turn off BossBars, sounds, or visual effects during events.</li>
@@ -167,7 +169,7 @@
       </section>
 
       <!-- 30-DAY GRID -->
-      <section style="margin: 3rem 0;">
+      <section style="margin: 3rem 0;" hidden data-event-schedule>
         <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem;">
           <h2 style="margin: 0; font-family: 'Cinzel', serif; color: #f1f5f9;">Complete Schedule (November 1–30)</h2>
           <span style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: #8fa0b5;">Timezone: America/Santiago</span>
@@ -207,7 +209,8 @@
       try {
         const res = await fetch('/api/eventos');
         const data = await res.json();
-        if (!data.ok) return;
+        if (!data.ok || data.status === 'cancelled') return;
+        document.querySelectorAll('[data-event-schedule]').forEach(node => { node.hidden = false; });
 
         // Today's Event
         if (data.todayEvent) {

@@ -150,20 +150,20 @@
         if (st.phase === 1) {
             badge = isEn ? '🎂 NOV 29 · FOUNDER BIRTHDAY' : '🎂 29 NOV · CUMPLE DEL FUNDADOR';
             message = isEn
-                ? `${st.daysLeft} ${st.daysLeft === 1 ? 'day' : 'days'} left until JackStar's birthday — Community celebration, Crates & Olympus Relicaries in-game.`
-                : `Faltan ${st.daysLeft} ${st.daysLeft === 1 ? 'día' : 'días'} para el cumple de JackStar — Evento comunitario, Cajas y Relicarios del Olimpo en el servidor.`;
-            cta = isEn ? 'Community Event →' : 'Evento comunitario →';
+                ? `${st.daysLeft} ${st.daysLeft === 1 ? 'day' : 'days'} left until JackStar's birthday — Community greetings on Discord; November game events are cancelled.`
+                : `Faltan ${st.daysLeft} ${st.daysLeft === 1 ? 'día' : 'días'} para el cumple de JackStar — Saludos comunitarios en Discord; los eventos de noviembre están cancelados.`;
+            cta = isEn ? 'Community Greetings →' : 'Saludos comunitarios →';
         } else if (st.phase === 2) {
             badge = isEn ? '✨ BIRTHDAY WEEK · NOV 22–29' : '✨ SEMANA DEL CUMPLE · 22–29 NOV';
             message = isEn
-                ? `Only ${st.daysLeft} ${st.daysLeft === 1 ? 'day' : 'days'} left (${st.hoursLeft}h)! Another year of 3 AM code & coffee — Celebrate with the community in-game and on Discord.`
-                : `¡Solo faltan ${st.daysLeft} ${st.daysLeft === 1 ? 'día' : 'días'} (${st.hoursLeft}h)! Otro año compilando a las 3 AM a punta de café — Celébralo con la comunidad en el juego y Discord.`;
-            cta = isEn ? 'Join Celebration →' : 'Ver recompensas y evento →';
+                ? `Only ${st.daysLeft} ${st.daysLeft === 1 ? 'day' : 'days'} left (${st.hoursLeft}h)! Another year of 3 AM code & coffee — Share your greetings on Discord; November game events are cancelled.`
+                : `¡Solo faltan ${st.daysLeft} ${st.daysLeft === 1 ? 'día' : 'días'} (${st.hoursLeft}h)! Otro año compilando a las 3 AM a punta de café — Comparte tu saludo en Discord; los eventos de noviembre están cancelados.`;
+            cta = isEn ? 'Join Celebration →' : 'Dejar un saludo →';
         } else {
             badge = isEn ? '🎉 NOV 29 · HAPPY BIRTHDAY JACKSTAR!' : '🎉 29 NOV · ¡FELIZ CUMPLE JACKSTAR!';
             message = isEn
-                ? 'Today we celebrate on DrakesCraft! Thank you all for keeping these six worlds alive — Leave your greeting on Discord & claim your in-game rewards 💛'
-                : '¡Hoy estamos de fiesta en DrakesCraft! Gracias a todos por darle vida a estos seis mundos — Deja tu saludo en Discord y participa en el servidor 💛';
+                ? 'Today we celebrate on DrakesCraft! Thank you all for keeping these six worlds alive — Leave your greeting on Discord 💛'
+                : '¡Hoy estamos de fiesta en DrakesCraft! Gracias a todos por darle vida a estos seis mundos — Deja tu saludo en Discord 💛';
             cta = isEn ? 'Celebrate Together →' : 'Celebrar con la comunidad →';
         }
 
