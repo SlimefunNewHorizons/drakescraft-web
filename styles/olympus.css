@@ -43,35 +43,39 @@
   box-sizing: border-box;
 }
 html {
+  font-size: 14.5px;
   scroll-behavior: smooth;
-  scroll-padding-top: 7rem;
+  scroll-padding-top: 5.5rem;
 }
 body {
   margin: 0;
   color: var(--paper);
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  line-height: 1.62;
+  line-height: 1.6;
   overflow-x: clip;
-  background-color: var(--ink);
+  background-color: #0b0714;
   background-image:
-    /* Micro-textura estelar analógica SVG (0ms latencia) */
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.038'/%3E%3C/svg%3E"),
-    /* Cuadrícula astral arquitectónica sutil */
-    linear-gradient(rgba(169, 138, 232, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(169, 138, 232, 0.022) 1px, transparent 1px),
-    /* Nebulosa púrpura profunda superior */
-    radial-gradient(ellipse 70% 50% at 85% -5%, rgba(142, 85, 224, 0.22), transparent 60%),
-    /* Halo místico esmeralda / auroral a la izquierda */
-    radial-gradient(ellipse 55% 40% at 8% 28%, rgba(130, 201, 165, 0.07), transparent 55%),
-    /* Glow violeta dimensional inferior */
-    radial-gradient(ellipse 65% 55% at 50% 85%, rgba(100, 48, 165, 0.15), transparent 70%),
-    /* Gradiente base de obsidiana imperial a púrpura profundo */
-    linear-gradient(180deg, #0c0815 0%, #110a1e 50%, #08050e 100%);
+    /* Microtextura de grano estelar visible (0ms de latencia nativa) */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.065'/%3E%3C/svg%3E"),
+    /* Cuadrícula astral fina arquitectónica */
+    linear-gradient(rgba(169, 138, 232, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 138, 232, 0.035) 1px, transparent 1px),
+    /* Nebulosa superior viva (púrpura imperial vibrante) */
+    radial-gradient(ellipse 75% 55% at 80% -5%, rgba(155, 89, 235, 0.28), transparent 60%),
+    /* Aurora mística lateral esmeralda/cian */
+    radial-gradient(ellipse 55% 45% at 5% 30%, rgba(130, 201, 165, 0.10), transparent 55%),
+    /* Resplandor central dorado tenue */
+    radial-gradient(circle at 50% 50%, rgba(229, 189, 114, 0.04), transparent 65%),
+    /* Glow dimensional violeta inferior */
+    radial-gradient(ellipse 70% 60% at 50% 90%, rgba(118, 52, 198, 0.18), transparent 70%),
+    /* Degradado base de obsidiana a violeta noche profundo */
+    linear-gradient(180deg, #0b0714 0%, #120a1f 35%, #150c24 70%, #090510 100%);
   background-size:
-    200px 200px,
-    44px 44px,
-    44px 44px,
+    250px 250px,
+    38px 38px,
+    38px 38px,
+    100% 100%,
     100% 100%,
     100% 100%,
     100% 100%,
@@ -995,16 +999,18 @@ summary {
   margin: 0;
 }
 .op-page-art {
-  height: 190px;
-  perspective: 800px;
+  height: 140px;
+  max-width: 220px;
+  margin-left: auto;
 }
 .op-page-art img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border: 1px solid #e5bd7266;
-  transform: rotateY(-14deg) rotateX(6deg) rotateZ(2deg);
-  box-shadow: 14px 14px 0 #a98ae821;
+  border: 1px solid rgba(229, 189, 114, 0.45);
+  border-radius: 6px;
+  transform: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 16px rgba(169, 138, 232, 0.2);
 }
 .op-breadcrumb {
   display: flex;
@@ -1203,18 +1209,28 @@ li code {
   border: 1px solid #82c9a529;
 }
 .guide-accordion {
-  border: 1px solid var(--line);
-  margin: 1rem 0;
-  border-radius: 4px;
-  background: #ffffff02;
+  border: 1px solid rgba(169, 138, 232, 0.2);
+  margin: 0.85rem 0;
+  border-radius: 6px;
+  background: linear-gradient(155deg, rgba(28, 18, 44, 0.8) 0%, rgba(16, 10, 26, 0.9) 100%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s ease;
+}
+.guide-accordion:hover {
+  border-color: rgba(169, 138, 232, 0.38);
 }
 .guide-accordion > summary {
-  padding: 1.2rem;
+  padding: 0.85rem 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+.guide-accordion > summary:hover {
+  color: var(--gold);
 }
 .guide-accordion__header-left {
   display: flex;
@@ -1269,8 +1285,9 @@ details[open] > .guide-accordion__header .guide-accordion__caret {
 }
 .rank-table thead,
 .tabla-jugadores thead {
-  background: #2a1c3c;
+  background: linear-gradient(135deg, #341e50 0%, #1c112e 100%);
   color: var(--gold);
+  border-bottom: 2px solid rgba(229, 189, 114, 0.5);
 }
 .rank-table tbody tr:nth-child(even) {
   background: #ffffff03;
@@ -1960,22 +1977,32 @@ textarea::placeholder {
 .metricas-tarjetas {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1px;
-  background: var(--line);
-  margin: 1rem 0 2rem;
-  border: 1px solid var(--line);
+  gap: 0.65rem;
+  background: transparent;
+  margin: 1rem 0 1.75rem;
+  border: none;
 }
 .metrica {
-  background: #191122;
-  padding: 1.5rem 1rem;
+  background: linear-gradient(160deg, rgba(32, 22, 50, 0.85) 0%, rgba(18, 12, 28, 0.95) 100%);
+  border: 1px solid rgba(169, 138, 232, 0.22);
+  border-radius: 6px;
+  padding: 0.9rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.35rem;
   min-width: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.metrica:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 189, 114, 0.5);
+  box-shadow: 0 8px 20px -2px rgba(0, 0, 0, 0.55), 0 0 16px -2px rgba(169, 138, 232, 0.25);
 }
 .metrica__valor {
-  font: 500 2.5rem/1.2 var(--font-heading);
+  font: 500 1.75rem/1.15 var(--font-heading);
   color: var(--gold);
+  text-shadow: 0 0 16px rgba(229, 189, 114, 0.35);
 }
 .metrica__etiqueta {
   font-size: 0.82rem;
@@ -2923,4 +2950,30 @@ textarea::placeholder {
   border-color: rgba(229, 189, 114, 0.52);
   background: linear-gradient(165deg, rgba(34, 24, 52, 0.92) 0%, rgba(20, 14, 34, 0.98) 100%);
   box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.65), 0 0 20px -3px rgba(169, 138, 232, 0.25);
+}
+
+
+/* Guide Hero - Compact and deeply atmospheric */
+.guide-hero {
+  padding-block: 1.75rem 1.45rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-purple);
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(169, 138, 232, 0.12), transparent 75%);
+}
+.guide-hero h1 {
+  font-size: clamp(1.85rem, 3vw, 2.65rem);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+.guide-hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(229, 189, 114, 0.35);
+}
+.guide-hero .guide-hero__lead {
+  font-size: 0.94rem;
+  max-width: 48rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
 }
