@@ -1077,10 +1077,13 @@ await app.register(fastifyStatic, {
     ]);
     const normalized = pathname.replace(/^[/\\]+/, '').replaceAll('\\', '/');
     return publicFiles.has(normalized)
+      || (normalized.endsWith('.html') && !normalized.includes('/'))
       || normalized.startsWith('assets/')
       || normalized.startsWith('styles/')
       || normalized.startsWith('scripts/')
-      || normalized === 'robots.txt';
+      || normalized.startsWith('vendor/')
+      || normalized === 'robots.txt'
+      || normalized === 'sitemap.xml';
   }
 });
 

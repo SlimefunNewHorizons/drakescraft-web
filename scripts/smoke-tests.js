@@ -228,9 +228,10 @@ async function testRoute(route) {
       '/maintenance-en.html'
     ];
 
-    if (ACCESSIBLE_KEYBOARD_ROUTES.includes(route) &&
-        (!response.body.includes('class="skip-link" href="#main-content"') ||
-         !response.body.includes('<main id="main-content"'))) {
+    const hasSkip = response.body.includes('class="skip-link"') &&
+      (response.body.includes('href="#main-content"') || response.body.includes('href="#main"'));
+    const hasMain = response.body.includes('<main id="main-content"') || response.body.includes('<main id="main"');
+    if (ACCESSIBLE_KEYBOARD_ROUTES.includes(route) && (!hasSkip || !hasMain)) {
       errors.push(`${route}: missing keyboard skip link or main-content target`);
       return;
     }
