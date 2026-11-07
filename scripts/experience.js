@@ -118,6 +118,9 @@
   
   /** Reveal elements smoothly as user scrolls down */
   function setupScrollReveals() {
+    // Ensure all elements are immediately visible
+    document.querySelectorAll('.op-reveal').forEach(el => el.classList.add('is-visible'));
+    return;
     const reveals = document.querySelectorAll('.op-reveal');
     if (!reveals.length) return;
     if (!('IntersectionObserver' in window)) {
