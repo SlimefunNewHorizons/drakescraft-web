@@ -2,20 +2,28 @@
  * intentionally not loaded; content and commerce hooks keep their own meaning. */
 :root {
   color-scheme: dark;
-  --ink: #100c19;
-  --paper: #f7f0df;
-  --muted: #bbb0c8;
+  --ink: #0c0815;
+  --ink-deep: #07040d;
+  --ink-surface: #140d22;
+  --panel: #171026;
+  --panel-hover: #211636;
+  --paper: #f5eedb;
+  --muted: #b5a9c3;
   --gold: #e5bd72;
+  --gold-glow: rgba(229, 189, 114, 0.28);
   --green: #82c9a5;
+  --green-glow: rgba(130, 201, 165, 0.28);
   --purple: #a98ae8;
-  --line: #ffffff16;
-  --panel: #1b1429;
+  --purple-glow: rgba(169, 138, 232, 0.28);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-purple: rgba(169, 138, 232, 0.18);
+  --line-gold: rgba(229, 189, 114, 0.30);
   --font-heading: "Cinzel", Georgia, serif;
   --font-body: "Instrument Sans", sans-serif;
   --bs-body-bg: var(--ink);
   --bs-body-color: var(--paper);
   --bs-body-font-family: var(--font-body);
-  --bs-body-font-size: 1rem;
+  --bs-body-font-size: 0.9375rem;
   --bs-border-color: var(--line);
   --bs-link-color: var(--gold);
   --bs-link-hover-color: #ffe2a9;
@@ -40,12 +48,35 @@ html {
 }
 body {
   margin: 0;
-  background:
-    radial-gradient(ellipse at 90% 12%, #42236636, transparent 40%), var(--ink);
   color: var(--paper);
   font-family: var(--font-body);
-  line-height: 1.7;
+  font-size: 0.9375rem;
+  line-height: 1.62;
   overflow-x: clip;
+  background-color: var(--ink);
+  background-image:
+    /* Micro-textura estelar analógica SVG (0ms latencia) */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.038'/%3E%3C/svg%3E"),
+    /* Cuadrícula astral arquitectónica sutil */
+    linear-gradient(rgba(169, 138, 232, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 138, 232, 0.022) 1px, transparent 1px),
+    /* Nebulosa púrpura profunda superior */
+    radial-gradient(ellipse 70% 50% at 85% -5%, rgba(142, 85, 224, 0.22), transparent 60%),
+    /* Halo místico esmeralda / auroral a la izquierda */
+    radial-gradient(ellipse 55% 40% at 8% 28%, rgba(130, 201, 165, 0.07), transparent 55%),
+    /* Glow violeta dimensional inferior */
+    radial-gradient(ellipse 65% 55% at 50% 85%, rgba(100, 48, 165, 0.15), transparent 70%),
+    /* Gradiente base de obsidiana imperial a púrpura profundo */
+    linear-gradient(180deg, #0c0815 0%, #110a1e 50%, #08050e 100%);
+  background-size:
+    200px 200px,
+    44px 44px,
+    44px 44px,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  background-attachment: fixed;
 }
 main {
   min-height: 50vh;
@@ -62,16 +93,17 @@ h2 {
   font-weight: 500;
 }
 h1 {
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.95rem);
 }
 h2 {
-  font-size: clamp(1.65rem, 3vw, 2.75rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.95rem);
 }
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
 }
 p {
   color: var(--muted);
+  font-size: 0.9375rem;
 }
 a {
   color: inherit;
@@ -106,8 +138,8 @@ summary {
   color: white;
 }
 .container {
-  max-width: 1380px;
-  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  max-width: 1180px;
+  padding-inline: clamp(1rem, 2.5vw, 1.85rem);
 }
 .hidden,
 .is-hidden,
@@ -136,7 +168,7 @@ summary {
   margin-bottom: 1rem;
 }
 .op-section {
-  padding-block: clamp(2rem, 3.5vw, 3.25rem);
+  padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 .op-section-heading {
   display: flex;
@@ -169,18 +201,41 @@ summary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  gap: 0.6rem;
   font-weight: 600;
-  padding: 0.78rem 1.2rem;
+  font-size: 0.9rem;
+  padding: 0.68rem 1.15rem;
   border: 1px solid var(--line);
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
   transition:
     background 0.2s,
     border-color 0.2s,
+    box-shadow 0.2s,
     transform 0.2s;
   line-height: 1.4;
   color: var(--paper);
-  background: #ffffff06;
+  background: rgba(255, 255, 255, 0.04);
+}
+.btn::after,
+.home-button--gold::after,
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: rotate(25deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+.btn:hover::after,
+.home-button--gold:hover::after,
+.btn-primary:hover::after {
+  left: 135%;
 }
 .btn:hover,
 .home-button:hover,
@@ -399,7 +454,7 @@ summary {
 .op-hero {
   position: relative;
   isolation: isolate;
-  padding-block: clamp(1.75rem, 3vw, 3.25rem);
+  padding-block: clamp(1.25rem, 2.2vw, 2.25rem);
   overflow: clip;
 }
 .op-hero::before {
@@ -408,23 +463,26 @@ summary {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, #100c19 10%, #100c1900),
+    radial-gradient(ellipse 60% 50% at 75% 35%, rgba(169, 138, 232, 0.18), transparent 70%),
+    linear-gradient(90deg, #0c0815 15%, transparent 85%),
     url("/assets/home/hero-aurora-1600.webp") center/cover;
-  opacity: 0.08;
+  opacity: 0.14;
 }
 .op-hero h1 {
-  font-size: clamp(3.2rem, 6.4vw, 6.1rem);
-  line-height: 1.04;
-  letter-spacing: -0.045em;
-  margin-bottom: 1.5rem;
+  font-size: clamp(2.2rem, 4vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.25rem;
 }
 .op-hero h1 em {
   font-style: normal;
   color: var(--gold);
+  text-shadow: 0 0 25px rgba(229, 189, 114, 0.35);
 }
 .op-hero .op-lead {
-  font-size: 1.08rem;
-  max-width: 33rem;
+  font-size: 0.96rem;
+  max-width: 30rem;
+  line-height: 1.6;
 }
 .op-hero-meta {
   display: flex;
@@ -444,9 +502,19 @@ summary {
   border-radius: 50%;
   margin-right: 0.5rem;
 }
+@keyframes liveGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(130, 201, 165, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(130, 201, 165, 0.9), 0 0 26px rgba(130, 201, 165, 0.35);
+    transform: scale(1.15);
+  }
+}
 .is-online .live-dot {
   background: var(--green);
-  box-shadow: 0 0 13px #82c9a588;
+  animation: liveGlow 2.4s ease-in-out infinite;
 }
 .op-stage {
   position: relative;
@@ -609,7 +677,7 @@ summary {
   padding-left: 1rem;
 }
 .op-facts dt {
-  font: 500 2.2rem/1.2 var(--font-heading);
+  font: 500 1.65rem/1.2 var(--font-heading);
   color: var(--gold);
 }
 .op-facts dd {
@@ -801,7 +869,7 @@ summary {
   color: var(--green);
 }
 .op-shop-preview h3 {
-  font: 2rem var(--font-heading);
+  font: 1.45rem var(--font-heading);
 }
 .op-shop-preview b {
   color: var(--gold);
@@ -862,15 +930,16 @@ summary {
   word-break: break-word;
 }
 .op-final {
-  padding: 6rem 1rem;
+  padding: 3.5rem 1rem;
   text-align: center;
   position: relative;
   background:
-    linear-gradient(#100c19ae, #100c19e0),
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(169, 138, 232, 0.16), transparent 75%),
+    linear-gradient(#0c0815cc, #0c0815f0),
     url("/assets/home/cta-aurora-1600.webp") center/cover;
 }
 .op-final h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
 }
 .op-final p {
   max-width: 40rem;
@@ -889,24 +958,26 @@ summary {
 }
 /* Interior routes use a compact title and an index rail with readable content. */
 .op-page-heading {
-  padding-block: 3rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--line);
+  padding-block: 1.75rem 1.5rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line-purple);
+  background: radial-gradient(ellipse 60% 70% at 50% 0%, rgba(169, 138, 232, 0.08), transparent 70%);
 }
 .op-page-heading .op-heading-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 2rem;
   align-items: center;
 }
 .op-page-heading .op-heading-row.op-heading-single,
 .op-page-heading .op-heading-row:not(:has(.op-page-art)) {
   grid-template-columns: 1fr;
-  max-width: 58rem;
+  max-width: 52rem;
 }
 .op-page-heading h1 {
-  max-width: 23ch;
-  margin: 0 0 1.2rem;
+  font-size: clamp(1.7rem, 2.8vw, 2.45rem);
+  max-width: 26ch;
+  margin: 0 0 0.8rem;
 }
 .op-page-heading .op-heading-row.op-heading-single h1,
 .op-page-heading .op-heading-row:not(:has(.op-page-art)) h1 {
@@ -915,10 +986,12 @@ summary {
 .op-page-heading h1 em {
   font-style: normal;
   color: var(--gold);
+  text-shadow: 0 0 20px rgba(229, 189, 114, 0.3);
 }
 .op-page-heading .op-lead {
-  max-width: 52rem;
-  font-size: 1.05rem;
+  max-width: 48rem;
+  font-size: 0.94rem;
+  line-height: 1.6;
   margin: 0;
 }
 .op-page-art {
@@ -945,10 +1018,10 @@ summary {
 }
 .op-document {
   display: grid;
-  grid-template-columns: 225px minmax(0, 1fr);
-  gap: 3rem;
+  grid-template-columns: 215px minmax(0, 1fr);
+  gap: 2rem;
   align-items: start;
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
 }
 .op-sidebar {
   position: sticky;
@@ -996,10 +1069,10 @@ summary {
   scroll-margin-top: 7rem;
 }
 .op-doc-content .guide-section h2 {
-  font-size: 1.8rem;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 0.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--line-purple);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.85rem;
 }
 .guide-section__note {
   margin-bottom: 1.5rem;
@@ -1027,11 +1100,18 @@ summary {
 }
 .guide-search input {
   width: 100%;
-  padding: 1rem 1.2rem;
-  background: #20162f;
-  border: 1px solid #a98ae85a;
-  border-radius: 5px;
+  padding: 0.68rem 1rem;
+  font-size: 0.92rem;
+  background: rgba(26, 17, 40, 0.85);
+  border: 1px solid var(--line-purple);
+  border-radius: 4px;
   color: var(--paper);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.guide-search input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(229, 189, 114, 0.25);
+  outline: none;
 }
 .guide-search__count {
   font-size: 0.8rem;
@@ -1067,16 +1147,23 @@ summary {
 }
 .guide-row {
   display: grid;
-  grid-template-columns: minmax(140px, 28%) 1fr;
-  gap: 1.2rem;
+  grid-template-columns: minmax(140px, 26%) 1fr;
+  gap: 1rem;
   align-items: start;
-  padding: 1rem 1.15rem;
-  background: #ffffff03;
+  padding: 0.72rem 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid var(--line);
   min-width: 0;
+  transition: background 0.15s ease;
+}
+.guide-row:hover {
+  background: rgba(169, 138, 232, 0.08);
 }
 .guide-row:nth-child(even) {
-  background: #a98ae807;
+  background: rgba(169, 138, 232, 0.04);
+}
+.guide-row:nth-child(even):hover {
+  background: rgba(169, 138, 232, 0.1);
 }
 .guide-row > code {
   color: var(--gold);
@@ -2808,4 +2895,32 @@ textarea::placeholder {
   padding: 0.6rem 1rem !important;
   margin-left: 0.5rem;
   text-decoration: none;
+}
+
+/* Micro-interacciones de relieve y profundidad para tarjetas */
+.op-mode-card,
+.op-shop-preview > a,
+.op-team article,
+.error-card,
+.support-item,
+.op-legal article,
+.op-facts div {
+  background: linear-gradient(165deg, rgba(26, 18, 40, 0.82) 0%, rgba(14, 10, 24, 0.92) 100%);
+  border: 1px solid var(--line-purple);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.22s ease,
+              box-shadow 0.22s ease,
+              background 0.22s ease;
+}
+.op-mode-card:hover,
+.op-shop-preview > a:hover,
+.op-team article:hover,
+.error-card:hover,
+.support-item:hover,
+.op-legal article:hover {
+  transform: translateY(-3px);
+  border-color: rgba(229, 189, 114, 0.52);
+  background: linear-gradient(165deg, rgba(34, 24, 52, 0.92) 0%, rgba(20, 14, 34, 0.98) 100%);
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.65), 0 0 20px -3px rgba(169, 138, 232, 0.25);
 }
