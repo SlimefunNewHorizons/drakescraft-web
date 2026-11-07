@@ -899,9 +899,18 @@ summary {
   gap: 3rem;
   align-items: center;
 }
+.op-page-heading .op-heading-row.op-heading-single,
+.op-page-heading .op-heading-row:not(:has(.op-page-art)) {
+  grid-template-columns: 1fr;
+  max-width: 58rem;
+}
 .op-page-heading h1 {
   max-width: 23ch;
   margin: 0 0 1.2rem;
+}
+.op-page-heading .op-heading-row.op-heading-single h1,
+.op-page-heading .op-heading-row:not(:has(.op-page-art)) h1 {
+  max-width: none;
 }
 .op-page-heading h1 em {
   font-style: normal;
