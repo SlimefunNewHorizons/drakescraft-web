@@ -3,62 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Enciclopedia oficial de plugins, StarSuites y modificaciones soberanas en DrakesCraft T2 (Purpur 26.2 / ViaVersion). Documentación canónica upstream y parches exclusivos de Star Architecture.">
+  <meta name="description" content="Enciclopedia oficial de plugins, StarSuites y modificaciones soberanas en DrakesCraft 1.21.11+. Documentación canónica upstream y parches exclusivos de Star Architecture.">
   <title>Plugins &amp; Suites · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/guia-plugins.html">
-  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia-plugins.html">
-  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/guia-plugins-en.html">
-  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
-  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
-  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-plugins.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con arquitectura StarSuites, economía chilena en CLP, 26 dioses panteónicos y seis modalidades aisladas."}]}</script>
-
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="DrakesCraft">
-  <meta property="og:title" content="Plugins &amp; Suites · DrakesCraft">
-  <meta property="og:description" content="Enciclopedia oficial de plugins, StarSuites y modificaciones soberanas en DrakesCraft T2 (Purpur 26.2 / ViaVersion). Documentación canónica upstream y parches exclusivos de Star Architecture.">
-  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Plugins &amp; Suites · DrakesCraft">
-  <meta name="twitter:description" content="Enciclopedia oficial de plugins, StarSuites y modificaciones soberanas en DrakesCraft T2 (Purpur 26.2 / ViaVersion). Documentación canónica upstream y parches exclusivos de Star Architecture.">
-  <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <style>
-    .plugin-entry { display: flex; flex-direction: column; gap: 1.25rem; }
-    .plugin-badge-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .25rem; }
-    .plugin-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: .5rem; }
-    .plugin-subbox { background: rgba(14, 10, 29, .72); border: 1px solid rgba(168, 85, 247, .2); border-radius: 4px; padding: 1rem; }
-    .plugin-subbox--upstream { border-left: 3px solid #00e5ff; }
-    .plugin-subbox--sovereign { border-left: 3px solid #e056fd; background: rgba(139, 92, 246, .08); }
-    .plugin-subbox h4 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; }
-    .plugin-subbox h4.upstream-title { color: #7dd3fc; }
-    .plugin-subbox h4.sovereign-title { color: #e879f9; }
-    .plugin-subbox p { margin: 0 0 .65rem; font-size: .88rem; line-height: 1.55; opacity: .88; }
-    .plugin-subbox p:last-child { margin-bottom: 0; }
-    .plugin-link-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .75rem; border-radius: 4px; background: rgba(0, 229, 255, .12); border: 1px solid rgba(0, 229, 255, .36); color: #bae6fd; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s; }
-    .plugin-link-btn:hover { background: rgba(0, 229, 255, .24); color: #fff; }
-    .plugin-feat-list { list-style: none; padding: 0; margin: .5rem 0 0; display: flex; flex-direction: column; gap: .4rem; }
-    .plugin-feat-list li { font-size: .86rem; line-height: 1.45; position: relative; padding-left: 1.25rem; }
-    .plugin-feat-list li::before { content: "▹"; position: absolute; left: 0; color: #e056fd; font-weight: bold; }
-    .plugin-feat-list li code { font-family: 'DM Mono', monospace; font-size: .82rem; color: #ffd700; }
-    .guide-accordion__badge--emerald { color: #6ee7a2; background: rgba(110, 231, 162, .16); }
-    .guide-accordion__badge--crimson { color: #fda4af; background: rgba(244, 63, 94, .16); }
-    .guide-accordion__badge--blue { color: #93c5fd; background: rgba(59, 130, 246, .16); }
-  </style>
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
+  <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
+  <link href="/styles/olympus.css?v=20260909-3d" rel="stylesheet" />
 </head>
-<body class="page-shell" data-page="guia" data-section="plugins">
-  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+<body class="op-page" data-design="olympus-3d">
   <nav class="site-nav" aria-label="Navegación principal">
     <div class="container site-nav__bar">
       <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
+        <img class="brand__mark" src="assets/logo-drakescraft.png" alt="">
         <span class="brand__meta"><strong>DrakesCraft</strong><span>Enciclopedia de Plugins &amp; Suites</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
@@ -74,24 +32,15 @@
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
     </div>
-    <div class="lang-switcher">
-      <a href="guia-plugins.html" class="lang-btn is-active" data-lang="es" title="Español">ES</a>
-      <a href="guia-plugins-en.html" class="lang-btn" data-lang="en" title="Switch to English">EN</a>
-    </div>
   </nav>
 
-  <main id="main-content">
+  <main>
     <header class="guide-hero">
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
-        <p class="eyebrow">Arquitectura StarSuites &amp; Canon Soberano</p>
-        <h1 class="t2-glitch-title" data-glitch="Enciclopedia de Plugins & Suites">Enciclopedia de <em>Plugins &amp; Suites</em></h1>
-        <p class="guide-hero__lead">En DrakesCraft operan más de 170 módulos orquestados por Star Architecture (T2 Purpur 26.2 en pruebas solo para staff). Aquí detallamos la <strong>documentación oficial upstream</strong> y las <strong>modificaciones soberanas</strong> de nuestro ecosistema.</p>
-        <div class="t2-hud-strip" aria-label="Telemetría de plugins">
-          <span><strong>T2 TEST</strong> Purpur 26.2</span>
-          <span><b>STAGING T2</b> Purpur 26.2 · En validación</span>
-          <span><strong>INGENIERÍA</strong> StarSuites</span>
-        </div>
+        <p class="eyebrow">Arquitectura StarSuites &amp; Canon Tecnológico</p>
+        <h1>Enciclopedia de <em>Plugins &amp; Suites</em></h1>
+        <p class="guide-hero__lead">En DrakesCraft operan 167 componentes de software orquestados por Star Architecture. Para que ningún jugador ni creador se pierda, aquí detallamos la <strong>documentación canónica oficial (upstream)</strong> de cada proyecto y las <strong>modificaciones soberanas propietarias</strong> creadas exclusivamente para nuestro cluster.</p>
       </div>
     </header>
 
@@ -101,7 +50,6 @@
       <a href="guia-rangos.html">Rangos</a>
       <a href="guia-slimefun.html">Slimefun</a>
       <a href="guia-plugins.html" class="is-active">Plugins &amp; Suites</a>
-      <a href="guia-poderes.html">Poderes</a>
     </nav>
 
     <div class="container">
@@ -165,7 +113,7 @@
                 </div>
                 <div class="plugin-subbox plugin-subbox--sovereign">
                   <h4 class="sovereign-title">🛡️ Modificaciones Soberanas DrakesCraft</h4>
-                  <p>En Purpur 26.2 (T2), 70+ tickers asíncronos y llamadas masivas de NBT colapsaban el recolector de basura (GC). Nuestra suite introduce:</p>
+                  <p>En Paper 1.21.11+, 70+ tickers asíncronos y llamadas masivas de NBT colapsaban el recolector de basura (GC). Nuestra suite introduce:</p>
                   <ul class="plugin-feat-list">
                     <li><strong><code>SuiteTickerEngine</code>:</strong> Ticker único sincronizado que erradica micro-stutters y parones de TPS.</li>
                     <li><strong>FFM Java 21 / Rust Bindings:</strong> Reduce la carga del recolector de basura en cálculos de redes de energía.</li>
@@ -622,7 +570,7 @@
     <div class="container site-footer__grid">
       <div class="site-footer__brand">
         <a class="brand brand--footer" href="/" aria-label="Ir al inicio de DrakesCraft">
-          <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="">
+          <img class="brand__mark" src="assets/logo-drakescraft.png" alt="">
           <span class="brand__meta"><strong>DrakesCraft</strong><span>Servidor Minecraft Java &amp; Bedrock</span></span>
         </a>
         <p class="site-footer__lead">Seis modalidades, tecnología StarSuites, economía chilena en CLP y 26 dioses panteónicos. Construido con rigor de ingeniería y cariño comunitario.</p>
@@ -657,7 +605,8 @@
     </div>
   </footer>
 
-  <script src="scripts/site.js?v=20261017-v7"></script>
-  <script src="scripts/guia.js?v=20261017-v7"></script>
+  <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="/scripts/experience.js" defer></script>
+  <script src="/scripts/guia.js" defer></script>
 </body>
 </html>

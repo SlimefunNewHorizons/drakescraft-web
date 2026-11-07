@@ -1,33 +1,29 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta name="keywords" content="servidor minecraft, minecraft chile, minecraft latam, slimefun en español, servidor bedrock, purpur 1.21, drakescraft, slimefun addons, servidores minecraft survival">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft T2 (Purpur 26.2): maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
-  <title>Guía de Slimefun & 49 Addons en Español | Máquinas, Redes y Energía · DrakesCraft</title>
+  <meta name="description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft 1.21.11+: maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
+  <title>Slimefun &amp; StarSuites · DrakesCraft</title>
   <link rel="canonical" href="https://web.drakescraft.cl/guia-slimefun.html">
-  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/guia-slimefun.html">
-  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/guia-slimefun-en.html">
-  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
-  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
-  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/base.css?v=20261018-v8">
+  <link rel="stylesheet" href="styles/guia.css?v=20261018-v8">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "logo": "https://web.drakescraft.cl/assets/logo-drakescraft.webp", "sameAs": ["https://discord.gg/rv3vtXZTk7", "https://drakescraft-v2.tebex.io"]}, {"@type": "WebSite", "name": "DrakesCraft", "url": "https://web.drakescraft.cl/", "inLanguage": "es", "potentialAction": {"@type": "SearchAction", "target": "https://web.drakescraft.cl/guia-slimefun.html?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "VideoGame", "name": "DrakesCraft", "gamePlatform": ["Minecraft Java", "Minecraft Bedrock"], "applicationCategory": "Game", "url": "https://web.drakescraft.cl/", "description": "Servidor Minecraft Java y Bedrock con arquitectura StarSuites, redes digitales Networks, reactores nucleares, genética biológica y convergencia Tier 10."}]}</script>
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DrakesCraft">
   <meta property="og:title" content="Slimefun &amp; StarSuites · DrakesCraft">
-  <meta property="og:description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft T2 (Purpur 26.2): maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
+  <meta property="og:description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft 1.21.11+: maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
   <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Slimefun &amp; StarSuites · DrakesCraft">
-  <meta name="twitter:description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft T2 (Purpur 26.2): maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
+  <meta name="twitter:description" content="Guía maestra de Slimefun, StarSuites y más de 60 addons en DrakesCraft 1.21.11+: maquinaria, reactores, logística digital Networks, genética, AlchimiaVitae, DrakesBosses y Tier 10 Olympus.">
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <style>
@@ -37,19 +33,19 @@
     .guide-accordion__badge--gold { color: #ffd479; background: rgba(255, 212, 121, .16); }
     .guide-accordion__badge--purple { color: #d8c9ff; background: rgba(150, 120, 255, .15); }
     .guide-accordion__badge--cyan { color: #a5f3fc; background: rgba(34, 211, 238, .16); }
-    .guide-callout { background: rgba(139, 92, 246, .12); border-left: 3px solid #c084fc; padding: .85rem 1.1rem; border-radius: 4px; margin: 0 0 1rem; font-size: .9rem; line-height: 1.55; }
-    .guide-callout--alert { background: rgba(244, 63, 94, .1); border-left-color: #f43f5e; }
-    .guide-callout--info { background: rgba(0, 229, 255, .09); border-left-color: #00e5ff; }
-    .guide-callout--gold { background: rgba(255, 215, 0, .09); border-left-color: #ffd700; }
+    .guide-callout { background: rgba(16, 185, 129, .08); border-left: 3px solid #10b981; padding: .85rem 1.1rem; border-radius: .4rem; margin: 0 0 1rem; font-size: .9rem; line-height: 1.55; }
+    .guide-callout--alert { background: rgba(244, 63, 94, .08); border-left-color: #f43f5e; }
+    .guide-callout--info { background: rgba(59, 130, 246, .08); border-left-color: #3b82f6; }
+    .guide-callout--gold { background: rgba(255, 212, 121, .08); border-left-color: #ffd479; }
   </style>
-  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261102-t2">
+  <link href="/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" />
+  <link href="/styles/olympus.css?v=20260909-3d" rel="stylesheet" />
 </head>
-<body class="page-shell" data-page="guia" data-section="slimefun">
-  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+<body class="op-page" data-design="olympus-3d">
   <nav class="site-nav" aria-label="Navegación principal">
     <div class="container site-nav__bar">
       <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
+        <img class="brand__mark" src="assets/logo-drakescraft.png" alt="">
         <span class="brand__meta"><strong>DrakesCraft</strong><span>Guía Slimefun · StarSuites</span></span>
       </a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
@@ -65,24 +61,15 @@
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
     </div>
-    <div class="lang-switcher">
-      <a href="guia-slimefun.html" class="lang-btn is-active" data-lang="es" title="Español">ES</a>
-      <a href="guia-slimefun-en.html" class="lang-btn" data-lang="en" title="Switch to English">EN</a>
-    </div>
   </nav>
 
-  <main id="main-content">
+  <main>
     <header class="guide-hero">
       <div class="guide-hero__backdrop" aria-hidden="true"></div>
       <div class="container guide-hero__grid">
-        <p class="eyebrow">Ingeniería StarSuites · Quantum &amp; End Infection</p>
-        <h1 class="t2-glitch-title" data-glitch="Guía de Slimefun & StarSuites">Guía de <em>Slimefun &amp; StarSuites</em></h1>
-        <p class="guide-hero__lead">Consolidación soberana de más de 60 addons de Slimefun en StarSuites. Logística cuántica Networks, reactores, genética, alquimia y convergencia Tier 10 Olympus en Purpur 26.2 con soporte ViaVersion (1.20 a 26.x) y Bedrock.</p>
-        <div class="t2-hud-strip" aria-label="Telemetría Slimefun">
-          <span><strong>CATÁLOGO</strong> +20.000 Ítems</span>
-          <span><b>SUITES</b> +60 Addons</span>
-          <span><strong>ENDGAME</strong> Tier 10 Olympus</span>
-        </div>
+        <p class="eyebrow">Ingeniería StarSuites · Addons y Mecánicas</p>
+        <h1>Guía de <em>Slimefun &amp; StarSuites</em></h1>
+        <p class="guide-hero__lead">Consolidación de más de 60 addons de Slimefun en la arquitectura StarSuites. Procesamiento nativo para redes logísticas, fórmulas de energía y recetas de alta ingeniería balanceadas para Paper 1.21.11+.</p>
       </div>
     </header>
 
@@ -92,7 +79,6 @@
       <a href="guia-rangos.html">Rangos</a>
       <a href="guia-slimefun.html" class="is-active">Slimefun</a>
       <a href="guia-plugins.html">Plugins &amp; Suites</a>
-      <a href="guia-poderes.html">Poderes</a>
     </nav>
 
     <div class="container">
@@ -100,6 +86,39 @@
         <label class="sr-only" for="guide-q">Buscar en la guía de Slimefun</label>
         <input type="search" id="guide-q" placeholder="Busca una máquina, ítem, receta, planta, pollo o hechizo (ej: Quantum, Singularidad, Alchimia, Yunque, Forja, Zeus)..." autocomplete="off">
         <p class="guide-search__count" id="guide-count"></p>
+      </div>
+
+      
+      <!-- SLIMEFUN KNOWLEDGE LAKE 15,986 ITEMS INTERACTIVE SEARCH ENGINE -->
+      <section class="sf-lake-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(110, 231, 162, 0.25); border-radius: 12px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 2rem;">⚡</span>
+            <div>
+              <h2 style="font-size: 1.35rem; margin: 0; color: #6ee7a2; font-family: 'Cinzel', serif;">Explorador en Vivo del Knowledge Lake</h2>
+              <p style="margin: 0.2rem 0 0 0; font-size: 0.85rem; color: #94a3b8;">15,986 ítems de Slimefun & 60+ Addons indexados en SQLite FTS5 de alta velocidad</p>
+            </div>
+          </div>
+          <span style="padding: 0.35rem 0.85rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; font-size: 0.8rem; color: #34d399; font-weight: 600;">
+            🟢 SQLite WAL FTS5 Conectado
+          </span>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <input type="text" id="lake-input" placeholder="Escribe para buscar en 15,986 ítems (ej. Quantum, Singularity, Reactor, Golden Apple, Chicken, Solar)..." style="flex: 1; padding: 0.75rem 1rem; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem;">
+          <button type="button" id="lake-btn" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer;">Buscar</button>
+        </div>
+
+        <div id="lake-results-status" style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;"></div>
+        <div id="lake-results-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; max-height: 480px; overflow-y: auto; padding-right: 0.5rem;"></div>
+      </section>
+
+      <!-- MODAL DETALLE DE RECETA RECIPE 3X3 -->
+      <div id="lake-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 99999; align-items: center; justify-content: center; padding: 1rem;">
+        <div style="background: #0f172a; border: 1px solid #10b981; border-radius: 12px; width: 100%; max-width: 600px; padding: 1.5rem; position: relative; max-height: 90vh; overflow-y: auto;">
+          <button type="button" id="lake-modal-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: #94a3b8; cursor: pointer;">×</button>
+          <div id="lake-modal-content"></div>
+        </div>
       </div>
 
       <div class="guide-filters" role="group" aria-label="Filtrar por categoría">
@@ -553,7 +572,6 @@
           </div>
           <div class="guide-rows">
             <div class="guide-row"><code>Altar Antiguo &amp; Pedestales</code><p>Estructura ritual de Slimefun compuesta por el Altar Antiguo rodeado de 8 Pedestales. Se fabrica en la Mesa Mágica. Coloca los ingredientes en cada pedestal y haz clic derecho en el altar con el catalizador sagrado especificado en <code>/sf guide</code>. Si queda bloqueado, retira un ítem para resetear el ritual.<span class="guide-row__alias">Slimefun Core</span></p></div>
-            <div class="guide-row"><code>MagicXpansion: Poseidon's Trident</code><p>Al lanzar un tridente mientras llevas <strong>Poseidon's Trident</strong> en la mano principal o secundaria, su velocidad se multiplica por 1,75. Este impulso es para tridentes lanzados por jugadores; no es una bonificación para flechas ni dispensadores. Consulta su receta en <code>/sf guide</code>.<span class="guide-row__alias">MagicXpansion</span></p></div>
             <div class="guide-row"><code>AlchimiaVitae: Transmutación y Almas</code><p>Cosecha esencias vitales usando la <strong>Daga Ritual</strong> sobre criaturas vivas. Construye la <strong>Calbaza de Transmutación</strong> para transmutar especies botánicas y destilar elixires de regeneración e inmunidad temporal.<span class="guide-row__alias">AlchimiaVitae</span></p></div>
             <div class="guide-row"><code>Potion Expansion: Alchemic Station</code><p>Inserta <strong>Ancient Debris Powder</strong> (molido en Enhanced Crafting Table con Pestle + Ancient Debris) en la ranura 2 del dispensador inferior y 1 a 3 pociones mundanas en las ranuras 7, 8 y 9. Haz clic derecho en la estación para destilar.<span class="guide-row__alias">PotionExp</span></p></div>
             <div class="guide-row"><code>RelicsOfCthonia &amp; SoulJars</code><p>Sacrificios de sangre en el altar ctonio para obtener reliquias del abismo. Las <strong>SoulJars</strong> permiten atrapar almas y transportar criaturas vivas en viales de vidrio presurizado sin alterar el chunk.<span class="guide-row__alias">Cthonia / SoulJars</span></p></div>
@@ -873,7 +891,134 @@
 
     <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>Una guía viva de ingeniería. Si falta algo o detectas un comportamiento inesperado, avísanos en Discord.</p></div><div class="site-footer__links"><a href="store.html">Tienda</a><a href="support.html">Soporte</a><a href="terms.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor"><span>Apoya el proyecto</span><iframe src="https://github.com/sponsors/SlimefunNewHorizons/button" title="Patrocinar a SlimefunNewHorizons" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe><iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Patrocinar a JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe></div></div></footer>
   </main>
-  <script src="scripts/site.js?v=20261017-v7"></script>
-  <script src="scripts/guia.js?v=20261017-v7"></script>
+  <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="/scripts/experience.js" defer></script>
+  <script src="/scripts/guia.js" defer></script>
+
+  <script>
+  // Slimefun Lake Interactive Client
+  (function() {
+    const input = document.getElementById('lake-input');
+    const btn = document.getElementById('lake-btn');
+    const status = document.getElementById('lake-results-status');
+    const grid = document.getElementById('lake-results-grid');
+    const modal = document.getElementById('lake-modal');
+    const modalClose = document.getElementById('lake-modal-close');
+    const modalContent = document.getElementById('lake-modal-content');
+
+    if (!input || !grid) return;
+
+    let debounceTimer = null;
+
+    async function queryLake(q) {
+      status.innerHTML = '⚡ Consultando 15,986 ítems en memoria...';
+      try {
+        const res = await fetch('/api/slimefun/search?q=' + encodeURIComponent(q) + '&limit=40');
+        if (!res.ok) throw new Error('Error al consultar Knowledge Lake');
+        const data = await res.json();
+        renderResults(data.items, q);
+      } catch (err) {
+        status.innerHTML = '❌ ' + err.message;
+      }
+    }
+
+    function renderResults(items, q) {
+      if (!items || items.length === 0) {
+        status.innerHTML = 'No se encontraron ítems para "' + (q || '') + '". Prueba con otro término.';
+        grid.innerHTML = '';
+        return;
+      }
+      status.innerHTML = 'Encontrados <strong>' + items.length + '</strong> ítems en el Knowledge Lake' + (q ? ' para "' + q + '"' : '') + ':';
+      grid.innerHTML = items.map(item => `
+        <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.85rem; display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+              <span style="font-size: 0.75rem; color: #6ee7a2; font-family: monospace; word-break: break-all;">${item.id}</span>
+              <span style="font-size: 0.7rem; background: rgba(59, 130, 246, 0.2); color: #93c5fd; padding: 0.15rem 0.4rem; border-radius: 4px;">${item.addon || 'Vanilla'}</span>
+            </div>
+            <strong style="color: #f8fafc; font-size: 0.95rem; display: block;">${item.name || item.id}</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 0.4rem 0 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${(item.lore_text || 'Sin descripción').replace(/\n/g, ' ')}</p>
+          </div>
+          <button type="button" onclick="window.openLakeItem('${item.id}')" style="margin-top: 0.5rem; padding: 0.4rem 0.6rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; color: #6ee7a2; font-size: 0.8rem; cursor: pointer; text-align: center;">Ver Receta & Detalles 🔍</button>
+        </div>
+      `).join('');
+    }
+
+    window.openLakeItem = async function(id) {
+      if (!modal || !modalContent) return;
+      modal.style.display = 'flex';
+      modalContent.innerHTML = '<p style="color: #94a3b8;">Cargando receta y metadatos de ' + id + '...</p>';
+      try {
+        const res = await fetch('/api/slimefun/item/' + encodeURIComponent(id));
+        if (!res.ok) throw new Error('No se pudo cargar el ítem');
+        const item = await res.json();
+        
+        let recipeHtml = '<p style="color: #94a3b8; font-size: 0.85rem;">Sin receta de fabricación directa (o generador por mob/mundo).</p>';
+        if (item.recipe && item.recipe.length > 0) {
+          recipeHtml = `
+            <div style="margin: 1rem 0;">
+              <span style="font-size: 0.85rem; color: #ffd479; font-weight: 600;">Mesa / Proceso: ${item.recipe_type || 'Mesa Vanilla / Slimefun'}</span>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; max-width: 280px; margin-top: 0.5rem; background: #1e293b; padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                ${item.recipe.slice(0, 9).map(slot => `
+                  <div style="background: #0f172a; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 0.4rem; text-align: center; font-size: 0.7rem; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <span style="color: #e2e8f0; font-weight: 600; word-break: break-all;">${slot.sf || slot.item || (typeof slot === 'string' ? slot : 'Vacío')}</span>
+                    ${slot.amount && slot.amount > 1 ? '<span style="color: #6ee7a2;">x' + slot.amount + '</span>' : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        modalContent.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem;">
+            <div>
+              <span style="color: #6ee7a2; font-size: 0.8rem; font-family: monospace;">${item.id}</span>
+              <h2 style="margin: 0.2rem 0 0 0; color: #fff; font-size: 1.25rem;">${item.name || item.id}</h2>
+            </div>
+            <span style="padding: 0.2rem 0.5rem; background: rgba(59,130,246,0.2); color: #93c5fd; border-radius: 4px; font-size: 0.75rem;">${item.addon}</span>
+          </div>
+
+          <div style="margin: 1rem 0;">
+            <h4 style="margin: 0 0 0.25rem 0; color: #94a3b8; font-size: 0.85rem;">LORE / DESCRIPCIÓN:</h4>
+            <div style="background: #1e293b; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.85rem; color: #e2e8f0; white-space: pre-wrap;">${item.lore_text || 'Sin texto de lore adicional.'}</div>
+          </div>
+
+          ${recipeHtml}
+
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem;">
+            <span>Material Vanilla Base: <code>${item.material || 'N/A'}</code></span> | 
+            <span>Clase Java: <code>${(item.java_class || 'Desconocida').split('.').pop()}</code></span>
+          </div>
+        `;
+      } catch (err) {
+        modalContent.innerHTML = '<p style="color: #fda4af;">Error: ' + err.message + '</p>';
+      }
+    };
+
+    if (modalClose) {
+      modalClose.onclick = () => { modal.style.display = 'none'; };
+    }
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const val = input.value.trim();
+      debounceTimer = setTimeout(() => {
+        if (val.length >= 2) queryLake(val);
+      }, 300);
+    });
+
+    btn.addEventListener('click', () => {
+      queryLake(input.value.trim());
+    });
+
+    // Carga inicial
+    queryLake('quantum');
+  })();
+  </script>
+
 </body>
 </html>
