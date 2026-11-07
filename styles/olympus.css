@@ -172,7 +172,10 @@ summary {
   margin-bottom: 1rem;
 }
 .op-section {
-  padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
+  padding-block: clamp(0.95rem, 1.6vw, 1.45rem);
+}
+.op-section--compact {
+  padding-block: clamp(0.4rem, 0.8vw, 0.75rem);
 }
 .op-section-heading {
   display: flex;
@@ -846,11 +849,11 @@ summary {
   margin: 0;
 }
 .op-community {
-  padding: 2.25rem clamp(1.5rem, 3vw, 3rem);
-  background: linear-gradient(135deg, rgba(48, 32, 70, 0.85), rgba(28, 18, 42, 0.95));
-  border: 1px solid rgba(169, 138, 232, 0.35);
+  padding: 1.35rem clamp(1.2rem, 2.2vw, 1.85rem);
+  background: linear-gradient(135deg, rgba(38, 24, 60, 0.88), rgba(20, 13, 32, 0.96));
+  border: 1px solid rgba(169, 138, 232, 0.3);
   border-radius: 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .op-shop-preview {
   display: grid;
