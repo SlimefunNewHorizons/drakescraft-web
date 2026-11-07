@@ -2619,3 +2619,54 @@ textarea::placeholder {
     transform: none;
   }
 }
+
+/* Bedrock NetherNet / Warden Direct Join Button */
+.bedrock-cta,
+.op-btn-bedrock {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(38, 166, 154, 0.22), rgba(0, 150, 136, 0.12));
+  border: 1px solid rgba(38, 166, 154, 0.45) !important;
+  color: #80cbc4 !important;
+  padding: 0.75rem 1.25rem !important;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.bedrock-cta:hover,
+.op-btn-bedrock:hover {
+  background: rgba(38, 166, 154, 0.35) !important;
+  border-color: #80cbc4 !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(38, 166, 154, 0.3);
+}
+.bedrock-cta[aria-disabled="true"],
+.op-btn-bedrock[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: var(--line) !important;
+  color: var(--muted) !important;
+}
+.bedrock-status {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.bedrock-status::before {
+  content: "●";
+  color: #26a69a;
+  margin-right: 0.35rem;
+  font-size: 0.75rem;
+}
+.op-bedrock-wrapper {
+  margin-top: 0.6rem;
+}
