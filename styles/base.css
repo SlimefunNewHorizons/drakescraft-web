@@ -1,4 +1,5 @@
 @import url("seasonal-themes.css");
+@import url("shadcn-theme.css");
 
 :root {
     --bg: #06040e;

@@ -51,9 +51,25 @@
     nodes.forEach((node) => observer.observe(node));
   }
 
+  
+  function setupTabs() {
+    document.querySelectorAll('.ui-tabs').forEach((tabsContainer) => {
+      const triggers = tabsContainer.querySelectorAll('.ui-tabs__trigger');
+      const panels = tabsContainer.querySelectorAll('.ui-tabs__panel');
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const targetId = trigger.getAttribute('data-tab-target');
+          triggers.forEach((t) => t.classList.toggle('is-active', t === trigger));
+          panels.forEach((p) => p.classList.toggle('is-active', p.id === targetId));
+        });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-copy-ip]').forEach((button) => button.addEventListener('click', () => copyIp(button)));
     setupReveal();
+    setupTabs();
     refreshStatus();
     window.setInterval(refreshStatus, 60000);
   });
