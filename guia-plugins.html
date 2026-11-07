@@ -9,8 +9,8 @@
   <link rel="icon" type="image/png" href="assets/logo-drakescraft.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="/vendor/bootstrap/bootstrap.min.css?v=20261107-t9" rel="stylesheet" />
-  <link href="/styles/olympus.css?v=20261107-t9" rel="stylesheet" />
+  <link href="/vendor/bootstrap/bootstrap.min.css?v=20261107-t10" rel="stylesheet" />
+  <link href="/styles/olympus.css?v=20261107-t10" rel="stylesheet" />
 </head>
 <body class="op-page op-page" data-design="olympus-3d">
       <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -67,7 +67,7 @@
       <div class="container guide-hero__grid">
         <p class="eyebrow">Arquitectura StarSuites &amp; Canon Tecnológico</p>
         <h1>Enciclopedia de <em>Plugins &amp; Suites</em></h1>
-        <p class="guide-hero__lead">En DrakesCraft operan 167 componentes de software orquestados por Star Architecture. Para que ningún jugador ni creador se pierda, aquí detallamos la <strong>documentación canónica oficial (upstream)</strong> de cada proyecto y las <strong>modificaciones soberanas propietarias</strong> creadas exclusivamente para nuestro cluster.</p>
+        <p class="guide-hero__lead">En DrakesCraft operan 202 componentes de software (7 Paper Plugins + 195 Bukkit Plugins) orquestados por Star Architecture. Para que ningún jugador ni creador se pierda, aquí detallamos la <strong>documentación canónica oficial (upstream)</strong> de cada proyecto y las <strong>modificaciones soberanas propietarias</strong> creadas exclusivamente para nuestro cluster.</p>
       </div>
     </header>
 
@@ -111,8 +111,39 @@
       <!-- STARSUITES / SLIMEFUN SECTION -->
       <section class="guide-section" data-cat="starsuites">
         <h2>🏛️ StarSuites (Monorepo Drakes-Suites)</h2>
-        <p class="guide-section__note">Consolidación monumental de más de 180 micro-repositorios y addons de Slimefun en suites modulares de alto rendimiento. JackStar no es el creador original de Slimefun, sino el arquitecto de rescate que solucionó el soporte de Purpur 26.2 y alta concurrencia e implementó aceleración nativa en Rust.</p>
+        <p class="guide-section__note">Consolidación monumental de más de 180 micro-repositorios y addons de Slimefun consolidados en 9 suites maestras soldadas en el Monolito server.jar (DrakesCore, DrakesTech, DrakesMagic, DrakesBio, DrakesCombat, DrakesGenerators, DrakesUtility, DrakesServer y drakes-multiverse) en suites modulares de alto rendimiento. JackStar no es el creador original de Slimefun, sino el arquitecto de rescate que solucionó el soporte de Purpur 26.2 y alta concurrencia e implementó aceleración nativa en Rust.</p>
 
+                <!-- SUITE HYBRID: RUST FFM ENGINE -->
+        <details class="guide-accordion" data-cat="starsuites" open>
+          <summary class="guide-accordion__summary">
+            <div class="guide-accordion__header-left">
+              <span class="guide-accordion__icon">⚡</span>
+              <span><strong>Hybrid Engine · Motores Nativos Rust FFM</strong> (<code>libdrakes_hybrid_ffi.so</code>)</span>
+              <span class="guide-accordion__badge guide-accordion__badge--cyan">Rust Native</span>
+              <span class="guide-accordion__badge guide-accordion__badge--gold">Project Panama FFM</span>
+            </div>
+            <span class="guide-accordion__caret" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span>
+          </summary>
+          <div class="guide-accordion__content">
+            <div class="plugin-entry">
+              <div class="plugin-badge-row">
+                <span class="guide-tag guide-tag--survival">Arquitectura: DrakesCraft / Star Architecture</span>
+                <span class="guide-tag guide-tag--vip">Motores: libdrakes_hybrid_ffi.so, libslimefun_ffi.so, libodysseia_ffi.so</span>
+                <span class="guide-tag guide-tag--bedrock">Java 25 LTS · Fallback Transparente</span>
+              </div>
+              <div class="plugin-card-grid">
+                <div class="plugin-subbox plugin-subbox--upstream">
+                  <h4 class="upstream-title">⚙️ Desempeño y Aceleraciones Nativas</h4>
+                  <p>Mantiene el chasis y los 202 plugins en Java 25 mientras delega las operaciones pesadas de CPU a hilos nativos en Rust con cero sobrecarga de Garbage Collector: empaquetado de bits (x4.32 más rápido), ruido Perlin 3D, compresión MCA y radar predictivo de chunks.</p>
+                </div>
+                <div class="plugin-subbox plugin-subbox--drakes">
+                  <h4 class="drakes-title">🛠️ Comandos de Telemetría Híbrida</h4>
+                  <p>Diagnóstico en vivo desde consola: <code>/drakes hybrid status</code> (estado y MSPT medio de 1.70 ms), <code>/drakes hybrid workers</code> (hilos y workers), <code>/drakes hybrid diagnostics</code> y <code>/drakes hybrid manifest</code> para sincronización delta con DrakeStar-Launcher.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
         <!-- SUITE 0: CORE -->
         <details class="guide-accordion" data-cat="starsuites" open>
           <summary class="guide-accordion__summary">
@@ -129,7 +160,7 @@
               <div class="plugin-badge-row">
                 <span class="guide-tag guide-tag--survival">Autoría Upstream: TheBusyBiscuit &amp; Slimefun Community</span>
                 <span class="guide-tag guide-tag--vip">Arquitecto Suites: JackStar6677-1</span>
-                <span class="guide-tag guide-tag--bedrock">Java 21 LTS + FFM Rust</span>
+                <span class="guide-tag guide-tag--bedrock">Java 25 LTS + Project Panama (Rust FFM)</span>
               </div>
               <div class="plugin-card-grid">
                 <div class="plugin-subbox plugin-subbox--upstream">
