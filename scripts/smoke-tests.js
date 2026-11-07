@@ -42,8 +42,6 @@ const ROUTES = [
   '/support-en.html',
   '/metricas.html',
   '/metricas-en.html',
-  '/ojo-de-atenea.html',
-  '/ojo-de-atenea-en.html',
   '/404.html',
   '/404-en.html',
   '/500.html',
@@ -56,6 +54,9 @@ const ROUTES = [
 
 // Rutas con redirects esperados
 const EXPECTED_REDIRECTS = new Set([
+  '/ojo-de-atenea.html',
+  '/ojo-de-atenea-en.html',
+  '/atenea',
   '/dioses.html',
   '/slimefun.html',
 ]);

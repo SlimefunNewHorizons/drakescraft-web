@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /ojo-de-atenea.html
 Disallow: /maintenance-en.html
 Disallow: /maintenance.html
 Disallow: /500.html

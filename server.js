@@ -1000,7 +1000,8 @@ app.get('/discord', async (_request, reply) => reply.code(302).redirect('https:/
 for (const legacyPath of [
   '/server.html', '/odysseia.html', '/dioses.html',
   '/slimefun.html', '/bosses.html', '/community.html', '/jack.html',
-  '/rules.html', '/admin-quote.html'
+  '/rules.html', '/admin-quote.html',
+  '/ojo-de-atenea.html', '/ojo-de-atenea', '/ojo-de-atenea-en.html', '/atenea'
 ]) {
   app.get(legacyPath, async (_request, reply) => reply.code(301).redirect('/'));
 }
@@ -1048,8 +1049,6 @@ await app.register(fastifyStatic, {
       'guia-poderes-en.html',
       'temporada-2.html',
       'temporada-2-en.html',
-      'ojo-de-atenea.html',
-      'ojo-de-atenea-en.html',
       '404.html',
       '404-en.html',
       '500.html',

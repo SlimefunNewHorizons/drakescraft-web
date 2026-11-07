@@ -5,7 +5,7 @@ import { test } from "node:test";
 const root = new URL("../", import.meta.url);
 const source = (name) => readFileSync(new URL(name, root), "utf8");
 const pages = readdirSync(root).filter(
-  (name) => name.endsWith(".html") && name !== "cultivation_rows.html" && !name.includes("-en") && !name.includes("evento") && !name.includes("temporada-2") && !name.includes("poderes"),
+  (name) => name.endsWith(".html") && name !== "cultivation_rows.html" && !name.includes("-en") && !name.includes("evento") && !name.includes("temporada-2") && !name.includes("poderes") && !name.includes("atenea"),
 );
 const documentIds = (html) =>
   [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
@@ -63,11 +63,10 @@ for (const name of pages) {
   });
 }
 
-test("catalog, metrics and Atenea retain their required DOM contracts", () => {
+test("catalog and metrics retain their required DOM contracts", () => {
   for (const [page, script] of [
     ["store.html", "scripts/store.js"],
     ["metricas.html", "scripts/metricas.js"],
-    ["ojo-de-atenea.html", "scripts/ojo-de-atenea.js"],
   ]) {
     const ids = new Set(documentIds(source(page)));
     for (const match of source(script).matchAll(
