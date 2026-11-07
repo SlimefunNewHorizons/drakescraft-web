@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="slimeRad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4ffea"/>
+      <stop offset="50%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="techSteel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <filter id="slimeGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .gear-spin { animation: spinGear 10s linear infinite; transform-origin: 160px 110px; }
+    .slime-pulse { animation: pulseSlime 2.2s ease-in-out infinite; transform-origin: 160px 110px; }
+    .energy-flow { animation: flowConduit 1.8s linear infinite; stroke-dasharray: 8 16; }
+    .voltage-arc { animation: arcFlicker 1.4s steps(2, start) infinite; }
+    @keyframes spinGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulseSlime { 0%, 100% { transform: scale(0.9); filter: drop-shadow(0 0 12px #22c55e); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 28px #4ade80); } }
+    @keyframes flowConduit { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+    @keyframes arcFlicker { 0%, 100% { opacity: 0.85; } 50% { opacity: 0.15; } }
+  </style>
+
+  <!-- Hexagonal Tech Containment Chamber -->
+  <polygon points="160,20 240,65 240,155 160,200 80,155 80,65" 
+           fill="#100c1e" stroke="#a98ae8" stroke-width="2" opacity="0.85"/>
+  <polygon points="160,32 228,71 228,149 160,188 92,149 92,71" 
+           fill="none" stroke="rgba(229, 189, 114, 0.4)" stroke-width="1.2"/>
+
+  <!-- Energy Power Conduits -->
+  <path class="energy-flow" d="M30 110 L80 110 L115 110" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+  <path class="energy-flow" d="M290 110 L240 110 L205 110" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+  <path class="energy-flow" d="M160 20 L160 65" stroke="#e5bd72" stroke-width="2" fill="none"/>
+  <path class="energy-flow" d="M160 200 L160 155" stroke="#e5bd72" stroke-width="2" fill="none"/>
+
+  <!-- Rotating StarSuites Titanium Gear -->
+  <g class="gear-spin">
+    <circle cx="160" cy="110" r="46" fill="none" stroke="url(#techSteel)" stroke-width="6"/>
+    <!-- Cog Teeth -->
+    <rect x="156" y="58" width="8" height="12" rx="2" fill="url(#techSteel)"/>
+    <rect x="156" y="150" width="8" height="12" rx="2" fill="url(#techSteel)"/>
+    <rect x="108" y="106" width="12" height="8" rx="2" fill="url(#techSteel)"/>
+    <rect x="200" y="106" width="12" height="8" rx="2" fill="url(#techSteel)"/>
+    <!-- Diagonal Cogs -->
+    <rect x="124" y="74" width="8" height="12" rx="2" fill="url(#techSteel)" transform="rotate(45 128 80)"/>
+    <rect x="188" y="138" width="8" height="12" rx="2" fill="url(#techSteel)" transform="rotate(45 192 144)"/>
+    <rect x="124" y="138" width="8" height="12" rx="2" fill="url(#techSteel)" transform="rotate(-45 128 144)"/>
+    <rect x="188" y="74" width="8" height="12" rx="2" fill="url(#techSteel)" transform="rotate(-45 192 80)"/>
+  </g>
+
+  <!-- Glowing Slime Quantum Energy Core -->
+  <circle class="slime-pulse" cx="160" cy="110" r="26" fill="url(#slimeRad)" filter="url(#slimeGlow)"/>
+  <!-- Concentrated Singularity Plasma -->
+  <polygon points="160,94 172,110 160,126 148,110" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Electric Plasma Arcs -->
+  <path class="voltage-arc" d="M142 98 Q150 90 160 92 Q170 94 178 98" fill="none" stroke="#d4ffea" stroke-width="1.8"/>
+  <path class="voltage-arc" d="M142 122 Q150 130 160 128 Q170 126 178 122" fill="none" stroke="#d4ffea" stroke-width="1.8"/>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#e5bd72" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#e5bd72" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="beaconGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .light-sweep { animation: sweepBeam 6s ease-in-out infinite alternate; transform-origin: 160px 65px; }
+    .crystal-float { animation: floatCrystal 3s ease-in-out infinite alternate; transform-origin: 160px 65px; }
+    .signal-pulse { animation: pingSignal 3s ease-out infinite; transform-origin: 160px 65px; }
+    @keyframes sweepBeam { 0% { transform: rotate(-35deg); } 100% { transform: rotate(35deg); } }
+    @keyframes floatCrystal { 0% { transform: translateY(3px); } 100% { transform: translateY(-4px); } }
+    @keyframes pingSignal { 0% { r: 12px; opacity: 0.9; } 100% { r: 60px; opacity: 0; } }
+  </style>
+
+  <!-- Sweeping Lighthouse Beacon Beam -->
+  <g class="light-sweep">
+    <polygon points="160,65 50,0 270,0" fill="url(#beamGradient)" opacity="0.65"/>
+  </g>
+
+  <!-- Radiating Help Signals -->
+  <circle class="signal-pulse" cx="160" cy="65" r="15" fill="none" stroke="#64d8cb" stroke-width="1.8"/>
+
+  <!-- Athena's Tower Structure -->
+  <path d="M142 190 L178 190 L170 100 L150 100 Z" fill="#1b122e" stroke="#e5bd72" stroke-width="2"/>
+  <!-- Tower Balcony -->
+  <rect x="136" y="94" width="48" height="8" rx="2" fill="#e5bd72" filter="url(#beaconGlow)"/>
+  <!-- Pillar Columns -->
+  <line x1="145" y1="94" x2="145" y2="72" stroke="#e5bd72" stroke-width="2"/>
+  <line x1="175" y1="94" x2="175" y2="72" stroke="#e5bd72" stroke-width="2"/>
+  <!-- Lantern Roof -->
+  <polygon points="135,72 160,50 185,72" fill="#2d174d" stroke="#e5bd72" stroke-width="2"/>
+
+  <!-- Floating Netherite Beacon Core Crystal -->
+  <g class="crystal-float">
+    <polygon points="160,56 168,65 160,74 152,65" fill="#64d8cb" filter="url(#beaconGlow)"/>
+    <circle cx="160" cy="65" r="4" fill="#ffffff"/>
+  </g>
+
+  <!-- Base Stones -->
+  <rect x="125" y="190" width="70" height="8" rx="2" fill="#e5bd72" opacity="0.8"/>
+  <rect x="115" y="198" width="90" height="6" rx="2" fill="#2d174d" stroke="#e5bd72" stroke-width="1"/>
+</svg>
