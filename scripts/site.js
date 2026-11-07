@@ -21,19 +21,17 @@
                                     : path === "apoya.html" ? "support"
                                         : path === "support.html" || path === "terms.html" ? "help"
                                             : "";
-        const items = [
+                const items = [
             ["home", "Inicio", "/"],
-            ["server", "El servidor", "guia.html"],
-            ["commands", "Comandos", "guia-comandos.html"],
-            ["ranks", "Rangos", "guia-rangos.html"],
+            ["modes", "Modalidades", "/#modalidades"],
+            ["t2", "Temporada 2", "/#novedades"],
             ["slimefun", "Slimefun", "guia-slimefun.html"],
-            ["store", "Tienda", "store.html"],
+            ["commands", "Comandos", "guia-comandos.html"],
+            ["store", "Tienda VIP ⚡", "store.html"],
             ["metrics", "Métricas", "metricas.html"],
-            ["support", "Apoyar", "apoya.html"],
-            ["help", "Soporte", "support.html"]
+            ["support", "Apoyar", "apoya.html"]
         ];
-
-        try {
+try {
             const fragment = document.createDocumentFragment();
             items.forEach(([key, label, href]) => {
                 const listItem = document.createElement("li");
@@ -80,7 +78,7 @@
 
             menu.replaceChildren(fragment);
             navigation.classList.remove("home-nav");
-            if (brandSubtitle) brandSubtitle.textContent = "Portal oficial";
+            if (brandSubtitle) brandSubtitle.textContent = "Temporada 2 · Purpur 26.2";
         } catch (error) {
             console.error("No se pudo unificar la navegación principal", error);
         }
