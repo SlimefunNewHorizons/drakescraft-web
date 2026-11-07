@@ -115,6 +115,29 @@
   }
 
   /** Highlight the local section without changing the guide's search behavior. */
+  
+  /** Reveal elements smoothly as user scrolls down */
+  function setupScrollReveals() {
+    const reveals = document.querySelectorAll('.op-reveal');
+    if (!reveals.length) return;
+    if (!('IntersectionObserver' in window)) {
+      reveals.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+
   function setupReadingIndex() {
     try {
       const links = [...document.querySelectorAll('.op-sidebar a[href^="#"]')];
@@ -159,6 +182,7 @@
     .forEach((button) => button.addEventListener("click", copyIp));
   setupDepth();
   setupReadingIndex();
+  setupScrollReveals();
   refreshStatus();
   if (document.querySelector("[data-live-count], [data-live-label]")) {
     setInterval(() => {

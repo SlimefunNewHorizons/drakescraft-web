@@ -136,14 +136,14 @@ summary {
   margin-bottom: 1rem;
 }
 .op-section {
-  padding-block: clamp(3.5rem, 8vw, 7rem);
+  padding-block: clamp(2rem, 3.5vw, 3.25rem);
 }
 .op-section-heading {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 .op-section-heading p {
   max-width: 28rem;
@@ -399,7 +399,7 @@ summary {
 .op-hero {
   position: relative;
   isolation: isolate;
-  padding-block: clamp(2.5rem, 5vw, 5rem);
+  padding-block: clamp(1.75rem, 3vw, 3.25rem);
   overflow: clip;
 }
 .op-hero::before {
@@ -773,9 +773,11 @@ summary {
   margin: 0;
 }
 .op-community {
-  padding: 3rem;
-  background: #302046;
-  border: 1px solid #a98ae839;
+  padding: 2.25rem clamp(1.5rem, 3vw, 3rem);
+  background: linear-gradient(135deg, rgba(48, 32, 70, 0.85), rgba(28, 18, 42, 0.95));
+  border: 1px solid rgba(169, 138, 232, 0.35);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 .op-shop-preview {
   display: grid;
@@ -2528,7 +2530,7 @@ textarea::placeholder {
     min-height: 480px;
   }
   .op-section {
-    padding-block: 3.5rem;
+    padding-block: 2.25rem;
   }
 }
 @media (max-width: 575.98px) {
@@ -2669,4 +2671,39 @@ textarea::placeholder {
 }
 .op-bedrock-wrapper {
   margin-top: 0.6rem;
+}
+
+/* Scroll Reveal & Dynamic Interactions */
+.op-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.op-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.op-reveal-delay-1 { transition-delay: 0.08s; }
+.op-reveal-delay-2 { transition-delay: 0.16s; }
+.op-reveal-delay-3 { transition-delay: 0.24s; }
+.op-reveal-delay-4 { transition-delay: 0.32s; }
+.op-reveal-delay-5 { transition-delay: 0.40s; }
+.op-reveal-delay-6 { transition-delay: 0.48s; }
+
+.op-mode-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.op-mode-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(229, 189, 114, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(229, 189, 114, 0.1);
+}
+.op-staff-card {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.op-staff-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(169, 138, 232, 0.45);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
