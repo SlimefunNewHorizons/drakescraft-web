@@ -1,3 +1,5 @@
+import fsSync from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs/promises';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import path from 'node:path';
@@ -1084,6 +1086,106 @@ await app.register(fastifyStatic, {
       || normalized.startsWith('vendor/')
       || normalized === 'robots.txt'
       || normalized === 'sitemap.xml';
+  }
+});
+
+
+// ── /api/slimefun — Explorador en Vivo del Knowledge Lake (SQLite) ───────────
+let slimefunDb = null;
+const SLIMEFUN_DB_PATH = path.join(dataDir, 'slimefun_lake.db');
+
+function getSlimefunDb() {
+  if (slimefunDb) return slimefunDb;
+  try {
+    if (fsSync.existsSync(SLIMEFUN_DB_PATH)) {
+      slimefunDb = new DatabaseSync(SLIMEFUN_DB_PATH, { readOnly: true });
+    }
+  } catch (err) {
+    app.log.warn(`No se pudo abrir ${SLIMEFUN_DB_PATH}: ${err.message}`);
+  }
+  return slimefunDb;
+}
+
+app.get('/api/slimefun/search', async (request, reply) => {
+  reply.header('cache-control', 'public, max-age=60');
+  const q = String(request.query?.q || '').trim();
+  const limit = Math.min(Math.max(Number(request.query?.limit) || 40, 1), 100);
+
+  const db = getSlimefunDb();
+  if (!db) {
+    return reply.send({ ok: false, error: 'Knowledge Lake no disponible', items: [] });
+  }
+
+  try {
+    let rows;
+    if (!q) {
+      rows = db.prepare('SELECT id, name, addon, group_key, lore_text FROM items ORDER BY id LIMIT ?').all(limit);
+    } else {
+      try {
+        const ftsQuery = q.replace(/[^a-zA-Z0-9_\u00C0-\u00FF]+/g, ' ').trim();
+        if (ftsQuery) {
+          const ftsPattern = ftsQuery.split(/\s+/).map((t) => `"${t}"*`).join(' AND ');
+          rows = db.prepare(
+            `SELECT i.id, i.name, i.addon, i.group_key, i.lore_text
+             FROM items_fts f
+             JOIN items i ON i.id = f.id
+             WHERE items_fts MATCH ?
+             LIMIT ?`
+          ).all(ftsPattern, limit);
+        } else {
+          rows = [];
+        }
+      } catch {
+        const pattern = `%${q}%`;
+        rows = db.prepare(
+          `SELECT id, name, addon, group_key, lore_text
+           FROM items
+           WHERE id LIKE ? OR name LIKE ? OR addon LIKE ? OR lore_text LIKE ?
+           LIMIT ?`
+        ).all(pattern, pattern, pattern, pattern, limit);
+      }
+    }
+    return { ok: true, count: rows.length, items: rows };
+  } catch (err) {
+    return reply.code(500).send({ ok: false, error: err.message, items: [] });
+  }
+});
+
+app.get('/api/slimefun/item/:id', async (request, reply) => {
+  reply.header('cache-control', 'public, max-age=300');
+  const id = String(request.params?.id || '').trim();
+  if (!id) return reply.code(400).send({ error: 'ID requerido' });
+
+  const db = getSlimefunDb();
+  if (!db) return reply.code(503).send({ error: 'Knowledge Lake no disponible' });
+
+  try {
+    const row = db.prepare('SELECT * FROM items WHERE id = ?').get(id);
+    if (!row) return reply.code(404).send({ error: 'Ítem no encontrado' });
+
+    let recipe = [];
+    if (row.recipe_json) {
+      try {
+        recipe = JSON.parse(row.recipe_json);
+      } catch {}
+    }
+
+    return {
+      id: row.id,
+      name: row.name,
+      addon: row.addon,
+      group_key: row.group_key,
+      material: row.material,
+      recipe_type: row.recipe_type,
+      output_amount: row.output_amount,
+      research: row.research,
+      research_cost: row.research_cost,
+      lore_text: row.lore_text,
+      java_class: row.java_class,
+      recipe
+    };
+  } catch (err) {
+    return reply.code(500).send({ error: err.message });
   }
 });
 
