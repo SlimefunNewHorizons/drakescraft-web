@@ -229,24 +229,31 @@ summary {
 .skip-link:focus {
   top: 0.5rem;
 }
-/* Quiet masthead with an actual Bootstrap collapse, not multiple JS renderers. */
+/* Sovereign Masthead Architecture - Bulletproof layout independent of external CSS */
 .op-nav {
   position: sticky;
   top: 0;
-  z-index: 80;
+  z-index: 1000;
   border-bottom: 1px solid #e5bd7229;
   background: #100c19ed;
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 .op-nav .container-fluid {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
   padding: 0.75rem clamp(1rem, 3vw, 3rem);
   gap: 1rem;
 }
 .op-brand {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
   gap: 0.8rem;
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
 }
 .op-brand img {
   width: 43px;
@@ -254,9 +261,11 @@ summary {
   object-fit: contain;
 }
 .op-brand strong {
+  display: block;
   font-family: var(--font-heading);
   font-size: 1.1rem;
   letter-spacing: 0.06em;
+  color: #fff;
 }
 .op-brand small {
   display: block;
@@ -264,14 +273,41 @@ summary {
   font-size: 0.72rem;
   letter-spacing: 0.13em;
 }
+
+/* Navbar Collapse & Horizontal Links */
+.op-nav .navbar-collapse {
+  display: flex;
+  align-items: center;
+}
 .op-nav .navbar-nav {
-  gap: 0.15rem;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0.25rem;
+}
+.op-nav .navbar-nav li,
+.op-nav .navbar-nav .nav-item {
+  list-style: none !important;
+  display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.op-nav .navbar-nav li::marker,
+.op-nav .navbar-nav .nav-item::marker {
+  display: none !important;
+  content: "" !important;
 }
 .op-nav .nav-link {
   color: var(--muted);
   padding: 0.7rem 0.65rem !important;
   font-size: 0.9rem;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.15s ease;
 }
 .op-nav .nav-link:hover,
 .op-nav .nav-link.active {
@@ -282,24 +318,81 @@ summary {
   display: block;
   height: 2px;
   background: var(--gold);
-  margin-bottom: -2px;
+  margin-top: 2px;
 }
 .op-nav .nav-discord {
   background: #a98ae819;
   border: 1px solid #a98ae850;
   border-radius: 4px;
-  color: var(--paper);
+  color: var(--paper) !important;
   padding: 0.6rem 1rem !important;
   margin-left: 0.5rem;
+  text-decoration: none;
+  display: inline-block;
 }
+.op-nav .nav-discord:hover {
+  background: #a98ae833;
+  color: #fff !important;
+}
+
+/* Toggler and Mobile Menu */
 .op-nav .navbar-toggler {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line);
   color: var(--paper);
-  border-color: var(--line);
-  font-size: 1rem;
-  padding: 0.7rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .op-nav .navbar-toggler-icon {
-  filter: brightness(2);
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+@media (max-width: 1199.98px) {
+  .op-nav .navbar-toggler {
+    display: block !important;
+  }
+  .op-nav .navbar-collapse {
+    display: none !important;
+    width: 100%;
+    flex-basis: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .op-nav .navbar-collapse.show {
+    display: block !important;
+  }
+  .op-nav .navbar-nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem;
+  }
+  .op-nav .navbar-nav li,
+  .op-nav .navbar-nav .nav-item {
+    display: block !important;
+    width: 100%;
+  }
+  .op-nav .nav-link {
+    display: block;
+    padding: 0.5rem 0.75rem !important;
+  }
+  .op-nav .nav-discord {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    text-align: center;
+    display: block;
+  }
+  .op-nav .nav-link.active::after {
+    display: none;
+  }
 }
 /* Opening spread. Real screenshots are arranged at different depths around
  * an independently rendered, bounded WebGL emblem. */

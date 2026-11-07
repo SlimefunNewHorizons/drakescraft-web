@@ -142,6 +142,18 @@
     }
   }
 
+  // Resilient mobile menu toggler
+  document.querySelectorAll(".navbar-toggler").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-bs-target") || "#portal-nav";
+      const target = document.querySelector(targetId);
+      if (target) {
+        const isExpanded = target.classList.toggle("show");
+        btn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+      }
+    });
+  });
+
   document
     .querySelectorAll("[data-copy-ip]")
     .forEach((button) => button.addEventListener("click", copyIp));
