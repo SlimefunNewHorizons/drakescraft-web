@@ -2707,3 +2707,96 @@ textarea::placeholder {
   border-color: rgba(169, 138, 232, 0.45);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
+
+/* Defensive normalization for legacy site-nav markup across secondary pages */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e5bd7229;
+  background: #100c19ed;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.site-nav .site-nav__bar,
+.site-nav .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  padding: 0.75rem clamp(1rem, 3vw, 3rem);
+  gap: 1rem;
+}
+.site-nav .brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+}
+.site-nav .brand__mark,
+.site-nav img {
+  width: 43px !important;
+  height: 48px !important;
+  max-width: 43px !important;
+  max-height: 48px !important;
+  object-fit: contain !important;
+}
+.site-nav .brand__meta strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+.site-nav .brand__meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+}
+.site-nav .nav-toggle {
+  display: none !important;
+}
+.site-nav .site-nav__links {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0.25rem;
+}
+.site-nav .site-nav__links li {
+  list-style: none !important;
+  display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.site-nav .site-nav__links li::marker {
+  display: none !important;
+  content: "" !important;
+}
+.site-nav .site-nav__links a {
+  color: var(--muted);
+  padding: 0.7rem 0.65rem !important;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+.site-nav .site-nav__links a:hover,
+.site-nav .site-nav__links a.active {
+  color: var(--gold);
+}
+.site-nav .site-nav__links .nav-discord,
+.site-nav .site-nav__links .nav-store-btn {
+  background: #a98ae819;
+  border: 1px solid #a98ae850;
+  border-radius: 4px;
+  color: var(--paper) !important;
+  padding: 0.6rem 1rem !important;
+  margin-left: 0.5rem;
+  text-decoration: none;
+}

@@ -107,29 +107,57 @@
     }
     [hidden] { display: none !important; }
   </style>
+  <link href="/vendor/bootstrap/bootstrap.min.css?v=20261107-t2-v3" rel="stylesheet" />
+  <link href="/styles/olympus.css?v=20261107-t2-v3" rel="stylesheet" />
 </head>
-<body class="page-shell" data-page="eventos" data-section="community">
-  <a class="skip-link" href="#main-content">Saltar al contenido</a>
-  <nav class="site-nav" aria-label="Navegación principal">
-    <div class="container site-nav__bar">
-      <a class="brand" href="/" aria-label="Ir al inicio de DrakesCraft">
-        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
-        <span class="brand__meta"><strong>DrakesCraft</strong><span>Eventos Noviembre 2026</span></span>
-      </a>
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-      <ul class="site-nav__links" id="nav-menu">
-        <li><a href="/">Inicio</a></li>
-        <li><a href="guia.html">El Servidor</a></li>
-        <li><a href="guia-comandos.html">Comandos</a></li>
-        <li><a class="active" href="eventos.html">Eventos</a></li>
-        <li><a href="guia-rangos.html">Rangos</a></li>
-        <li><a href="guia-slimefun.html">Slimefun</a></li>
-        <li><a href="apoya.html">Sponsors</a></li>
-        <li><a class="nav-store-btn" href="store.html"><span>TIENDA VIP ⚡</span><small>Tebex</small></a></li>
-        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
-      </ul>
-    </div>
-  </nav>
+<body data-design="olympus-3d" class="op-page page-shell" data-page="eventos" data-section="community">
+      <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <nav
+      class="navbar navbar-expand-xl op-nav"
+      data-bs-theme="dark"
+      aria-label="Navegación principal"
+    >
+      <div class="container-fluid">
+        <a class="op-brand" href="/"
+          ><img
+            src="/assets/logo-drakescraft.png"
+            alt=""
+            width="43"
+            height="48"
+          /><span
+            ><strong>DrakesCraft</strong><small>EVENTOS</small></span
+          ></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#portal-nav"
+          aria-controls="portal-nav"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="portal-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="/guia.html">El servidor</a></li>
+            <li class="nav-item"><a class="nav-link" href="/guia-comandos.html">Comandos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/guia-rangos.html">Rangos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/guia-slimefun.html">Slimefun</a></li>
+            <li class="nav-item"><a class="nav-link" href="/store.html">Tienda</a></li>
+            <li class="nav-item"><a class="nav-link" href="/metricas.html">Métricas</a></li>
+            <li class="nav-item"><a class="nav-link" href="/apoya.html">Apoyar</a></li>
+            <li class="nav-item"><a class="nav-link" href="/support.html">Soporte</a></li>
+            <li class="nav-item"><a class="nav-link nav-discord" href="/discord.html">Discord ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
   <main id="main-content">
     <header class="guide-hero">
@@ -182,27 +210,57 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container site-footer__grid">
-      <div class="site-footer__brand">
-        <a class="brand brand--footer" href="/" aria-label="Ir al inicio de DrakesCraft">
-          <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="36" height="36">
-          <span class="brand__meta"><strong>DrakesCraft</strong><span>Servidor Minecraft Java &amp; Bedrock</span></span>
-        </a>
-        <p class="site-footer__lead">Comunidad, ingeniería limpia y seis modalidades interconectadas bajo Slimefun y StarSuites.</p>
+      <footer class="op-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <a class="op-brand" href="/"
+              ><img
+                src="/assets/logo-drakescraft.png"
+                alt=""
+                width="43"
+                height="48"
+              /><span
+                ><strong>DrakesCraft</strong><small>JAVA + BEDROCK</small></span
+              ></a
+            >
+            <p>Seis mundos. Una comunidad. Un legado que sigue creciendo.</p>
+            <code>mc.drakescraft.cl</code>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>EXPLORA</h2>
+            <a href="/guia.html">El servidor</a
+            ><a href="/guia-comandos.html">Comandos</a
+            ><a href="/guia-rangos.html">Rangos</a
+            ><a href="/guia-slimefun.html">Slimefun</a
+            ><a href="/cultivation.html">Cultivation</a>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>COMUNIDAD</h2>
+            <a href="/discord.html">Discord</a
+            ><a href="/metricas.html">Métricas</a
+            ><a href="/apoya.html">Apoyar</a
+            ><a href="/ojo-de-atenea.html">Atenea</a>
+          </div>
+          <div class="col-12 col-lg-3">
+            <h2>TIENDA Y AYUDA</h2>
+            <a href="/store.html">Tienda</a
+            ><a href="/support.html">Soporte de compras</a
+            ><a href="/terms.html">Términos y condiciones</a
+            ><a
+              href="https://github.com/SlimefunNewHorizons"
+              target="_blank"
+              rel="noopener"
+              >DrakesCraft Labs ↗</a
+            >
+          </div>
+        </div>
+        <div class="op-footer-bottom">
+          <span>DrakesCraft · Portal oficial</span
+          ><span>Java + Bedrock · mc.drakescraft.cl</span>
+        </div>
       </div>
-      <div class="site-footer__col">
-        <p class="site-footer__heading">Navegación</p>
-        <ul class="site-footer__list">
-          <li><a href="guia.html">Guía y Modalidades</a></li>
-          <li><a href="guia-comandos.html">Todos los Comandos</a></li>
-          <li><a href="eventos.html">Calendario Noviembre</a></li>
-          <li><a href="events-en.html">English Calendar</a></li>
-          <li><a href="store.html">Tienda VIP</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
   <script>
     async function loadEvents() {
@@ -257,5 +315,7 @@
     }
     loadEvents();
   </script>
+  <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="/scripts/experience.js" defer></script>
 </body>
 </html>
