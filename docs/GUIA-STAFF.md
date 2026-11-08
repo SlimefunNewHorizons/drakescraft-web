@@ -3,6 +3,21 @@
 > Cada bloque cabe en un mensaje de Discord (límite de 2000 caracteres).
 > Publícalos por separado, en orden.
 
+## SII: contención en preparación (#690, todavía sin desplegar)
+
+El candidato de Odysseia reinicia las muestras de patrimonio al cambiar de
+modalidad. Una fiscalización queda vinculada a su modalidad original y se pausa
+fuera de ella; no crea una segunda fiscalización para el mismo jugador.
+`/odysseia sii liberar|confiscar|congelar <jugador>` rechaza operar una retención
+existente si el jugador está desconectado, está en otra modalidad o el registro
+antiguo no indica modalidad. Esos registros se conservan para revisión manual.
+Un abono rechazado conserva la retención; vencer el plazo tampoco la elimina
+si queda dinero pendiente. `/odysseia sii estado` incluye la modalidad.
+
+No se han activado estas guardas en Dallas. Además del ensayo en servidor y
+respaldo remoto, #691 exige resolver la persistencia durable entre movimientos
+de dinero y el registro de retenciones. No realizar compensaciones para probarlo.
+
 ---
 
 ## MENSAJE 1 — Cómo se hereda el rango
