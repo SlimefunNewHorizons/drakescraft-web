@@ -3,7 +3,7 @@
 > Cada bloque cabe en un mensaje de Discord (límite de 2000 caracteres).
 > Publícalos por separado, en orden.
 
-## SII: contención en preparación (#690, todavía sin desplegar)
+## SII: contención en preparación (#690/#691, todavía sin desplegar)
 
 El candidato de Odysseia reinicia las muestras de patrimonio al cambiar de
 modalidad. Una fiscalización queda vinculada a su modalidad original y se pausa
@@ -14,9 +14,18 @@ antiguo no indica modalidad. Esos registros se conservan para revisión manual.
 Un abono rechazado conserva la retención; vencer el plazo tampoco la elimina
 si queda dinero pendiente. `/odysseia sii estado` incluye la modalidad.
 
-No se han activado estas guardas en Dallas. Además del ensayo en servidor y
-respaldo remoto, #691 exige resolver la persistencia durable entre movimientos
-de dinero y el registro de retenciones. No realizar compensaciones para probarlo.
+El candidato #691 guarda una intención durable antes de cada débito o abono.
+Si una caída o un fallo deja el resultado incierto, `/odysseia sii estado` indica
+que el movimiento requiere conciliación. La cuenta conserva el registro y
+rechaza liberar, confiscar, congelar o retener nuevamente; no repite el movimiento
+al arrancar. Esto también se aplica al rechazo de persistencia de sBank.
+Un archivo ilegible o un fallo de escritura detiene los movimientos del SII.
+
+No se han activado estas guardas en Dallas. Faltan el ensayo en servidor,
+respaldo y hashes remotos. Una intención pendiente no demuestra por sí sola que
+el dinero se haya movido: contrastar con el proveedor original antes de resolver
+el caso. No borrar el marcador, restaurar una copia antigua del registro ni
+realizar compensaciones para probarlo.
 
 ---
 
