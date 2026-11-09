@@ -1,0 +1,1805 @@
+{
+ "source": "SVM Powers data+resources 1.86.1",
+ "powers": {
+  "phase": {
+   "name": "Phasing",
+   "obtainable": true,
+   "desc": "The power to completely avoid physical boundaries along with incoming damage. Cheap yet powerful, somebody great must have developed those!",
+   "abilities": [
+    {
+     "id": "7",
+     "name": "Quick Phase",
+     "use": "Requires 20 mana",
+     "desc": "Makes you phase through walls and gives you invincibility for a short amount of time",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      40,
+      60
+     ]
+    },
+    {
+     "id": "8",
+     "name": "Phase",
+     "use": "Requires 40 mana",
+     "desc": "Makes you phase through walls and gives you invincibility for a decent amount of time",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      40,
+      80
+     ]
+    },
+    {
+     "id": "9",
+     "name": "Full Phase",
+     "use": "Requires 80 mana",
+     "desc": "Makes you phase through walls and gives you invincibility for a long amount of time",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      40,
+      160
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Clear Eyes",
+     "use": "Requires 50 mana",
+     "desc": "Clears your eyes while phasing for some amount of time",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": []
+    }
+   ]
+  },
+  "lightning": {
+   "name": "Lightning",
+   "obtainable": true,
+   "desc": "Directly deriven from the stirred energy!",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Lightning",
+     "use": "Requires 30 mana",
+     "desc": "Creates a lightning at cursor",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      100,
+      300
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Electric String",
+     "use": "Requires 20 mana, charging drains",
+     "desc": "Shoots a chargeable electric string in front",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      40,
+      100
+     ]
+    },
+    {
+     "id": "16",
+     "name": "Charge-up",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Infuses you with electrical impulses giving you massive advantages",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "17",
+     "name": "Electric Zone",
+     "use": "Requires 10 mana, holding drains",
+     "desc": "Damages and slows mobs and projectiles around",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Place Lightning",
+     "use": "Requires 10 mana",
+     "desc": "Creates a lightning location at cursor",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Summon Lightnings",
+     "use": "Resets Lightning Place ability",
+     "desc": "Summons lightnings at locations from Place Lightning ability",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "13",
+     "name": "Blast",
+     "use": "Requires 325 mana",
+     "desc": "Shoots a massive blast dealing extreme damage to mobs and environment in-front",
+     "unlock": 70,
+     "req": null,
+     "cooldown_ticks": [
+      640
+     ]
+    }
+   ]
+  },
+  "flora": {
+   "name": "Flora",
+   "obtainable": true,
+   "desc": "This powers' growth may take long, but it's what elevates it to another level!",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Plant Growth",
+     "use": "Requires 3 mana",
+     "desc": "Grows a crop at cursor (works on bunch more plants as well)",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Climate Selection",
+     "use": "Doesn't require mana",
+     "desc": "Switches selected climate, exploring unlocks climates",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "3",
+     "name": "Switch Climate",
+     "use": "Doesn't require mana",
+     "desc": "Switches selected climate, exploring unlocks climates",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Climate Ability",
+     "use": "None",
+     "desc": "Opens a menu of unlocked Climate Abilities",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "5",
+     "name": "Climate Ability: Dynamic",
+     "use": "Requires 30 mana",
+     "desc": "Automatically changes to ability from selected climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "6",
+     "name": "Tree Growth",
+     "use": "Requires 10 mana",
+     "desc": "Summons a tree at cursor, overcharging will create a forest around",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Manipulation",
+     "use": "Requires 0 mana",
+     "desc": "Manipulates most plant blocks in some way, some blocks get marked, using the ability again will manipulate it further",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      7
+     ]
+    },
+    {
+     "id": "8",
+     "name": "Harvest",
+     "use": "Drains mana",
+     "desc": "Breaks plant blocks at cursor",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      6
+     ]
+    },
+    {
+     "id": "9",
+     "name": "Item Creation",
+     "use": "Requires 5 mana per item",
+     "desc": "Crafts selected item from selected climate",
+     "unlock": 25,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "16",
+     "name": "Inescapable Garden",
+     "use": "Requires 100 mana",
+     "desc": "Spawns a Garden Heart, mobs escaping its radius will get heavy damage, using while active will switch between modes: Low Cooldowns, Mana Regen, Glow Mobs",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      8000
+     ]
+    },
+    {
+     "id": "17",
+     "name": "Root Entangle",
+     "use": "Requires 40 mana",
+     "desc": "Using on a wood block at cursor, entangles mobs around with roots\\n\\n Unlock by visiting Forest Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "18",
+     "name": "Piercing Thorns",
+     "use": "Requires 20 mana, holding drains",
+     "desc": "Creates thorns in-front which damage mobs over time\\n\\n Unlock by visiting Taiga Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      140
+     ]
+    },
+    {
+     "id": "19",
+     "name": "Vine",
+     "use": "Requires 30 mana",
+     "desc": "Shoots a vine that pulls you towards or a mob to you\\n\\n Unlock by visiting Jungle Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "20",
+     "name": "Cacti Grenade",
+     "use": "Requires 35 mana",
+     "desc": "Launches a cacti which explodes on impact creating multiple spike projectiles\\n\\n Unlock by visiting Desert Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      110
+     ]
+    },
+    {
+     "id": "21",
+     "name": "Spore Cloud",
+     "use": "Requires 60 mana",
+     "desc": "Shoots a cloud which creates mushrooms and mycelium on ground\\n\\n Unlock by visiting Mushroom Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      450
+     ]
+    },
+    {
+     "id": "22",
+     "name": "Warped Fungus",
+     "use": "Requires 50 mana",
+     "desc": "Places a warped fungus on ground, mobs stepping on it will get Warped Fungus effect which slows them down and makes them attack mobs around\\n\\n Unlock by visiting Warped Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      45
+     ]
+    },
+    {
+     "id": "23",
+     "name": "Piercing Vines",
+     "use": "Requires 40 mana",
+     "desc": "Shoots a vine which moves at your rotation\\n\\n Unlock by visiting Crimson Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      320
+     ]
+    },
+    {
+     "id": "24",
+     "name": "Flower Field",
+     "use": "Requires 20 mana, holding drains",
+     "desc": "Creates flowers around and gives regeneration\\n\\n Unlock by visiting Plains Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      180
+     ]
+    },
+    {
+     "id": "25",
+     "name": "Kelp Slap",
+     "use": "Requires 3 mana",
+     "desc": "Shoots a kelp projectile in-front\\n\\n Unlock by visiting Ocean Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      2
+     ]
+    },
+    {
+     "id": "26",
+     "name": "Wooden Branch",
+     "use": "Requires 75 mana",
+     "desc": "Summons a branch which when shifting, follows your rotation\\n\\n Unlock by visiting Dark Oak Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      240
+     ]
+    },
+    {
+     "id": "27",
+     "name": "Grass Step",
+     "use": "Requires 50 mana",
+     "desc": "Gives speed if walking on grass blocks and while in short and tall grass\\n\\n Unlock by visiting Savanna Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "28",
+     "name": "Petals of Peace",
+     "use": "Requires 80 mana, holding drains",
+     "desc": "Gives mobs Petals of Peace effect which makes them unable to use abilities along with slowing them down and weakening them\\n\\n Unlock by visiting Cherry Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      500
+     ]
+    },
+    {
+     "id": "29",
+     "name": "Mangrove Tower",
+     "use": "Requires 50 mana, holding drains",
+     "desc": "Creates a tower made out of mangrove roots at cursor\\n\\n Unlock by visiting Mangrove Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      140
+     ]
+    },
+    {
+     "id": "30",
+     "name": "Phasing Moss",
+     "use": "Requires 35 mana",
+     "desc": "Makes you phase through moss blocks\\n\\n Unlock by visiting Moss Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "31",
+     "name": "Leaf Storm",
+     "use": "Requires 30 mana, holding drains",
+     "desc": "Shoots leafs in-front pushing mobs away\\n\\n Unlock by visiting Birch Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      140
+     ]
+    },
+    {
+     "id": "32",
+     "name": "Heart of The Creaking",
+     "use": "Requires 250 mana",
+     "desc": "Connects you to a creaking heart, in a 30 block radius gives full resistance at night\\n\\n Unlock by visiting Pale Climate",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      40
+     ]
+    }
+   ]
+  },
+  "slime": {
+   "name": "Slime",
+   "obtainable": true,
+   "desc": "Who would've thought you can teleport with slime?",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Slime Spit",
+     "use": "Requires 10 mana",
+     "desc": "Shoots a slime spit",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Slimy Rain",
+     "use": "Requires 20 mana",
+     "desc": "Shoots slime balls around",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Slimy Shift",
+     "use": "Requires 25 mana",
+     "desc": "Teleports you to slime block at cursor",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "5",
+     "name": "Explosive Slime",
+     "use": "Requires 20 mana",
+     "desc": "Explodes slime blocks at cursor",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "6",
+     "name": "Slime Barrier",
+     "use": "Requires 25 mana",
+     "desc": "Places a slime barrier in-front",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      40
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Slimy Legs",
+     "use": "Requires 10 mana",
+     "desc": "Makes you swim faster and jump higher",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      40
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Slime Extension",
+     "use": "Requires 1 mana, holdable",
+     "desc": "Creates a block at cursor if there's slime block close to cursor",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "8",
+     "name": "Living Slime",
+     "use": "Requires 25 mana",
+     "desc": "Creates a slime out of slime block at cursor, decays after a while",
+     "unlock": 30,
+     "req": null,
+     "cooldown_ticks": []
+    }
+   ]
+  },
+  "explosion": {
+   "name": "Explosion",
+   "obtainable": true,
+   "desc": "Made for destruction, may god forbid the spam technique 🙏",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Explosion",
+     "use": "Requires 10 mana, charging drains",
+     "desc": "Summons an explosion in-front",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      60,
+      155
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Explosive Bullet",
+     "use": "Requires 10 mana, charging drains",
+     "desc": "Shoots a chargeable projectile that explodes on impact",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      85,
+      160
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Explosive Dash",
+     "use": "Requires 5 mana, charging drains",
+     "desc": "Dashes you in-front",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      44,
+      45
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Smoke Barrier",
+     "use": "Requires 1 mana, holding drains",
+     "desc": "Spreads smoke around to slow down and blind mobs",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      45
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Explosive Train",
+     "use": "Requires 15 mana, drains",
+     "desc": "Creates explosion behind you launching you in-front, lenght is dependent on your level, if you run out of mana it stops",
+     "unlock": 40,
+     "req": null,
+     "cooldown_ticks": [
+      60
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Re-Explode",
+     "use": "Requires 50 mana, drains",
+     "desc": "Sacrifices a ton of health in exchange for a great explosion",
+     "unlock": 9999,
+     "req": "Unlock from Paradise Traders",
+     "cooldown_ticks": [
+      600
+     ]
+    }
+   ]
+  },
+  "ice": {
+   "name": "Ice",
+   "obtainable": true,
+   "desc": "Power that's capable of taking down even an entire cruiseship! (Just don't let your superiority complex take you out!)",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Iceberg",
+     "use": "Requires 20 mana",
+     "desc": "Summons a iceberg in-front, the longer you charge, the bigger it gets",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      280,
+      360
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Ice Creation",
+     "use": "Drains 1 mana for 3 blocks",
+     "desc": "Creates ice in-front, hold shift not to cancel the creation",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      40,
+      120
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Shatter Ice",
+     "use": "Drains mana",
+     "desc": "Shatters ice at cursor",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Launch Ice",
+     "use": "Requires 15 mana",
+     "desc": "Use on an ice block at cursor\\n\\nClose-distance - picks up the ice block, releasing shoots it forward\\n\\nLong-distance - marks the ice block, using again (on a non ice block) launches the blocks to the cursor",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Ice Slide",
+     "use": "Drains mana when on ice",
+     "desc": "Makes you faster on ice blocks",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Icy Tongue",
+     "use": "Requires 35 mana",
+     "desc": "Creates an ice path that slowly decays",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      280
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Freezing Touch",
+     "use": "Requires 40 mana",
+     "desc": "Upon activation, your next punched mob will be frozen",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      300
+     ]
+    }
+   ]
+  },
+  "gravity": {
+   "name": "Gravity",
+   "obtainable": true,
+   "desc": "The very first fundament of singularity, could be called a connector",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Gravitational Field",
+     "use": "Requires 50 mana",
+     "desc": "Creates a gravitational field at cursor which attracts mobs around, holding places the field further",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      20,
+      100
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Strengthen",
+     "use": "Requires 10 mana",
+     "desc": "Strengthen gravity at cursor, increases size and range of fields and crushes mobs inside the field, breaks blocks or doubles the fall damage and gravity for a mob for a short amount of time",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      10,
+      100
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Manipulation",
+     "use": "Requires 20 mana, charging drains mana",
+     "desc": "Manipulates gravity fields to follow your cursor",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      8,
+      100
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Pull",
+     "use": "Requires 40 mana",
+     "desc": "When looking at a mob and/or item, teleports them to you, when looking at a gravity field, will teleport you to this gravity field",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      10,
+      140
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Low Gravity",
+     "use": "Drains mana depending on your facing direction, toggleable",
+     "desc": "Makes you less attractive to gravitational forces, the higher you are facing the faster you flow upwards, holding on use will create a low gravity zone around",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "6",
+     "name": "Revert",
+     "use": "Requires 40 mana",
+     "desc": "After usage, next punch will revert the gravity of attacked mobs, placing a Gravity Field meanwhile will revert from pulling to repelling",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      200,
+      240
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Repel Zone",
+     "use": "Requires 0 mana",
+     "desc": "Toggles a repelling field around you",
+     "unlock": 9999,
+     "req": "Unlock from Paradise Traders and 250 Ability Points",
+     "cooldown_ticks": [
+      3
+     ]
+    }
+   ]
+  },
+  "harpie": {
+   "name": "Harpie",
+   "obtainable": true,
+   "desc": "Even an eagle is helpless at the beginning",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Wings",
+     "use": "Slows mana regeneration",
+     "desc": "Equips or unequips you with wings",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Razor Feather",
+     "use": "Requires 5 mana",
+     "desc": "Shoots a feather from your wings",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Ultra Jump",
+     "use": "Requires 25 mana",
+     "desc": "Strongly launches you upwards",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Feather Lift",
+     "use": "Requires 60 mana",
+     "desc": "Launches mobs closeby upwards",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      420
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Grab",
+     "use": "Requires 60 mana, drains",
+     "desc": "Grabs a mob in-front for a few seconds",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      420
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Feather Manipulation",
+     "use": "Requires 5 mana, drains",
+     "desc": "Launches existing Razor Feather to the cursor location",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    }
+   ]
+  },
+  "dimension_traveler": {
+   "name": "Dimension Traveler",
+   "obtainable": true,
+   "desc": "Very handy for those who just want to explore, free travel!",
+   "abilities": [
+    {
+     "id": "3",
+     "name": "Dimension Selection",
+     "use": "Requires 0 mana",
+     "desc": "Selects a dimension",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "1",
+     "name": "Portal",
+     "use": "Requires 20 mana",
+     "desc": "Summons a portal which travels mobs and impacts in-front",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      60
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Dimensional Gate",
+     "use": "Requires 50 mana",
+     "desc": "Summons a portal to another dimension",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      400
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Front-Gates",
+     "use": "Requires 30 mana",
+     "desc": "Summons a portal which travels mobs to another portal",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Dimension Hop",
+     "use": "Requires 100 mana",
+     "desc": "After a chargeup, teleports you and mobs in-range to the pocket dimension, returning doesn't require mana",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": []
+    }
+   ]
+  },
+  "fire": {
+   "name": "Fire",
+   "obtainable": true,
+   "desc": "Just because something shines brighter, doesn't mean it will last forever",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Flame",
+     "use": "Requires 5 mana",
+     "desc": "Places fire at cursor position in-range or smelts item in hand",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Fire Arms",
+     "use": "Requires 75 mana",
+     "desc": "Sets your projectiles and attacked mobs on fire",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      1200
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Flaming Barrage",
+     "use": "Requires 25 mana",
+     "desc": "Upon usage, adds +1 fire blow to release, release by left-clicking, shoots a fast projectile",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Extinguish",
+     "use": "Requires 10 mana",
+     "desc": "Extinguishes fire in-range",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Blaze",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Holding creates a flaming barrier in-front, burning projectiles and keeping the fire still and keeps burning mobs on fire",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      60
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Fire Leap",
+     "use": "Requires 10 mana, holding drains",
+     "desc": "Launches you upwards with flames, jump to activate, use sprint key to dash",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      6
+     ]
+    },
+    {
+     "id": "8",
+     "name": "Fire Arrow",
+     "use": "Requires 100 mana",
+     "desc": "Launches a projectile that explodes large area around",
+     "unlock": 9999,
+     "req": "Unlock from Paradise Traders and 300 Ability Points",
+     "cooldown_ticks": [
+      2200
+     ]
+    }
+   ]
+  },
+  "void": {
+   "name": "Void",
+   "obtainable": true,
+   "desc": "Simplified version of Dimensional Travel, born from countless possibilities, limited to combat",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Void Bullet",
+     "use": "Requires 5 mana",
+     "desc": "Creates a small void projectile which damages mobs that walk into it",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Charging Void",
+     "use": "Requires 45 mana",
+     "desc": "Creates a chargeable projectile in front of you",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      100
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Void Manipulation",
+     "use": "Requires 10 mana",
+     "desc": "Launches your closest Void Bullet or Charging Void to the location at your cursor",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Void Swap",
+     "use": "Requires 10 mana",
+     "desc": "After charging the ability, instantly dashes forward erasing blocks and health of mobs in the way",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Black Hole",
+     "use": "Requires 250 mana, holding drains",
+     "desc": "Creates a massive black hole at cursor, mobs inside it are trapped up to 40 seconds while taking passive damage, void users get 50% less damage from suffocation",
+     "unlock": 150,
+     "req": null,
+     "cooldown_ticks": [
+      4000
+     ]
+    }
+   ]
+  },
+  "time": {
+   "name": "Time",
+   "obtainable": true,
+   "desc": "Power that directly let's you manipulate the timeline, who would need anything more?",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Time Stop",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Stops time around",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      100
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Accelerate",
+     "use": "Requires 45 mana",
+     "desc": "Speeds up users' actions",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "3",
+     "name": "Time Skip",
+     "use": "Requires 25 mana",
+     "desc": "Skips a few seconds ahead, charging mana, cooldowns etc.",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      160
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Timestamp",
+     "use": "Requires 50 mana",
+     "desc": "Marks your location, teleports you back on second use, holding resets your location",
+     "unlock": 25,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Rewind",
+     "use": "Requires 250 mana",
+     "desc": "Teleports mobs around back to their location from some time ago",
+     "unlock": 50,
+     "req": null,
+     "cooldown_ticks": [
+      1200
+     ]
+    }
+   ]
+  },
+  "healing": {
+   "name": "Healing",
+   "obtainable": true,
+   "desc": "Could be called a support type of power, but don't forget to be your own support!",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Heal",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Heals you, hold to heal a mob in-front",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Regenerational Aura",
+     "use": "Requires 60 mana",
+     "desc": "Gives regeneration to mobs around, holding creates a regenerational field around",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      600
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Marking",
+     "use": "Requires 0 mana",
+     "desc": "Marks/unmarks a mob in-front, holding removes previous marking",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Health Spread",
+     "use": "Requires 10 mana for each mob",
+     "desc": "Shoots a healing orb to each mob marked by you",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Helping Hand",
+     "use": "Requires 15 mana for each mob",
+     "desc": "Shoots a regenerating orb to each mob marked by you",
+     "unlock": 25,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Immortality",
+     "use": "Requires 250 mana",
+     "desc": "Gives massive healing each time you take damage",
+     "unlock": 175,
+     "req": null,
+     "cooldown_ticks": [
+      24000
+     ]
+    }
+   ]
+  },
+  "death": {
+   "name": "Death",
+   "obtainable": true,
+   "desc": "It's been too lively recently...",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Summon Scythe",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Gives you a powerful scythe",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      6000
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Life Drain",
+     "use": "Requires 40 mana",
+     "desc": "Drains health from mobs nearby giving you regeneration",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      600
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Cleaving Cut",
+     "use": "Requires 60 mana",
+     "desc": "Heavily damages mobs closeby, charging increases damage",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      200
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Memento Mori",
+     "use": "Requires 100 mana",
+     "desc": "Starts a haunt at a mob at cursor, haunted mob will give you damage boost but you can't attack other mobs around",
+     "unlock": 20,
+     "req": null,
+     "cooldown_ticks": [
+      500
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Unsealed Reaper",
+     "use": "Requires 250 mana",
+     "desc": "Enters a powerful state in which you are faster, stronger and your abilities are enhanced",
+     "unlock": 80,
+     "req": null,
+     "cooldown_ticks": [
+      24000
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Death Compass",
+     "use": "Requires 0 mana",
+     "desc": "Creates an arrow that leads you to the closest mob",
+     "unlock": 25,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    }
+   ]
+  },
+  "copy": {
+   "name": "Copy",
+   "obtainable": true,
+   "desc": "Jack of all trades, master of none, but oftentimes better than a master of one.",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Copy",
+     "use": "Requires 100 mana, drains",
+     "desc": "Hurting a mob will attempt to copy their powers or mob abilities",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      240
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Armadillo Armor",
+     "use": "Requires 30 mana, drains usage",
+     "desc": "Hides you in a shell giving you increased damage resistance\\n\\n Copy from Armadillos",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Underwater Adaptation",
+     "use": "Requires 0 mana, drains usage in water",
+     "desc": "Gives you water breathing\\n\\n Copy from water breathing mobs",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Night Vision",
+     "use": "Requires 0 mana, drains usage",
+     "desc": "Gives you night vision\\n\\n Copy from Cats and Phantoms",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Fireball",
+     "use": "Requires 30 mana, drains usage",
+     "desc": "Shoots up to 3 fireballs in front (if held for longer)\\n\\n Copy from Ghasts and Blazes",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Fire Adaptation",
+     "use": "Requires 0 mana, drains usage when on fire",
+     "desc": "Gives you fire resistance\\n\\n Copy from fire resistant mobs",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "7",
+     "name": "Wind Charge",
+     "use": "Requires 25 mana",
+     "desc": "Shoots a Wind Charge in-front, holding will launch the user in-front\\n\\n Copy from Breezes",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "8",
+     "name": "Poisonous Bite",
+     "use": "Requires 40 mana",
+     "desc": "Gives poison to next attacked mob\\n\\n ",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      340
+     ]
+    },
+    {
+     "id": "10",
+     "name": "Self-Destruct",
+     "use": "Requires 30 mana",
+     "desc": "Makes you kaboom damaging mobs around but also harming you\\n\\n Copy from Creepers",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "11",
+     "name": "Guardians Watch",
+     "use": "Requires 80 mana",
+     "desc": "Gives mobs around you Mining Fatigue\\n\\n Copy from Elder Guardians",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      3000
+     ]
+    },
+    {
+     "id": "12",
+     "name": "Dragons Breath",
+     "use": "Requires 80 mana",
+     "desc": "Shoots a powerful beam in-front\\n\\n Copy from Ender Dragon",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      1800
+     ]
+    },
+    {
+     "id": "13",
+     "name": "Teleportation",
+     "use": "Requires 30 mana",
+     "desc": "Teleports you in-front, spreads randomly if held for longer\\n\\n Copy from Endermen",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "14",
+     "name": "Fangs of The Mansion",
+     "use": "Requires 60 mana",
+     "desc": "Summons Evoker Fangs in-front, holding for longer will change the pattern, straight, around, at mobs around\\n\\n Copy from Evokers",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "15",
+     "name": "Invisibility",
+     "use": "Requires 0 mana, drains usage",
+     "desc": "Makes you invisible\\n\\n Copy from Illusioners",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "16",
+     "name": "Mushroom Refill",
+     "use": "Requires 40 mana",
+     "desc": "Feeds you well\\n\\n Copy from Mooshrooms",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      350
+     ]
+    },
+    {
+     "id": "17",
+     "name": "Shulker Bullet",
+     "use": "Requires 20 mana",
+     "desc": "Shoots a shulker bullet, will track a mob that has attacked you in previous 5 seconds before shooting\\n\\n Copy from Shulkers",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      80
+     ]
+    },
+    {
+     "id": "18",
+     "name": "Cobweb Launch",
+     "use": "Requires 40 mana",
+     "desc": "Shoots a cobweb, on impact with a block will launch you there, on impact with a mob, will bind them in cobwebs\\n\\n Copy from Spiders and Cave Spiders",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "19",
+     "name": "Sonic Boom",
+     "use": "Requires 70 mana",
+     "desc": "Shoots a powerful shock-wave which travels instantly through blocks dealing damage\\n\\n Copy from Wardens",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      280
+     ]
+    },
+    {
+     "id": "20",
+     "name": "Withering Touch",
+     "use": "Requires 0 mana",
+     "desc": "Attacking a mob will give them withering effect\\n\\n Copy from Wither Skeletons and Withers",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "21",
+     "name": "Wither Head",
+     "use": "Requires 25 mana",
+     "desc": "Shoots a wither skull\\n\\n Copy from Withers",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "22",
+     "name": "Phase",
+     "use": "Requires 5 mana",
+     "desc": "Phases through blocks and mobs for a short amount of time\\n\\n Copy from a Phase user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      40
+     ]
+    },
+    {
+     "id": "23",
+     "name": "Lightning",
+     "use": "Requires 30 mana",
+     "desc": "Summons a lightning at cursor\\n\\n Copy from a Lightning user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      180
+     ]
+    },
+    {
+     "id": "24",
+     "name": "Flora",
+     "use": "Requires 5 mana",
+     "desc": "Grows the block at cursor\\n\\n Copy from a Flora user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5
+     ]
+    },
+    {
+     "id": "25",
+     "name": "Slime",
+     "use": "Requires 8 mana",
+     "desc": "Shoots a slime projectile\\n\\n Copy from a Slime user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      7
+     ]
+    },
+    {
+     "id": "26",
+     "name": "Explosion",
+     "use": "Requires 15 mana, charging drains",
+     "desc": "Summons an explosion in-front, holding for longer increases size and damage\\n\\n Copy from a Explosion user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      7
+     ]
+    },
+    {
+     "id": "27",
+     "name": "Ice",
+     "use": "Requires 20 mana, charging drains",
+     "desc": "Summons an iceberg in-front, holding increases size\\n\\n Copy from a Ice user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      7
+     ]
+    },
+    {
+     "id": "28",
+     "name": "Gravity",
+     "use": "Requires 50 mana, charging drains",
+     "desc": "Summons a gravity field, holding places the field further\\n\\n Copy from a Gravity user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      7
+     ]
+    },
+    {
+     "id": "29",
+     "name": "Harpie",
+     "use": "Toggleable, drains usage",
+     "desc": "Gives you wings and increases your mobility\\n\\n Copy from a Harpie user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "30",
+     "name": "Dimension Traveler",
+     "use": "Requires 50 mana",
+     "desc": "Summons a portal to another dimension, holding changes the destination\\n\\n Copy from a Dimension Traveler user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      400
+     ]
+    },
+    {
+     "id": "31",
+     "name": "Fire",
+     "use": "Requires 5 mana",
+     "desc": "Creates fire at cursor or smelts the item in mainhand, holding for longer enhances the fire around\\n\\n Copy from a Fire user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "32",
+     "name": "Void",
+     "use": "Requires 5 mana",
+     "desc": "Summons a small void projectile\\n\\n Copy from a Void user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      5,
+      15
+     ]
+    },
+    {
+     "id": "33",
+     "name": "Time",
+     "use": "Requires 25 mana, charging drains",
+     "desc": "Stops the flow of time for a short amount of time\\n\\n Copy from a Time user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      60
+     ]
+    },
+    {
+     "id": "34",
+     "name": "Healing",
+     "use": "Requires 25 mana",
+     "desc": "Heals you, holding will heal a mob in-front or heal you more\\n\\n Copy from a Healing user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "35",
+     "name": "Death",
+     "use": "Requires 25 mana",
+     "desc": "Gives you the Death Scythe and lets you use it\\n\\n Copy from a Death user",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      6000
+     ]
+    }
+   ]
+  },
+  "water": {
+   "name": "Water",
+   "obtainable": true,
+   "desc": "Is shapeless a shape?",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Water Creation",
+     "use": "Requires 5 mana",
+     "desc": "Creates water at cursor",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Collect",
+     "use": "Requires 1 mana",
+     "desc": "Collects nearby waters",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Flowing Movement",
+     "use": "Requires 0 mana",
+     "desc": "Toggles increased water speed (also allows for jumps in water!)",
+     "unlock": 8,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Manipulation",
+     "use": "Requires 1 mana",
+     "desc": "Lets you create whirlpools, control water, droplets and gives additional support in water (holding/tapping MAY change the behavior of this ability)",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      20
+     ]
+    },
+    {
+     "id": "5",
+     "name": "Water Droplet",
+     "use": "Requires 10 mana, holding drains",
+     "desc": "Creates a small water droplet",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      2,
+      7
+     ]
+    },
+    {
+     "id": "6",
+     "name": "Rising Water",
+     "use": "Requires 20 mana",
+     "desc": "Multiplies nearby waters",
+     "unlock": 75,
+     "req": null,
+     "cooldown_ticks": [
+      10
+     ]
+    }
+   ]
+  },
+  "snow": {
+   "name": "WIP Snow",
+   "obtainable": false,
+   "desc": "Let some light in :))",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Snow Creation",
+     "use": "Toggleable, activated drains",
+     "desc": "Makes you invinsible!",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Clear Snow",
+     "use": "Requires 30 mana",
+     "desc": "Clears snow off mobs and their equipment",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      50
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Manipulation",
+     "use": "Requires 50 mana",
+     "desc": "Turns mobs invisible, they will stay invisible as long as they are close to an snow power user",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": []
+    },
+    {
+     "id": "4",
+     "name": "Snow Launcher",
+     "use": "Requires 10 mana for each mob",
+     "desc": "Enables you to turn an item or equipment such as saddles, invisible",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Blizzard",
+     "use": "Requires 10 mana for each mob",
+     "desc": "Enables you to turn an item or equipment such as saddles, invisible",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      30
+     ]
+    }
+   ]
+  },
+  "invisibility": {
+   "name": "WIP Invisibility",
+   "obtainable": false,
+   "desc": "Let some light in :))",
+   "abilities": [
+    {
+     "id": "1",
+     "name": "Invisibility",
+     "use": "Toggleable, activated drains",
+     "desc": "Makes you invinsible!",
+     "unlock": 0,
+     "req": null,
+     "cooldown_ticks": [
+      120,
+      220
+     ]
+    },
+    {
+     "id": "2",
+     "name": "Reveal",
+     "use": "Requires 30 mana",
+     "desc": "Clears invisibility off mobs and their equipment",
+     "unlock": 5,
+     "req": null,
+     "cooldown_ticks": [
+      160
+     ]
+    },
+    {
+     "id": "3",
+     "name": "Give Invisibility",
+     "use": "Requires 50 mana",
+     "desc": "Turns mobs invisible, they will stay invisible as long as they are close to an Invisibility power user",
+     "unlock": 10,
+     "req": null,
+     "cooldown_ticks": [
+      120
+     ]
+    },
+    {
+     "id": "4",
+     "name": "Hide Items",
+     "use": "Requires 10 mana for each mob",
+     "desc": "Enables you to turn an item or equipment such as saddles, invisible",
+     "unlock": 15,
+     "req": null,
+     "cooldown_ticks": [
+      180
+     ]
+    }
+   ]
+  },
+  "blood": {
+   "name": "WIP Blood",
+   "obtainable": false,
+   "desc": "",
+   "abilities": []
+  }
+ }
+}

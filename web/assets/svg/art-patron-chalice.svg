@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="chaliceGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db"/>
+      <stop offset="40%" stop-color="#e5bd72"/>
+      <stop offset="100%" stop-color="#805312"/>
+    </linearGradient>
+    <filter id="patronGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .heart-pulse { animation: pulseHeart 2.5s ease-in-out infinite; transform-origin: 160px 75px; }
+    .star-float-1 { animation: floatStar 3s ease-in-out infinite; }
+    .star-float-2 { animation: floatStar 3s ease-in-out infinite 1.5s; }
+    @keyframes pulseHeart { 0%, 100% { transform: scale(0.92); filter: drop-shadow(0 0 8px #f43f5e); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 24px #fb7185); } }
+    @keyframes floatStar { 0% { transform: translateY(0); opacity: 0.2; } 50% { opacity: 1; } 100% { transform: translateY(-16px); opacity: 0; } }
+  </style>
+
+  <!-- Glowing Heart of Gratitude Floating Above -->
+  <g class="heart-pulse">
+    <path d="M160 88 C160 88 135 68 135 52 C135 38 147 34 160 48 C173 34 185 38 185 52 C185 68 160 88 160 88 Z" 
+          fill="#f43f5e" filter="url(#patronGlow)"/>
+    <circle cx="160" cy="54" r="3" fill="#ffffff" opacity="0.8"/>
+  </g>
+
+  <!-- Floating Sparkles / Stars -->
+  <polygon class="star-float-1" points="120,40 123,47 130,50 123,53 120,60 117,53 110,50 117,47" fill="#e5bd72"/>
+  <polygon class="star-float-2" points="200,35 203,42 210,45 203,48 200,55 197,48 190,45 197,42" fill="#82c9a5"/>
+
+  <!-- Golden Chalice of the Gods -->
+  <!-- Cup Body -->
+  <path d="M120 95 Q115 145 160 152 Q205 145 200 95 Z" fill="url(#chaliceGold)" filter="url(#patronGlow)"/>
+  <!-- Lip of Cup -->
+  <ellipse cx="160" cy="95" rx="40" ry="7" fill="#fff4da" stroke="url(#chaliceGold)" stroke-width="1.5"/>
+
+  <!-- Gemstones on Cup Rim -->
+  <circle cx="140" cy="115" r="3.5" fill="#82c9a5"/>
+  <circle cx="160" cy="120" r="4" fill="#a98ae8"/>
+  <circle cx="180" cy="115" r="3.5" fill="#64d8cb"/>
+
+  <!-- Stem & Base -->
+  <path d="M156 152 L154 182 L166 182 L164 152 Z" fill="url(#chaliceGold)"/>
+  <ellipse cx="160" cy="186" rx="36" ry="8" fill="url(#chaliceGold)"/>
+  <ellipse cx="160" cy="192" rx="42" ry="5" fill="#2d174d" stroke="url(#chaliceGold)" stroke-width="1"/>
+</svg>

@@ -1,0 +1,496 @@
+/* ==========================================================================
+   DRAKESMETRICS · Cyber-Square SRE Telemetry & Cloudflare Global Edge HUD
+   ========================================================================== */
+
+:root {
+  --met-bg-deep: #06040e;
+  --met-panel-bg: rgba(14, 10, 29, 0.88);
+  --met-border: rgba(168, 85, 247, 0.28);
+  --met-border-focus: rgba(224, 86, 253, 0.72);
+  --met-gold: #ffd700;
+  --met-gold-glow: rgba(224, 86, 253, 0.28);
+  --met-emerald: #34d399;
+  --met-cyan: #00e5ff;
+  --met-purple: #e056fd;
+  --met-text-muted: #b8b2d4;
+  --met-text-dim: #7c749e;
+}
+
+/* Panel de aviso / Resumen superior */
+.metricas-resumen {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid var(--met-border);
+  border-left: 4px solid var(--met-gold);
+  background: var(--met-panel-bg);
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+.metricas-resumen::before {
+  content: '⚡';
+  font-size: 1.4rem;
+  color: var(--met-gold);
+}
+
+/* Tarjetas de Ocupación - HUD Militar Cuadrado */
+.metricas-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 3rem;
+}
+
+.metrica {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 1.4rem 1rem;
+  border: 1px solid var(--met-border);
+  border-radius: 2px;
+  background: var(--met-panel-bg);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metrica::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--met-gold), transparent);
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.metrica:hover {
+  transform: translateY(-2px);
+  border-color: var(--met-border-focus);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 16px var(--met-gold-glow);
+}
+
+.metrica:hover::after {
+  opacity: 1;
+}
+
+.metrica__valor {
+  font-family: 'Cinzel', serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--met-gold);
+  text-shadow: 0 0 16px rgba(244, 201, 93, 0.4);
+}
+
+.metrica__etiqueta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--met-text-muted);
+}
+
+/* Grid de Infraestructura & Cloudflare Edge */
+.edge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 3.5rem;
+}
+
+.edge-card {
+  background: var(--met-panel-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--met-border);
+  border-radius: 2px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.edge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--met-gold);
+}
+
+.edge-card:last-child::before {
+  background: var(--met-cyan);
+}
+
+.edge-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.9rem;
+}
+
+.edge-card__title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.edge-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--met-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.edge-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.92rem;
+  padding: 0.2rem 0;
+}
+
+.edge-stat-label {
+  color: var(--met-text-muted);
+  font-size: 0.88rem;
+}
+
+.edge-stat-val {
+  font-family: 'DM Mono', monospace;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.pop-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.pop-item {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pop-item__city {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pop-item__ms {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--met-cyan);
+  font-weight: 600;
+}
+
+/* Gráfico por hora */
+.metricas-horas {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 4px;
+  height: 200px;
+  align-items: end;
+  margin: 1.5rem 0 3.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1.2rem 0.8rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid var(--met-border);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.hora {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 6px;
+}
+
+.hora__barra {
+  width: 100%;
+  border-radius: 1px 1px 0 0;
+  background: rgba(244, 201, 93, 0.28);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.hora.is-pico .hora__barra {
+  background: var(--met-gold);
+  box-shadow: 0 0 14px rgba(244, 201, 93, 0.55);
+}
+
+.hora:hover .hora__barra {
+  background: #ffffff;
+  transform: scaleY(1.08);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.hora__label {
+  font-size: 0.68rem;
+  color: var(--met-text-dim);
+  font-variant-numeric: tabular-nums;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Días */
+.metricas-dias {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 1.5rem 0 3rem;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1.2rem;
+  border: 1px solid var(--met-border);
+  border-radius: 2px;
+}
+
+.dia {
+  display: grid;
+  grid-template-columns: 60px 1fr 40px;
+  align-items: center;
+  gap: 14px;
+}
+
+.dia__fecha {
+  font-size: 0.82rem;
+  color: var(--met-text-muted);
+  font-variant-numeric: tabular-nums;
+  font-family: 'DM Mono', monospace;
+}
+
+.dia__barra {
+  height: 10px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.dia__barra i {
+  display: block;
+  height: 100%;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #d97706 0%, #f4c95d 100%);
+  box-shadow: 0 0 10px rgba(244, 201, 93, 0.3);
+  transition: width 0.4s ease;
+}
+
+.dia__valor {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: 'DM Mono', monospace;
+  color: #fff;
+}
+
+/* Nicks y perfiles */
+.nicks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.6rem 0 2.2rem;
+}
+
+.nicks__vacio {
+  color: var(--met-text-dim);
+  font-size: 0.92rem;
+  font-family: 'DM Mono', monospace;
+  margin: 0;
+}
+
+.nick {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.84rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f1f5f9;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.nick:hover {
+  border-color: var(--met-gold);
+  background: rgba(244, 201, 93, 0.1);
+}
+
+.nicks--nuevos .nick {
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(52, 211, 153, 0.12);
+  color: #6ee7b7;
+}
+
+/* Tabla de la comunidad */
+.tabla-jugadores__scroll {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  border-radius: 2px;
+  border: 1px solid var(--met-border);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tabla-jugadores {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.tabla-jugadores th, .tabla-jugadores td {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tabla-jugadores th {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--met-gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tabla-jugadores tr:hover td {
+  background: rgba(244, 201, 93, 0.04);
+}
+
+.jug__nick {
+  font-family: 'DM Mono', monospace;
+  font-weight: 600;
+  color: #fff;
+}
+
+.etiqueta-nueva {
+  font-size: 0.68rem;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+  background: rgba(52, 211, 153, 0.18);
+  color: var(--met-emerald);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  margin-left: 0.4rem;
+}
+
+/* Países */
+.paises {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 1.5rem 0 2.2rem;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1.2rem;
+  border: 1px solid var(--met-border);
+  border-radius: 2px;
+}
+
+.pais {
+  display: grid;
+  grid-template-columns: 150px 1fr 45px;
+  align-items: center;
+  gap: 14px;
+}
+
+.pais__nombre {
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e2e8f0;
+}
+
+.pais__bandera {
+  font-size: 1.2rem;
+}
+
+.pais__barra {
+  height: 8px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.pais__barra i {
+  display: block;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--met-emerald);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
+}
+
+.pais__valor {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  color: #fff;
+}
+
+.jugadores-mas {
+  padding: 0.7rem 1.4rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--met-border);
+  color: #fff;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.jugadores-mas:hover {
+  background: rgba(244, 201, 93, 0.15);
+  border-color: var(--met-gold);
+  box-shadow: 0 0 16px var(--met-gold-glow);
+}
+
+@media (max-width: 640px) {
+  .metricas-horas { height: 140px; gap: 2px; }
+  .hora__label { font-size: 0.52rem; }
+  .hora:nth-child(odd) .hora__label { visibility: hidden; }
+  .pop-list { grid-template-columns: 1fr; }
+  .pais { grid-template-columns: 110px 1fr 35px; }
+}

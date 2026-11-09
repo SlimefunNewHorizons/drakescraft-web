@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Mantenimiento &amp; Sincronización Divina | DrakesCraft</title>
+    <meta
+      content="El portal y servidores de DrakesCraft se encuentran en una breve pausa técnica para aplicar mejoras y sincronización de dimensiones."
+      name="description"
+    />
+    <meta content="#071712" name="theme-color" />
+    <meta content="website" property="og:type" />
+    <meta
+      content="DrakesCraft | Mantenimiento &amp; Sincronización"
+      property="og:title"
+    />
+    <meta
+      content="Tus datos, inventarios y cofres están completamente seguros. Volvemos en breve."
+      property="og:description"
+    />
+    <meta
+      content="https://web.drakescraft.cl/assets/home/hero-aurora-1600.webp"
+      property="og:image"
+    />
+    <link
+      href="https://web.drakescraft.cl/assets/logo-drakescraft.png"
+      rel="icon"
+      type="image/png"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="/vendor/bootstrap/bootstrap.min.css?v=20261107-t12" rel="stylesheet" />
+    <link href="/styles/olympus.css?v=20261109-fx" rel="stylesheet" />
+  </head>
+  <body class="op-page" data-design="olympus-3d">
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <nav
+      class="navbar navbar-expand-xl op-nav"
+      data-bs-theme="dark"
+      aria-label="Navegación principal"
+    >
+      <div class="container-fluid">
+        <a class="op-brand" href="/"
+          ><img
+            src="/assets/logo-drakescraft.png"
+            alt=""
+            width="43"
+            height="48"
+          /><span
+            ><strong>DrakesCraft</strong><small>PORTAL OFICIAL</small></span
+          ></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#portal-nav"
+          aria-controls="portal-nav"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="portal-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia.html">El servidor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia-comandos.html">Comandos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia-rangos.html">Rangos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/guia-slimefun.html">Slimefun</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/store.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/metricas.html">Métricas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/apoya.html">Apoyar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support.html">Soporte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-discord" href="/discord.html"
+                >Discord ↗</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main id="main" class="op-status">
+      <div class="container">
+        <div>
+          <span class="badge-label">Sincronización del Nexo · 2026</span>
+        </div>
+        <h1>Mantenimiento <span>Programado</span></h1>
+        <p class="lead">
+          El portal web y los servidores de DrakesCraft se encuentran en una
+          breve pausa técnica para aplicar mejoras, nuevos parches y
+          sincronización de dimensiones.
+        </p>
+        <div class="status-panel">
+          <div class="status-panel__info">
+            <span aria-hidden="true" class="status-dot"></span>
+            <div>
+              <strong>Mundos e Inventarios Protegidos</strong>
+              <small
+                >Volcado completo de máquinas Slimefun e inventarios
+                realizado.</small
+              >
+            </div>
+          </div>
+          <div class="timer-badge" id="reconnect-box">
+            Reintento automático en <span id="timer-sec">10</span>s
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-gold" onclick="location.reload()">
+            <span>🔄</span> Reintentar Ahora
+          </button>
+          <a
+            class="btn btn-discord"
+            href="https://discord.gg/rv3vtXZTk7"
+            rel="noopener"
+            target="_blank"
+          >
+            <span>💬</span> Avisos en Discord
+          </a>
+          <button class="btn btn-glass" id="ip-btn" onclick="copyIp()">
+            <span>📋</span> Copiar IP mc.drakescraft.cl
+          </button>
+        </div>
+        <div class="support-grid">
+          <a
+            class="support-item"
+            href="https://github.com/SlimefunNewHorizons"
+            rel="noopener"
+            target="_blank"
+          >
+            <span class="support-item__title">🌟 GitHub Open Source</span>
+            <p>
+              Explora el código, plugins y proyectos comunitarios de DrakesCraft
+              Labs.
+            </p>
+          </a>
+          <a
+            class="support-item"
+            href="https://web.drakescraft.cl/apoya.html"
+            rel="noopener"
+            target="_blank"
+          >
+            <span class="support-item__title">💖 Apoyar el Proyecto</span>
+            <p>
+              Descubre cómo patrocinar el servidor y colaborar con el hosting y
+              desarrollo.
+            </p>
+          </a>
+          <a
+            class="support-item"
+            href="https://web.drakescraft.cl/store.html"
+            rel="noopener"
+            target="_blank"
+          >
+            <span class="support-item__title">💎 Tienda Oficial</span>
+            <p>
+              Rangos, pases y llaves exclusivas mediante pasarela segura Tebex.
+            </p>
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="op-footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <a class="op-brand" href="/"
+              ><img
+                src="/assets/logo-drakescraft.png"
+                alt=""
+                width="43"
+                height="48"
+              /><span
+                ><strong>DrakesCraft</strong><small>JAVA + BEDROCK</small></span
+              ></a
+            >
+            <p>Seis mundos. Una comunidad. Un legado que sigue creciendo.</p>
+            <code>mc.drakescraft.cl</code>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>EXPLORA</h2>
+            <a href="/guia.html">El servidor</a
+            ><a href="/guia-comandos.html">Comandos</a
+            ><a href="/guia-rangos.html">Rangos</a
+            ><a href="/guia-slimefun.html">Slimefun</a
+            ><a href="/cultivation.html">Cultivation</a>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h2>COMUNIDAD</h2>
+            <a href="/discord.html">Discord</a
+            ><a href="/metricas.html">Métricas</a
+            ><a href="/apoya.html">Apoyar</a
+            >
+          </div>
+          <div class="col-12 col-lg-3">
+            <h2>TIENDA Y AYUDA</h2>
+            <a href="/store.html">Tienda</a
+            ><a href="/support.html">Soporte de compras</a
+            ><a href="/terms.html">Términos y condiciones</a
+            ><a
+              href="https://github.com/SlimefunNewHorizons"
+              target="_blank"
+              rel="noopener"
+              >DrakesCraft Labs ↗</a
+            >
+          </div>
+        </div>
+        <div class="op-footer-bottom">
+          <span>DrakesCraft · Portal oficial</span
+          ><span>Java + Bedrock · mc.drakescraft.cl</span>
+        </div>
+      </div>
+    </footer>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="/scripts/experience.js" defer></script>
+    <script>
+      // Contador regresivo y recarga suave
+      let count = 10;
+      const secEl = document.getElementById("timer-sec");
+      const timerInterval = setInterval(() => {
+        count--;
+        if (secEl) secEl.textContent = count;
+        if (count <= 0) {
+          clearInterval(timerInterval);
+          location.reload();
+        }
+      }, 1000);
+
+      // Copiar IP
+      function copyIp() {
+        const btn = document.getElementById("ip-btn");
+        navigator.clipboard.writeText("mc.drakescraft.cl").then(() => {
+          const prev = btn.innerHTML;
+          btn.innerHTML = "<span>✓</span> ¡IP Copiada!";
+          setTimeout(() => (btn.innerHTML = prev), 2500);
+        });
+      }
+    </script>
+  </body>
+</html>

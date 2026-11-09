@@ -1,0 +1,97 @@
+/* Marco compartido T2 (Cyberpunk + End Infection) para páginas legales */
+.legal-shell {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(2.5rem, 7vw, 5.5rem);
+  background-color: var(--bg, #06040e);
+}
+
+.legal-shell::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 24rem;
+  content: "";
+  background:
+    radial-gradient(circle at 16% 4%, rgb(139 92 246 / 26%), transparent 48%),
+    radial-gradient(circle at 84% 10%, rgb(224 86 253 / 18%), transparent 44%),
+    linear-gradient(rgb(139 92 246 / 6%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 229 255 / 5%) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  pointer-events: none;
+}
+
+.legal-shell > .eyebrow,
+.legal-shell > h1,
+.legal-shell > .t2-hud-strip,
+.legal-shell > p,
+.legal-shell > h2,
+.legal-shell > ul,
+.legal-shell > .alert-box,
+.legal-shell > .warning-box,
+.legal-shell > .info-box,
+.legal-shell > .success-box,
+.legal-shell > article {
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+.legal-shell > .t2-hud-strip,
+.legal-shell .prose-page > .t2-hud-strip {
+  margin-block: 1rem 1.5rem;
+}
+
+.legal-shell > h1 {
+  color: #f8f9fa;
+  font-family: "Cinzel", serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.legal-shell > h1 + p,
+.legal-shell > .t2-hud-strip + p,
+.legal-shell > .prose-page > h1 + p,
+.legal-shell > .prose-page > .t2-hud-strip + p {
+  color: #d4d0df;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.legal-shell h2 {
+  color: #e9d5ff;
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.12rem, 2.5vw, 1.38rem);
+}
+
+.legal-shell > article,
+.legal-shell .prose-page > article,
+.legal-shell .legal-card {
+  margin-block: 1.15rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border: 1px solid rgb(168 85 247 / 30%);
+  border-left: 3px solid #00e5ff;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, rgb(14 10 29 / 92%), rgb(8 5 20 / 92%));
+  box-shadow: 0 1.25rem 3.5rem rgb(0 0 0 / 36%);
+}
+
+.legal-shell > ul,
+.legal-shell .prose-page ul {
+  color: #d8d5e3;
+  line-height: 1.7;
+}
+
+.legal-shell .alert-box,
+.legal-shell .warning-box,
+.legal-shell .info-box,
+.legal-shell .success-box {
+  max-width: 58rem;
+  border-radius: .9rem;
+}
+
+@media (max-width: 42rem) {
+  .legal-shell { padding-block: 2.25rem; }
+  .legal-shell > article,
+  .legal-shell .prose-page > article { border-radius: .75rem; }
+}

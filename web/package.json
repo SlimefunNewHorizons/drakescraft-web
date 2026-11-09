@@ -1,0 +1,19 @@
+{
+  "name": "drakescraft-web",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node scripts/smoke-tests.js",
+    "check": "node --check server.js && node --check scripts/site.js && node --check scripts/metricas-en.js && node --check scripts/store.js && node --check scripts/bosses.js && node --check scripts/dioses.js && node --check scripts/christmas-fx.js && node --check scripts/birthday-fx.js && node --check scripts/season-lite.js && node scripts/verify-store-catalog.mjs"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.7",
+    "fastify": "^5.12.7"
+  },
+  "overrides": {
+    "glob": "^14.0.3",
+    "minimatch": "^11.0.3"
+  }
+}

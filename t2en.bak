@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Generado por scripts/build-t2-paginas.py: no editar a mano. -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Olympus in Collapse · Season 2 | DrakesCraft</title>
+  <meta name="description" content="The story of DrakesCraft Season 2: a floating Greek island, the Rift, the titan Atlas, the Antikythera, the radar, the Wither Storm and the colosseum.">
+  <link rel="canonical" href="https://web.drakescraft.cl/temporada-2-en.html">
+  <link rel="alternate" hreflang="es" href="https://web.drakescraft.cl/temporada-2.html">
+  <link rel="alternate" hreflang="en" href="https://web.drakescraft.cl/temporada-2-en.html">
+  <link rel="icon" type="image/png" href="assets/logo-drakescraft.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/guia.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2.css?v=20261102-t2">
+  <link rel="stylesheet" href="styles/t2-olimpo.css?v=20261106-olimpo">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DrakesCraft">
+  <meta property="og:title" content="Olympus in Collapse · Season 2 | DrakesCraft">
+  <meta property="og:description" content="The story of DrakesCraft Season 2: a floating Greek island, the Rift, the titan Atlas, the Antikythera, the radar, the Wither Storm and the colosseum.">
+  <meta property="og:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
+</head>
+<body class="page-shell ol-page" data-page="guia" data-section="olimpo">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container site-nav__bar">
+      <a class="brand" href="/" aria-label="Go to DrakesCraft Home">
+        <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="46" height="46">
+        <span class="brand__meta"><strong>DrakesCraft</strong><span>VIP Ranks Guide · Star Network</span></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <ul class="site-nav__links" id="nav-menu">
+        <li><a href="/index-en.html">Home</a></li>
+        <li><a href="guide-en.html">The Server</a></li>
+        <li><a href="guia-comandos-en.html">Commands</a></li>
+        <li><a href="guia-rangos-en.html">Ranks</a></li>
+        <li><a href="guia-slimefun-en.html">Slimefun</a></li>
+        <li><a href="apoya-en.html">Sponsors</a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP SHOP ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+    <div class="lang-switcher"><a class="lang-btn" href="temporada-2.html">ES</a><a class="lang-btn is-active" href="temporada-2-en.html">EN</a></div>
+  </nav>
+  <main id="main-content">
+    <header class="guide-hero">
+      <div class="guide-hero__backdrop" aria-hidden="true"></div>
+      <div class="container guide-hero__grid">
+        <p class="eyebrow">Season 2 · Olympus in Collapse</p>
+        <h1 class="t2-glitch-title" data-glitch="Olympus can no longer hold">Olympus can no<br>longer <em>hold</em></h1>
+        <p class="guide-hero__lead">The sky of the gods has split. A Greek island floats over the void, the Rift tears open its side, and the End climbs through its wounds.</p>
+        <div class="t2-hud-strip"><span><strong>STATUS</strong> S2 in testing · Staff only</span><span><b>REOPENING</b> To be confirmed on Discord</span></div>
+      </div>
+    </header>
+    <div class="container"><figure class="ol-plate ol-plate--olimpo ol-plate--wide" role="img" aria-label="Space for a panorama of the Olympus in Collapse lobby"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><path d="M80 250 Q400 330 720 250 L560 330 L420 410 L300 340 Z"/><path d="M270 250V170M340 250V170M410 250V170M480 250V170M530 250V170M250 170H550L400 105Z"/><path class="e" d="M470 170 L500 215 L480 240 L520 300"/></svg><div class="ol-plate__photo"></div><figcaption>Olympus</figcaption></figure></div>
+    <div class="ol-prologue"><p>No one remembers what broke first. Some say the moon. Others say Olympus had been floating on a lie for centuries, and it only took someone looking down.</p><p>What is certain is this: the island of the gods is still in the air, but it no longer belongs to them. The End climbs through its wounds, marble turns purple, and above the fountain where mortals choose their fate hangs a machine no one admits to building.</p><p>Season 2 starts here. Not in some distant world: in the first place you set foot.</p></div>
+    <div class="container">
+<section class="ol-chapter" id="grieta"><figure class="ol-plate ol-plate--grieta" role="img" aria-label="Space for a photo of the Rift opening across the southeast meadow"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><path class="e" d="M550 40 L500 120 L530 170 L440 240 L470 300 L380 450"/><path class="e" d="M500 120 L620 150 L740 135"/><path d="M50 300 H300 M520 330 H770"/></svg><div class="ol-plate__photo"></div><figcaption>The Rift</figcaption></figure><div><p class="ol-kicker">Canto I</p><h2>The Rift</h2><p>It split the southeast meadow into three branches and kept climbing to the foot of the great temple. The temple's corner has already given way, bursting toward the abyss, and through the gap you can see what lies below.</p><p>End spires sprout from its edges. Around it, the ground rots. The clouds tell it best: divine gold to the north, purple to the south.</p><p class="ol-chapter__fact">In the lobby: follow its edge from the meadow up to the great temple.</p></div></section>
+<section class="ol-chapter" id="atlas"><figure class="ol-plate ol-plate--atlas" role="img" aria-label="Space for a photo of the titan Atlas holding up the broken moon"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><circle class="e" cx="400" cy="120" r="88" stroke-dasharray="180 16 90 24"/><path class="e" d="M360 70 L420 130 L390 200"/><path d="M340 200 L365 260 L435 260 L460 200 M365 260 L350 400 M435 260 L450 400 M300 400 H500"/><circle cx="400" cy="232" r="18"/></svg><div class="ol-plate__photo"></div><figcaption>Atlas</figcaption></figure><div><p class="ol-kicker">Canto II</p><h2>Atlas won't let go</h2><p>They condemned him to hold up the sky. When the sky broke, no one came to tell him he could stop.</p><p>He is still there above the south meadow, golden cuirass, purple cape in tatters, carrying a shattered End moon on his shoulders. If he gives way, it falls on everything that is left.</p><p class="ol-chapter__fact">In the lobby: see him from the great temple, moon overhead.</p></div></section>
+<section class="ol-chapter" id="anticitera"><figure class="ol-plate ol-plate--anticitera" role="img" aria-label="Space for a photo of the Antikythera mechanism above the fountain"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><circle cx="400" cy="210" r="135" stroke-dasharray="14 8"/><circle cx="400" cy="210" r="88"/><circle class="e" cx="400" cy="210" r="40"/><circle cx="565" cy="120" r="50" stroke-dasharray="9 7"/><path d="M400 75V345M265 210H535M305 115 L495 305"/></svg><div class="ol-plate__photo"></div><figcaption>The Antikythera</figcaption></figure><div><p class="ol-kicker">Canto III</p><h2>The Antikythera</h2><p>Gold rings, broken teeth, gears that no longer mesh. It once predicted eclipses and games; now it hangs above the fountain like a clock refusing to admit the hour.</p><p>Right below it, travelers pick their gamemode without looking up. Perhaps that is for the best.</p><p class="ol-chapter__fact">In the lobby: it hangs above the fountain, over the NPCs.</p></div></section>
+<section class="ol-chapter" id="duga"><figure class="ol-plate ol-plate--duga" role="img" aria-label="Space for a photo of the Duga-style radar and the dish antennas"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><path d="M110 390 V80 M210 390 V80 M310 390 V80 M410 390 V80 M510 390 V80 M610 390 V80 M710 390 V80 M90 390 H730 M110 130 H710 M110 230 H710"/><path d="M110 80 L210 230 L310 80 L410 230 L510 80 L610 230 L710 80"/><path class="e" d="M70 60 C240 10 560 10 750 60"/></svg><div class="ol-plate__photo"></div><figcaption>The radar</figcaption></figure><div><p class="ol-kicker">Canto IV</p><h2>Something is listening</h2><p>Nothing on Olympus should have antennas. And yet over the east meadow rises a wall of black and gold lattice, like the Duga radar, flanked by dishes aimed at nothing.</p><p>A golden circuit runs along the paths over black stone, fed by pylons. Someone turned the sacred mountain into a listening post. We don't know what it heard.</p><p class="ol-chapter__fact">In the lobby: the antenna wall towers over the east meadow.</p></div></section>
+<section class="ol-chapter" id="wither"><figure class="ol-plate ol-plate--wither" role="img" aria-label="Space for a photo of the Wither Storm"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><path class="e" d="M120 340 C220 250 300 300 380 220 S560 150 690 80"/><circle cx="330" cy="170" r="46"/><circle cx="420" cy="130" r="58"/><circle cx="512" cy="172" r="46"/><path d="M398 118h14M428 118h14M318 165h12M504 165h12"/></svg><div class="ol-plate__photo"></div><figcaption>Wither Storm</figcaption></figure><div><p class="ol-kicker">Canto V</p><h2>What answered</h2><p>They say a world that screams ends up being heard. The Wither Storm is no legend this season: it devours the careless, and it grows.</p><p>The gods don't mention it. Those who have gone down to the worlds do.</p><p class="ol-chapter__fact">In S2: the Wither Storm datapack is active on the server.</p></div></section>
+<section class="ol-chapter" id="coliseo"><figure class="ol-plate ol-plate--coliseo" role="img" aria-label="Space for a photo of the PvP colosseum with its broken crown"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><ellipse cx="400" cy="270" rx="300" ry="125"/><ellipse cx="400" cy="280" rx="175" ry="62"/><path d="M100 270 V165 L170 110 L180 172 M260 150 V110 M340 145 V90 M430 145 V105 M540 150 V95 M700 270 V180 L635 130"/><path class="e" d="M620 92 L650 110 L640 150"/></svg><div class="ol-plate__photo"></div><figcaption>The Colosseum</figcaption></figure><div><p class="ol-kicker">Canto VI</p><h2>The Colosseum stays open</h2><p>The sky is falling and they are still fighting. The colosseum lost its crown, but the arena and the stands remain intact.</p><p>When the gods no longer judge, only PvP is left to settle who was right.</p><p class="ol-chapter__fact">In the lobby: the PvP colosseum lies to the east, crown broken.</p></div></section>
+<section class="ol-chapter" id="islas"><figure class="ol-plate ol-plate--islas" role="img" aria-label="Space for a photo of the floating warp islands"><svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><path d="M90 200 Q180 165 260 205 L205 270 L150 255 Z M520 110 Q610 80 700 115 L640 190 L570 170 Z M480 320 Q570 290 660 325 L600 395 L530 380 Z M185 345 Q250 320 320 350 L265 410 Z"/><path class="e" d="M260 205 Q390 150 520 130 M300 345 Q390 320 480 325" stroke-dasharray="5 9"/></svg><div class="ol-plate__photo"></div><figcaption>Drifting islands</figcaption></figure><div><p class="ol-kicker">Canto VII</p><h2>What broke away</h2><p>Chunks of island drift off dragging ruins and roots. The mortals, practical as ever, moved in anyway.</p><p>Four of them serve as stops: <strong>Protections</strong>, <strong>Crates</strong>, <strong>Vote</strong> and <strong>Store</strong>. Below them all, and below Olympus itself, hangs the inverted mountain they were torn from.</p><p class="ol-chapter__fact">In the lobby: each island has its own warp.</p></div></section>
+      <section class="ol-chapter" id="ficha-tecnica">
+  <div class="container" style="max-width: 1040px; margin: 0 auto; padding: 2rem 0;">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <p class="ol-kicker" style="color: #64d8cb; font-weight: 700; letter-spacing: 0.1em;">TECHNICAL CANON · DALLAS PRODUCTION</p>
+      <h2 style="font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: #fff; margin-bottom: 0.8rem;">
+        Technical Dossier: Season 2 Hybrid Engine
+      </h2>
+      <p style="color: #cbd5e1; max-width: 68ch; margin: 0 auto; line-height: 1.65; font-size: 1.05rem;">
+        To sustain 202 plugins without degrading TPS or suffering Garbage Collector stalls, DrakesCraft S2 bridges Java extensibility with Rust performance through Java 25 Project Panama (FFM).
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+      <!-- Card 1: Java + Rust Hybrid Engine -->
+      <article style="background: rgba(22, 18, 38, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+        <span style="font-family: 'DM Mono', monospace; font-size: 0.78rem; color: #e5bd72; font-weight: 700; text-transform: uppercase;">01 // HYBRID ARCHITECTURE</span>
+        <h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.35rem; margin: 0.5rem 0 0.75rem;">Java 25 + Rust FFM ("Street Car with F1 Turbo")</h3>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Java Chassis:</strong> DrakesPurpur 26.2 running on <code>OpenJDK 64-Bit 25 LTS</code>. All <strong>202 Bukkit/Paper plugins</strong> operate transparently while 3 native Rust libraries run beneath: <code>libdrakes_hybrid_ffi.so</code>, <code>libslimefun_ffi.so</code>, and <code>libodysseia_ffi.so</code>.
+        </p>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Project Panama (FFM):</strong> Allows Java and Rust to share raw RAM in nanoseconds without slow JNI bridges or Garbage Collector memory churn. Rust executes chunk bit packing (<strong>4.32x faster</strong> in 4096x8 benchmarks), 3D Perlin noise terrain math, <code>.mca</code> region parsing, Slimefun energy grids, and Redstone clock monitoring.
+        </p>
+        <div style="background: rgba(100, 216, 203, 0.08); border-left: 3px solid #64d8cb; padding: 0.6rem 0.8rem; font-size: 0.85rem; color: #d1fae5; border-radius: 0 4px 4px 0;">
+          <strong>Zero-Downtime Fallback:</strong> If a native library is missing, the engine gracefully falls back to Java without server crash or player disconnects.
+        </div>
+      </article>
+
+      <!-- Card 2: Worlds & Predictive Prefetch -->
+      <article style="background: rgba(22, 18, 38, 0.85); border: 1px solid rgba(130, 201, 165, 0.35); border-radius: 10px; padding: 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+        <span style="font-family: 'DM Mono', monospace; font-size: 0.78rem; color: #82c9a5; font-weight: 700; text-transform: uppercase;">02 // WORLDS & SPEED</span>
+        <h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.35rem; margin: 0.5rem 0 0.75rem;">The Bullet Train (Predictive Prefetch + LOD)</h3>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Predictive Flight Radar:</strong> Flying with Elytra or <code>/fly</code> no longer collides with unloaded voids. The radar projects a flight cone <strong>3.5 seconds ahead</strong>, dispatching 6 Moonrise threads and 4 Rust workers to load and generate chunks before arrival.
+        </p>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Ticket Retention &amp; LOD:</strong> Each chunk is locked with a <strong>6-second ticket</strong> preventing premature cache evictions, integrated with Distant Horizons-style LOD.
+        </p>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 0;">
+          <strong>The Monolith <code>server.jar</code>:</strong> All 9 <code>Drakes-Suites</code> (Core, Tech, Magic, Bio, Combat, Generators, Utility, Server &amp; Multiverse) are shipped bundled inside the jar, verified via SHA-256 (<code>drakes-data/suites.yml</code>). Protected with enforced world saves and <code>InventoryRollbackPlus</code>.
+        </p>
+      </article>
+
+      <!-- Card 3: DrakeStar-Launcher & Anti-Explosion -->
+      <article style="background: rgba(22, 18, 38, 0.85); border: 1px solid rgba(229, 189, 114, 0.35); border-radius: 10px; padding: 1.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+        <span style="font-family: 'DM Mono', monospace; font-size: 0.78rem; color: #e5bd72; font-weight: 700; text-transform: uppercase;">03 // SMART CLIENT</span>
+        <h3 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.35rem; margin: 0.5rem 0 0.75rem;">DrakeStar-Launcher ("Steam for Mods")</h3>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Delta Sync (<code>modsync.rs</code>):</strong> Server command <code>/drakes hybrid manifest</code> generates <code>client-manifest.json</code> with SHA-256 hashes. The launcher diffs mods in milliseconds: modifying 1 mod of 5 MB in a 150-mod pack only downloads that single 5 MB file.
+        </p>
+        <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Rust Anti-Explosion Scanner:</strong> Under 50 ms before launch, the launcher audits <code>fabric.mod.json</code> and mixin descriptors, blocking missing dependencies, duplicate jars, explicit conflicts, and bytecode collisions (<code>MixinTargetOverlap</code>).
+        </p>
+        <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 0.6rem 0.8rem; font-size: 0.85rem; color: #fef3c7; border-radius: 0 4px 4px 0;">
+          <strong>Zero Surprise Crashes:</strong> Guarantees clean game launches without mysterious Mojang loading screen freezes.
+        </div>
+      </article>
+    </div>
+
+    <!-- Canonical Banner on Seasonal Validity -->
+    <div style="background: linear-gradient(135deg, rgba(22, 18, 38, 0.95), rgba(30, 20, 50, 0.95)); border: 1px solid rgba(229, 189, 114, 0.4); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span style="font-size: 1.4rem;">📜</span>
+        <h3 style="color: #e5bd72; font-family: 'Cinzel', serif; font-size: 1.2rem; margin: 0;">Seasonal Validity &amp; Reset Policy</h3>
+      </div>
+      <p style="color: #cbd5e1; font-size: 0.93rem; line-height: 1.6; margin: 0;">
+        Per DrakesCraft regulations, each season starts a fresh cycle of civilization and progression. Passes and ranks labeled as <strong>"permanent"</strong> (specifically including the <strong>Permanent Anti-AFK Pass</strong>) carry guaranteed validity for <strong>the entire active season in which they were purchased</strong>. Passes purchased during Season 1 remained valid until the end of Season 1; likewise, permanent passes purchased during Season 2 are valid throughout the entirety of Season 2.
+      </p>
+    </div>
+
+    <!-- Dallas Live Telemetry -->
+    <div style="background: linear-gradient(135deg, rgba(20, 15, 36, 0.9), rgba(12, 8, 24, 0.95)); border: 1px solid rgba(100, 216, 203, 0.35); border-radius: 10px; padding: 1.75rem; box-shadow: 0 8px 28px rgba(0,0,0,0.45);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(100, 216, 203, 0.2); padding-bottom: 0.75rem;">
+        <h4 style="color: #fff; font-family: 'Cinzel', serif; font-size: 1.25rem; margin: 0;">
+          📊 Dallas Production Telemetry (S2 Live)
+        </h4>
+        <span style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.82rem; color: #86efac; font-family: 'DM Mono', monospace;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span> 20.00 TPS · 1.70 ms MSPT
+        </span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; text-align: center;">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: 6px;">
+          <span style="display: block; font-size: 1.75rem; font-weight: 700; color: #64d8cb; font-family: 'DM Mono', monospace;">1.70 ms</span>
+          <small style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Average MSPT (Max 50ms)</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: 6px;">
+          <span style="display: block; font-size: 1.75rem; font-weight: 700; color: #e5bd72; font-family: 'DM Mono', monospace;">202</span>
+          <small style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Active Plugins (7 Paper + 195 Bukkit)</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: 6px;">
+          <span style="display: block; font-size: 1.75rem; font-weight: 700; color: #a98ae8; font-family: 'DM Mono', monospace;">20,432</span>
+          <small style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Registered Slimefun Items</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: 6px;">
+          <span style="display: block; font-size: 1.75rem; font-weight: 700; color: #82c9a5; font-family: 'DM Mono', monospace;">Java 25</span>
+          <small style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">OpenJDK 64-Bit 25 LTS</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: 6px;">
+          <span style="display: block; font-size: 1.75rem; font-weight: 700; color: #38bdf8; font-family: 'DM Mono', monospace;">32 GB</span>
+          <small style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Dedicated RAM · 8 vCPUs Dallas</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="ol-cta"><a class="is-main" href="guia-poderes-en.html">Learn to use your power</a><a href="guide-en.html#season-2">Season 2 technical brief</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Follow the reopening on Discord</a></div>
+    </div>
+  <p style="text-align:center"><a class="bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="No link published yet. Look for it in #bedrock-unirse on Discord." data-fresh="Updated">Join from Bedrock</a><br><span class="bedrock-status" data-bedrock-status>Checking connection status…</span></p>
+  </main>
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <strong>DrakesCraft</strong>
+        <p>A living, updated guide for 1.21.11. If you have questions, we are here to help on Discord.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="store-en.html">VIP Shop</a>
+        <a href="support-en.html">Support</a>
+        <a href="terms-en.html">Terms</a><a href="privacidad-en.html">Privacy</a>
+        <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <div class="site-footer__sponsor">
+        <span class="footer-sponsor-label">Support the project</span>
+        <div class="sponsor-badges">
+          <a class="sponsor-btn" href="https://github.com/sponsors/JackStar6677-1" target="_blank" rel="noopener" title="Patrocinar a Jack (Fundador & Dev)">
+            <span class="sponsor-btn__user">Jack</span>
+            <span class="sponsor-btn__heart">❤ Sponsor</span>
+          </a>
+          <a class="sponsor-btn" href="https://github.com/sponsors/SlimefunNewHorizons" target="_blank" rel="noopener" title="Patrocinar la Organización SlimefunNewHorizons">
+            <span class="sponsor-btn__user">SlimefunNewHorizons</span>
+            <span class="sponsor-btn__heart">❤ Sponsor</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="scripts/bedrock.js?v=20261030-v1"></script>
+  <script src="scripts/site.js?v=20261017-v7"></script>
+</body>
+</html>

@@ -3473,3 +3473,12 @@ h1 em, h2 em, .op-heading-row h1 em {
 .checkout-age { display: flex; gap: .6rem; align-items: flex-start; font-size: .82rem; margin: .75rem 0; }
 .checkout-age input { width: 22px; height: 22px; flex: none; margin-top: .1rem; }
 @media (max-width: 575px) { .fx-box select { width: 100%; } }
+
+/* Tienda: cabecera sobria, texto a la izquierda y estado del servidor a la derecha */
+.store-heading-row { grid-template-columns: minmax(0, 1fr) 360px !important; align-items: start !important; gap: 2.5rem !important; max-width: none !important; }
+.store-heading-row h1 { max-width: 18ch; }
+.store-heading-row .server-status-card { margin-top: 0; border-left: 3px solid var(--gold); border-radius: 2px; }
+.store-heading-row .store-hero-modern__features { gap: 0; margin-top: 1.4rem; border-top: 1px solid var(--line); }
+.store-heading-row .feature-item { flex: 1 1 0; padding: .8rem 1rem .2rem 0; }
+.store-heading-row .feature-item strong { font-size: .82rem; color: var(--gold); letter-spacing: .02em; }
+@media (max-width: 900px) { .store-heading-row { grid-template-columns: 1fr !important; gap: 1.4rem !important; } .store-heading-row .store-hero-modern__features { flex-direction: column; } }

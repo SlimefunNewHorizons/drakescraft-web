@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="runeStone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241738"/>
+      <stop offset="100%" stop-color="#0f091c"/>
+    </linearGradient>
+    <filter id="terminalGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .slab-float { animation: slabHover 4s ease-in-out infinite alternate; transform-origin: 160px 110px; }
+    .cursor-blink { animation: blink 1s step-end infinite; }
+    .rune-orbit { animation: orbitRunes 12s linear infinite; transform-origin: 160px 110px; }
+    @keyframes slabHover { 0% { transform: translateY(4px) rotate(-1deg); } 100% { transform: translateY(-6px) rotate(1deg); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes orbitRunes { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Orbiting Glyph Ring -->
+  <g class="rune-orbit" opacity="0.45" stroke="#e5bd72" stroke-width="1.4" fill="none">
+    <circle cx="160" cy="110" r="92" stroke-dasharray="12 30"/>
+    <circle cx="160" cy="18" r="4" fill="#82c9a5"/>
+    <circle cx="252" cy="110" r="4" fill="#a98ae8"/>
+    <circle cx="160" cy="202" r="4" fill="#e5bd72"/>
+    <circle cx="68" cy="110" r="4" fill="#64d8cb"/>
+  </g>
+
+  <!-- Floating Runic Command Tablet -->
+  <g class="slab-float">
+    <!-- Slab Backing -->
+    <rect x="70" y="45" width="180" height="130" rx="8" fill="url(#runeStone)" stroke="#a98ae8" stroke-width="2" filter="url(#terminalGlow)"/>
+    <!-- Golden Filigree Header Line -->
+    <line x1="80" y1="75" x2="240" y2="75" stroke="#e5bd72" stroke-width="1.2" opacity="0.8"/>
+    <!-- Status Dots -->
+    <circle cx="88" cy="60" r="3" fill="#ffaaa5"/>
+    <circle cx="98" cy="60" r="3" fill="#e5bd72"/>
+    <circle cx="108" cy="60" r="3" fill="#82c9a5"/>
+
+    <!-- Terminal Code / Command Prompt -->
+    <!-- Prompt symbol > / -->
+    <text x="88" y="105" font-family="'DM Mono', monospace" font-size="16" fill="#e5bd72" font-weight="600">&gt; /</text>
+    <!-- Command: warp spawn / home -->
+    <text x="122" y="105" font-family="'DM Mono', monospace" font-size="15" fill="#82c9a5" font-weight="500">warp olympus</text>
+    <rect class="cursor-blink" x="228" y="92" width="8" height="15" fill="#e5bd72"/>
+
+    <!-- Line 2: Output echo -->
+    <text x="88" y="132" font-family="'DM Mono', monospace" font-size="11" fill="#bbb0c8" opacity="0.85">Teletransportando a coordenadas…</text>
+
+    <!-- Line 3: Coordinates [X, Y, Z] -->
+    <text x="88" y="152" font-family="'DM Mono', monospace" font-size="11" fill="#a98ae8">Coordenadas: 0, 120, 0 [✓ OK]</text>
+  </g>
+</svg>

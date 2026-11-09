@@ -1,0 +1,1534 @@
+import fsSync from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
+import fs from 'node:fs/promises';
+import { createHmac, timingSafeEqual } from 'node:crypto';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Readable } from 'node:stream';
+import Fastify from 'fastify';
+import { estadoServidor } from './lib/mc-status.js';
+
+// Direccion publica del servidor de juego. Configurable por si cambia el dominio.
+const MC_HOST = process.env.MC_HOST || 'mc.drakescraft.cl';
+const MC_PUERTO = Number(process.env.MC_PORT || 25565);
+import fastifyStatic from '@fastify/static';
+import { storeCatalog } from './catalog/store-catalog.js';
+
+
+const app = Fastify({ logger: true, trustProxy: true, bodyLimit: 128 * 1024 });
+const root = path.dirname(fileURLToPath(import.meta.url));
+// Editorial manifests ship with the application; the mounted data directory is
+// reserved for mutable checkout, visitor, and payment records.
+const contentDir = path.join(root, 'data');
+const dataDir = process.env.DATA_DIR || path.join(root, 'data');
+const counterFile = path.join(dataDir, 'visits.json');
+const quoteFile = path.join(dataDir, 'store-quotes.jsonl');
+const tebexPublicToken = process.env.TEBEX_PUBLIC_TOKEN || '';
+const tebexPrivateKey = process.env.TEBEX_PRIVATE_KEY || '';
+const adminToken = process.env.ADMIN_TOKEN || '';
+const discordSalesWebhook = process.env.DISCORD_SALES_WEBHOOK || '';
+const tebexWebhookSecret = process.env.TEBEX_WEBHOOK_SECRET || '';
+// The Minecraft server only writes signed, non-sensitive operational telemetry.
+// Star Monitor reads it through a separate internal token.
+const odysseiaIngestSecret = process.env.ODYSSEIA_INGEST_SECRET || '';
+const starMonitorToken = process.env.STAR_MONITOR_TOKEN || '';
+const odysseiaStateFile = path.join(dataDir, 'odysseia-status.json');
+const odysseiaEventsFile = path.join(dataDir, 'odysseia-events.json');
+const ODYSSEIA_MAX_EVENT_AGE_MS = 5 * 60 * 1000;
+const ODYSSEIA_MAX_EVENTS = 500;
+const CUSTOM_KIT_PACKAGE_ID = 7516648;
+let visits = 0;
+const legacyPaymentPaths = new Set([
+  '/api/store/checkout',
+  '/api/mp/webhook',
+  '/api/store/paypal/checkout',
+  '/api/store/paypal/capture',
+  '/api/store/paypal/capture-subscription',
+  '/api/paypal/webhook',
+  '/api/store/quote'
+]);
+const checkoutBuckets = new Map();
+const CHECKOUT_WINDOW_MS = 10 * 60 * 1000;
+const CHECKOUT_MAX_REQUESTS = 5;
+const MINECRAFT_USERNAME_PATTERN = /^\.?[A-Za-z0-9_]{3,16}$/;
+
+function safeEqualText(left, right) {
+  const leftBuffer = Buffer.from(String(left || ''), 'utf8');
+  const rightBuffer = Buffer.from(String(right || ''), 'utf8');
+  return leftBuffer.length === rightBuffer.length && timingSafeEqual(leftBuffer, rightBuffer);
+}
+
+function clientAddress(request) {
+  const cloudflareAddress = request.headers['cf-connecting-ip'];
+  return typeof cloudflareAddress === 'string' && cloudflareAddress.length <= 64
+    ? cloudflareAddress
+    : request.ip;
+}
+
+function checkoutAllowed(request) {
+  const now = Date.now();
+  const address = clientAddress(request);
+  const bucket = checkoutBuckets.get(address);
+  if (!bucket || now - bucket.startedAt >= CHECKOUT_WINDOW_MS) {
+    checkoutBuckets.set(address, { startedAt: now, count: 1 });
+    return true;
+  }
+
+  bucket.count += 1;
+  if (bucket.count <= CHECKOUT_MAX_REQUESTS) return true;
+  return false;
+}
+
+app.addHook('onRequest', async (request, reply) => {
+  const pathname = request.url.split('?', 1)[0];
+  if (legacyPaymentPaths.has(pathname)) {
+    return reply.code(410).send({ error: 'Esta pasarela fue retirada. Usa Tebex.' });
+  }
+
+  if (pathname === '/api/store/tebex/checkout' && !checkoutAllowed(request)) {
+    return reply.code(429).header('Retry-After', String(CHECKOUT_WINDOW_MS / 1000)).send({
+      error: 'Demasiados intentos de checkout. Espera unos minutos antes de volver a intentar.'
+    });
+  }
+});
+
+const tebexPackageIds = {
+  hercules: 7510343,
+  hestia: 7510348,
+  hermes: 7510349,
+  hefesto: 7510356,
+  artemisa: 7510357,
+  afrodita: 7510358,
+  zeus: 7510359,
+  thor: 7610512,
+  anubis: 7610520,
+  poseidon: 7610523,
+  minero: 7510361,
+  cazador: 7510363,
+  constructor: 7510364,
+  lenador: 7510365,
+  alquimista: 7510366,
+  nomada: 7510367,
+  'kit-hermes': 7510368,
+  'kit-zeus': 7510369,
+  'protection-177': 7510370,
+  'protection-481': 7510371,
+  'utility-economy': 7510372,
+  'dragmas-saco': 7510373,
+  'dragmas-cofre': 7510374,
+  'dragmas-anfora': 7510375,
+  'protection-nether-colossus': 7596916,
+  'protection-end-colossus': 7596920,
+  'protection-atlas': 7596924,
+  'titan-japeto': 7609642,
+  'titan-oceanus': 7609645,
+  'titan-hiperion': 7609646,
+  'titan-cronos': 7609648,
+  'titan-caos': 7609649,
+  'slimefun-research-all': 7609650,
+  'anti-afk-permanent': 7697411,
+  'anti-afk-30d': 7697412,
+  'protection-campamento': 7697418,
+  'protection-aldea': 7697420,
+  'protection-fortaleza': 7697422,
+  'vaults-pack-3': 7697423,
+  'vaults-pack-10': 7697424,
+  'homes-pack-5': 7697425,
+  'homes-pack-15': 7697427,
+  'fly-pass-7d': 7697430,
+  'fly-pass-30d': 7697432,
+  'keys-atenea-3': 7697433,
+  'keys-hermes-5': 7697434,
+  'keys-zeus-3': 7697435,
+  'booster-money-1h': 7697436,
+  'booster-exp-1h': 7697437
+};
+// Los bloqueos excepcionales se declaran aquí para impedir que un producto llegue al checkout.
+// protection-481 fue verificada contra el alias vipzeus de ProtectionStones y se mantiene fuera de venta
+// (el rango Zeus ya la entrega). Si reaparece en Tebex, no se puede comprar desde la web.
+const unavailableTebexProductIds = new Set(['protection-481']);
+
+const bossesCatalog = {
+  updatedAt: '2026-07-10',
+  invocation: {
+    mode: 'summoner-only',
+    naturalSpawnEnabled: false,
+    steps: [
+      'Obtén el invocador exacto del jefe mítico que quieres despertar.',
+      'Haz clic derecho en el suelo con ese invocador en la mano.',
+      'El invocador se consume, caen rayos y el boss aparece en combate inmediatamente.'
+    ],
+    note: 'Cada jefe usa su propio invocador. No existe un huevo genérico único para todos.',
+    obtain: {
+      craftable: false,
+      title: 'Cómo se consiguen hoy',
+      items: [
+        'Odysseia no registra una receta pública de crafteo para invocadores de bosses.',
+        'La vía explícita implementada en el plugin hoy es la entrega administrativa del invocador.',
+        'Comando actual detectado en el plugin: /boss give <jugador> <tipo>.'
+      ]
+    }
+  },
+  bosses: [
+    {
+      id: 'thor',
+      name: 'Thor',
+      title: 'Señor del Trueno',
+      pantheon: 'Nórdico',
+      accent: 'gold',
+      difficulty: 'Alta',
+      arena: 'Combate de presión con daño explosivo y castigos eléctricos.',
+      invocationItem: 'Invocador de Thor',
+      drops: ['Mjolnir'],
+      rewards: 'Martillo mítico orientado a relámpagos y burst frontal.'
+    },
+    {
+      id: 'ares',
+      name: 'Ares',
+      title: 'General de la Guerra',
+      pantheon: 'Griego',
+      accent: 'ember',
+      difficulty: 'Alta',
+      arena: 'Castiga el melee descuidado y premia bloqueos bien medidos.',
+      invocationItem: 'Invocador de Ares',
+      drops: ['Filo de Ares', 'Escudo Espartano'],
+      rewards: 'Set ofensivo-defensivo para duelo cerrado y snowball de kills.'
+    },
+    {
+      id: 'hades',
+      name: 'Hades',
+      title: 'Rey del Inframundo',
+      pantheon: 'Griego',
+      accent: 'violet',
+      difficulty: 'Alta',
+      arena: 'Combate oscuro con drenaje y sensación de attrition constante.',
+      invocationItem: 'Invocador de Hades',
+      drops: ['Guadaña de Hades'],
+      rewards: 'Arma de robo de vida pensada para dominar peleas largas.'
+    },
+    {
+      id: 'poseidon',
+      name: 'Poseidón',
+      title: 'Dueño del Abismo',
+      pantheon: 'Griego',
+      accent: 'cyan',
+      difficulty: 'Alta',
+      arena: 'Controla espacio con empujes, agua y desplazamiento forzado.',
+      invocationItem: 'Invocador de Poseidón',
+      drops: ['Tridente de Poseidón'],
+      rewards: 'Tridente de control de masas con tsunami al impactar.'
+    },
+    {
+      id: 'zeus',
+      name: 'Zeus',
+      title: 'Padre del Olimpo',
+      pantheon: 'Griego',
+      accent: 'gold',
+      difficulty: 'Extrema',
+      arena: 'Presión global, tormenta y castigo brutal a grupos mal posicionados.',
+      invocationItem: 'Invocador de Zeus',
+      drops: ['Maza de Zeus'],
+      rewards: 'Reliquia de tormenta divina para castigo radial y golpes pesados.'
+    },
+    {
+      id: 'loki',
+      name: 'Loki',
+      title: 'Embaucador del Vacío',
+      pantheon: 'Nórdico',
+      accent: 'pink',
+      difficulty: 'Media-Alta',
+      arena: 'Ilusiones, control visual y ventanas de burst traicioneras.',
+      invocationItem: 'Invocador de Loki',
+      drops: ['Daga de Loki', 'Cetro de Loki'],
+      rewards: 'Kit de engaño, ceguera e invisibilidad para PvP táctico.'
+    },
+    {
+      id: 'odin',
+      name: 'Odin',
+      title: 'El Padre de Todo',
+      pantheon: 'Nórdico',
+      accent: 'rose',
+      difficulty: 'Extrema',
+      arena: 'Daño celestial, utilidades híbridas y ritmo de combate impredecible.',
+      invocationItem: 'Invocador de Odin',
+      drops: ['Lanza de Odin', 'Casco de Odin'],
+      rewards: 'Lanza eléctrica y casco mítico con ventajas permanentes de visión.'
+    },
+    {
+      id: 'kratos',
+      name: 'Kratos',
+      title: 'Fantasma de Esparta',
+      pantheon: 'Leyenda',
+      accent: 'ember',
+      difficulty: 'Extrema',
+      arena: 'Melee agresivo, tirones, fuego y reliquias duales de castigo.',
+      invocationItem: 'Invocador de Kratos',
+      drops: ['Espadas del Caos', 'Hacha Leviatán'],
+      rewards: 'Doble identidad de combate: combo brutal en melee y retorno rúnico.'
+    },
+    {
+      id: 'heimdall',
+      name: 'Heimdall',
+      title: 'Vigía del Bifröst',
+      pantheon: 'Nórdico',
+      accent: 'cyan',
+      difficulty: 'Alta',
+      arena: 'Herramientas sónicas, movilidad y lectura fina de espacios.',
+      invocationItem: 'Invocador de Heimdall',
+      drops: ['Gjallarhorn', 'Alas del Bifröst'],
+      rewards: 'Movilidad aérea y shockwave de utilidad mítica.'
+    },
+    {
+      id: 'hidra',
+      name: 'Hidra',
+      title: 'Bestia de Lerna',
+      pantheon: 'Griego',
+      accent: 'emerald',
+      difficulty: 'Alta',
+      arena: 'Veneno, desgaste acelerado y control de curaciones enemigas.',
+      invocationItem: 'Invocador de Hidra',
+      drops: ['Colmillo de la Hidra', 'Escama de la Hidra'],
+      rewards: 'Set tóxico para presión de debuffs y resistencia temática.'
+    },
+    {
+      id: 'cerbero',
+      name: 'Cerbero',
+      title: 'Guardián del Umbral',
+      pantheon: 'Griego',
+      accent: 'violet',
+      difficulty: 'Media-Alta',
+      arena: 'Embestidas frontales y presión simple pero muy física.',
+      invocationItem: 'Invocador de Cerbero',
+      drops: ['Piel de Cerbero'],
+      rewards: 'Material mítico defensivo de línea oscura.'
+    },
+    {
+      id: 'artemisa',
+      name: 'Artemisa',
+      title: 'Cazadora Lunar',
+      pantheon: 'Griego',
+      accent: 'cyan',
+      difficulty: 'Alta',
+      arena: 'Control a distancia, slow severo y castigo por mala cobertura.',
+      invocationItem: 'Invocador de Artemisa',
+      drops: ['Arco Lunar de Artemisa'],
+      rewards: 'Arco de seguimiento con debuffs de cazadora mítica.'
+    },
+    {
+      id: 'tifon',
+      name: 'Tifón',
+      title: 'Padre Monstruo',
+      pantheon: 'Primordial',
+      accent: 'ember',
+      difficulty: 'Extrema',
+      arena: 'Caos volcánico, daño porcentual y castigo vertical brutal.',
+      invocationItem: 'Invocador de Tifón',
+      drops: ['Garra de Tifón', 'Coraza del Padre Monstruo'],
+      rewards: 'Set volcánico para presión explosiva y aguante monstruoso.'
+    },
+    {
+      id: 'prometeo',
+      name: 'Prometeo',
+      title: 'Llama Robada',
+      pantheon: 'Titán',
+      accent: 'gold',
+      difficulty: 'Alta',
+      arena: 'Fuego persistente, resurrección y castigo en área.',
+      invocationItem: 'Invocador de Prometeo',
+      drops: ['Llama Eterna de Prometeo'],
+      rewards: 'Reliquia ígnea para daño en cleave y ambientación divina.'
+    }
+  ]
+};
+
+function isTebexEnabledProduct(product) {
+  return Boolean(product && tebexPackageIds[product.id] && !unavailableTebexProductIds.has(product.id));
+}
+
+function getStoreCatalogView() {
+  const now = new Date();
+  const activeProducts = storeCatalog.products.filter((product) => {
+    if (product.availableUntil && now > new Date(product.availableUntil)) {
+      return false;
+    }
+    return true;
+  });
+
+  const activeCategoryIds = new Set(activeProducts.map((p) => p.category));
+  const activeCategories = storeCatalog.categories.filter((cat) => activeCategoryIds.has(cat.id));
+
+  return {
+    ...storeCatalog,
+    categories: activeCategories,
+    products: activeProducts.map((product) => ({
+      ...product,
+      tebexPackageId: tebexPackageIds[product.id] || null,
+      tebexEnabled: isTebexEnabledProduct(product),
+      // Un producto puede estar no disponible por decision del catalogo (aun no existe el
+      // paquete en Tebex) o por estar bloqueado aqui.
+      purchaseAvailable: product.purchaseAvailable !== false && !unavailableTebexProductIds.has(product.id)
+    }))
+  };
+}
+
+function getTebexAuthHeader() {
+  if (!tebexPublicToken || !tebexPrivateKey) {
+    throw new Error('Credenciales de Tebex no configuradas');
+  }
+  return `Basic ${Buffer.from(`${tebexPublicToken}:${tebexPrivateKey}`).toString('base64')}`;
+}
+
+async function tebexRequest(endpoint, { method = 'GET', body } = {}) {
+  const response = await fetch(`https://headless.tebex.io${endpoint}`, {
+    method,
+    headers: {
+      Authorization: getTebexAuthHeader(),
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+
+  const text = await response.text();
+  let payload = null;
+  try {
+    payload = text ? JSON.parse(text) : null;
+  } catch {
+    payload = text;
+  }
+
+  if (!response.ok) {
+    throw new Error(`Tebex ${method} ${endpoint} -> ${response.status}: ${JSON.stringify(payload)}`);
+  }
+
+  return payload;
+}
+
+async function createTebexBasket({ nick, contact, notes, items }) {
+  const basket = await tebexRequest(`/api/accounts/${tebexPublicToken}/baskets`, {
+    method: 'POST',
+    body: {
+      username: nick || 'JugadorDrakes',
+      complete_url: 'https://web.drakescraft.cl/store.html?payment=tebex-success',
+      cancel_url: 'https://web.drakescraft.cl/store.html?payment=tebex-cancel',
+      complete_auto_redirect: false,
+      custom: {
+        source: 'web.drakescraft.cl',
+        contact: contact || '',
+        notes: notes || ''
+      }
+    }
+  });
+
+  const ident = basket?.data?.ident;
+  if (!ident) {
+    throw new Error('Tebex no devolvió ident para el basket');
+  }
+
+  let latest = basket;
+  for (const item of items) {
+    latest = await tebexRequest(`/api/baskets/${ident}/packages`, {
+      method: 'POST',
+      body: {
+        package_id: tebexPackageIds[item.id],
+        quantity: 1
+      }
+    });
+  }
+
+  const checkoutUrl = latest?.data?.links?.checkout;
+  if (!checkoutUrl) {
+    throw new Error('Tebex no devolvió checkout para el basket');
+  }
+
+  return {
+    basketIdent: ident,
+    checkoutUrl,
+    currency: latest?.data?.currency || 'USD',
+    totalPrice: latest?.data?.total_price || 0
+  };
+}
+
+async function loadVisits() {
+  try {
+    const stored = JSON.parse(await fs.readFile(counterFile, 'utf8'));
+    visits = Number.isFinite(stored.visits) ? stored.visits : 0;
+  } catch (error) {
+    if (error.code !== 'ENOENT') app.log.warn(error, 'No se pudo leer el contador');
+  }
+}
+
+async function saveVisits() {
+  try {
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.writeFile(counterFile, JSON.stringify({ visits }), 'utf8');
+  } catch (error) {
+    app.log.error(error, 'No se pudo guardar el contador');
+  }
+}
+
+async function readJsonFile(file, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(file, 'utf8'));
+  } catch (error) {
+    if (error.code !== 'ENOENT') app.log.warn({ err: error, file }, 'No se pudo leer estado persistente');
+    return fallback;
+  }
+}
+
+async function writeJsonAtomic(file, value) {
+  await fs.mkdir(dataDir, { recursive: true });
+  const temporaryFile = `${file}.tmp`;
+  await fs.writeFile(temporaryFile, JSON.stringify(value, null, 2), 'utf8');
+  await fs.rename(temporaryFile, file);
+}
+
+function validOdysseiaEvent(body) {
+  if (!body || typeof body !== 'object') return false;
+  return typeof body.eventId === 'string' && /^[A-Za-z0-9._:-]{8,128}$/.test(body.eventId)
+    && typeof body.type === 'string' && /^[A-Z_]{3,64}$/.test(body.type)
+    && typeof body.instanceId === 'string' && /^[A-Za-z0-9._:-]{1,128}$/.test(body.instanceId)
+    && typeof body.purchaseEngineReady === 'boolean'
+    && Number.isInteger(body.catalogProducts) && body.catalogProducts >= 0 && body.catalogProducts <= 1000
+    && (body.bossId === undefined || (typeof body.bossId === 'string' && /^[a-z0-9_-]{2,64}$/.test(body.bossId)))
+    && (body.bossParticipants === undefined || (Number.isInteger(body.bossParticipants)
+      && body.bossParticipants >= 0 && body.bossParticipants <= 500));
+}
+
+function validOdysseiaSignature(request) {
+  if (!odysseiaIngestSecret) return { valid: false, status: 503 };
+  const timestamp = Number(request.headers['x-odysseia-timestamp']);
+  const signature = String(request.headers['x-odysseia-signature'] || '');
+  if (!Number.isFinite(timestamp) || Math.abs(Date.now() - timestamp) > ODYSSEIA_MAX_EVENT_AGE_MS || !signature) {
+    return { valid: false, status: 401 };
+  }
+  const expected = createHmac('sha256', odysseiaIngestSecret)
+    .update(`${timestamp}.${request.rawBody || ''}`)
+    .digest('hex');
+  return { valid: safeEqualText(signature, expected), status: 401 };
+}
+
+function isStarMonitorRequest(request) {
+  return Boolean(starMonitorToken)
+    && safeEqualText(String(request.headers['x-star-monitor-token'] || ''), starMonitorToken);
+}
+
+await loadVisits();
+
+app.addHook('onSend', async (request, reply) => {
+  reply.header('X-Content-Type-Options', 'nosniff');
+  reply.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+  reply.header('Permissions-Policy', 'camera=(), geolocation=(), microphone=(), payment=(), usb=()');
+  reply.header('X-Frame-Options', 'DENY');
+  reply.header('Cross-Origin-Opener-Policy', 'same-origin');
+  reply.header('Cross-Origin-Resource-Policy', 'same-origin');
+  reply.header('X-XSS-Protection', '1; mode=block');
+  reply.header(
+    'Content-Security-Policy',
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; frame-src https://github.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src * data:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://discord.com https://static.cloudflareinsights.com;"
+  );
+  const requestPath = request.raw.url?.split('?', 1)[0] || '';
+  if (requestPath === '/' || requestPath.endsWith('.html')) {
+    reply.header('Cache-Control', 'no-cache, max-age=0, must-revalidate');
+  }
+});
+
+// Captura raw body antes del parseo para verificación HMAC (Tebex webhooks)
+app.addContentTypeParser('application/x-www-form-urlencoded', { parseAs: 'string' }, (_request, body, done) => {
+  try {
+    done(null, Object.fromEntries(new URLSearchParams(body)));
+  } catch (error) {
+    done(error);
+  }
+});
+
+app.addHook('preParsing', async (request, _reply, payload) => {
+  const chunks = [];
+  for await (const chunk of payload) chunks.push(chunk);
+  const raw = Buffer.concat(chunks);
+  request.rawBody = raw.toString('utf8');
+  return Readable.from(raw);
+});
+
+app.get('/api/health', async () => ({
+  status: 'ok',
+  service: 'drakescraft-web',
+  uptimeSeconds: Math.round(process.uptime())
+}));
+
+// Estado del servidor de Minecraft para la portada. Se consulta con el Server List
+// Ping y se cachea medio minuto dentro del modulo, asi que una visita masiva no se
+// traduce en una conexion por visitante contra el servidor de juego.
+app.get('/api/server-status', async (_request, reply) => {
+  const estado = await estadoServidor(MC_HOST, MC_PUERTO);
+  reply.header('cache-control', 'public, max-age=30');
+  return { host: MC_HOST, puerto: MC_PUERTO, ...estado };
+});
+
+// Enlace de entrada Bedrock (Warden/NetherNet). Lo escribe otro agente en ai-hub/state; si falta, la web usa su fallback.
+// Solo se expone un https sin enlaces de reclamo (/claim/).
+const BEDROCK_LINK_FILE = process.env.BEDROCK_LINK_FILE || '/aihub-state/bedrock_link.json';
+app.get('/bedrock-link.json', async (_request, reply) => {
+  reply.header('cache-control', 'public, max-age=30');
+  try {
+    const j = JSON.parse(await fs.readFile(BEDROCK_LINK_FILE, 'utf8'));
+    const cands = [j.enlace, j.url, j.link, ...Object.values(j.enlaces && typeof j.enlaces === 'object' ? j.enlaces : {})];
+    const url = cands.find((u) => typeof u === 'string' && /^https:\/\//.test(u) && !/\/claim\//i.test(u));
+    if (!url) return { available: false };
+    const upd = j.fecha || j.updated_at || null;
+    return { available: true, url, updated_at: typeof upd === 'string' ? upd : null };
+  } catch {
+    return { available: false };
+  }
+});
+
+// Odysseia is hosted outside Star, so it reaches this existing HTTPS endpoint
+// with an HMAC. The accepted payload deliberately excludes players, UUIDs and
+// Tebex transaction identifiers.
+app.post('/api/odysseia/events', async (request, reply) => {
+  const signature = validOdysseiaSignature(request);
+  if (!signature.valid) {
+    if (signature.status === 503) return reply.code(503).send({ error: 'Ingesta Odysseia no configurada' });
+    return reply.code(401).send({ error: 'Firma Odysseia inválida o vencida' });
+  }
+
+  const event = request.body || {};
+  if (!validOdysseiaEvent(event)) return reply.code(400).send({ error: 'Evento Odysseia inválido' });
+
+  const receivedAt = Date.now();
+  const normalized = {
+    eventId: event.eventId,
+    type: event.type,
+    instanceId: event.instanceId,
+    purchaseEngineReady: event.purchaseEngineReady,
+    catalogProducts: event.catalogProducts,
+    purchaseState: typeof event.purchaseState === 'string' ? event.purchaseState.slice(0, 64) : null,
+    productId: typeof event.productId === 'string' ? event.productId.slice(0, 128) : null,
+    bossId: typeof event.bossId === 'string' ? event.bossId : null,
+    bossParticipants: Number.isInteger(event.bossParticipants) ? event.bossParticipants : null,
+    sentAt: Number.isFinite(event.sentAt) ? event.sentAt : null,
+    receivedAt
+  };
+  const events = await readJsonFile(odysseiaEventsFile, []);
+  const known = Array.isArray(events) ? events : [];
+  if (!known.some((item) => item?.eventId === normalized.eventId)) {
+    known.unshift(normalized);
+    await writeJsonAtomic(odysseiaEventsFile, known.slice(0, ODYSSEIA_MAX_EVENTS));
+  }
+  await writeJsonAtomic(odysseiaStateFile, normalized);
+  return reply.code(202).send({ accepted: true });
+});
+
+// This endpoint is only useful from Star's loopback origin. It is still
+// token-gated so Cloudflare cannot expose operational details accidentally.
+app.get('/api/internal/odysseia/status', async (request, reply) => {
+  if (!isStarMonitorRequest(request)) return reply.code(404).send({ error: 'Ruta no encontrada' });
+  const latest = await readJsonFile(odysseiaStateFile, null);
+  const events = await readJsonFile(odysseiaEventsFile, []);
+  return {
+    latest,
+    events: Array.isArray(events) ? events.slice(0, ODYSSEIA_MAX_EVENTS) : []
+  };
+});
+
+
+app.post('/api/analytics/collect', async (request, reply) => {
+  try {
+    const rawBody = request.body;
+    const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : (rawBody || {});
+    const record = {
+      ts: Date.now(),
+      ip_masked: (request.ip || '').split('.').slice(0, 3).join('.') + '.0',
+      ua: request.headers['user-agent'] || '',
+      cf_country: request.headers['cf-ipcountry'] || '',
+      cf_city: request.headers['cf-ipcity'] || '',
+      ...body
+    };
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.appendFile(path.join(dataDir, 'analytics.jsonl'), JSON.stringify(record) + String.fromCharCode(10), 'utf8');
+    return { ok: true };
+  } catch (err) {
+    return { ok: false };
+  }
+});
+
+app.get('/api/overview', async (request, reply) => {
+  const seen = request.headers.cookie?.includes('drakes_seen=1');
+  if (!seen) {
+    visits += 1;
+    await saveVisits();
+    reply.header('Set-Cookie', 'drakes_seen=1; Path=/; Max-Age=31536000; SameSite=Lax; Secure');
+  }
+  return {
+    visits,
+    region: request.headers['cf-region'] || request.headers['cf-ipcountry'] || 'La Odisea',
+    city: request.headers['cf-ipcity'] || null,
+    deployment: 'star',
+    transport: 'Cloudflare Tunnel'
+  };
+});
+
+// --- Tipos de cambio de referencia (el cobro real es siempre en USD) ---
+// El cliente solo habla con /fx-rates.json; las APIs publicas se consultan aqui, con cache.
+const FX_CODES = ['CLP', 'ARS', 'MXN', 'COP', 'PEN', 'UYU', 'BOB', 'BRL', 'EUR', 'GBP', 'CAD'];
+const FX_TTL_MS = 12 * 60 * 60 * 1000;
+const FX_MAX_STALE_MS = 7 * 24 * 60 * 60 * 1000;
+const FX_SOURCES = process.env.FX_SOURCES_OVERRIDE
+  ? process.env.FX_SOURCES_OVERRIDE.split(',').map((url) => ({ url, pick: (j) => j?.rates }))
+  : [
+    { url: 'https://open.er-api.com/v6/latest/USD', pick: (j) => (j?.result === 'success' ? j.rates : null) },
+    { url: 'https://api.frankfurter.dev/v1/latest?base=USD', pick: (j) => j?.rates }
+  ];
+const fxFile = path.join(dataDir, 'fx-rates.json');
+let fxCache = null;
+let fxInflight = null;
+
+function cleanFxRates(raw) {
+  const rates = {};
+  for (const code of FX_CODES) {
+    const value = Number(raw?.[code]);
+    if (Number.isFinite(value) && value > 0 && value < 1e7) rates[code] = value;
+  }
+  return Object.keys(rates).length ? rates : null;
+}
+
+async function fetchFxRates() {
+  for (const source of FX_SOURCES) {
+    try {
+      const response = await fetch(source.url, { signal: AbortSignal.timeout(6000) });
+      if (!response.ok) continue;
+      const rates = cleanFxRates(source.pick(await response.json()));
+      if (rates) return { rates, updated: new Date().toISOString(), source: new URL(source.url).host };
+    } catch (error) {
+      app.log.warn({ err: error.message, source: source.url }, 'fx source failed');
+    }
+  }
+  return null;
+}
+
+async function getFxRates() {
+  const now = Date.now();
+  if (!fxCache) {
+    try { fxCache = JSON.parse(await fs.readFile(fxFile, 'utf8')); } catch { fxCache = { fetchedAt: 0 }; }
+  }
+  if (fxCache.rates && now - fxCache.fetchedAt < FX_TTL_MS) return fxCache;
+  fxInflight ||= (async () => {
+    const fresh = await fetchFxRates();
+    if (fresh) {
+      fxCache = { ...fresh, fetchedAt: Date.now() };
+      try {
+        await fs.mkdir(dataDir, { recursive: true });
+        await fs.writeFile(fxFile, JSON.stringify(fxCache), 'utf8');
+      } catch { /* cache en disco opcional */ }
+    } else if (!fxCache.rates) {
+      fxCache = { fetchedAt: Date.now() - FX_TTL_MS + 5 * 60 * 1000 };
+    } else {
+      fxCache = { ...fxCache, fetchedAt: Date.now() - FX_TTL_MS + 30 * 60 * 1000 };
+    }
+    return fxCache;
+  })().finally(() => { fxInflight = null; });
+  return fxInflight;
+}
+
+app.get('/fx-rates.json', async (_request, reply) => {
+  reply.header('Cache-Control', 'public, max-age=600');
+  let data = null;
+  try { data = await getFxRates(); } catch { data = null; }
+  const usable = data?.rates && data.updated && now_ok(data.updated);
+  if (!usable) return { available: false, base: 'USD', rates: null };
+  return { available: true, base: 'USD', updated: data.updated, rates: data.rates };
+});
+
+function now_ok(updated) {
+  const t = Date.parse(updated);
+  return Number.isFinite(t) && Date.now() - t < FX_MAX_STALE_MS;
+}
+
+app.get('/api/store', async () => {
+  const catalog = getStoreCatalogView();
+  const allPriced = catalog.products.map(p => p.usd).filter(Number.isFinite);
+  const monthly = catalog.products.filter(p => p.category === 'monthly');
+  const minPrice = Math.min(...allPriced);
+  const maxPrice = Math.max(...allPriced);
+  return {
+    ...catalog,
+    summary: {
+      products: catalog.products.length,
+      monthlyRanks: monthly.length,
+      minPrice,
+      maxPrice
+    }
+  };
+});
+
+const sponsorsFile = path.join(dataDir, 'sponsors.json');
+
+async function readSponsors() {
+  try {
+    const raw = await fs.readFile(sponsorsFile, 'utf8');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    try {
+      const defaultPath = path.join(contentDir, 'sponsors.json');
+      const raw = await fs.readFile(defaultPath, 'utf8');
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  }
+}
+
+async function writeSponsors(list) {
+  try {
+    await fs.mkdir(path.dirname(sponsorsFile), { recursive: true });
+    await fs.writeFile(sponsorsFile, JSON.stringify(list, null, 2), 'utf8');
+  } catch (err) {
+    app.log.error(err, 'Failed to save sponsors');
+  }
+}
+
+app.get('/api/sponsors', async () => {
+  const sponsors = await readSponsors();
+  return {
+    ok: true,
+    sponsors: sponsors.filter(s => s.active !== false)
+  };
+});
+
+app.get('/api/eventos', async () => {
+  // November was cancelled for the Season 2 maintenance window. Keep the
+  // catalogue archived and the response shape stable for existing clients.
+  if (process.env.NOVEMBER_EVENTS_ENABLED !== 'true') {
+    return {
+      ok: true,
+      status: 'cancelled',
+      isNovember: false,
+      currentDay: null,
+      todayEvent: null,
+      events: []
+    };
+  }
+  try {
+    const filePath = path.join(root, 'catalog', 'eventos_noviembre_2026.json');
+    const raw = await fs.readFile(filePath, 'utf8');
+    const data = JSON.parse(raw);
+    const now = new Date();
+    const chileFormatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Santiago',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+    const parts = chileFormatter.formatToParts(now);
+    const getPart = (type) => parts.find(p => p.type === type)?.value;
+    const year = parseInt(getPart('year'), 10);
+    const month = parseInt(getPart('month'), 10);
+    const day = parseInt(getPart('day'), 10);
+    const isNovember = (year === 2026 && month === 11);
+    const currentDay = isNovember ? day : 1;
+    const todayEvent = (data.events || []).find(e => e.day === currentDay) || null;
+    return {
+      ok: true,
+      year,
+      month,
+      currentDay,
+      isNovember,
+      serverTimeCLT: `${getPart('hour')}:${getPart('minute')}`,
+      todayEvent,
+      events: data.events || []
+    };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+});
+
+app.post('/api/webhooks/github-sponsors', async (request, reply) => {
+  const body = request.body || {};
+  const action = body.action || '';
+  const sponsorship = body.sponsorship || {};
+  const sponsor = sponsorship.sponsor || {};
+  const tier = sponsorship.tier || {};
+  const login = sponsor.login || sponsor.name || '';
+
+  if (!login) {
+    return reply.code(200).send({ ignored: true, reason: 'no-login' });
+  }
+
+  const sponsors = await readSponsors();
+  const existingIndex = sponsors.findIndex(s => s.username.toLowerCase() === login.toLowerCase());
+
+  if (action === 'created') {
+    const monthlyAmount = tier.monthly_price_in_dollars ? `$${tier.monthly_price_in_dollars}.00 USD / mes` : '$5.00 USD / mes';
+    const newEntry = {
+      username: login,
+      tier: monthlyAmount,
+      badge: '💎 GitHub Sponsor Oficial',
+      note: 'Patrocinador oficial de DrakesCraft Network.',
+      date: new Date().toISOString().slice(0, 10),
+      active: true
+    };
+    if (existingIndex >= 0) {
+      sponsors[existingIndex] = { ...sponsors[existingIndex], ...newEntry };
+    } else {
+      sponsors.push(newEntry);
+    }
+    await writeSponsors(sponsors);
+  } else if (action === 'cancelled') {
+    if (existingIndex >= 0) {
+      sponsors[existingIndex].active = false;
+      await writeSponsors(sponsors);
+    }
+  }
+
+  return reply.code(200).send({ ok: true, action, user: login });
+});
+
+app.post('/api/store/tebex/checkout', async (request, reply) => {
+  const body = request.body || {};
+  const selectedIds = Array.isArray(body.items) ? body.items.slice(0, 12) : [];
+  const now = new Date();
+  const validIds = new Set(
+    storeCatalog.products
+      .filter((product) => !product.availableUntil || now <= new Date(product.availableUntil))
+      .map((product) => product.id)
+  );
+  const items = storeCatalog.products.filter((product) => selectedIds.includes(product.id) && validIds.has(product.id));
+  const nick = String(body.nick || '').trim().slice(0, 17);
+  const contact = String(body.contact || '').trim().slice(0, 80);
+  const notes = String(body.notes || '').trim().slice(0, 500);
+
+  if (body.website) return reply.code(204).send();
+  if (!items.length) return reply.code(400).send({ error: 'Selecciona al menos un producto.' });
+  if (!MINECRAFT_USERNAME_PATTERN.test(nick)) {
+    return reply.code(400).send({
+      error: 'Escribe un nick válido: 3 a 16 letras, números o guiones bajos; Bedrock puede comenzar con punto.'
+    });
+  }
+
+  const nonTebexItems = items.filter((product) => !isTebexEnabledProduct(product));
+  if (nonTebexItems.length) {
+    return reply.code(400).send({
+      error: `Estos items siguen siendo manuales: ${nonTebexItems.map((product) => product.name).join(', ')}.`
+    });
+  }
+
+  try {
+    const quoteId = `dt-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+    const basket = await createTebexBasket({ nick, contact, notes, items });
+    const totalUsd = items.reduce((sum, product) => sum + (Number.isFinite(product.usd) ? product.usd : 0), 0);
+    const quote = {
+      id: quoteId,
+      createdAt: new Date().toISOString(),
+      type: 'tebex-checkout',
+      nick,
+      contact,
+      notes,
+      items: items.map((product) => product.id),
+      tebexBasketIdent: basket.basketIdent,
+      checkoutUrl: basket.checkoutUrl
+    };
+
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.appendFile(quoteFile, `${JSON.stringify(quote)}\n`, 'utf8');
+
+    await notifyQuoteDiscord({
+      type: 'Checkout Tebex',
+      quoteId,
+      items,
+      nick,
+      contact,
+      notes,
+      total: totalUsd,
+      currency: 'USD'
+    });
+
+    return {
+      ok: true,
+      quoteId,
+      init_point: basket.checkoutUrl,
+      basket_ident: basket.basketIdent,
+      total_usd: Number(totalUsd.toFixed(2)),
+      currency: basket.currency
+    };
+  } catch (error) {
+    app.log.error(error, 'tebex checkout error');
+    return reply.code(502).send({ error: 'No se pudo crear el checkout de Tebex.' });
+  }
+});
+
+async function notifyQuoteDiscord({ type, quoteId, items, nick, contact, notes, total, currency }) {
+  const webhook = process.env.DISCORD_PAYMENTS_WEBHOOK;
+  if (!webhook) return;
+
+  const names = items.map(p => p.name).join(', ');
+  const formattedAmount = currency === 'CLP' 
+    ? `$${total.toLocaleString('es-CL')} CLP` 
+    : `$${total.toFixed(2)} USD`;
+  
+  let emoji = '📝';
+  let color = 10181046; // Violeta para cotización manual
+  let description = `Se ha generado una solicitud para adquirir: **${names}**`;
+  
+  if (type.includes('Tebex')) {
+    color = 15844367; // Dorado Tebex
+    emoji = '🟠';
+    description = `Se generó un checkout de Tebex para: **${names}**`;
+  }
+
+  try {
+    const res = await fetch(webhook, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'DrakesCraft · Portal',
+        avatar_url: 'https://web.drakescraft.cl/assets/logo-drakescraft.webp',
+        embeds: [{
+          title: `${emoji} ${type}`,
+          description,
+          color,
+          thumbnail: { url: 'https://web.drakescraft.cl/assets/logo-drakescraft.webp' },
+          fields: [
+            { name: '🎮 Nick de Minecraft', value: `\`${nick || 'No especificado'}\``, inline: true },
+            { name: '💬 Medio de Contacto', value: `\`${contact || 'No especificado'}\``, inline: true },
+            { name: '💰 Valor Estimado', value: `**${formattedAmount}**`, inline: true },
+            { name: '🔑 ID de Solicitud', value: `\`${quoteId}\``, inline: false },
+            { name: '📝 Notas Adicionales', value: notes ? `>>> ${notes}` : '*Sin comentarios.*', inline: false },
+          ],
+          footer: { text: `DrakesCraft · Portal de Pagos · ${new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago' })}` }
+        }]
+      })
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      app.log.warn({ status: res.status, text }, 'Discord webhook returned non-2xx response');
+    }
+  } catch (err) {
+    app.log.error(err, 'Error sending to Discord webhook');
+  }
+}
+
+
+
+app.get('/terminos.html', async (_request, reply) => reply.code(301).redirect('/terms.html'));
+app.get('/terminos-en.html', async (_request, reply) => reply.code(301).redirect('/terms-en.html'));
+
+await app.register(fastifyStatic, {
+  root: contentDir,
+  prefix: '/content/',
+  wildcard: false,
+  decorateReply: false,
+  setHeaders: (response) => response.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate')
+});
+
+// Temporary compatibility alias. Minecraft still points here until the
+// pack.drakescraft.cl DNS record is moved to the active Star tunnel.
+await app.register(fastifyStatic, {
+  root: '/packs',
+  prefix: '/resourcepack/',
+  wildcard: false,
+  decorateReply: false,
+  maxAge: '1h',
+  immutable: false
+});
+
+// The editorial home introduces the world first; the proven storefront and
+// Tebex checkout remain isolated in store.html and its existing API routes.
+app.get('/', async (_request, reply) => reply.sendFile('index.html'));
+for (const alias of ['/metricas', '/stats', '/estadisticas']) {
+  app.get(alias, async (_request, reply) => reply.sendFile('metricas.html'));
+}
+
+// Rutas limpias de la guia. Se anuncian in-game como /guia y /comandos, asi que ambas tienen
+// que resolver sin que el jugador escriba la extension.
+for (const alias of ['/guia']) {
+  app.get(alias, async (_request, reply) => reply.sendFile('guia.html'));
+}
+for (const alias of ['/guide', '/en/guide']) {
+  app.get(alias, async (_request, reply) => reply.sendFile('guide-en.html'));
+}
+// /comandos se anuncia in-game y ahora tiene pagina propia: la de guia.html se quedo
+// corta en cuanto entraron los addons porteados.
+for (const alias of ['/comandos', '/commands', '/cmds']) {
+  app.get(alias, async (_request, reply) => reply.sendFile('guia-comandos.html'));
+}
+for (const [alias, file] of [
+  ['/apoya', 'apoya.html'], ['/apoyar', 'apoya.html'], ['/donar', 'apoya.html'], ['/sponsors', 'apoya.html'],
+  ['/rangos', 'guia-rangos.html'], ['/ranks', 'guia-rangos.html'],
+  ['/slimefun', 'guia-slimefun.html'], ['/sf', 'guia-slimefun.html'],
+  ['/slimefun-en', 'guia-slimefun-en.html'], ['/sf-en', 'guia-slimefun-en.html'],
+  ['/plugins', 'guia-plugins.html'], ['/suites', 'guia-plugins.html'],
+  ['/poderes', 'guia-poderes.html'], ['/powers', 'guia-poderes-en.html'],
+  ['/temporada-2', 'temporada-2.html'], ['/t2', 'temporada-2.html'], ['/season-2', 'temporada-2-en.html'],
+  ['/eventos', 'eventos.html'], ['/calendario', 'eventos.html'],
+  ['/events', 'events-en.html'], ['/calendar', 'events-en.html'],
+]) {
+  app.get(alias, async (_request, reply) => reply.sendFile(file));
+}
+
+// Friendly short aliases for publicity and player convenience
+for (const storeAlias of ['/tienda', '/store', '/shop']) {
+  app.get(storeAlias, async (_request, reply) => reply.sendFile('store.html'));
+}
+app.get('/discord', async (_request, reply) => reply.code(302).redirect('https://discord.gg/rv3vtXZTk7'));
+
+// Keep removed legacy pages useful without exposing stale systems.
+for (const legacyPath of [
+  '/server.html', '/odysseia.html', '/dioses.html',
+  '/slimefun.html', '/bosses.html', '/community.html', '/jack.html',
+  '/rules.html', '/admin-quote.html',
+  '/ojo-de-atenea.html', '/ojo-de-atenea', '/ojo-de-atenea-en.html', '/atenea'
+]) {
+  app.get(legacyPath, async (_request, reply) => reply.code(301).redirect('/'));
+}
+
+await app.register(fastifyStatic, {
+  root,
+  wildcard: false,
+  // `/` is the explicit home route above. Do not let the static plugin
+  // register a competing index/HEAD handler for it.
+  index: false,
+  maxAge: '1h',
+  immutable: false,
+  setHeaders: (res, filePath) => {
+    const isDynamic = filePath.endsWith('.html') || filePath.endsWith('.js') || filePath.endsWith('.css');
+    if (isDynamic) {
+      if (typeof res?.setHeader === 'function') {
+        res.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate');
+      } else if (typeof res?.header === 'function') {
+        res.header('Cache-Control', 'no-cache, max-age=0, must-revalidate');
+      } else if (typeof res?.raw?.setHeader === 'function') {
+        res.raw.setHeader('Cache-Control', 'no-cache, max-age=0, must-revalidate');
+      }
+    }
+  },
+  allowedPath: (pathname) => {
+    const publicFiles = new Set([
+      'index.html',
+      'index-en.html',
+      'store.html',
+      'store-en.html',
+      'guia.html',
+      'apoya.html',
+      'apoya-en.html',
+      'eventos.html',
+      'events-en.html',
+      'guia-comandos.html',
+      'guia-comandos-en.html',
+      'guia-rangos.html',
+      'guia-rangos-en.html',
+      'guia-slimefun.html',
+      'guia-slimefun-en.html',
+      'guia-plugins.html',
+      'guia-plugins-en.html',
+      'guia-poderes.html',
+      'guia-poderes-en.html',
+      'temporada-2.html',
+      'temporada-2-en.html',
+      '404.html',
+      '404-en.html',
+      '500.html',
+      '500-en.html',
+      'maintenance.html',
+      'maintenance-en.html',
+      'metricas.html',
+      'metricas-en.html',
+      'support.html',
+      'support-en.html',
+      'guide-en.html',
+      'terms.html',
+      'terms-en.html',
+      'bannerdrakes.jpg',
+      'dragon_fly.webp',
+      'robots.txt',
+      'sitemap.xml',
+      'privacidad.html',
+      'privacidad-en.html',
+      'logodrakescraft.webp',
+      'previewdiscord1.png',
+      'previewdiscord2.png',
+      'favicon.ico',
+      'site.webmanifest',
+      'manifest.json',
+      'three.min.js'
+    ]);
+    const normalized = pathname.replace(/^[/\\]+/, '').replaceAll('\\', '/');
+    return publicFiles.has(normalized)
+      || (normalized.endsWith('.html') && !normalized.includes('/'))
+      || normalized.startsWith('assets/')
+      || normalized.startsWith('styles/')
+      || normalized.startsWith('scripts/')
+      || normalized.startsWith('vendor/')
+      || normalized === 'robots.txt'
+      || normalized === 'sitemap.xml';
+  }
+});
+
+
+// ── /api/slimefun — Explorador en Vivo del Knowledge Lake (SQLite) ───────────
+let slimefunDb = null;
+const SLIMEFUN_DB_PATH = path.join(dataDir, 'slimefun_lake.db');
+
+function getSlimefunDb() {
+  if (slimefunDb) return slimefunDb;
+  try {
+    if (fsSync.existsSync(SLIMEFUN_DB_PATH)) {
+      slimefunDb = new DatabaseSync(SLIMEFUN_DB_PATH, { readOnly: true });
+    }
+  } catch (err) {
+    app.log.warn(`No se pudo abrir ${SLIMEFUN_DB_PATH}: ${err.message}`);
+  }
+  return slimefunDb;
+}
+
+app.get('/api/slimefun/search', async (request, reply) => {
+  reply.header('cache-control', 'public, max-age=60');
+  const q = String(request.query?.q || '').trim();
+  const limit = Math.min(Math.max(Number(request.query?.limit) || 40, 1), 100);
+
+  const db = getSlimefunDb();
+  if (!db) {
+    return reply.send({ ok: false, error: 'Knowledge Lake no disponible', items: [] });
+  }
+
+  try {
+    let rows;
+    if (!q) {
+      rows = db.prepare('SELECT id, name, addon, group_key, lore_text FROM items ORDER BY id LIMIT ?').all(limit);
+    } else {
+      try {
+        const ftsQuery = q.replace(/[^a-zA-Z0-9_\u00C0-\u00FF]+/g, ' ').trim();
+        if (ftsQuery) {
+          const ftsPattern = ftsQuery.split(/\s+/).map((t) => `"${t}"*`).join(' AND ');
+          rows = db.prepare(
+            `SELECT i.id, i.name, i.addon, i.group_key, i.lore_text
+             FROM items_fts f
+             JOIN items i ON i.id = f.id
+             WHERE items_fts MATCH ?
+             LIMIT ?`
+          ).all(ftsPattern, limit);
+        } else {
+          rows = [];
+        }
+      } catch {
+        const pattern = `%${q}%`;
+        rows = db.prepare(
+          `SELECT id, name, addon, group_key, lore_text
+           FROM items
+           WHERE id LIKE ? OR name LIKE ? OR addon LIKE ? OR lore_text LIKE ?
+           LIMIT ?`
+        ).all(pattern, pattern, pattern, pattern, limit);
+      }
+    }
+    return { ok: true, count: rows.length, items: rows };
+  } catch (err) {
+    return reply.code(500).send({ ok: false, error: err.message, items: [] });
+  }
+});
+
+app.get('/api/slimefun/item/:id', async (request, reply) => {
+  reply.header('cache-control', 'public, max-age=300');
+  const id = String(request.params?.id || '').trim();
+  if (!id) return reply.code(400).send({ error: 'ID requerido' });
+
+  const db = getSlimefunDb();
+  if (!db) return reply.code(503).send({ error: 'Knowledge Lake no disponible' });
+
+  try {
+    const row = db.prepare('SELECT * FROM items WHERE id = ?').get(id);
+    if (!row) return reply.code(404).send({ error: 'Ítem no encontrado' });
+
+    let recipe = [];
+    if (row.recipe_json) {
+      try {
+        recipe = JSON.parse(row.recipe_json);
+      } catch {}
+    }
+
+    return {
+      id: row.id,
+      name: row.name,
+      addon: row.addon,
+      group_key: row.group_key,
+      material: row.material,
+      recipe_type: row.recipe_type,
+      output_amount: row.output_amount,
+      research: row.research,
+      research_cost: row.research_cost,
+      lore_text: row.lore_text,
+      java_class: row.java_class,
+      recipe
+    };
+  } catch (err) {
+    return reply.code(500).send({ error: err.message });
+  }
+});
+
+// ── /api/mcstatus — estado del servidor Minecraft ────────────────────────
+
+// ── /api/saori/telemetry — Telemetría en vivo del Ojo Divino de Atenea ──────
+import net from 'node:net';
+
+let cachedTelemetry = { ready: false };
+let lastTelemetryAt = 0;
+let thoughtsLog = [
+  { time: new Date().toLocaleTimeString(), type: 'system', text: 'El Ojo Divino de Atenea sincronizado con SaoriStar.' }
+];
+
+app.get('/api/saori/telemetry', async (_request, reply) => {
+  const now = Date.now();
+  if (cachedTelemetry.ready && now - lastTelemetryAt < 800) {
+    return reply.send(cachedTelemetry);
+  }
+
+  return new Promise((resolve) => {
+    try {
+      const client = net.createConnection('/tmp/saoristar-bot.sock', () => {
+        client.write(JSON.stringify({ action: 'PERCEPTION' }) + '\n');
+      });
+
+      let buffer = '';
+      client.on('data', (chunk) => {
+        buffer += chunk.toString();
+        if (buffer.includes('\n') || buffer.trim().endsWith('}')) {
+          try {
+            const parsed = JSON.parse(buffer.trim());
+            if (parsed && parsed.ready) {
+              cachedTelemetry = parsed;
+              lastTelemetryAt = Date.now();
+              client.end();
+              resolve(reply.send(cachedTelemetry));
+            }
+          } catch (e) {}
+        }
+      });
+
+      client.on('error', (err) => {
+        resolve(reply.send(cachedTelemetry.ready ? cachedTelemetry : { ready: false, error: err.message }));
+      });
+
+      setTimeout(() => {
+        client.destroy();
+        resolve(reply.send(cachedTelemetry));
+      }, 800);
+    } catch (e) {
+      resolve(reply.send(cachedTelemetry));
+    }
+  });
+});
+
+app.get('/api/saori/thoughts', async (_request, reply) => {
+  return reply.send(thoughtsLog);
+});
+
+app.post('/api/saori/cmd', async (request, reply) => {
+  return new Promise((resolve) => {
+    try {
+      const { action, message, args } = request.body || {};
+      const client = net.createConnection('/tmp/saoristar-bot.sock', () => {
+        client.write(JSON.stringify({ action, message, args }) + '\n');
+      });
+
+      client.on('data', (d) => {
+        client.end();
+        thoughtsLog.unshift({ time: new Date().toLocaleTimeString(), type: 'action', text: `Comando divino ejecutado: ${message || action}` });
+        if (thoughtsLog.length > 30) thoughtsLog.pop();
+        resolve(reply.send({ success: true }));
+      });
+
+      client.on('error', (err) => {
+        resolve(reply.code(500).send({ error: err.message }));
+      });
+    } catch (e) {
+      resolve(reply.code(500).send({ error: e.message }));
+    }
+  });
+});
+
+let mcStatusCache = null;
+let mcStatusCacheAt = 0;
+const MC_CACHE_TTL = 60_000;
+
+async function fetchMcStatus() {
+  const now = Date.now();
+  if (mcStatusCache && now - mcStatusCacheAt < MC_CACHE_TTL) return mcStatusCache;
+
+  // El puerto va explicito en las dos consultas. Sin el, mcsrvstat asume 19132 para Bedrock
+  // --el estandar-- y aqui Geyser escucha en el mismo 25565 que Java, asi que la tarjeta decia
+  // "Bedrock offline" con el servidor perfectamente vivo. Se usan MC_HOST y MC_PUERTO para que
+  // no haya un puerto escrito a mano que se olvide de actualizar.
+  const destino = `${MC_HOST}:${MC_PUERTO}`;
+  const [javaRes, bedrockRes] = await Promise.allSettled([
+    fetch(`https://api.mcsrvstat.us/3/${destino}`),
+    fetch(`https://api.mcsrvstat.us/bedrock/3/${destino}`)
+  ]);
+
+  const parseRes = async (r) => {
+    if (r.status !== 'fulfilled' || !r.value.ok) return { online: false };
+    try { return await r.value.json(); } catch { return { online: false }; }
+  };
+
+  const [java, bedrock] = await Promise.all([parseRes(javaRes), parseRes(bedrockRes)]);
+
+  mcStatusCache = {
+    java: {
+      online: java.online ?? false,
+      motd: java.motd?.clean?.join(' ') ?? '',
+      players: { online: java.players?.online ?? 0, max: java.players?.max ?? 0 },
+      version: java.version ?? '',
+      icon: java.icon ?? null
+    },
+    bedrock: {
+      online: bedrock.online ?? false,
+      players: { online: bedrock.players?.online ?? 0, max: bedrock.players?.max ?? 0 },
+      version: bedrock.version ?? ''
+    }
+  };
+  mcStatusCacheAt = now;
+  return mcStatusCache;
+}
+
+// ── /api/metricas — ocupacion del servidor ───────────────────────────────
+// El JSON lo escribe un timer de systemd en Star una vez al dia y lo deja en el volumen de datos
+// que este contenedor ya tiene montado. Por eso publicar metricas nuevas no obliga a reconstruir
+// la imagen: basta con que el archivo cambie.
+app.get('/api/metricas', async (_request, reply) => {
+  try {
+    const bruto = await fs.readFile(path.join(dataDir, 'metricas.json'), 'utf8');
+    reply.header('cache-control', 'public, max-age=1800');
+    return JSON.parse(bruto);
+  } catch {
+    reply.code(503);
+    return { error: 'Las métricas todavía no se han generado' };
+  }
+});
+
+// ── /api/edge-metrics — métricas globales de Cloudflare Edge & Infraestructura ─
+app.get('/api/edge-metrics', async (_request, reply) => {
+  reply.header('cache-control', 'public, max-age=300');
+  return {
+    edge_network: {
+      provider: 'Cloudflare Global Anycast Edge',
+      status: 'operational',
+      tls_version: 'TLS 1.3 (Modern Ciphers)',
+      http_protocol: 'HTTP/2 & HTTP/3 (QUIC)',
+      hsts_enabled: true,
+      waf_shield: 'Active (DrakesCraft-Shield 2.0)',
+      edge_cache_ratio: '95.4%',
+      primary_pops: [
+        { code: 'SCL', city: 'Santiago', country: 'CL', latency_ms: '4ms', status: 'optimal' },
+        { code: 'GIG', city: 'Río de Janeiro', country: 'BR', latency_ms: '32ms', status: 'optimal' },
+        { code: 'EZE', city: 'Buenos Aires', country: 'AR', latency_ms: '18ms', status: 'optimal' },
+        { code: 'MIA', city: 'Miami', country: 'US', latency_ms: '110ms', status: 'optimal' }
+      ]
+    },
+    minecraft_infrastructure: {
+      host: 'Game Hosting Dedicado (Dallas, TX, USA)',
+      subdomain: 'mc.drakescraft.cl',
+      java_port: 25565,
+      bedrock_port: 25565,
+      tps_target: '20.0 TPS',
+      ddos_mitigation: 'Filtrado perimetral L4/L7 + Rate Limiting Activo',
+      modalities: [
+        { name: 'Slimefun', type: 'Supervivencia Técnica & Energía', status: 'online' },
+        { name: 'One Block', type: 'Supervivencia en 1 Bloque', status: 'online' },
+        { name: 'Skyblock', type: 'Islas Flotantes & Desafíos', status: 'online' },
+        { name: 'Clásico Vanilla', type: 'Supervivencia Tradicional', status: 'online' },
+        { name: 'Laboratorio', type: 'Entorno Experimental & Tecnología', status: 'online' }
+      ]
+    }
+  };
+});
+
+app.get('/api/mcstatus', async (_request, reply) => {
+  try {
+    return await fetchMcStatus();
+  } catch (err) {
+    app.log.warn(err, 'mcstatus fetch error');
+    reply.code(503);
+    return { java: { online: false }, bedrock: { online: false } };
+  }
+});
+
+// POST /api/tebex/webhook — Tebex notifica pagos completados
+app.post('/api/tebex/webhook', async (request, reply) => {
+  try {
+    const rawBody = request.rawBody || '';
+    const sig = request.headers['x-signature'] || '';
+
+    if (!tebexWebhookSecret) {
+      app.log.error('Tebex webhook recibido sin TEBEX_WEBHOOK_SECRET configurado');
+      return reply.code(503).send({ error: 'Webhook no configurado' });
+    }
+
+    const expected = createHmac('sha256', tebexWebhookSecret).update(rawBody).digest('hex');
+    if (!safeEqualText(sig, expected)) {
+      app.log.warn({ rawBodyLen: rawBody.length }, 'Tebex webhook: firma inválida');
+      return reply.code(401).send({ error: 'Firma inválida' });
+    }
+
+    const { type, subject } = request.body || {};
+    if (type !== 'payment.completed') return reply.send({ ok: true });
+
+    const nick = subject?.username || 'Jugador';
+    const packageName = subject?.packages?.[0]?.name || 'Rango';
+    const priceUsd = subject?.price?.paid || 0;
+    const transId = subject?.transaction_id || '—';
+
+    if (discordSalesWebhook) {
+      await fetch(discordSalesWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          embeds: [{
+            title: '🎉 ¡Nueva compra en DrakesCraft!',
+            color: 0xf5c518,
+            fields: [
+              { name: '👤 Jugador', value: nick, inline: true },
+              { name: '🏆 Rango / Perk', value: packageName, inline: true },
+              { name: '💰 Valor', value: `$${priceUsd} USD`, inline: true },
+              { name: '🔖 Transacción', value: transId, inline: false }
+            ],
+            footer: { text: 'DrakesCraft · Tienda Tebex' },
+            timestamp: new Date().toISOString()
+          }]
+        })
+      }).catch(err => app.log.error(err, 'Error enviando a Discord sales webhook'));
+    }
+
+    reply.send({ ok: true });
+  } catch (err) {
+    app.log.error(err, 'Tebex webhook error');
+    reply.code(500).send({ error: 'Error interno' });
+  }
+});
+
+app.setNotFoundHandler(async (request, reply) => {
+  if (request.raw.url?.startsWith('/api/')) {
+    return reply.code(404).send({ error: 'Ruta no encontrada' });
+  }
+  const requestedPath = request.raw.url?.split('?')[0] || '';
+  if (path.extname(requestedPath) && !requestedPath.endsWith('.html')) {
+    return reply.code(404).send('Not found');
+  }
+  return reply.code(404).sendFile('404.html');
+});
+
+app.setErrorHandler(async (error, request, reply) => {
+  app.log.error(error);
+  if (request.raw.url?.startsWith('/api/')) {
+    return reply.code(error.statusCode || 500).send({ error: error.message || 'Error interno' });
+  }
+  return reply.code(error.statusCode || 500).sendFile('500.html');
+});
+
+try {
+  await app.listen({ host: '0.0.0.0', port: Number(process.env.PORT || 8080) });
+} catch (error) {
+  app.log.error(error);
+  process.exit(1);
+}

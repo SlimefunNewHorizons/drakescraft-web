@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <radialGradient id="quantumCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#64d8cb"/>
+      <stop offset="65%" stop-color="#a98ae8"/>
+      <stop offset="100%" stop-color="#1b1035"/>
+    </radialGradient>
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .core { animation: pulseCore 2.5s ease-in-out infinite; transform-origin: 160px 110px; }
+    .orbit-1 { animation: spinOrbit1 8s linear infinite; transform-origin: 160px 110px; }
+    .orbit-2 { animation: spinOrbit2 12s linear infinite reverse; transform-origin: 160px 110px; }
+    .orbit-3 { animation: spinOrbit3 16s linear infinite; transform-origin: 160px 110px; }
+    .wave-1 { animation: radarPing 3.5s ease-out infinite; transform-origin: 160px 110px; }
+    .wave-2 { animation: radarPing 3.5s ease-out infinite 1.75s; transform-origin: 160px 110px; }
+    @keyframes pulseCore { 0%, 100% { transform: scale(0.92); opacity: 0.85; } 50% { transform: scale(1.08); opacity: 1; } }
+    @keyframes spinOrbit1 { from { transform: rotate(0deg) skewX(20deg); } to { transform: rotate(360deg) skewX(20deg); } }
+    @keyframes spinOrbit2 { from { transform: rotate(0deg) skewY(-25deg); } to { transform: rotate(360deg) skewY(-25deg); } }
+    @keyframes spinOrbit3 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes radarPing { 0% { r: 25px; opacity: 0.8; stroke-width: 2px; } 100% { r: 95px; opacity: 0; stroke-width: 0.5px; } }
+  </style>
+
+  <!-- Expanding Radar Pings -->
+  <circle class="wave-1" cx="160" cy="110" r="30" fill="none" stroke="#64d8cb"/>
+  <circle class="wave-2" cx="160" cy="110" r="30" fill="none" stroke="#a98ae8"/>
+
+  <!-- Static Telemetry Grid Marks -->
+  <line x1="60" y1="110" x2="260" y2="110" stroke="rgba(169, 138, 232, 0.2)" stroke-dasharray="3 6"/>
+  <line x1="160" y1="20" x2="160" y2="200" stroke="rgba(169, 138, 232, 0.2)" stroke-dasharray="3 6"/>
+  <circle cx="160" cy="110" r="75" fill="none" stroke="rgba(229, 189, 114, 0.25)" stroke-width="1" stroke-dasharray="6 14"/>
+
+  <!-- Gyroscopic Orbital Rings -->
+  <!-- Ring 1 -->
+  <g class="orbit-1">
+    <ellipse cx="160" cy="110" rx="72" ry="24" fill="none" stroke="#e5bd72" stroke-width="1.8" filter="url(#coreGlow)"/>
+    <circle cx="232" cy="110" r="4.5" fill="#e5bd72"/>
+  </g>
+
+  <!-- Ring 2 -->
+  <g class="orbit-2">
+    <ellipse cx="160" cy="110" rx="68" ry="32" fill="none" stroke="#a98ae8" stroke-width="1.6"/>
+    <circle cx="92" cy="110" r="4" fill="#64d8cb"/>
+  </g>
+
+  <!-- Ring 3 with Node Satellites -->
+  <g class="orbit-3">
+    <ellipse cx="160" cy="110" rx="82" ry="48" fill="none" stroke="rgba(130, 201, 165, 0.6)" stroke-width="1.2" stroke-dasharray="14 10"/>
+    <circle cx="160" cy="62" r="3.5" fill="#82c9a5"/>
+    <circle cx="160" cy="158" r="3.5" fill="#e5bd72"/>
+  </g>
+
+  <!-- Central Glowing Quantum Telemetry Core -->
+  <circle class="core" cx="160" cy="110" r="22" fill="url(#quantumCore)" filter="url(#coreGlow)"/>
+  <circle cx="160" cy="110" r="10" fill="#ffffff" opacity="0.9"/>
+  <circle cx="160" cy="110" r="4" fill="#64d8cb"/>
+</svg>

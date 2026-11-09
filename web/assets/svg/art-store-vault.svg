@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vaultChest" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a287a"/>
+      <stop offset="100%" stop-color="#190e2e"/>
+    </linearGradient>
+    <linearGradient id="dragmaCoin" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe8a3"/>
+      <stop offset="50%" stop-color="#e5bd72"/>
+      <stop offset="100%" stop-color="#805312"/>
+    </linearGradient>
+    <filter id="chestGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .coin-float-1 { animation: flipCoin 3s ease-in-out infinite; transform-origin: 125px 65px; }
+    .coin-float-2 { animation: flipCoin 3s ease-in-out infinite 1.5s; transform-origin: 195px 60px; }
+    .chest-shimmer { animation: shimmerVault 4s ease-in-out infinite alternate; }
+    @keyframes flipCoin { 0%, 100% { transform: translateY(0) scaleX(1); } 50% { transform: translateY(-8px) scaleX(0.2); } }
+    @keyframes shimmerVault { 0% { filter: drop-shadow(0 0 8px rgba(229, 189, 114, 0.3)); } 100% { filter: drop-shadow(0 0 26px rgba(229, 189, 114, 0.7)); } }
+  </style>
+
+  <!-- Glowing Treasure Light Cone -->
+  <polygon points="160,110 90,20 230,20" fill="url(#dragmaCoin)" opacity="0.18"/>
+
+  <!-- Floating Dragma Coins -->
+  <g class="coin-float-1">
+    <circle cx="125" cy="65" r="14" fill="url(#dragmaCoin)" stroke="#fff" stroke-width="1.2" filter="url(#chestGlow)"/>
+    <text x="125" y="70" font-family="'Cinzel', serif" font-size="12" font-weight="700" fill="#2d174d" text-anchor="middle">Ð</text>
+  </g>
+  <g class="coin-float-2">
+    <circle cx="195" cy="60" r="16" fill="url(#dragmaCoin)" stroke="#fff" stroke-width="1.2" filter="url(#chestGlow)"/>
+    <text x="195" y="66" font-family="'Cinzel', serif" font-size="14" font-weight="700" fill="#2d174d" text-anchor="middle">Ð</text>
+  </g>
+
+  <!-- Mythic Olympian Vault Chest -->
+  <g class="chest-shimmer">
+    <!-- Chest Lid (Open Back) -->
+    <path d="M95 110 L95 85 Q160 65 225 85 L225 110 Z" fill="#2d174d" stroke="#e5bd72" stroke-width="2"/>
+    <!-- Chest Body -->
+    <path d="M90 110 L230 110 L220 175 L100 175 Z" fill="url(#vaultChest)" stroke="#e5bd72" stroke-width="2.5" filter="url(#chestGlow)"/>
+    <!-- Gold Corner Brackets -->
+    <rect x="90" y="110" width="12" height="65" fill="url(#dragmaCoin)"/>
+    <rect x="218" y="110" width="12" height="65" fill="url(#dragmaCoin)"/>
+    <!-- Central Mythic Lock -->
+    <circle cx="160" cy="130" r="11" fill="url(#dragmaCoin)"/>
+    <circle cx="160" cy="130" r="4" fill="#140d24"/>
+  </g>
+</svg>

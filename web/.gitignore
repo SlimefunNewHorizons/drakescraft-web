@@ -1,0 +1,12 @@
+node_modules/
+data/
+npm-debug.log
+.env
+.env.*
+*.local
+
+target/
+build/
+.gradle/
+
+graphify-out/

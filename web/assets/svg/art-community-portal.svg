@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="100%" height="100%">
+  <defs>
+    <radialGradient id="portalCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#5865f2"/>
+      <stop offset="70%" stop-color="#a98ae8"/>
+      <stop offset="100%" stop-color="#140d24"/>
+    </radialGradient>
+    <filter id="portalGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .portal-spin { animation: spinPortal 14s linear infinite; transform-origin: 160px 110px; }
+    .portal-pulse { animation: pulsePortal 3s ease-in-out infinite; transform-origin: 160px 110px; }
+    .rune-orbit { animation: spinPortal 20s linear infinite reverse; transform-origin: 160px 110px; }
+    @keyframes spinPortal { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulsePortal { 0%, 100% { transform: scale(0.94); filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 35px rgba(169, 138, 232, 0.7)); } }
+  </style>
+
+  <!-- Outer Discord Portal Runes -->
+  <g class="rune-orbit" opacity="0.6">
+    <ellipse cx="160" cy="110" rx="90" ry="75" fill="none" stroke="#e5bd72" stroke-width="1.5" stroke-dasharray="14 26 6 18"/>
+    <circle cx="160" cy="35" r="4" fill="#5865f2"/>
+    <circle cx="250" cy="110" r="4" fill="#82c9a5"/>
+    <circle cx="160" cy="185" r="4" fill="#a98ae8"/>
+    <circle cx="70" cy="110" r="4" fill="#e5bd72"/>
+  </g>
+
+  <!-- Glowing Dimensional Portal Core -->
+  <g class="portal-pulse">
+    <ellipse cx="160" cy="110" rx="72" ry="58" fill="url(#portalCore)" filter="url(#portalGlow)"/>
+    <!-- Swirling Vortex Ribbons -->
+    <g class="portal-spin" opacity="0.65">
+      <path d="M160 70 Q190 110 160 150 Q130 110 160 70 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <path d="M120 110 Q160 140 200 110 Q160 80 120 110 Z" fill="none" stroke="#64d8cb" stroke-width="1.8"/>
+    </g>
+    <!-- Central Discord Glyph Silhouette -->
+    <path d="M142 98 C148 95 154 94 160 94 C166 94 172 95 178 98 C180 106 179 114 176 122 C171 125 166 126 160 126 C154 126 149 125 144 122 C141 114 140 106 142 98 Z" 
+          fill="#ffffff" opacity="0.9" filter="url(#portalGlow)"/>
+    <circle cx="152" cy="108" r="3" fill="#5865f2"/>
+    <circle cx="168" cy="108" r="3" fill="#5865f2"/>
+  </g>
+</svg>
