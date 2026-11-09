@@ -146,7 +146,8 @@ const tebexPackageIds = {
   'keys-hermes-5': 7697434,
   'keys-zeus-3': 7697435,
   'booster-money-1h': 7697436,
-  'booster-exp-1h': 7697437
+  'booster-exp-1h': 7697437,
+  'kit-navidad': 7800351
 };
 // Los bloqueos excepcionales se declaran aquí para impedir que un producto llegue al checkout.
 // protection-481 verificada contra vipzeus (fuera de venta); protection-fortaleza es la misma piedra que protection-177 y esta desactivada en Tebex
@@ -346,6 +347,16 @@ const bossesCatalog = {
   ]
 };
 
+// Ventana de venta: availableWindows (lista de {from, until}, reutilizable cada año) o los campos legados availableFrom/availableUntil.
+function inSaleWindow(product, now = new Date()) {
+  if (Array.isArray(product.availableWindows)) {
+    return product.availableWindows.some((w) => now >= new Date(w.from) && now <= new Date(w.until));
+  }
+  if (product.availableFrom && now < new Date(product.availableFrom)) return false;
+  if (product.availableUntil && now > new Date(product.availableUntil)) return false;
+  return true;
+}
+
 function isTebexEnabledProduct(product) {
   return Boolean(product && tebexPackageIds[product.id] && !unavailableTebexProductIds.has(product.id));
 }
@@ -353,7 +364,7 @@ function isTebexEnabledProduct(product) {
 function offerProductList() {
   return storeCatalog.products.map((p) => ({
     id: p.id, category: p.category, usd: p.usd, tebexPackageId: tebexPackageIds[p.id] || null,
-    sellable: isTebexEnabledProduct(p) && p.purchaseAvailable !== false && (!p.availableUntil || new Date() <= new Date(p.availableUntil))
+    sellable: isTebexEnabledProduct(p) && p.purchaseAvailable !== false && inSaleWindow(p)
   }));
 }
 
@@ -387,10 +398,7 @@ function getStoreCatalogView() {
   const now = new Date();
   const status = storeStatus(now);
   const activeProducts = storeCatalog.products.filter((product) => {
-    if (product.availableUntil && now > new Date(product.availableUntil)) {
-      return false;
-    }
-    return true;
+    return inSaleWindow(product, now);
   });
 
   const activeCategoryIds = new Set(activeProducts.map((p) => p.category));
@@ -982,7 +990,7 @@ app.post('/api/store/tebex/checkout', async (request, reply) => {
   const now = new Date();
   const validIds = new Set(
     storeCatalog.products
-      .filter((product) => !product.availableUntil || now <= new Date(product.availableUntil))
+      .filter((product) => inSaleWindow(product, now))
       .map((product) => product.id)
   );
   const items = storeCatalog.products.filter((product) => selectedIds.includes(product.id) && validIds.has(product.id));

@@ -12,6 +12,8 @@ const FX_REGION = { CL: "CLP", AR: "ARS", MX: "MXN", CO: "COP", PE: "PEN", UY: "
     ES: "EUR", DE: "EUR", FR: "EUR", IT: "EUR", PT: "EUR", NL: "EUR", IE: "EUR", AT: "EUR", BE: "EUR", FI: "EUR", GR: "EUR" };
 const FX_KEY = "drakes-fx-currency";
 const storeIsEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
+const storeText = (p, k) => (storeIsEn && p[k + "En"]) || p[k];
+const storeIncludes = (p) => (storeIsEn && p.includesEn) || p.includes || [];
 const fx = { rates: null, updated: null, cur: "USD" };
 
 function fxStored() {
@@ -177,11 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="store-product__top">
                     <div>
                         <span class="store-product__tag">${storeEscape(product.badge || deliveryLabel[mode])}</span>
-                        <h3>${storeEscape(product.name)}</h3>
+                        <h3>${storeEscape(storeText(product, "name"))}</h3>
                     </div>
                     <strong class="store-product__price">${storeMoney(product.clp, product)}${storeFxLine(storeFinalUsd(product))}</strong>
                 </div>
-                <p>${storeEscape(product.summary)}</p>
+                <p>${storeEscape(storeText(product, "summary"))}</p>
                 <div class="store-product__delivery">
                     <span>${product.storeClosed ? closedLabel() : deliveryLabel[mode]}</span>
                     <span>${mode === "tebex" && Number.isFinite(product.usd) ? `USD $${storeFinalUsd(product)}` : ""}${product.offerId ? ` · ${storeEscape(offerLabel(product.offerId))}` : ""}</span>
@@ -224,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
             target.innerHTML = products.map((product) => 
                 `<div class="store-selection-item">
                     <div>
-                        <strong>${storeEscape(product.name)}</strong>
+                        <strong>${storeEscape(storeText(product, "name"))}</strong>
                         <p>${storeMoney(product.clp, product)}${fxApprox(storeFinalUsd(product)) ? ` (${fxApprox(storeFinalUsd(product))})` : ""} · ${deliveryLabel[deliveryType(product)]}</p>
                     </div>
                     <button type="button" data-remove="${storeEscape(product.id)}">Quitar</button>
@@ -391,9 +393,9 @@ document.addEventListener("DOMContentLoaded", () => {
         lastFocusedElement = document.activeElement;
         body.innerHTML = `
             <span class="store-product__tag">${deliveryLabel[deliveryType(product)]}</span>
-            <h2>${storeEscape(product.name)}</h2>
-            <p>${storeEscape(product.summary)}</p>
-            <ul>${(product.includes || []).map((item) => `<li>${storeInlineMarkup(item)}</li>`).join("")}</ul>
+            <h2>${storeEscape(storeText(product, "name"))}</h2>
+            <p>${storeEscape(storeText(product, "summary"))}</p>
+            <ul>${storeIncludes(product).map((item) => `<li>${storeInlineMarkup(item)}</li>`).join("")}</ul>
         `;
         modal.classList.remove("hidden");
         document.getElementById("store-modal-close")?.focus();
