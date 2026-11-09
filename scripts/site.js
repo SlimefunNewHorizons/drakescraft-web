@@ -10,8 +10,10 @@
         const brandSubtitle = document.querySelector(".brand__meta span");
         if (!navigation || !menu) return;
 
-        const path = window.location.pathname.split("/").pop() || "index.html";
-        const activeKey = path === "index.html" ? "home"
+        const isEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
+        const rawPath = window.location.pathname.split("/").pop() || "index.html";
+        const path = rawPath.replace("guide-en.html", "guia.html").replace("events-en.html", "eventos.html").replace(/-en\.html$/, ".html");
+        const activeKey = path === "index.html" || path === "index-en.html" ? "home"
             : path === "store.html" ? "store"
                 : path === "guia.html" ? "server"
                     : path === "guia-comandos.html" ? "commands"
@@ -19,18 +21,30 @@
                             : path === "guia-slimefun.html" ? "slimefun"
                                 : path === "metricas.html" ? "metrics"
                                     : path === "apoya.html" ? "support"
-                                        : path === "support.html" || path === "terms.html" ? "help"
-                                            : "";
-                const items = [
+                                        : path === "temporada-2.html" ? "t2"
+                                            : path === "support.html" || path === "terms.html" ? "help"
+                                                : "";
+        const items = isEn ? [
+            ["home", "Home", "/index-en.html"],
+            ["server", "The server", "guide-en.html"],
+            ["t2", "Season 2", "temporada-2-en.html"],
+            ["slimefun", "Slimefun", "guia-slimefun-en.html"],
+            ["commands", "Commands", "guia-comandos-en.html"],
+            ["ranks", "Ranks", "guia-rangos-en.html"],
+            ["store", "Store", "store-en.html"],
+            ["metrics", "Metrics", "metricas-en.html"],
+            ["support", "Support", "apoya-en.html"]
+        ] : [
             ["home", "Inicio", "/"],
             ["modes", "Modalidades", "/#modalidades"],
-            ["t2", "Temporada 2", "/#novedades"],
+            ["t2", "Temporada 2", "temporada-2.html"],
             ["slimefun", "Slimefun", "guia-slimefun.html"],
             ["commands", "Comandos", "guia-comandos.html"],
-            ["store", "Tienda VIP ⚡", "store.html"],
+            ["store", "Tienda", "store.html"],
             ["metrics", "Métricas", "metricas.html"],
             ["support", "Apoyar", "apoya.html"]
         ];
+        if (brandSubtitle) brandSubtitle.textContent = isEn ? "Season 2 · Purpur 26.2" : "Temporada 2 · Purpur 26.2";
 try {
             const fragment = document.createDocumentFragment();
             items.forEach(([key, label, href]) => {
@@ -56,18 +70,21 @@ try {
             discordItem.appendChild(discordLink);
             fragment.appendChild(discordItem);
 
-            const isTranslated = isEnglishSelected();
+            const isTranslated = isEn || isEnglishSelected();
             const langItem = document.createElement("li");
             const langBtn = document.createElement("button");
             langBtn.className = "nav-lang-btn";
             langBtn.type = "button";
             langBtn.id = "nav-lang-toggle";
-            langBtn.innerHTML = `🌐 <span>${isTranslated ? 'ES' : 'EN'}</span>`;
+            langBtn.innerHTML = `<span>${isTranslated ? 'ES' : 'EN'}</span>`;
             langBtn.title = isTranslated ? "Cambiar a Español" : "Translate to English";
             langBtn.setAttribute("aria-label", langBtn.title);
             langBtn.setAttribute("aria-pressed", String(isTranslated));
             langBtn.addEventListener("click", () => {
-                if (isTranslated) {
+                if (isEn) {
+                    const es = rawPath.replace("guide-en.html", "guia.html").replace("events-en.html", "eventos.html").replace("index-en.html", "").replace(/-en\.html$/, ".html");
+                    window.location.href = "/" + es;
+                } else if (isTranslated) {
                     resetGoogleTranslate();
                 } else {
                     applyGoogleTranslate('en');

@@ -603,3 +603,55 @@ main .op-section { padding-block: clamp(3.5rem, 7vw, 7rem); }
 .ol-chapter__fact { border-left: 3px solid var(--r-violet); padding-left: 1rem; color: #bfb4cf; font-size: 0.95rem; }
 .ol-plate { padding: 0.6rem !important; }
 .ol-plate__photo figcaption, .ol-plate figcaption { font: 500 0.82rem var(--f-body) !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--r-gold) !important; }
+
+/* =====================================================================
+   PAGINAS EN: la maqueta anterior (site-nav, store-hero-modern, home-hero)
+   hereda el sistema. Misma estética, mismas piezas.
+   ===================================================================== */
+.site-nav { position: sticky; top: 0; z-index: 1000; background: rgba(8, 5, 14, 0.95) !important; border-bottom: 0 !important; box-shadow: 0 1px 0 var(--r-line); backdrop-filter: blur(14px); }
+.site-nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -14px; height: 14px; background: var(--meander) repeat-x center / auto 14px; opacity: 0.32; pointer-events: none; }
+.site-nav__bar { max-width: none !important; padding-inline: var(--r-gutter) !important; }
+.brand__meta strong { font-family: var(--f-display) !important; letter-spacing: 0.08em; font-size: 1.2rem; color: #fff; }
+.brand__meta span { color: var(--r-gold) !important; letter-spacing: 0.14em; font-size: 0.68rem; text-transform: uppercase; }
+.brand img { filter: drop-shadow(0 0 12px rgba(228, 187, 104, 0.35)); }
+.site-nav__links a { color: #d7cde4 !important; font-weight: 500; border-radius: 0 !important; background: none !important; text-shadow: none; }
+.site-nav__links a:hover { color: var(--r-gold-hi) !important; }
+.site-nav__links a.active { color: var(--r-gold-hi) !important; box-shadow: inset 0 -2px var(--r-gold); }
+.site-nav__links .nav-discord, .site-nav__links .nav-store-btn { background: var(--r-gold) !important; color: #170f05 !important; border: 0 !important; border-radius: 2px !important; font-weight: 700; box-shadow: none !important; }
+.nav-store-btn small { display: none; }
+.store-hero-modern { position: relative; isolation: isolate; margin: 0 !important; border: 0 !important; padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3.5rem, 6vw, 6rem) !important; min-height: clamp(340px, 46vh, 560px);
+  background: linear-gradient(90deg, rgba(8, 5, 14, 0.96) 0%, rgba(8, 5, 14, 0.82) 38%, rgba(8, 5, 14, 0.25) 78%, rgba(8, 5, 14, 0.55) 100%), linear-gradient(0deg, var(--r-ink) 0%, transparent 38%), var(--hero-img) center 38% / cover no-repeat, var(--r-night) !important; }
+.store-hero-modern::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: var(--meander) repeat-x center / auto 14px; opacity: 0.5; }
+.store-hero-modern h1, .guide-hero h1, .home-hero h1, .home-hero__title, .t2-glitch-title { background: none !important; -webkit-text-fill-color: currentColor !important; color: var(--r-marble) !important; text-transform: none; letter-spacing: 0.01em !important; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6) !important; }
+.store-hero-modern h1 { font-size: var(--t-hero); max-width: 16ch; }
+.guide-hero h1 em, .store-hero-modern h1 em, .home-hero h1 em, .home-hero__title span { background: none !important; -webkit-text-fill-color: var(--r-gold) !important; color: var(--r-gold) !important; }
+.guide-hero__lead, .store-hero-modern p { color: #ddd3ea; font-size: var(--t-lead); }
+.home-hero { min-height: min(calc(100svh - 80px), 860px); }
+.home-hero__cyber-grid { display: none !important; }
+.home-hero__veil { background: linear-gradient(90deg, rgba(8, 5, 14, 0.96) 0%, rgba(8, 5, 14, 0.8) 42%, rgba(8, 5, 14, 0.2) 90%), linear-gradient(0deg, var(--r-ink) 0%, transparent 30%) !important; }
+.home-hero__media img { filter: none !important; animation: none !important; }
+.home-hero__split { width: min(var(--r-max), calc(100% - 2 * var(--r-gutter))) !important; }
+.home-hero__title { font-size: clamp(2.6rem, 1rem + 5.4vw, 6rem) !important; line-height: 1 !important; }
+.home-hero__modes span, .store-hero-modern .eyebrow, [class*="__kicker"] { font-family: var(--f-body) !important; text-transform: none !important; letter-spacing: 0 !important; }
+.page-shell .btn-primary, .home-button--primary, .home-button--gold { background: linear-gradient(180deg, var(--r-gold-hi), var(--r-gold)) !important; color: #170f05 !important; border: 0 !important; }
+
+/* pie EN (autónomo, sin bootstrap) */
+.r-foot { background: var(--r-ink); position: relative; margin-top: 3rem; }
+.r-foot::before { content: ""; display: block; height: 14px; background: var(--meander) repeat-x center / auto 14px; opacity: 0.5; }
+.r-foot .container { padding-block: clamp(2.5rem, 5vw, 4.5rem) 1.5rem; }
+.r-foot__cols { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 2rem; }
+.r-foot__cols h2 { font: 700 0.95rem var(--f-display); letter-spacing: 0.1em; color: var(--r-gold); margin: 0 0 1rem; }
+.r-foot__cols a { display: block; margin: 0.5rem 0; font-size: 0.95rem; color: #cfc4dd; }
+.r-foot__cols a:hover { color: var(--r-gold-hi); }
+.r-foot__logo { display: flex !important; align-items: center; gap: 0.8rem; margin: 0 0 1rem !important; }
+.r-foot__logo img { width: 43px; height: 48px; }
+.r-foot__logo strong { display: block; font: 600 1.2rem var(--f-display); color: #fff; letter-spacing: 0.06em; }
+.r-foot__logo small { color: var(--r-gold); letter-spacing: 0.2em; font-size: 0.68rem; }
+.r-foot__brand p { max-width: 26rem; font-size: 0.95rem; }
+.r-foot .f-legal { margin-top: 2rem; }
+.r-foot__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--r-line); color: #a89dba; font-size: 0.82rem; }
+.r-foot .f-btn { margin: 0 !important; }
+@media (max-width: 991px) { .r-foot__cols { grid-template-columns: 1fr 1fr; } .r-foot__brand { grid-column: 1 / -1; } }
+.lang-switcher { display: none !important; }
+.store-hero-modern__bg-image { display: none !important; }
+.store-hero-modern__grid { position: relative; z-index: 1; }

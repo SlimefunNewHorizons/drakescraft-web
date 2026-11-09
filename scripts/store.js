@@ -59,6 +59,10 @@ function storeFxLine(usd) {
     return text ? `<small class="store-fx-approx">${text}</small>` : "";
 }
 
+const TAB_EN = { monthly: "VIP Passes", titans: "Primordial Titans", protection: "Protections", utility: "Utilities", passes: "Passes & Commands", slimefun: "Slimefun Knowledge", roles: "Game Roles", kits: "Kits & Gear", crates: "Relics & Crates", boosters: "Global Boosters", christmas: "Christmas & Winter Solstice" };
+function categoryLabel(category) {
+    return plainLabel((storeIsEn && TAB_EN[category?.id]) || category?.label);
+}
 function plainLabel(text) {
     return String(text ?? "").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F]/gu, "").replace(/\s+/g, " ").trim();
 }
@@ -184,12 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!state.catalog?.categories) return;
         const validCategories = state.catalog.categories.filter((cat) => state.catalog.products?.some((p) => p.category === cat.id && (p.purchaseAvailable !== false || p.storeClosed)));
         tabs.innerHTML = validCategories.map((category) => 
-            `<button class="store-tab ${category.id === state.category ? "is-active" : ""}" type="button" data-category="${storeEscape(category.id)}">${storeEscape(plainLabel(category.label))}</button>`
+            `<button class="store-tab ${category.id === state.category ? "is-active" : ""}" type="button" data-category="${storeEscape(category.id)}">${storeEscape(categoryLabel(category))}</button>`
         ).join("");
         
         const category = (validCategories || state.catalog.categories).find((entry) => entry.id === state.category);
         const titleElem = document.getElementById("store-category-title");
-        if (titleElem) titleElem.textContent = plainLabel(category?.label) || "Catálogo DrakesCraft";
+        if (titleElem) titleElem.textContent = categoryLabel(category) || (storeIsEn ? "Catalog" : "Catálogo DrakesCraft");
     }
 
     function renderProducts() {
@@ -215,9 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="store-product__delivery">${product.storeClosed ? closedLabel() : deliveryLabel[mode]}${product.offerId ? ` · ${storeEscape(offerLabel(product.offerId))}` : ""}</span>
                 </div>
                 <div class="store-product__actions">
-                    <button class="btn btn-secondary" type="button" data-detail="${storeEscape(product.id)}">Ver detalle</button>
+                    <button class="btn btn-secondary" type="button" data-detail="${storeEscape(product.id)}">${storeIsEn ? "Details" : "Ver detalle"}</button>
                     <button class="btn ${selected ? "btn-primary" : "btn-secondary"}" type="button" data-select="${storeEscape(product.id)}" aria-pressed="${selected}" ${!purchasable || incompatible ? "disabled" : ""}>
-                        ${product.storeClosed ? closedButton() : mode === "unavailable" ? "No disponible" : !purchasable ? "In-game" : selected ? "En el carrito" : incompatible ? "Otro flujo" : "Agregar"}
+                        ${product.storeClosed ? closedButton() : mode === "unavailable" ? (storeIsEn ? "Unavailable" : "No disponible") : !purchasable ? "In-game" : selected ? (storeIsEn ? "In cart" : "En el carrito") : incompatible ? (storeIsEn ? "Other flow" : "Otro flujo") : (storeIsEn ? "Add" : "Agregar")}
                     </button>
                 </div>
             </article>`;

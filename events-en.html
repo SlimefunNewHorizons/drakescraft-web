@@ -107,8 +107,10 @@
     }
     [hidden] { display: none !important; }
   </style>
-</head>
-<body class="page-shell" data-page="eventos" data-section="community">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;display=swap" rel="stylesheet" />
+    <link href="/styles/rediseno.css?v=20261109-r9" rel="stylesheet" />
+  </head>
+<body data-hero="events" class="page-shell" data-page="eventos" data-section="community">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav" aria-label="Main Navigation">
     <div class="container site-nav__bar">
@@ -125,7 +127,7 @@
         <li><a href="guia-rangos-en.html">Ranks</a></li>
         <li><a href="guia-slimefun-en.html">Slimefun</a></li>
         <li><a href="apoya-en.html">Sponsors</a></li>
-        <li><a class="nav-store-btn" href="store-en.html"><span>VIP STORE ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP STORE </span><small>Tebex</small></a></li>
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
     </div>
@@ -159,7 +161,7 @@
 
       <!-- ANTI-ANNOYANCE RULES -->
       <section class="event-rules-box" hidden data-event-schedule>
-        <h3 style="color: #00d2ff; margin-top: 0;">✦ Anti-Annoyance Guarantees & Balanced Economy</h3>
+        <h3 style="color: #00d2ff; margin-top: 0;">Anti-Annoyance Guarantees & Balanced Economy</h3>
         <ul style="color: #cbd5e1; line-height: 1.6; margin-bottom: 0; padding-left: 1.25rem;">
           <li><strong>Silent Mode (Opt-Out):</strong> Run <code>/evento silenciar</code> to turn off BossBars, sounds, or visual effects during events.</li>
           <li><strong>Zero Loss:</strong> Supply Drops only spawn in loaded wild chunks and clean themselves up. No ProtectionStones or WorldGuard claims are ever overwritten.</li>
@@ -182,25 +184,31 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container site-footer__grid">
-      <div class="site-footer__brand">
-        <a class="brand brand--footer" href="/" aria-label="DrakesCraft Home">
-          <img class="brand__mark" src="assets/logo-drakescraft.webp" alt="" width="36" height="36">
-          <span class="brand__meta"><strong>DrakesCraft</strong><span>Minecraft Java &amp; Bedrock Server</span></span>
-        </a>
-        <p class="site-footer__lead">Community, clean engineering and six interconnected modalities powered by Slimefun and StarSuites.</p>
+  <footer class="r-foot">
+    <div class="container">
+      <div class="f-join">
+        <div>
+          <h2>Same IP for Java and Bedrock</h2>
+          <p>Season 2 is still in staff testing. The planned opening is November 18, 2026, to be confirmed on Discord.</p>
+        </div>
+        <div class="f-btns">
+          <code class="f-join__ip">mc.drakescraft.cl</code>
+          <a class="f-btn f-btn--gold" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Join Discord</a>
+          <a class="f-btn" href="/store-en.html">Open the store</a>
+        </div>
       </div>
-      <div class="site-footer__col">
-        <p class="site-footer__heading">Navigation</p>
-        <ul class="site-footer__list">
-          <li><a href="guide-en.html">Guide &amp; Modalities</a></li>
-          <li><a href="guia-comandos-en.html">All Commands</a></li>
-          <li><a href="events-en.html">November Calendar</a></li>
-          <li><a href="eventos.html">Calendario en Español</a></li>
-          <li><a href="store-en.html">VIP Store</a></li>
-        </ul>
+      <div class="r-foot__cols">
+        <div class="r-foot__brand">
+          <a class="r-foot__logo" href="/index-en.html"><img src="/assets/logo-drakescraft.png" alt="" width="43" height="48"><span><strong>DrakesCraft</strong><small>JAVA + BEDROCK</small></span></a>
+          <p>Six game modes, one account and a community that builds together. A Chilean technical survival server built around Slimefun.</p>
+        </div>
+        <div><h2>Learn</h2><a href="/guide-en.html">The server</a><a href="/guia-comandos-en.html">Commands</a><a href="/guia-rangos-en.html">Ranks</a><a href="/guia-poderes-en.html">Powers</a><a href="/guia-slimefun-en.html">Slimefun</a></div>
+        <div><h2>Community</h2><a href="/temporada-2-en.html">Season 2</a><a href="/events-en.html">Events</a><a href="/metricas-en.html">Metrics</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a><a href="/apoya-en.html">Support the project</a></div>
+        <div><h2>Store and help</h2><a href="/store-en.html">Store</a><a href="/support-en.html">Purchase support</a><a href="/terms-en.html">Terms</a><a href="/privacidad-en.html">Privacy</a></div>
+        <div><h2>Español</h2><a href="/">Inicio</a><a href="/store.html">Tienda</a><a href="/guia-rangos.html">Rangos</a><a href="/support.html">Soporte</a></div>
       </div>
+      <p class="f-legal">DrakesCraft is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Payments are processed by Tebex Limited. Products are digital and explained in the terms.</p>
+      <div class="r-foot__bottom"><span>DrakesCraft · Official portal</span><span>Java + Bedrock · mc.drakescraft.cl</span></div>
     </div>
   </footer>
 
@@ -257,5 +265,6 @@
     }
     loadEvents();
   </script>
-</body>
+  <script src="/scripts/portal.js?v=20261109-r8" defer></script>
+  </body>
 </html>

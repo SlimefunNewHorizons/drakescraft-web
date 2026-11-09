@@ -31,8 +31,10 @@
   <meta name="twitter:image" content="https://web.drakescraft.cl/assets/drakescraft-og-preview.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="styles/seasonal-themes.css?v=20261017-v7">
-</head>
-<body class="page-shell" data-page="guia" data-section="commands">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;display=swap" rel="stylesheet" />
+    <link href="/styles/rediseno.css?v=20261109-r9" rel="stylesheet" />
+  </head>
+<body data-hero="commands" class="page-shell" data-page="guia" data-section="commands">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container site-nav__bar">
@@ -49,7 +51,7 @@
         <li><a href="guia-rangos-en.html">Ranks</a></li>
         <li><a href="guia-slimefun-en.html">Slimefun</a></li>
         <li><a href="apoya-en.html">Sponsors</a></li>
-        <li><a class="nav-store-btn" href="store-en.html"><span>VIP SHOP ⚡</span><small>Tebex</small></a></li>
+        <li><a class="nav-store-btn" href="store-en.html"><span>VIP SHOP </span><small>Tebex</small></a></li>
         <li><a class="nav-discord" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></li>
       </ul>
     </div>
@@ -94,37 +96,37 @@
       <!-- Interactive Modality Selector (6 in 1) -->
       <div class="modality-selector-grid" id="modality-selector" role="tablist" aria-label="Modality Filter">
         <button class="modality-btn is-active" type="button" data-mod="all" aria-pressed="true" role="tab">
-          <span class="modality-btn__icon">🌌</span>
+          <span class="modality-btn__icon"></span>
           <span>All</span>
           <code>General</code>
         </button>
         <button class="modality-btn" type="button" data-mod="slimefun" aria-pressed="false" role="tab" style="--btn-active-border: #10b981; --btn-active-bg: rgba(16, 185, 129, 0.18);">
-          <span class="modality-btn__icon">⚡</span>
+          <span class="modality-btn__icon"></span>
           <span>Slimefun SF</span>
           <code>/survival</code>
         </button>
         <button class="modality-btn" type="button" data-mod="clasico" aria-pressed="false" role="tab" style="--btn-active-border: #3b82f6; --btn-active-bg: rgba(59, 130, 246, 0.18);">
-          <span class="modality-btn__icon">🌲</span>
+          <span class="modality-btn__icon"></span>
           <span>Classic Vanilla</span>
           <code>/clasico</code>
         </button>
         <button class="modality-btn" type="button" data-mod="skyblock" aria-pressed="false" role="tab" style="--btn-active-border: #38bdf8; --btn-active-bg: rgba(56, 189, 248, 0.18);">
-          <span class="modality-btn__icon">☁️</span>
+          <span class="modality-btn__icon"></span>
           <span>SkyBlock</span>
           <code>/skyblock</code>
         </button>
         <button class="modality-btn" type="button" data-mod="oneblock" aria-pressed="false" role="tab" style="--btn-active-border: #a855f7; --btn-active-bg: rgba(168, 85, 247, 0.18);">
-          <span class="modality-btn__icon">🌀</span>
+          <span class="modality-btn__icon"></span>
           <span>OneBlock</span>
           <code>/oneblock</code>
         </button>
         <button class="modality-btn" type="button" data-mod="onechunk" aria-pressed="false" role="tab" style="--btn-active-border: #ea580c; --btn-active-bg: rgba(234, 88, 12, 0.18);">
-          <span class="modality-btn__icon">🧱</span>
+          <span class="modality-btn__icon"></span>
           <span>OneChunk</span>
           <code>/onechunk</code>
         </button>
         <button class="modality-btn" type="button" data-mod="laboratorio" aria-pressed="false" role="tab" style="--btn-active-border: #f43f5e; --btn-active-bg: rgba(244, 63, 94, 0.18);">
-          <span class="modality-btn__icon">🧪</span>
+          <span class="modality-btn__icon"></span>
           <span>Lab</span>
           <code>/laboratorio</code>
         </button>
@@ -148,7 +150,7 @@
     <!-- ============================================================== -->
 
     <section class="container guide-section" id="basicos" data-cat="global">
-      <h2>🌟 Basic Commands and Navigation</h2>
+      <h2>Basic Commands and Navigation</h2>
       <p class="guide-section__note">Essential commands to move around the network, check your status and request assistance. Available universally across all modalities.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/spawn</code><p>Takes you to the spawn point of the modality you're in. In SkyBlock, OneBlock and OneChunk there's no general public spawn: it sends you to your island or chunk safe point.<span class="guide-tag guide-tag--survival">Universal</span></p></div>
@@ -182,7 +184,7 @@
     </section>
 
     <section class="container guide-section" id="modalidades-gate" data-cat="global">
-      <h2>🚪 Move Between the 6 Modalities</h2>
+      <h2>Move Between the 6 Modalities</h2>
       <p class="guide-section__note">Each modality is an independent environment managed by InvSwitcher-Drake. Inventories, ender chests, statistics, advancements and coordinates are loaded and saved separately. <strong>Your Dragon balance and rank are global.</strong></p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/modalidades</code><p>Opens the graphical selector of the 6 server modalities.<span class="guide-row__alias">Also: /modalidad, /modes</span><span class="guide-tag guide-tag--survival">Universal</span></p></div>
@@ -197,7 +199,7 @@
     </section>
 
     <section class="container guide-section" id="dinero-global" data-cat="global">
-      <h2>💰 Global Economy and Central Trade</h2>
+      <h2>Global Economy and Central Trade</h2>
       <p class="guide-section__note">Dragons are the official global currency of DrakesCraft. Your bank account and balance travel with you across all worlds.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk"><code>/balance</code><p>Check your current balance in Dragons.<span class="guide-row__alias">Also: /bal, /money</span><span class="guide-tag guide-tag--survival">Global</span></p></div>
@@ -211,7 +213,7 @@
     </section>
 
     <section class="container guide-section" id="traductor" data-cat="global">
-      <h2>🌐 Native Multilingual Translator (DrakesTranslate)</h2>
+      <h2>Native Multilingual Translator (DrakesTranslate)</h2>
       <p class="guide-section__note">Bidirectional neural translation in real-time between Spanish, English, Portuguese and German. Requires no mods on your client and is 100% compatible with Java and Bedrock.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/translate on &lt;language&gt;</code><p>Enable automatic chat translation to the selected language (e.g: <code>/translate on en</code> for English, <code>/translate on es</code> for Spanish).<span class="guide-row__alias">Languages: es, en, pt, de · Alias: /tr on, /traductor on</span><span class="guide-tag guide-tag--bedrock">Bedrock &amp; Java</span></p></div>
@@ -227,7 +229,7 @@
     <!-- ============================================================== -->
 
     <section class="container guide-section" id="mod-slimefun" data-cat="slimefun">
-      <h2>⚡ Slimefun Survival Modality (Polis / Main)</h2>
+      <h2>Slimefun Survival Modality (Polis / Main)</h2>
       <p class="guide-section__note">The technical and industrial heart of DrakesCraft. Enriched survival with 60+ Slimefun expansions, quantum technology, botanical magic, mythological pantheons and algorithmic economy.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico"><code>/sethome &lt;name&gt;</code><p>Saves your current location as a personal home. The maximum number of homes increases with your rank.<span class="guide-row__alias">Delete: /delhome &lt;name&gt; · Rename: /renamehome</span><span class="guide-tag guide-tag--survival">Survival &amp; Classic</span></p></div>
@@ -257,7 +259,7 @@
     </section>
 
     <section class="container guide-section" id="mod-clasico" data-cat="clasico">
-      <h2>🌲 Classic Survival Modality (Pure Vanilla)</h2>
+      <h2>Classic Survival Modality (Pure Vanilla)</h2>
       <p class="guide-section__note">Minecraft in its maximum traditional purity. Terralith generation with majestic biomes, no machines, no Slimefun, no Ki transformations or mythological bosses. A protected classic balance.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,clasico"><code>/clasico</code><p>Enter the traditional Classic Survival world.<span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
@@ -268,13 +270,13 @@
         <div class="guide-row" data-mod="all,clasico"><code>/ps get</code><p>Claim your exclusive Classic protection ores (independent quota: 4 in Polis and 10 in OldSchool).<span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
         <div class="guide-row" data-mod="all,clasico"><code>/ah</code><p>Exclusive auction house among Classic world players (zero infiltration of technological or magical items).<span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
         <div class="guide-row" data-mod="all,clasico"><code>/pv</code><p>Personal vaults isolated for safeguarding your vanilla resources.<span class="guide-tag guide-tag--survival">Classic Vanilla</span></p></div>
-        <div class="guide-row" data-mod="all,clasico"><code>Rules and Blocks in Classic</code><p>❌ <strong>Completely disabled:</strong> Slimefun, arcane magic, anime transformations, pantheon bosses, magical backpacks and public warps (/warp blocked to encourage foot or horse exploration).<span class="guide-tag guide-tag--bedrock">Vanilla Purity</span></p></div>
+        <div class="guide-row" data-mod="all,clasico"><code>Rules and Blocks in Classic</code><p><strong>Completely disabled:</strong> Slimefun, arcane magic, anime transformations, pantheon bosses, magical backpacks and public warps (/warp blocked to encourage foot or horse exploration).<span class="guide-tag guide-tag--bedrock">Vanilla Purity</span></p></div>
       </div>
     </section>
 
     <section class="container guide-section" id="mod-skyblock" data-cat="skyblock">
       <p class="guide-section__note"><strong>Planned for T2:</strong> protection from landing fall damage in SkyBlock, OneBlock and OneChunk, including their Nether and End dimensions. It is not enabled yet; void rescue does not guarantee a damage-free landing.</p>
-      <h2>☁️ SkyBlock Modality (Islands in the Void)</h2>
+      <h2>SkyBlock Modality (Islands in the Void)</h2>
       <p class="guide-section__note">Start with minimal resources on a floating island over the abyss. Features BentoBox BSkyBlock, integrated Slimefun (or traditional gameplay) and territory auto-expansion via /rankup.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,skyblock"><code>/is</code><p>Takes you to your SkyBlock island. First time execution starts island creation.<span class="guide-row__alias">Also: /island, /skyblock, /sb</span><span class="guide-tag guide-tag--survival">SkyBlock</span></p></div>
@@ -294,7 +296,7 @@
     </section>
 
     <section class="container guide-section" id="mod-oneblock" data-cat="oneblock">
-      <h2>🌀 OneBlock Modality (The Infinite Block)</h2>
+      <h2>OneBlock Modality (The Infinite Block)</h2>
       <p class="guide-section__note">You start above a single indestructible block that never runs out. When you mine it, it evolves throughout 21 progressive phases releasing new materials, chests with rare loot and monsters from all dimensions.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,oneblock"><code>/oneblock</code><p>Teleports you to the center of your island above your infinite Magic Block.<span class="guide-row__alias">Also: /ob</span><span class="guide-tag guide-tag--survival">OneBlock</span></p></div>
@@ -311,7 +313,7 @@
 
     <section class="container guide-section" id="mod-onechunk" data-cat="onechunk">
       <p class="guide-section__note"><strong>In preparation for T2:</strong> safe entry to the shared Nether and End chunk. It will prevent arrivals outside the border and cancel entry when no safe floor is available. This is not enabled on Dallas yet.</p>
-      <h2>🧱 OneChunk Modality (Mine Through a Chunk)</h2>
+      <h2>OneChunk Modality (Mine Through a Chunk)</h2>
       <p class="guide-section__note">You start in a 16x16 chunk generated for you: the first is always a forest with trees, iron, coal, stone and dirt. What you mine doesn't reappear: you mine <strong>through</strong> the chunk. Upon exhausting it (when you've mined almost everything) the next appears, and every 3 chunks the biome changes (forest, desert, snowy tundra, jungle and deep caverns). With each chunk more hostile mobs appear, increasingly dangerous, and ores become richer.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,onechunk"><code>/onechunk</code><p>Takes you to your chunk. First time creates your island and generates the first chunk.<span class="guide-row__alias">Also: /oc</span><span class="guide-tag guide-tag--survival">OneChunk</span></p></div>
@@ -322,14 +324,14 @@
     </section>
 
     <section class="container guide-section" id="mod-laboratorio" data-cat="laboratorio">
-      <h2>🧪 Creative Lab (Testing Sandbox)</h2>
+      <h2>Creative Lab (Testing Sandbox)</h2>
       <p class="guide-section__note"><strong>Prepared for T2, not enabled yet:</strong> fix restrictions on <code>/sf</code> in Classic and its dimensions, <code>/is</code> in OneBlock and <code>/ob</code> in SkyBlock. The Lab will also enforce its configured blocks on <code>/sf cheat</code> and <code>/sf give</code>, while keeping <code>/sf guide</code> available. Deployment and client tests are pending.</p>
       <p class="guide-section__note">A peaceful flat world, no mobs and permanent creative mode. Designed so players can design, wire and test complex circuits, nuclear reactors and Slimefun networks without risking their materials in Survival.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,laboratorio"><code>/laboratorio</code><p>Enter the Creative Lab.<span class="guide-row__alias">Also: /warp laboratorio</span><span class="guide-tag guide-tag--survival">Lab</span></p></div>
         <div class="guide-row" data-mod="all,laboratorio"><code>/sf cheat</code><p>Opens the official Slimefun Cheat Sheet to get any machine or industrial component with a single click. Also opens by Shift + Right-Click with the Slimefun guide in hand.<span class="guide-tag guide-tag--survival">Lab Only</span></p></div>
         <div class="guide-row" data-mod="all,laboratorio"><code>Unlocked Researches</code><p>In the Lab all Slimefun researches appear virtually completed so you can test advanced tier recipes at no cost.<span class="guide-tag guide-tag--survival">Lab</span></p></div>
-        <div class="guide-row" data-mod="all,laboratorio"><code>Hermetic Anti-Leak Shield</code><p>❌ <strong>Absolute Security Restriction:</strong> /pv, /ah, /trade and /enderchest are completely blocked here. Nothing generated in the Lab can escape to Survival, Classic or Island economies.<span class="guide-tag guide-tag--bedrock">SRE Security</span></p></div>
+        <div class="guide-row" data-mod="all,laboratorio"><code>Hermetic Anti-Leak Shield</code><p><strong>Absolute Security Restriction:</strong> /pv, /ah, /trade and /enderchest are completely blocked here. Nothing generated in the Lab can escape to Survival, Classic or Island economies.<span class="guide-tag guide-tag--bedrock">SRE Security</span></p></div>
       </div>
     </section>
 
@@ -338,7 +340,7 @@
     <!-- ============================================================== -->
 
     <section class="container guide-section" id="progresion" data-cat="global">
-      <h2>📈 DrakesRankup: Anime Ranks, Trades and Skills</h2>
+      <h2>DrakesRankup: Anime Ranks, Trades and Skills</h2>
       <p class="guide-section__note">The comprehensive progression and prestige system. Rank up to expand your island radius, multiply trade earnings and unlock legendary powers.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,skyblock,oneblock,onechunk,clasico"><code>/rankup</code><p>Check your Dragon balance and ascend to the next anime rank if you meet the cost.<span class="guide-row__alias">Also: /ru</span><span class="guide-tag guide-tag--survival">All worlds</span></p></div>
@@ -357,7 +359,7 @@
     </section>
 
     <section class="container guide-section" id="vip-beneficios" data-cat="global">
-      <h2>💎 VIP Benefits, Cosmetics and ImageFrame</h2>
+      <h2>VIP Benefits, Cosmetics and ImageFrame</h2>
       <p class="guide-section__note">Comfort tools and aesthetic customization for patrons and VIP ranks on the network.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,skyblock,oneblock,onechunk,clasico"><code>/vip</code><p>Opens the interactive graphical panel (27-slot GUI) to manage your VIP abilities, particle auras, passive buffs and double jump.<span class="guide-tag guide-tag--vip">VIP Ranks</span></p></div>
@@ -375,7 +377,7 @@
     </section>
 
     <section class="container guide-section" id="multiverse-creatures" data-cat="global">
-      <h2>🌌 MultiverseCreatures: Stands, Wiki and Dimensions</h2>
+      <h2>MultiverseCreatures: Stands, Wiki and Dimensions</h2>
       <p class="guide-section__note">JoJo-style Stands system, in-game encyclopedia wiki, dimensional bosses and rituals. Available in Slimefun Survival, SkyBlock, OneBlock and OneChunk.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,skyblock,oneblock,onechunk"><code>/stand [summon|ability|sha]</code><p>Your Stand, its abilities and Killer Queen: Sheer Heart Attack. <code>summon</code> invokes/sends; <code>ability [1|2]</code> uses ability; <code>sha</code> opens SHA menu.<span class="guide-tag guide-tag--survival">Not in Classic</span></p></div>
@@ -385,7 +387,7 @@
     </section>
 
     <section class="container guide-section" id="social-chat" data-cat="global">
-      <h2>💬 Social, Chat and Link Management</h2>
+      <h2>Social, Chat and Link Management</h2>
       <p class="guide-section__note">Commands to communicate with friends, silence annoyances and coordinate in global chat.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all,slimefun,clasico,skyblock,oneblock,onechunk,laboratorio"><code>/msg &lt;player&gt; &lt;text&gt;</code><p>Send a whisper or direct private message.<span class="guide-row__alias">Also: /w, /m, /pm · Reply: /r</span><span class="guide-tag guide-tag--survival">Universal</span></p></div>
@@ -398,7 +400,7 @@
     </section>
 
     <section class="container guide-section" id="staff-admin" data-cat="staff">
-      <h2>🛡️ Administration and SRE Staff</h2>
+      <h2>Administration and SRE Staff</h2>
       <p class="guide-section__note">Restricted access commands for supervision, audit and server maintenance.</p>
       <div class="guide-rows">
         <div class="guide-row" data-mod="all"><code>/vani</code><p>Toggles absolute invisibility vanish mode for moderation tasks.<span class="guide-tag guide-tag--staff">Staff</span></p></div>
@@ -408,8 +410,35 @@
         <div class="guide-row" data-mod="all"><code>/papademar</code><p>Administrative Sea Potato delivery for events or incident resolution.<span class="guide-tag guide-tag--staff">Admin</span></p></div>
       </div>
     </section>
-  <footer class="site-footer"><div class="container site-footer__grid"><div><strong>DrakesCraft</strong><p>A living guide. If something's missing, let us know on Discord.</p></div><div class="site-footer__links"><a href="store-en.html">Shop</a><a href="support-en.html">Support</a><a href="terms-en.html">Terms</a><a href="privacidad-en.html">Privacy</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a></div><div class="site-footer__sponsor"><span>Support the project</span><iframe src="https://github.com/sponsors/SlimefunNewHorizons/button" title="Sponsor SlimefunNewHorizons" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe><iframe src="https://github.com/sponsors/JackStar6677-1/button" title="Sponsor JackStar6677-1" height="32" width="114" loading="lazy" style="border:0;border-radius:6px;"></iframe></div></div></footer>
+  <footer class="r-foot">
+    <div class="container">
+      <div class="f-join">
+        <div>
+          <h2>Same IP for Java and Bedrock</h2>
+          <p>Season 2 is still in staff testing. The planned opening is November 18, 2026, to be confirmed on Discord.</p>
+        </div>
+        <div class="f-btns">
+          <code class="f-join__ip">mc.drakescraft.cl</code>
+          <a class="f-btn f-btn--gold" href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Join Discord</a>
+          <a class="f-btn" href="/store-en.html">Open the store</a>
+        </div>
+      </div>
+      <div class="r-foot__cols">
+        <div class="r-foot__brand">
+          <a class="r-foot__logo" href="/index-en.html"><img src="/assets/logo-drakescraft.png" alt="" width="43" height="48"><span><strong>DrakesCraft</strong><small>JAVA + BEDROCK</small></span></a>
+          <p>Six game modes, one account and a community that builds together. A Chilean technical survival server built around Slimefun.</p>
+        </div>
+        <div><h2>Learn</h2><a href="/guide-en.html">The server</a><a href="/guia-comandos-en.html">Commands</a><a href="/guia-rangos-en.html">Ranks</a><a href="/guia-poderes-en.html">Powers</a><a href="/guia-slimefun-en.html">Slimefun</a></div>
+        <div><h2>Community</h2><a href="/temporada-2-en.html">Season 2</a><a href="/events-en.html">Events</a><a href="/metricas-en.html">Metrics</a><a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a><a href="/apoya-en.html">Support the project</a></div>
+        <div><h2>Store and help</h2><a href="/store-en.html">Store</a><a href="/support-en.html">Purchase support</a><a href="/terms-en.html">Terms</a><a href="/privacidad-en.html">Privacy</a></div>
+        <div><h2>Español</h2><a href="/">Inicio</a><a href="/store.html">Tienda</a><a href="/guia-rangos.html">Rangos</a><a href="/support.html">Soporte</a></div>
+      </div>
+      <p class="f-legal">DrakesCraft is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft. Payments are processed by Tebex Limited. Products are digital and explained in the terms.</p>
+      <div class="r-foot__bottom"><span>DrakesCraft · Official portal</span><span>Java + Bedrock · mc.drakescraft.cl</span></div>
+    </div>
+  </footer>
   <script src="scripts/site.js?v=20261017-v7"></script>
   <script src="scripts/guia.js?v=20261017-v7"></script>
-</body>
+  <script src="/scripts/portal.js?v=20261109-r8" defer></script>
+  </body>
 </html>
