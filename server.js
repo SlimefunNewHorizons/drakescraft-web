@@ -144,9 +144,9 @@ const tebexPackageIds = {
   'booster-exp-1h': 7697437
 };
 // Los bloqueos excepcionales se declaran aquí para impedir que un producto llegue al checkout.
-// protection-481 fue verificada contra el alias vipzeus de ProtectionStones y se mantiene fuera de venta
+// protection-481 verificada contra vipzeus (fuera de venta); protection-fortaleza es la misma piedra que protection-177 y esta desactivada en Tebex
 // (el rango Zeus ya la entrega). Si reaparece en Tebex, no se puede comprar desde la web.
-const unavailableTebexProductIds = new Set(['protection-481']);
+const unavailableTebexProductIds = new Set(['protection-481', 'protection-fortaleza']);
 
 const bossesCatalog = {
   updatedAt: '2026-07-10',

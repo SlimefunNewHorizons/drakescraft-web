@@ -497,6 +497,9 @@ async function main() {
     const p481 = data.products.find((p) => p.id === 'protection-481');
     if (!p481 || p481.purchaseAvailable !== false) errors.push('protection-481 debe estar fuera de venta');
     else { passed++; console.log('✓ protection-481 fuera de venta'); }
+    const pf = data.products.find((p) => p.id === 'protection-fortaleza');
+    if (!pf || pf.purchaseAvailable !== false) errors.push('protection-fortaleza debe estar fuera de venta');
+    else { passed++; console.log('✓ protection-fortaleza fuera de venta'); }
     const r = await fetch(`${BASE_URL}/terminos.html`);
     if (r.status !== 301) errors.push(`/terminos.html: esperado 301, got ${r.status}`);
     else { passed++; console.log('✓ /terminos.html redirige'); }
