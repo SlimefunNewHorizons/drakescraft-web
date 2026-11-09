@@ -11,7 +11,7 @@
   <link href="/vendor/bootstrap/bootstrap.min.css?v=20261107-t12" rel="stylesheet" />
   <link href="/styles/olympus.css?v=20261109-fx" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;display=swap" rel="stylesheet" />
-    <link href="/styles/rediseno.css?v=20261109-r1" rel="stylesheet" />
+    <link href="/styles/rediseno.css?v=20261109-r3" rel="stylesheet" />
   </head>
 <body data-hero="ranks" class="op-page op-page" data-design="olympus-3d">
       <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -56,7 +56,7 @@
             <li class="nav-item"><a class="nav-link" href="/metricas.html">Métricas</a></li>
             <li class="nav-item"><a class="nav-link" href="/apoya.html">Apoyar</a></li>
             <li class="nav-item"><a class="nav-link" href="/support.html">Soporte</a></li>
-            <li class="nav-item"><a class="nav-link nav-discord" href="/discord.html">Discord ↗</a></li>
+            <li class="nav-item"><a class="nav-link nav-discord" href="/discord.html">Discord</a></li>
           </ul>
         </div>
       </div>
@@ -101,21 +101,21 @@
       <!-- Filtros por categoría -->
       <div class="guide-filters" role="group" aria-label="Filtrar por categoría">
         <button type="button" data-filter="all" aria-pressed="true" class="is-active">Todo</button>
-        <button type="button" data-filter="tabla" aria-pressed="false">📊 Tabla Comparativa</button>
-        <button type="button" data-filter="desglose" aria-pressed="false">🏛️ Comandos por Rango</button>
-        <button type="button" data-filter="vipplusplus" aria-pressed="false">⭐ Habilidades VIP++ (/vip)</button>
-        <button type="button" data-filter="encantamientos" aria-pressed="false">⚡ Encantamientos Divinos</button>
-        <button type="button" data-filter="cosmeticos" aria-pressed="false">✨ Cosméticos & Auras</button>
-        <button type="button" data-filter="rankup" aria-pressed="false">⛩️ Rangos Anime (50 Niveles)</button>
-        <button type="button" data-filter="info" aria-pressed="false">ℹ️ Roles & Entrega</button>
+        <button type="button" data-filter="tabla" aria-pressed="false">Tabla Comparativa</button>
+        <button type="button" data-filter="desglose" aria-pressed="false">Comandos por Rango</button>
+        <button type="button" data-filter="vipplusplus" aria-pressed="false">Habilidades VIP++ (/vip)</button>
+        <button type="button" data-filter="encantamientos" aria-pressed="false">Encantamientos Divinos</button>
+        <button type="button" data-filter="cosmeticos" aria-pressed="false">Cosméticos & Auras</button>
+        <button type="button" data-filter="rankup" aria-pressed="false">Rangos Anime (50 Niveles)</button>
+        <button type="button" data-filter="info" aria-pressed="false">ℹRoles & Entrega</button>
       </div>
 
       <!-- Botones expandir/contraer -->
       <div class="guide-controls">
         <span style="font-size:0.88rem; opacity:0.75;">Haz clic en cada sección para desplegar:</span>
         <div class="guide-controls__btns">
-          <button type="button" id="btn-expand-all" class="guide-btn-action">🔽 Expandir Todo</button>
-          <button type="button" id="btn-collapse-all" class="guide-btn-action">🔼 Contraer Todo</button>
+          <button type="button" id="btn-expand-all" class="guide-btn-action">Expandir Todo</button>
+          <button type="button" id="btn-collapse-all" class="guide-btn-action">Contraer Todo</button>
         </div>
       </div>
 
@@ -125,7 +125,7 @@
       <details class="guide-accordion" data-cat="tabla" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">📊</span>
+            <span class="guide-accordion__icon"></span>
             <span>Tabla Comparativa de Rangos y Límites Efectivos</span>
             <span class="guide-accordion__badge guide-accordion__badge--green">Límites</span>
           </div>
@@ -134,17 +134,17 @@
         <div class="guide-accordion__content">
           <div class="guide-alert guide-alert--seasonal" style="background: linear-gradient(135deg, rgba(22, 18, 38, 0.95), rgba(30, 20, 50, 0.95)); border-left: 4px solid var(--gold); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
             <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
-              <span style="font-size:1.3rem;">🛡️</span>
+              <span style="font-size:1.3rem;"></span>
               <strong style="color:var(--gold); font-size:1.05rem; font-family:'Cinzel', serif;">Regla Canónica: Vigencia Estacional de Rangos y Pases "Permanentes"</strong>
             </div>
             <p style="margin:0; font-size:0.92rem; line-height:1.6; color:#e2e8f0;">
               • <strong>Pases Permanentes (Temporada en curso):</strong> Todo rango, cosmético o pase de utilidad comercializado como <strong>"permanente"</strong> (incluyendo expresamente el <strong>Pase Anti-AFK Permanente</strong>, bóvedas portátiles y hogares) tiene vigencia garantizada durante <strong>toda la temporada en la que fue adquirido</strong>, concluyendo al término de la misma.<br>
-              • <strong>Transición T1 ➔ T2:</strong> Los pases permanentes comprados en la <strong>Temporada 1 (T1)</strong> duraron hasta el fin de la T1. Del mismo modo, los adquiridos en la <strong>Temporada 2 (T2)</strong> duran hasta el final de la T2.<br>
+              • <strong>Transición T1 T2:</strong> Los pases permanentes comprados en la <strong>Temporada 1 (T1)</strong> duraron hasta el fin de la T1. Del mismo modo, los adquiridos en la <strong>Temporada 2 (T2)</strong> duran hasta el final de la T2.<br>
               • <strong>Rangos VIP Mensuales:</strong> Son <strong>pases de 30 días</strong> sin autorrenovación ni cobros automáticos.
             </p>
           </div>
           <p class="guide-section__note">Los rangos son <strong>pases de 30 días</strong> y no se renuevan solos. Cada uno hereda todo lo del anterior, así que lo que ves en una fila se suma a las de arriba. Tu rango funciona igual en todas las modalidades.</p>
-          <p class="rank-scroll-hint" aria-hidden="true">Desliza la tabla hacia los lados para ver todos los límites →</p>
+          <p class="rank-scroll-hint" aria-hidden="true">Desliza la tabla hacia los lados para ver todos los límites </p>
           <div class="rank-scroll">
             <table class="rank-table">
               <caption class="sr-only">Comparación de rangos: hogares, bóvedas, protecciones, warps de jugador, tiendas e isla</caption>
@@ -180,7 +180,7 @@
       <details class="guide-accordion" data-cat="desglose" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">🏛️</span>
+            <span class="guide-accordion__icon"></span>
             <span>Comandos y Beneficios que Suma Cada Rango</span>
             <span class="guide-accordion__badge guide-accordion__badge--purple">Permisos</span>
           </div>
@@ -212,7 +212,7 @@
       <details class="guide-accordion" data-cat="vipplusplus" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">⭐</span>
+            <span class="guide-accordion__icon"></span>
             <span>Habilidades Divinas Activas, Buffs y Menú GUI VIP++ (DrakesVIP++)</span>
             <span class="guide-accordion__badge guide-accordion__badge--gold">Nuevo Sistema</span>
           </div>
@@ -225,7 +225,7 @@
 
           <div class="guide-split" style="margin-bottom:1.5rem;">
             <div class="guide-split__card" style="border-left: 3px solid #ffaa00;">
-              <h3>⚡ Disparo de Habilidad Activa</h3>
+              <h3>Disparo de Habilidad Activa</h3>
               <p style="font-size:0.92rem; opacity:0.9; margin-bottom:0.5rem;">
                 Para desatar el poder de tu Dios o Titán, presiona <strong>Agacharse (Sneak / Shift) + Tecla F (Intercambiar objeto con mano secundaria)</strong>.
               </p>
@@ -236,7 +236,7 @@
               </ul>
             </div>
             <div class="guide-split__card" style="border-left: 3px solid #55ff55;">
-              <h3>🎮 Menú Interactivo GUI (/vip)</h3>
+              <h3>Menú Interactivo GUI (/vip)</h3>
               <p style="font-size:0.92rem; opacity:0.9; margin-bottom:0.5rem;">
                 Escribe <strong><code>/vip</code></strong> o <strong><code>/vip menu</code></strong> en cualquier momento para abrir el panel de configuración:
               </p>
@@ -281,7 +281,7 @@
       <details class="guide-accordion" data-cat="encantamientos">
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">⚡</span>
+            <span class="guide-accordion__icon"></span>
             <span>Encantamientos Divinos y Armamento Mitológico VIP (Odysseia 1.1.3)</span>
             <span class="guide-accordion__badge guide-accordion__badge--purple">Mítico</span>
           </div>
@@ -315,7 +315,7 @@
       <details class="guide-accordion" data-cat="cosmeticos">
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">✨</span>
+            <span class="guide-accordion__icon"></span>
             <span>Cosméticos, Auras y Efectos de Muerte</span>
             <span class="guide-accordion__badge guide-accordion__badge--blue">Estética</span>
           </div>
@@ -337,7 +337,7 @@
       <details class="guide-accordion" data-cat="rankup" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">⛩️</span>
+            <span class="guide-accordion__icon"></span>
             <span>Sistema DrakesRankup: 50 Rangos Anime de Progresión</span>
             <span class="guide-accordion__badge guide-accordion__badge--gold">Economía In-Game</span>
           </div>
@@ -349,7 +349,7 @@
           </p>
           <div class="guide-split" style="margin-bottom: 1.5rem;">
             <div class="guide-split__card">
-              <h3>⚡ Compatibilidad Total con Rangos VIP</h3>
+              <h3>Compatibilidad Total con Rangos VIP</h3>
               <p style="font-size:0.92rem; line-height:1.6; opacity:0.88; margin-bottom:0.5rem;">
                 Si posees un rango de los Dioses o Titanes (Hércules, Hermes, Zeus, Caos, etc.), <strong>tus beneficios VIP nunca se pierden ni se degradan</strong>.
               </p>
@@ -360,7 +360,7 @@
               </ul>
             </div>
             <div class="guide-split__card">
-              <h3>🧭 Comandos de Progresión</h3>
+              <h3>Comandos de Progresión</h3>
               <ul style="font-size:0.88rem; line-height:1.5;">
                 <li><code>/rankup</code> · Comprueba tu dinero y asciende al siguiente rango.</li>
                 <li><code>/ranks</code> o <code>/srangos</code> · Abre la interfaz gráfica con las 5 divisiones y 50 rangos.</li>
@@ -413,7 +413,7 @@
             <div class="guide-row"><code>Nivel 27 · ᴛᴇɴɪᴇɴᴛᴇ</code><p><strong>35.000.000 ₯</strong> · Prefijo <code>[Teniente]</code> · Oficial del Gotei 13: teletransporte instantáneo Shunpo en <code>/back</code>.<span class="guide-row__alias">Bleach · División III</span></p></div>
             <div class="guide-row"><code>Nivel 28 · ᴄᴀᴘɪᴛáɴ</code><p><strong>40.000.000 ₯</strong> · Prefijo <code>[Capitán]</code> · Haori blanco de capitán y presión espiritual (Reiatsu) visible.<span class="guide-row__alias">Bleach · División III</span></p></div>
             <div class="guide-row"><code>Nivel 29 · ʙᴀɴᴋᴀɪ</code><p><strong>45.000.000 ₯</strong> · Prefijo <code>[Bankai]</code> · Liberación definitiva: animación sonora y visual al desenvainar armas.<span class="guide-row__alias">Bleach · División III</span></p></div>
-            <div class="guide-row"><code>Nivel 30 · ᴊᴏʏʙᴏʏ / ʟᴜғғʏ</code><p><strong>50.000.000 ₯</strong> · Prefijo <code>[JoyBoy]</code> · <strong>Fruta Gomu Gomu no Mi</strong>: Modo Gear Second con vapor corporal, Velocidad III y golpes de fuego Red Hawk. <em>⚠️ Maldición marina en agua</em>.<span class="guide-row__alias">One Piece · División III</span></p></div>
+            <div class="guide-row"><code>Nivel 30 · ᴊᴏʏʙᴏʏ / ʟᴜғғʏ</code><p><strong>50.000.000 ₯</strong> · Prefijo <code>[JoyBoy]</code> · <strong>Fruta Gomu Gomu no Mi</strong>: Modo Gear Second con vapor corporal, Velocidad III y golpes de fuego Red Hawk. <em>Maldición marina en agua</em>.<span class="guide-row__alias">One Piece · División III</span></p></div>
           </div>
 
           <h3 class="rank-subhead" style="margin-top:2rem;">División IV: Guerreros Z &amp; Monarca (Niveles 31 al 40)</h3>
@@ -422,7 +422,7 @@
             <div class="guide-row"><code>Nivel 31 · sᴀɪʏᴀᴊɪɴ</code><p><strong>65.000.000 ₯</strong> · Prefijo <code>[Saiyajin]</code> · Raza guerrera: Zenkai Boost y desbloqueo del <strong>Vuelo de Ki Supersónico</strong> (impulso sónico a 2.5x velocidad por 4s).<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
             <div class="guide-row"><code>Nivel 32 · sᴜᴘᴇʀsᴀɪʏᴀᴊɪɴ</code><p><strong>85.000.000 ₯</strong> · Prefijo <code>[SSJ]</code> · El Guerrero Legendario: aura dorada continua y cabello resplandeciente.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
             <div class="guide-row"><code>Nivel 33 · ssᴊ2</code><p><strong>110.000.000 ₯</strong> · Prefijo <code>[SSJ2]</code> · Rayo Ascendente: chispas eléctricas azules rodeando tu armadura.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
-            <div class="guide-row"><code>Nivel 34 · ssᴊ3 / ʙʀᴏʟʏ ʟssᴊ</code><p><strong>140.000.000 ₯</strong> · Prefijo <code>[SSJ3]</code> · <strong>Broly Berserker (LSSJ)</strong>: Carga de Ki activa Fuerza III, Resistencia II e inmunidad total a empujes con aura verde esmeralda. <em>⚠️ Fatiga posterior</em>.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
+            <div class="guide-row"><code>Nivel 34 · ssᴊ3 / ʙʀᴏʟʏ ʟssᴊ</code><p><strong>140.000.000 ₯</strong> · Prefijo <code>[SSJ3]</code> · <strong>Broly Berserker (LSSJ)</strong>: Carga de Ki activa Fuerza III, Resistencia II e inmunidad total a empujes con aura verde esmeralda. <em>Fatiga posterior</em>.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
             <div class="guide-row"><code>Nivel 35 · ssᴊɢᴏᴅ</code><p><strong>180.000.000 ₯</strong> · Prefijo <code>[SSJGod]</code> · Ki Divino Carmesí: Carga de Ki (Shift) activa regeneración y agilidad divina.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
             <div class="guide-row"><code>Nivel 36 · ssᴊʙʟᴜᴇ</code><p><strong>230.000.000 ₯</strong> · Prefijo <code>[SSJBlue]</code> · Dios Super Saiyajin: Carga de Ki (Shift) activa Fuerza I, Velocidad II y aura de plasma azul.<span class="guide-row__alias">Dragon Ball · División IV</span></p></div>
             <div class="guide-row"><code>Nivel 37 · ᴄᴀᴢᴀᴅᴏʀ-ᴇ</code><p><strong>260.000.000 ₯</strong> · Prefijo <code>[Cazador-E]</code> · El más débil de la humanidad: perseverancia inquebrantable.<span class="guide-row__alias">Solo Leveling · División IV</span></p></div>
@@ -453,7 +453,7 @@
       <details class="guide-accordion" data-cat="mecanicas" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">⚡</span>
+            <span class="guide-accordion__icon"></span>
             <span>Transformaciones Anime, Ki, One Piece &amp; Trade-offs</span>
             <span class="guide-accordion__badge guide-accordion__badge--cyan">Nuevo Sistema</span>
           </div>
@@ -465,7 +465,7 @@
           </p>
 
           <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;">
-            <h3 style="margin-top:0;color:#f39c12;font-size:1.15rem;">🎮 Menú Gráfico de Transformaciones (<code>/transform</code> o <code>/ki</code>)</h3>
+            <h3 style="margin-top:0;color:#f39c12;font-size:1.15rem;">Menú Gráfico de Transformaciones (<code>/transform</code> o <code>/ki</code>)</h3>
             <p style="margin:0.4rem 0;font-size:0.95rem;opacity:0.9;">
               Accede en cualquier momento a la interfaz de 54 casillas para consultar tus poderes desbloqueados, ver estadísticas de daño, cooldowns exactos, equipar tu transformación activa o alternar el <strong>Vuelo de Ki Supersónico</strong>.
             </p>
@@ -477,63 +477,63 @@
 
           <div class="guide-rows">
             <div class="guide-row">
-              <code>🥋 Ultra Instinto Dominado (MUI · Tier 46)</code>
+              <code>Ultra Instinto Dominado (MUI · Tier 46)</code>
               <p>
                 <strong>Evasión Visual Absoluta (100%)</strong> durante 5 segundos ante flechas y golpes físicos, dejando imágenes residuales celestiales y sonido sónico.<br>
-                <span style="color:#e74c3c;"><strong>⚠️ Trade-off (Fatiga Mortal):</strong> Si se utiliza más de 2 veces en un lapso de 2 minutos, al expirar los 5s el cuerpo colapsa recibiendo 4 corazones de daño puro, Ceguera y Lentitud III.</span>
+                <span style="color:#e74c3c;"><strong>Trade-off (Fatiga Mortal):</strong> Si se utiliza más de 2 veces en un lapso de 2 minutos, al expirar los 5s el cuerpo colapsa recibiendo 4 corazones de daño puro, Ceguera y Lentitud III.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🟣 Mega Instinto / Ultra Ego de Vegeta (Tier 47)</code>
+              <code>Mega Instinto / Ultra Ego de Vegeta (Tier 47)</code>
               <p>
                 <strong>Poder por Dolor</strong>: Tu daño destructivo escala hasta un <strong>+60% de bonus</strong> a medida que tu vida disminuye, y el aura Hakai devuelve 3.5 corazones de daño puro al atacante.<br>
-                <span style="color:#e67e22;"><strong>⚠️ Trade-off:</strong> Recibes +15% de daño en impactos iniciales para encender el instinto de batalla.</span>
+                <span style="color:#e67e22;"><strong>Trade-off:</strong> Recibes +15% de daño en impactos iniciales para encender el instinto de batalla.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>⚪ Gohan Bestia / Beast (Tier 45)</code>
+              <code>Gohan Bestia / Beast (Tier 45)</code>
               <p>
                 <strong>Explosión Crítica Colosal (+75% daño)</strong> en todos tus golpes cuerpo a cuerpo con rayos magentas, descarga eléctrica y partículas de furia.<br>
-                <span style="color:#e74c3c;"><strong>⚠️ Trade-off (Metabolismo Voraz):</strong> Consume instantáneamente 4 muslos de comida (hambre) al detonar e impone el efecto Hambre II durante 10 segundos.</span>
+                <span style="color:#e74c3c;"><strong>Trade-off (Metabolismo Voraz):</strong> Consume instantáneamente 4 muslos de comida (hambre) al detonar e impone el efecto Hambre II durante 10 segundos.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🟢 Broly Super Saiyajin Legendario / LSSJ (Tier 34)</code>
+              <code>Broly Super Saiyajin Legendario / LSSJ (Tier 34)</code>
               <p>
                 <strong>Furia Berserker Ilimitada</strong>: Fuerza III, Resistencia II e <strong>inmunidad total (100%) al empuje</strong> con aura expansiva verde esmeralda durante 20 segundos.<br>
-                <span style="color:#e67e22;"><strong>⚠️ Trade-off:</strong> +20% de vulnerabilidad a proyectiles/flechas y Lentitud I por 6 segundos al agotarse la furia destructiva.</span>
+                <span style="color:#e67e22;"><strong>Trade-off:</strong> +20% de vulnerabilidad a proyectiles/flechas y Lentitud I por 6 segundos al agotarse la furia destructiva.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>⚔️ Espada de Haz de Luz de Vegetto (Tier 48)</code>
+              <code>Espada de Haz de Luz de Vegetto (Tier 48)</code>
               <p>
                 <strong>Técnica Ki Perforante</strong>: Mantén <code>Shift + Clic Derecho</code> empuñando cualquier espada para disparar un rayo láser de energía dorada concentrada que atraviesa bloques y daña a todos los enemigos en línea recta hasta 14 bloques de distancia (7 corazones de daño penetrante).<br>
-                <span style="color:#f39c12;"><strong>⏳ Recarga:</strong> 12 segundos de enfriamiento táctico.</span>
+                <span style="color:#f39c12;"><strong>Recarga:</strong> 12 segundos de enfriamiento táctico.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🍖 Fruta del Diablo: Gomu Gomu no Mi (Luffy · Tier 30)</code>
+              <code>Fruta del Diablo: Gomu Gomu no Mi (Luffy · Tier 30)</code>
               <p>
                 <strong>Modo Gear Second &amp; Red Hawk</strong>: Columnas de vapor brotando del cuerpo, Velocidad III permanente y ráfaga de golpes Gatling que envuelven en llamas a los enemigos.<br>
-                <span style="color:#3498db;"><strong>⚠️ Trade-off (Maldición del Océano):</strong> Al tener contacto con agua marina o sumergirse, el usuario pierde toda su fuerza sufriendo Lentitud III, Debilidad extrema y asfixia acelerada.</span>
+                <span style="color:#3498db;"><strong>Trade-off (Maldición del Océano):</strong> Al tener contacto con agua marina o sumergirse, el usuario pierde toda su fuerza sufriendo Lentitud III, Debilidad extrema y asfixia acelerada.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🗡️ Estilo Tres Espadas / Santoryu de Zoro (Tier 24)</code>
+              <code>Estilo Tres Espadas / Santoryu de Zoro (Tier 24)</code>
               <p>
                 <strong>Maestría de Espadachín</strong>: +25% de daño físico permanente al combatir con cualquier espada y técnica activa de <strong>Corte del Dragón Volador</strong> (onda cortante de viento a distancia con clic derecho).<br>
-                <span style="color:#2ecc71;"><strong>⏳ Recarga:</strong> 8 segundos de cooldown de técnica.</span>
+                <span style="color:#2ecc71;"><strong>Recarga:</strong> 8 segundos de cooldown de técnica.</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🪽 Modo Celestial Staff (/angel &amp; /zenosama)</code>
+              <code>Modo Celestial Staff (/angel &amp; /zenosama)</code>
               <p>
                 <strong>Herramienta Oficial de Supervisión</strong>: Invulnerabilidad total absoluta ante cualquier daño, Ultra Instinto Angelical infinito (esquive continuo con afterimages y deflexión de flechas) y doble corona orbital dorada con estrellas.<span class="guide-row__alias">Exclusivo Staff &amp; Pruebas</span>
               </p>
@@ -547,7 +547,7 @@
       <details class="guide-accordion" data-cat="mecanicas">
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">🎁</span>
+            <span class="guide-accordion__icon"></span>
             <span>Kits de División Anime, Semillas del Ermitaño &amp; Ítems Custom</span>
             <span class="guide-accordion__badge guide-accordion__badge--green">Reclamable Diario</span>
           </div>
@@ -560,35 +560,35 @@
 
           <div class="guide-rows">
             <div class="guide-row">
-              <code>🧪 Kit División I · ᴄɪᴇɴᴄɪᴀ &amp; ɴᴇɴ (Tiers 1-10)</code>
+              <code>Kit División I · ᴄɪᴇɴᴄɪᴀ &amp; ɴᴇɴ (Tiers 1-10)</code>
               <p>
                 <strong>Pico Transmutador de Senku</strong> (Eficiencia IV, Fortuna II, Irrompibilidad III), <strong>Bisturí de Cromo</strong> (Filo IV, Saqueo II), Elixir de Agilidad de Nen y 32 raciones de pan nutritivo de la Aldea Ishigami.<span class="guide-row__alias">Cooldown: 24h</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🗡️ Kit División II · sʜɪɴᴏʙɪ &amp; ʜᴇᴄʜɪᴄᴇʀɪ́ᴀ (Tiers 11-20)</code>
+              <code>Kit División II · sʜɪɴᴏʙɪ &amp; ʜᴇᴄʜɪᴄᴇʀɪ́ᴀ (Tiers 11-20)</code>
               <p>
                 <strong>Katana Maldita de Sukuna &amp; Yuji</strong> (Netherite · Filo V, Aspecto Ígneo II con 15% de probabilidad de asestar un <strong>Destello Negro / Black Flash</strong> crítico), <strong>Manto Táctico ANBU</strong> (Netherite · Protección IV), 16 Perlas del Vacío y 32 filetes de carne Ichiraku.<span class="guide-row__alias">Cooldown: 24h</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>⚔️ Kit División III · ʀᴜᴛᴀ ᴘɪʀᴀᴛᴀ &amp; sᴇɢᴀᴅᴏʀᴇs (Tiers 21-30)</code>
+              <code>Kit División III · ʀᴜᴛᴀ ᴘɪʀᴀᴛᴀ &amp; sᴇɢᴀᴅᴏʀᴇs (Tiers 21-30)</code>
               <p>
                 <strong>Zanpakuto de Liberación de Capitán</strong> (Netherite · Filo V, Golpe V, Aspecto Ígneo II, Irrompibilidad IV con daño espiritual), <strong>Escudo del Conquistador Imbuido en Haki</strong> (Irrompibilidad IV, Reparación), Néctar marino y zanahorias doradas.<span class="guide-row__alias">Cooldown: 24h</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>🫘 Kit División IV · ɢᴜᴇʀʀᴇʀᴏs ᴢ &amp; ᴍᴏɴᴀʀᴄᴀ (Tiers 31-40)</code>
+              <code>Kit División IV · ɢᴜᴇʀʀᴇʀᴏs ᴢ &amp; ᴍᴏɴᴀʀᴄᴀ (Tiers 31-40)</code>
               <p>
                 <strong>4x Semillas del Ermitaño (Senzu Beans de Karin)</strong>: Clic derecho para consumirlas y <strong>restaurar instantáneamente el 100% de tu salud (20 HP)</strong>, saciedad completa y purgar todo veneno o debilidad. Incluye la <strong>Armadura de Batalla Saiyajin</strong> (Netherite · Protección V, Espinas III) y la <strong>Daga del Monarca de Sung Jin-woo</strong> (Filo VI con robo de vida).<span class="guide-row__alias">Cooldown: 24h</span>
               </p>
             </div>
 
             <div class="guide-row">
-              <code>👑 Kit División V · ᴛʀᴀsᴄᴇɴᴅᴇɴᴄɪᴀ sᴜᴘʀᴇᴍᴀ (Tiers 41-50)</code>
+              <code>Kit División V · ᴛʀᴀsᴄᴇɴᴅᴇɴᴄɪᴀ sᴜᴘʀᴇᴍᴀ (Tiers 41-50)</code>
               <p>
                 <strong>8x Semillas del Ermitaño Divinas</strong>, <strong>Armamento Celestial de KamiSama</strong> (Netherite · Filo VI, Botín IV, Aspecto Ígneo II, Irrompibilidad V con Corte de Hakai), <strong>Toga Angelical de Whis</strong> (Netherite · Protección V, Reparación), <strong>Totem Supremo de Zeno-Sama</strong> (salvación con Regeneración III) y Manzanas de Notch.<span class="guide-row__alias">Cooldown: 24h</span>
               </p>
@@ -601,7 +601,7 @@
       <details class="guide-accordion" data-cat="rankup" open>
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">🏺</span>
+            <span class="guide-accordion__icon"></span>
             <span>Sistema de Mantención y Desgaste (Núcleo de Resonancia &amp; Checkpoints)</span>
             <span class="guide-accordion__badge guide-accordion__badge--gold">Economía Activa</span>
           </div>
@@ -610,11 +610,11 @@
         <div class="guide-accordion__content">
           <div class="guide-callout guide-callout--info" style="margin-bottom: 1.25rem; border-left: 4px solid #3b82f6; background: rgba(59, 130, 246, 0.08); padding: 1rem; border-radius: 8px;">
             <h4 style="margin: 0 0 0.5rem 0; color: #60a5fa; display: flex; align-items: center; gap: 0.5rem;">
-              <span>🌐</span> <strong>Modalidades Compatibles</strong>
+              <span></span> <strong>Modalidades Compatibles</strong>
             </h4>
             <p style="margin: 0; font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
               El sistema de <strong>DrakesRankup</strong> (100 rangos anime, kits con ítems custom, transformaciones de Ki y Núcleo de Estabilidad) está activo exclusivamente en las modalidades custom: <strong>Survival SF (Slimefun)</strong>, <strong>OneBlock (OB)</strong>, <strong>SkyBlock (SKY)</strong> y <strong>OneChunk (CH)</strong>.<br>
-              ❌ <strong>Survival Clásico</strong> se mantiene como una experiencia <strong>100% Vanilla tradicional</strong>, sin rangos custom, transformaciones ni kits OP para garantizar un balance clásico puro.
+              <strong>Survival Clásico</strong> se mantiene como una experiencia <strong>100% Vanilla tradicional</strong>, sin rangos custom, transformaciones ni kits OP para garantizar un balance clásico puro.
             </p>
           </div>
 
@@ -624,7 +624,7 @@
 
           <div class="guide-split" style="margin-bottom: 1.5rem;">
             <div class="guide-split__card">
-              <h3>🛡️ Rangos Permanentes y Checkpoints Sagrados</h3>
+              <h3>Rangos Permanentes y Checkpoints Sagrados</h3>
               <ul style="font-size:0.88rem; line-height:1.6;">
                 <li><strong>División I Completa (Tiers 1 al 10)</strong>: Es <strong>100% Permanente</strong>. Los novatos y aprendices nunca pierden su nivel.</li>
                 <li><strong>Hitos de División (Tiers 10, 20, 30, 40)</strong>: Actúan como <strong>Anclas Sagradas</strong> que jamás se degradan.</li>
@@ -633,11 +633,11 @@
               </ul>
             </div>
             <div class="guide-split__card">
-              <h3>💰 Cómo Funciona la Mantención</h3>
+              <h3>Cómo Funciona la Mantención</h3>
               <ul style="font-size:0.88rem; line-height:1.6;">
                 <li><strong>¡Gratis por Ascender!</strong>: Cada vez que subes de rango con <code>/rankup</code> o <code>/rankup max</code>, tu estabilidad se <strong>restablece automáticamente a 14 días sin costo</strong>.</li>
                 <li><strong>Tributo de Renovación</strong>: Si decides quedarte en un rango, renueva 14 días pagando solo el <strong>5% del costo del rango</strong> (mín. ,000 Dragmas).</li>
-                <li><strong>Desde la GUI</strong>: Abre <code>/rankup</code> y haz clic en el <strong>Slot 45 (🏺 Núcleo de Estabilidad)</strong>.</li>
+                <li><strong>Desde la GUI</strong>: Abre <code>/rankup</code> y haz clic en el <strong>Slot 45 (Núcleo de Estabilidad)</strong>.</li>
                 <li><strong>Comando Directo</strong>: Escribe <code>/rankup maintain</code> o <code>/rankup mantener</code> en el chat.</li>
                 <li><strong>Alertas Preventivas</strong>: El servidor te avisará con notas musicales y mensajes en el chat cuando te queden menos de 72 horas.</li>
               </ul>
@@ -650,7 +650,7 @@
       <details class="guide-accordion" data-cat="info">
         <summary class="guide-accordion__summary">
           <div class="guide-accordion__header-left">
-            <span class="guide-accordion__icon">ℹ️</span>
+            <span class="guide-accordion__icon">ℹ</span>
             <span>Roles de Aventura y Entrega Automática</span>
             <span class="guide-accordion__badge guide-accordion__badge--green">Tienda</span>
           </div>

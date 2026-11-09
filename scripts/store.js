@@ -59,6 +59,33 @@ function storeFxLine(usd) {
     return text ? `<small class="store-fx-approx">${text}</small>` : "";
 }
 
+function plainLabel(text) {
+    return String(text ?? "").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F]/gu, "").replace(/\s+/g, " ").trim();
+}
+
+const ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+const GLYPHS = {
+    monthly: '<path d="M6 37V15l10 9 8-14 8 14 10-9v22z"/><path d="M6 42h36"/>',
+    titans: '<circle cx="24" cy="24" r="8"/><path d="M24 3v9M24 36v9M3 24h9M36 24h9M9 9l6 6M33 33l6 6M39 9l-6 6M15 33l-6 6"/>',
+    protection: '<path d="M24 4l16 6v12c0 10-7 17-16 22C15 39 8 32 8 22V10z"/><path d="M17 23l5 5 9-10"/>',
+    utility: '<path d="M27 4L10 27h12l-3 17 19-25H26z"/>',
+    passes: '<path d="M4 32c9 0 15-5 19-16 2 7 7 11 17 11-4 9-12 14-23 14z"/><path d="M12 36l14-12"/>',
+    slimefun: '<ellipse cx="24" cy="24" rx="19" ry="7"/><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(120 24 24)"/><circle cx="24" cy="24" r="3"/>',
+    roles: '<path d="M8 28c0-12 6-20 16-20s16 8 16 20v6H8z"/><path d="M8 28h32M24 8v20M17 34v8M31 34v8"/>',
+    kits: '<path d="M8 40l24-24 9-9-1 11-24 24z"/><path d="M6 34l8 8M30 18l6 6"/>',
+    crates: '<path d="M6 20h36v22H6zM6 20l4-12h28l4 12"/><path d="M6 28h36M21 28v6h6v-6"/>',
+    boosters: '<path d="M19 4h10M21 4v14L8 38a4 4 0 003 6h26a4 4 0 003-6L27 18V4"/><path d="M14 32h20"/>',
+    christmas: '<path d="M6 20h36v8H6zM9 28h30v16H9z"/><path d="M24 20v24M24 20c-6 0-10-3-8-7s8 0 8 7c0-7 6-11 8-7s-2 7-8 7z"/>'
+};
+function productArt(product) {
+    const glyph = GLYPHS[product.category] || GLYPHS.utility;
+    const tier = Number.isInteger(product.tier) && product.category === "monthly" ? ROMAN[Math.min(product.tier, 10)] || "" : "";
+    return `<div class="store-product__art" aria-hidden="true"><svg viewBox="0 0 48 48" width="96" height="96" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter">${glyph}</svg>${tier ? `<span class="store-product__tier">${tier}</span>` : ""}</div>`;
+}
+function productTicks(product) {
+    return storeIncludes(product).slice(0, 3).map((item) => `<li>${storeInlineMarkup(plainLabel(item))}</li>`).join("");
+}
+
 function deliveryType(product) {
     if (product.purchaseAvailable === false) return "unavailable";
     if (product.category === "economy-kits") return "in-game";
@@ -119,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             platformBedrock?.classList.add("is-active");
             platformJava?.classList.remove("is-active");
             if (nickHint) {
-                nickHint.innerHTML = "📱 <strong>Bedrock detectado:</strong> Si juegas en móvil/consola/Win10, asegúrate de que tu nick incluya el punto inicial (ejemplo: <code>.TuNick</code>).";
+                nickHint.innerHTML = "<strong>Bedrock detectado:</strong> Si juegas en móvil/consola/Win10, asegúrate de que tu nick incluya el punto inicial (ejemplo: <code>.TuNick</code>).";
             }
             if (nickInput && nickInput.value && !nickInput.value.startsWith(".")) {
                 nickInput.value = "." + nickInput.value;
@@ -128,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
             platformJava?.classList.add("is-active");
             platformBedrock?.classList.remove("is-active");
             if (nickHint) {
-                nickHint.innerHTML = "☕ <strong>Java Edition:</strong> Escribe tu nick tal cual aparece en el juego (sin puntos al inicio).";
+                nickHint.innerHTML = "<strong>Java Edition:</strong> Escribe tu nick tal cual aparece en el juego (sin puntos al inicio).";
             }
             if (nickInput && nickInput.value.startsWith(".")) {
                 nickInput.value = nickInput.value.substring(1);
@@ -157,12 +184,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!state.catalog?.categories) return;
         const validCategories = state.catalog.categories.filter((cat) => state.catalog.products?.some((p) => p.category === cat.id && (p.purchaseAvailable !== false || p.storeClosed)));
         tabs.innerHTML = validCategories.map((category) => 
-            `<button class="store-tab ${category.id === state.category ? "is-active" : ""}" type="button" data-category="${storeEscape(category.id)}">${storeEscape(category.label)}</button>`
+            `<button class="store-tab ${category.id === state.category ? "is-active" : ""}" type="button" data-category="${storeEscape(category.id)}">${storeEscape(plainLabel(category.label))}</button>`
         ).join("");
         
         const category = (validCategories || state.catalog.categories).find((entry) => entry.id === state.category);
         const titleElem = document.getElementById("store-category-title");
-        if (titleElem) titleElem.textContent = category?.label || "Catálogo DrakesCraft";
+        if (titleElem) titleElem.textContent = plainLabel(category?.label) || "Catálogo DrakesCraft";
     }
 
     function renderProducts() {
@@ -175,23 +202,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const selected = state.selected.has(product.id);
             const incompatible = currentMode && currentMode !== mode;
             const purchasable = mode !== "in-game" && mode !== "unavailable";
-            return `<article class="store-product" data-accent="${storeEscape(product.accent || "emerald")}" data-product="${storeEscape(product.id)}">
-                <div class="store-product__top">
-                    <div>
-                        <span class="store-product__tag">${storeEscape(product.badge || deliveryLabel[mode])}</span>
-                        <h3>${storeEscape(storeText(product, "name"))}</h3>
-                    </div>
-                    <strong class="store-product__price">${storeMoney(product.clp, product)}${storeFxLine(storeFinalUsd(product))}</strong>
+            return `<article class="store-product${product.featured ? " is-featured" : ""}" data-accent="${storeEscape(product.accent || "emerald")}" data-product="${storeEscape(product.id)}">
+                ${productArt(product)}
+                <div class="store-product__body">
+                    <span class="store-product__tag">${storeEscape(product.badge || deliveryLabel[mode])}</span>
+                    <h3>${storeEscape(storeText(product, "name"))}</h3>
+                    <p class="store-product__summary">${storeInlineMarkup(storeText(product, "summary"))}</p>
+                    <ul class="r-ticks">${productTicks(product)}</ul>
                 </div>
-                <p>${storeEscape(storeText(product, "summary"))}</p>
-                <div class="store-product__delivery">
-                    <span>${product.storeClosed ? closedLabel() : deliveryLabel[mode]}</span>
-                    <span>${mode === "tebex" && Number.isFinite(product.usd) ? `USD $${storeFinalUsd(product)}` : ""}${product.offerId ? ` · ${storeEscape(offerLabel(product.offerId))}` : ""}</span>
+                <div class="store-product__buy">
+                    <strong class="store-product__price">${storeMoney(product.clp, product)}${storeFxLine(storeFinalUsd(product))}</strong>
+                    <span class="store-product__delivery">${product.storeClosed ? closedLabel() : deliveryLabel[mode]}${product.offerId ? ` · ${storeEscape(offerLabel(product.offerId))}` : ""}</span>
                 </div>
                 <div class="store-product__actions">
-                    <button class="btn btn-secondary" type="button" data-detail="${storeEscape(product.id)}">Ver Detalle</button>
+                    <button class="btn btn-secondary" type="button" data-detail="${storeEscape(product.id)}">Ver detalle</button>
                     <button class="btn ${selected ? "btn-primary" : "btn-secondary"}" type="button" data-select="${storeEscape(product.id)}" aria-pressed="${selected}" ${!purchasable || incompatible ? "disabled" : ""}>
-                        ${product.storeClosed ? closedButton() : mode === "unavailable" ? "No disponible" : !purchasable ? "In-game" : selected ? "✓ En Carrito" : incompatible ? "Otro flujo" : "+ Agregar"}
+                        ${product.storeClosed ? closedButton() : mode === "unavailable" ? "No disponible" : !purchasable ? "In-game" : selected ? "En el carrito" : incompatible ? "Otro flujo" : "Agregar"}
                     </button>
                 </div>
             </article>`;
@@ -242,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const seasonalBanners = {
         christmas: {
-            icon: "❄️",
+            icon: "",
             badge: "Solsticio Hiemal & Fiesta Navideña · Diciembre",
             badgeStyle: "background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #bae6fd;",
             dotColor: "#38bdf8",
@@ -254,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btnTextColor: "#fff",
             title: "La Ventisca Eterna de Bóreas ha descendido",
             desc: "El invierno primordial recorre las seis modalidades durante diciembre. Explora los pases globales, reliquias y beneficios activos en toda la red de DrakesCraft.",
-            btnText: "Ver Pases VIP ➔",
+            btnText: "Ver Pases VIP",
             category: "monthly"
         }
     };
@@ -336,12 +362,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (storeIsClosed()) {
             const when = fmtDate(state.catalog.store.opensAt);
             const title = storeIsEn ? `Store opens ${when} · to be confirmed on Discord` : `Tienda abre el ${when} · por confirmar en Discord`;
-            parts.push(card("#f59e0b", `<strong>🔒 ${storeEscape(title)}</strong><div style="margin-top:4px">${storeIsEn ? "Opens in" : "Abre en"} <b data-countdown="${storeEscape(state.catalog.store.opensAt)}">${countdownText(state.catalog.store.opensAt)}</b></div>`));
+            parts.push(card("#f59e0b", `<strong>${storeEscape(title)}</strong><div style="margin-top:4px">${storeIsEn ? "Opens in" : "Abre en"} <b data-countdown="${storeEscape(state.catalog.store.opensAt)}">${countdownText(state.catalog.store.opensAt)}</b></div>`));
         } else {
             for (const offer of (state.catalog.offers || []).filter((o) => o.applied)) {
                 const text = offer.banner?.[storeIsEn ? "en" : "es"] || offer.name?.es;
                 const info = offer.description?.[storeIsEn ? "en" : "es"] || "";
-                parts.push(card("#a78bfa", `<strong>🏷️ ${storeEscape(text)}</strong><div style="margin:4px 0">${storeEscape(info)}</div><div>${storeIsEn ? "Ends in" : "Termina en"} <b data-countdown="${storeEscape(offer.end)}">${countdownText(offer.end)}</b></div>`));
+                parts.push(card("#a78bfa", `<strong>${storeEscape(text)}</strong><div style="margin:4px 0">${storeEscape(info)}</div><div>${storeIsEn ? "Ends in" : "Termina en"} <b data-countdown="${storeEscape(offer.end)}">${countdownText(offer.end)}</b></div>`));
             }
         }
         box.innerHTML = parts.join("");
@@ -394,8 +420,8 @@ document.addEventListener("DOMContentLoaded", () => {
         body.innerHTML = `
             <span class="store-product__tag">${deliveryLabel[deliveryType(product)]}</span>
             <h2>${storeEscape(storeText(product, "name"))}</h2>
-            <p>${storeEscape(storeText(product, "summary"))}</p>
-            <ul>${storeIncludes(product).map((item) => `<li>${storeInlineMarkup(item)}</li>`).join("")}</ul>
+            <p>${storeInlineMarkup(storeText(product, "summary"))}</p>
+            <ul>${storeIncludes(product).map((item) => `<li>${storeInlineMarkup(plainLabel(item))}</li>`).join("")}</ul>
         `;
         modal.classList.remove("hidden");
         document.getElementById("store-modal-close")?.focus();
@@ -492,7 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             if (submit) {
                 submit.disabled = true;
-                submit.innerHTML = '<span>⏳ Conectando con Tebex...</span>';
+                submit.innerHTML = '<span>Conectando con Tebex...</span>';
             }
             const response = await fetch(endpoint, {
                 method: "POST",
@@ -504,18 +530,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!data.init_point) throw new Error("Tebex no devolvió una URL de pago válida.");
 
             if (result) {
-                result.innerHTML = `<strong>✅ Orden creada con éxito.</strong><p>Redirigiendo al checkout seguro de Tebex...</p><a class="btn btn-primary" href="${storeEscape(data.init_point)}" style="display:inline-block;margin-top:0.5rem;">Ir al Pago Seguro</a>`;
+                result.innerHTML = `<strong>Orden creada con éxito.</strong><p>Redirigiendo al checkout seguro de Tebex...</p><a class="btn btn-primary" href="${storeEscape(data.init_point)}" style="display:inline-block;margin-top:0.5rem;">Ir al Pago Seguro</a>`;
                 result.classList.remove("hidden");
             }
             window.location.assign(data.init_point);
         } catch (error) {
             if (result) {
-                result.innerHTML = `<strong>⚠️ Error al procesar:</strong><p>${storeEscape(error.message)}</p>`;
+                result.innerHTML = `<strong>Error al procesar:</strong><p>${storeEscape(error.message)}</p>`;
                 result.classList.remove("hidden");
             }
             if (submit) {
                 submit.disabled = false;
-                submit.innerHTML = '<span class="btn-icon">🔒</span><span>Ir al Pago Seguro en Tebex</span>';
+                submit.innerHTML = '<span>Ir al Pago Seguro en Tebex</span>';
             }
         }
     });
