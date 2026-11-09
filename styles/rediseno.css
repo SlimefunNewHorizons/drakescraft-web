@@ -88,7 +88,7 @@ main > section, main > .op-section { position: relative; }
 .op-section--compact { padding-block: clamp(1.5rem, 3vw, 3rem); }
 .op-section-heading { align-items: end; margin-bottom: clamp(1.75rem, 3vw, 3rem); border-bottom: 0; }
 .op-section-heading h2 { max-width: 20ch; }
-.op-rule { border: 0; height: 14px; background: var(--meander) repeat-x center; opacity: 0.55; margin-block: 2rem; }
+hr.op-rule { border: 0; height: 14px; background: var(--meander) repeat-x center; opacity: 0.55; margin-block: 2rem; }
 /* banda alterna a sangre completa */
 main > section:nth-of-type(even):not(.guide-hero) { background: linear-gradient(180deg, var(--r-night), var(--r-deep) 140%); border-block: 1px solid rgba(228, 187, 104, 0.1); }
 
@@ -99,7 +99,6 @@ main > section:nth-of-type(even):not(.guide-hero) { background: linear-gradient(
   backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 var(--r-line);
 }
-.op-nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -14px; height: 14px; background: var(--meander) repeat-x center / auto 14px; opacity: 0.32; pointer-events: none; }
 .op-nav .container-fluid { padding: 0.8rem var(--r-gutter) !important; max-width: none; }
 .op-brand img { width: 46px; height: 52px; filter: drop-shadow(0 0 14px rgba(228, 187, 104, 0.35)); }
 .op-brand strong { font-size: 1.25rem; letter-spacing: 0.08em; }
@@ -609,7 +608,6 @@ main .op-section { padding-block: clamp(3.5rem, 7vw, 7rem); }
    hereda el sistema. Misma estética, mismas piezas.
    ===================================================================== */
 .site-nav { position: sticky; top: 0; z-index: 1000; background: rgba(8, 5, 14, 0.95) !important; border-bottom: 0 !important; box-shadow: 0 1px 0 var(--r-line); backdrop-filter: blur(14px); }
-.site-nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -14px; height: 14px; background: var(--meander) repeat-x center / auto 14px; opacity: 0.32; pointer-events: none; }
 .site-nav__bar { max-width: none !important; padding-inline: var(--r-gutter) !important; }
 .brand__meta strong { font-family: var(--f-display) !important; letter-spacing: 0.08em; font-size: 1.2rem; color: #fff; }
 .brand__meta span { color: var(--r-gold) !important; letter-spacing: 0.14em; font-size: 0.68rem; text-transform: uppercase; }
