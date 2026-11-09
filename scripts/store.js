@@ -40,8 +40,16 @@ function fxApprox(usd) {
     const amount = (usd * rate).toLocaleString(storeIsEn ? "en-US" : "es-CL", { minimumFractionDigits: digits, maximumFractionDigits: digits });
     return `≈ ${fx.cur} ${amount}`;
 }
+// Precio efectivo (con oferta si la hay; el servidor lo calcula igual que Tebex).
+function storeFinalUsd(product) {
+    return Number.isFinite(product?.offerUsd) ? product.offerUsd : product?.usd;
+}
 function storeMoney(_value, product) {
     if (product?.coins) return `${product.coins.toLocaleString("es-CL")} ₯`;
+    if (Number.isFinite(product?.offerUsd) && product.offerUsd < product.usd) {
+        const now = product.offerUsd === 0 ? (storeIsEn ? "FREE" : "GRATIS") : usdText(product.offerUsd);
+        return `<s style="opacity:.6;font-weight:400">${usdText(product.usd)}</s> <span>${now}</span>`;
+    }
     return Number.isFinite(product?.usd) ? usdText(product.usd) : (storeIsEn ? "Not available" : "No disponible");
 }
 function storeFxLine(usd) {
@@ -145,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderTabs() {
         if (!state.catalog?.categories) return;
-        const validCategories = state.catalog.categories.filter((cat) => state.catalog.products?.some((p) => p.category === cat.id && p.purchaseAvailable !== false));
+        const validCategories = state.catalog.categories.filter((cat) => state.catalog.products?.some((p) => p.category === cat.id && (p.purchaseAvailable !== false || p.storeClosed)));
         tabs.innerHTML = validCategories.map((category) => 
             `<button class="store-tab ${category.id === state.category ? "is-active" : ""}" type="button" data-category="${storeEscape(category.id)}">${storeEscape(category.label)}</button>`
         ).join("");
@@ -171,17 +179,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="store-product__tag">${storeEscape(product.badge || deliveryLabel[mode])}</span>
                         <h3>${storeEscape(product.name)}</h3>
                     </div>
-                    <strong class="store-product__price">${storeMoney(product.clp, product)}${storeFxLine(product.usd)}</strong>
+                    <strong class="store-product__price">${storeMoney(product.clp, product)}${storeFxLine(storeFinalUsd(product))}</strong>
                 </div>
                 <p>${storeEscape(product.summary)}</p>
                 <div class="store-product__delivery">
-                    <span>${deliveryLabel[mode]}</span>
-                    <span>${mode === "tebex" && Number.isFinite(product.usd) ? `USD $${product.usd}` : ""}</span>
+                    <span>${product.storeClosed ? closedLabel() : deliveryLabel[mode]}</span>
+                    <span>${mode === "tebex" && Number.isFinite(product.usd) ? `USD $${storeFinalUsd(product)}` : ""}${product.offerId ? ` · ${storeEscape(offerLabel(product.offerId))}` : ""}</span>
                 </div>
                 <div class="store-product__actions">
                     <button class="btn btn-secondary" type="button" data-detail="${storeEscape(product.id)}">Ver Detalle</button>
                     <button class="btn ${selected ? "btn-primary" : "btn-secondary"}" type="button" data-select="${storeEscape(product.id)}" aria-pressed="${selected}" ${!purchasable || incompatible ? "disabled" : ""}>
-                        ${mode === "unavailable" ? "No disponible" : !purchasable ? "In-game" : selected ? "✓ En Carrito" : incompatible ? "Otro flujo" : "+ Agregar"}
+                        ${product.storeClosed ? closedButton() : mode === "unavailable" ? "No disponible" : !purchasable ? "In-game" : selected ? "✓ En Carrito" : incompatible ? "Otro flujo" : "+ Agregar"}
                     </button>
                 </div>
             </article>`;
@@ -195,6 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const products = selectedProducts();
         const itemCount = products.length;
 
+        const submitBtn = document.getElementById("btn-submit-checkout");
+        if (submitBtn) submitBtn.disabled = storeIsClosed();
         if (cartCount) cartCount.textContent = String(itemCount);
         if (cartJumpCount) cartJumpCount.textContent = String(itemCount);
         cartJump?.classList.toggle("hidden", itemCount === 0);
@@ -215,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `<div class="store-selection-item">
                     <div>
                         <strong>${storeEscape(product.name)}</strong>
-                        <p>${storeMoney(product.clp, product)}${fxApprox(product.usd) ? ` (${fxApprox(product.usd)})` : ""} · ${deliveryLabel[deliveryType(product)]}</p>
+                        <p>${storeMoney(product.clp, product)}${fxApprox(storeFinalUsd(product)) ? ` (${fxApprox(storeFinalUsd(product))})` : ""} · ${deliveryLabel[deliveryType(product)]}</p>
                     </div>
                     <button type="button" data-remove="${storeEscape(product.id)}">Quitar</button>
                 </div>`
@@ -223,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (total) {
-            const sumUsd = products.reduce((sum, product) => sum + (Number.isFinite(product.usd) ? product.usd : 0), 0);
+            const sumUsd = products.reduce((sum, product) => sum + (Number.isFinite(storeFinalUsd(product)) ? storeFinalUsd(product) : 0), 0);
             total.innerHTML = `${usdText(sumUsd)}${storeFxLine(sumUsd)}`;
         }
     }
@@ -290,10 +300,66 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
+    // --- Estado de la tienda (cerrada hasta la apertura) y ofertas activas ---
+    const storeLocale = storeIsEn ? "en-US" : "es-CL";
+    const fmtDate = (iso) => new Intl.DateTimeFormat(storeLocale, { timeZone: "America/Santiago", day: "numeric", month: "long" }).format(new Date(iso));
+    const storeIsClosed = () => state.catalog?.store?.open === false;
+    function closedLabel() { return storeIsEn ? "Opens soon" : "Próximamente"; }
+    function closedButton() { return storeIsEn ? `Opens ${fmtDate(state.catalog.store.opensAt)}` : `Abre el ${fmtDate(state.catalog.store.opensAt)}`; }
+    function offerLabel(id) {
+        const offer = (state.catalog?.offers || []).find((o) => o.id === id);
+        return offer ? (offer.name?.[storeIsEn ? "en" : "es"] || offer.name?.es || "") : "";
+    }
+    function countdownText(untilIso) {
+        let s = Math.max(0, Math.floor((Date.parse(untilIso) - Date.now()) / 1000));
+        const d = Math.floor(s / 86400); s -= d * 86400;
+        const h = Math.floor(s / 3600); s -= h * 3600;
+        const m = Math.floor(s / 60); s -= m * 60;
+        const pad = (n) => String(n).padStart(2, "0");
+        return `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+    }
+    function renderStatusBanner() {
+        const anchor = document.getElementById("store-seasonal-banner-container") || document.getElementById("store-tabs");
+        if (!anchor || !state.catalog) return;
+        let box = document.getElementById("store-status-banner");
+        if (!box) {
+            box = document.createElement("div");
+            box.id = "store-status-banner";
+            box.setAttribute("aria-live", "polite");
+            box.style.cssText = "margin:0 0 20px;display:grid;gap:10px";
+            anchor.parentNode.insertBefore(box, anchor);
+        }
+        const card = (border, html) => `<div style="border:2px solid ${border};border-radius:12px;padding:14px 18px;background:rgba(10,12,24,.85);color:#fff">${html}</div>`;
+        const parts = [];
+        if (storeIsClosed()) {
+            const when = fmtDate(state.catalog.store.opensAt);
+            const title = storeIsEn ? `Store opens ${when} · to be confirmed on Discord` : `Tienda abre el ${when} · por confirmar en Discord`;
+            parts.push(card("#f59e0b", `<strong>🔒 ${storeEscape(title)}</strong><div style="margin-top:4px">${storeIsEn ? "Opens in" : "Abre en"} <b data-countdown="${storeEscape(state.catalog.store.opensAt)}">${countdownText(state.catalog.store.opensAt)}</b></div>`));
+        } else {
+            for (const offer of (state.catalog.offers || []).filter((o) => o.applied)) {
+                const text = offer.banner?.[storeIsEn ? "en" : "es"] || offer.name?.es;
+                const info = offer.description?.[storeIsEn ? "en" : "es"] || "";
+                parts.push(card("#a78bfa", `<strong>🏷️ ${storeEscape(text)}</strong><div style="margin:4px 0">${storeEscape(info)}</div><div>${storeIsEn ? "Ends in" : "Termina en"} <b data-countdown="${storeEscape(offer.end)}">${countdownText(offer.end)}</b></div>`));
+            }
+        }
+        box.innerHTML = parts.join("");
+        box.style.display = parts.length ? "grid" : "none";
+    }
+    let countdownReloaded = false;
+    setInterval(() => {
+        document.querySelectorAll("[data-countdown]").forEach((el) => {
+            el.textContent = countdownText(el.dataset.countdown);
+            if (Date.parse(el.dataset.countdown) <= Date.now() && !countdownReloaded) {
+                countdownReloaded = true;
+                setTimeout(() => { countdownReloaded = false; loadCatalog(); }, 2000);
+            }
+        });
+    }, 1000);
+
     function renderAll() {
         const validIds = new Set(
             (state.catalog?.categories || [])
-                .filter((cat) => state.catalog?.products?.some((p) => p.category === cat.id && p.purchaseAvailable !== false))
+                .filter((cat) => state.catalog?.products?.some((p) => p.category === cat.id && (p.purchaseAvailable !== false || p.storeClosed)))
                 .map((cat) => cat.id)
         );
         if (validIds.size > 0 && !validIds.has(state.category)) {
@@ -301,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         renderSeasonalBanner();
+        renderStatusBanner();
         renderTabs();
         renderProducts();
         renderSelection();
@@ -391,6 +458,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Manejador de Submit hacia Tebex Checkout (Backend API intacta)
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (storeIsClosed()) {
+            alert(storeIsEn ? "The store is not open yet." : "La tienda aún no está abierta.");
+            return;
+        }
         const products = selectedProducts();
         if (!products.length) {
             alert("Por favor agrega al menos un producto al carrito antes de continuar.");

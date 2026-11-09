@@ -279,8 +279,76 @@ async function testLinks() {
   console.log(`✓ ${linksPassed}/${allLinks.size} internal links valid`);
 }
 
+// Arranca una instancia aparte (datos temporales, sin sincronizar cupones) con env inyectado.
+async function startServer(extraEnv, portOffset) {
+  const { spawn } = await import('node:child_process');
+  const os = await import('node:os');
+  const fsp = await import('node:fs/promises');
+  const pathMod = await import('node:path');
+  const tmp = await fsp.mkdtemp(pathMod.join(os.tmpdir(), 'store-test-'));
+  const port = String(Number(PORT) + portOffset);
+  const child = spawn(process.execPath, ['server.js'], {
+    env: { ...process.env, PORT: port, DATA_DIR: tmp, OFFERS_SYNC_DISABLED: '1', FX_SOURCES_OVERRIDE: 'http://127.0.0.1:9/nada', ...extraEnv },
+    stdio: 'ignore'
+  });
+  const url = `http://127.0.0.1:${port}`;
+  for (let i = 0; i < 40; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try { await fetch(`${url}/api/health`); break; } catch { /* arrancando */ }
+  }
+  return { url, stop: async () => { child.kill(); await fsp.rm(tmp, { recursive: true, force: true }); } };
+}
+
+async function testStoreSchedule() {
+  console.log('\n🔒 Testing store schedule & offers...');
+  const closed = await startServer({ STORE_OPENS_AT: '2099-01-01T00:00:00-03:00' }, 212);
+  const open = await startServer({ STORE_OPENS_AT: '2020-01-01T00:00:00-03:00' }, 213);
+  try {
+    const post = (base) => fetch(`${base}/api/store/tebex/checkout`, {
+      method: 'POST', headers: { 'cf-connecting-ip': '127.0.2.1' },
+      body: JSON.stringify({ items: ['hercules'], nick: 'JackPlayer' })
+    });
+    let r = await post(closed.url);
+    if (r.status !== 403 || !JSON.parse(r.body).error.includes('La tienda abre el 1 de enero')) errors.push(`tienda cerrada: checkout esperado 403 con fecha, got ${r.status} ${r.body}`);
+    else { passed++; console.log('✓ checkout rechazado con 403 antes de la apertura'); }
+
+    const cat = JSON.parse((await fetch(`${closed.url}/api/store`)).body);
+    const sellableWhenOpen = JSON.parse((await fetch(`${open.url}/api/store`)).body).products.filter((p) => p.purchaseAvailable);
+    if (cat.store.open !== false || cat.products.some((p) => p.purchaseAvailable) || !cat.products.some((p) => p.storeClosed)) errors.push('tienda cerrada: /api/store debe marcar todo purchaseAvailable=false');
+    else { passed++; console.log('✓ tienda cerrada: todos los productos purchaseAvailable=false'); }
+    if (!sellableWhenOpen.length) errors.push('tienda abierta: no hay productos a la venta');
+    else { passed++; console.log(`✓ tienda abierta (fecha inyectada): ${sellableWhenOpen.length} productos a la venta`); }
+
+    for (const page of ['/store.html', '/store-en.html']) {
+      const html = (await fetch(`${closed.url}${page}`)).body;
+      if (!html.includes('scripts/store.js')) errors.push(`${page}: no carga store.js (banner/cuenta atras)`);
+    }
+    const js = (await fetch(`${closed.url}/scripts/store.js?v=x`)).body;
+    if (!js.includes('por confirmar en Discord') || !js.includes('data-countdown')) errors.push('store.js sin banner/cuenta atras de apertura');
+    else { passed++; console.log('✓ banner y cuenta atras de apertura presentes'); }
+
+    r = await post(open.url);
+    // Abierta: ya no responde 403 (sin credenciales Tebex en el entorno de test puede dar 502).
+    if (r.status === 403) errors.push('tienda abierta: el checkout sigue cerrado');
+    else { passed++; console.log(`✓ checkout atendido con la tienda abierta (HTTP ${r.status})`); }
+
+    const offersRes = await fetch(`${open.url}/offers.json`);
+    const offersJson = JSON.parse(offersRes.body);
+    if (offersRes.status !== 200 || !Array.isArray(offersJson.active) || !Array.isArray(offersJson.upcoming) || /DRK-|secret|X-Tebex/i.test(offersRes.body)) errors.push('/offers.json: forma invalida o expone datos internos');
+    else { passed++; console.log('✓ /offers.json publico sin secretos'); }
+  } catch (err) {
+    errors.push(`store schedule: ${err.message}`);
+  } finally {
+    await closed.stop();
+    await open.stop();
+  }
+}
+
 async function testStoreApi() {
   console.log('\n🛒 Testing Store & Checkout API...');
+  // Las validaciones de checkout se prueban con una instancia con la tienda abierta.
+  const openSrv = await startServer({ STORE_OPENS_AT: '2020-01-01T00:00:00-03:00' }, 214);
+  const OPEN_URL = openSrv.url;
 
   // 1. GET /api/store catalog
   try {
@@ -302,7 +370,7 @@ async function testStoreApi() {
 
   // 2. POST /api/store/tebex/checkout validation: empty items
   try {
-    const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+    const res = await fetch(`${OPEN_URL}/api/store/tebex/checkout`, {
       method: 'POST',
       headers: { 'cf-connecting-ip': '127.0.1.1' },
       body: JSON.stringify({})
@@ -324,7 +392,7 @@ async function testStoreApi() {
 
   // 3. POST /api/store/tebex/checkout validation: invalid nick
   try {
-    const res = await fetch(`${BASE_URL}/api/store/tebex/checkout`, {
+    const res = await fetch(`${OPEN_URL}/api/store/tebex/checkout`, {
       method: 'POST',
       headers: { 'cf-connecting-ip': '127.0.1.2' },
       body: JSON.stringify({ items: ['hercules'], nick: '!' })
@@ -421,6 +489,7 @@ async function testStoreApi() {
   } catch (err) {
     errors.push(`/api/store/paypal/checkout legacy: ${err.message}`);
   }
+  await openSrv.stop();
 }
 
 async function main() {
@@ -437,6 +506,7 @@ async function main() {
 
   // Test Store & Checkout API
   await testStoreApi();
+  await testStoreSchedule();
 
   // A cancelled calendar must not advertise scheduled rewards to old clients.
   if (process.env.NOVEMBER_EVENTS_ENABLED !== 'true') {

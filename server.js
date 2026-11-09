@@ -13,6 +13,9 @@ const MC_HOST = process.env.MC_HOST || 'mc.drakescraft.cl';
 const MC_PUERTO = Number(process.env.MC_PORT || 25565);
 import fastifyStatic from '@fastify/static';
 import { storeCatalog } from './catalog/store-catalog.js';
+import { storeStatus, closedMessage } from './lib/store-schedule.js';
+import { loadOffers, pickCartOffer, liveGifts, liveOffers, offerProducts, priceFor, discountedUsd, publicOffer, validateCalendar, offerCode } from './lib/offers.js';
+import { pluginApi, syncOffers } from './lib/offers-sync.js';
 
 
 const app = Fastify({ logger: true, trustProxy: true, bodyLimit: 128 * 1024 });
@@ -28,6 +31,8 @@ const tebexPrivateKey = process.env.TEBEX_PRIVATE_KEY || '';
 const adminToken = process.env.ADMIN_TOKEN || '';
 const discordSalesWebhook = process.env.DISCORD_SALES_WEBHOOK || '';
 const tebexWebhookSecret = process.env.TEBEX_WEBHOOK_SECRET || '';
+const tebexPluginSecret = process.env.TEBEX_PLUGIN_SECRET || '';
+const claimsFile = path.join(dataDir, 'offer-claims.jsonl');
 // The Minecraft server only writes signed, non-sensitive operational telemetry.
 // Star Monitor reads it through a separate internal token.
 const odysseiaIngestSecret = process.env.ODYSSEIA_INGEST_SECRET || '';
@@ -345,8 +350,42 @@ function isTebexEnabledProduct(product) {
   return Boolean(product && tebexPackageIds[product.id] && !unavailableTebexProductIds.has(product.id));
 }
 
+function offerProductList() {
+  return storeCatalog.products.map((p) => ({
+    id: p.id, category: p.category, usd: p.usd, tebexPackageId: tebexPackageIds[p.id] || null,
+    sellable: isTebexEnabledProduct(p) && p.purchaseAvailable !== false && (!p.availableUntil || new Date() <= new Date(p.availableUntil))
+  }));
+}
+
+// --- Ofertas automaticas: calendario en catalog/offers.json, cupones en Tebex via Plugin API ---
+const offerCalendar = loadOffers();
+for (const e of validateCalendar(offerCalendar)) console.error(`offers.json: ${e}`);
+const offerState = new Map(); // offerId -> { status: 'ok'|'error', code, tebexId, error }
+
+function readClaims() {
+  try {
+    return fsSync.readFileSync(claimsFile, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+  } catch { return []; }
+}
+const claimsOf = (claims, offerId, nick) => claims.filter((c) => c.offerId === offerId && (!nick || c.nick === nick.toLowerCase())).length;
+
+// Ofertas que de verdad se pueden aplicar ahora (calendario + cupon verificado en Tebex).
+function activeOfferPlan(now = new Date(), nick = null) {
+  const cart = pickCartOffer(offerCalendar, now);
+  const claims = readClaims();
+  const gifts = liveGifts(offerCalendar, now).filter((g) => {
+    const lim = g.limits || {};
+    if (lim.total && claimsOf(claims, g.id) >= lim.total) return false;
+    if (nick && lim.perCustomer && claimsOf(claims, g.id, nick) >= lim.perCustomer) return false;
+    return true;
+  });
+  const applied = (o) => o && offerState.get(o.id)?.status === 'ok';
+  return { cart: applied(cart) ? cart : null, gifts: gifts.filter(applied), calendarCart: cart };
+}
+
 function getStoreCatalogView() {
   const now = new Date();
+  const status = storeStatus(now);
   const activeProducts = storeCatalog.products.filter((product) => {
     if (product.availableUntil && now > new Date(product.availableUntil)) {
       return false;
@@ -356,19 +395,53 @@ function getStoreCatalogView() {
 
   const activeCategoryIds = new Set(activeProducts.map((p) => p.category));
   const activeCategories = storeCatalog.categories.filter((cat) => activeCategoryIds.has(cat.id));
+  const plan = status.open ? activeOfferPlan(now) : { cart: null, gifts: [] };
+  const plist = offerProductList();
 
   return {
     ...storeCatalog,
     categories: activeCategories,
-    products: activeProducts.map((product) => ({
-      ...product,
-      tebexPackageId: tebexPackageIds[product.id] || null,
-      tebexEnabled: isTebexEnabledProduct(product),
+    store: { open: status.open, opensAt: status.opensAt },
+    products: activeProducts.map((product) => {
       // Un producto puede estar no disponible por decision del catalogo (aun no existe el
       // paquete en Tebex) o por estar bloqueado aqui.
-      purchaseAvailable: product.purchaseAvailable !== false && !unavailableTebexProductIds.has(product.id)
-    }))
+      const available = product.purchaseAvailable !== false && !unavailableTebexProductIds.has(product.id);
+      const price = status.open && available ? priceFor({ id: product.id, usd: product.usd }, { cartOffer: plan.cart, giftOffers: plan.gifts, products: plist }) : null;
+      return {
+        ...product,
+        tebexPackageId: tebexPackageIds[product.id] || null,
+        tebexEnabled: isTebexEnabledProduct(product),
+        purchaseAvailable: status.open && available,
+        storeClosed: !status.open && available,
+        ...(price ? { offerUsd: price.usd, offerId: price.offerId, offerKind: price.kind } : {})
+      };
+    })
   };
+}
+
+function offersView(now = new Date()) {
+  const status = storeStatus(now);
+  const live = status.open ? liveOffers(offerCalendar, now) : [];
+  const upcoming = offerCalendar.filter((o) => o.active !== false && Date.parse(o.start) > now.getTime() && Date.parse(o.end) > Math.max(now.getTime(), status.opensAt ? Date.parse(status.opensAt) : 0)).slice(0, 6);
+  return {
+    generatedAt: now.toISOString(), timezone: 'America/Santiago',
+    store: { open: status.open, opensAt: status.opensAt },
+    active: live.map((o) => publicOffer(o, offerState.get(o.id))),
+    upcoming: upcoming.map((o) => publicOffer(o, null))
+  };
+}
+
+const offersSyncMs = Number(process.env.OFFERS_SYNC_MS) || 10 * 60 * 1000;
+async function runOffersSync() {
+  if (!tebexPluginSecret || process.env.OFFERS_SYNC_DISABLED === '1') return;
+  try {
+    await syncOffers({
+      offers: offerCalendar, products: offerProductList(), api: pluginApi(tebexPluginSecret), state: offerState,
+      log: (level, msg) => app.log[level](msg)
+    });
+  } catch (err) {
+    app.log.error(err, 'ofertas: sync fallo');
+  }
 }
 
 function getTebexAuthHeader() {
@@ -404,7 +477,7 @@ async function tebexRequest(endpoint, { method = 'GET', body } = {}) {
   return payload;
 }
 
-async function createTebexBasket({ nick, contact, notes, items }) {
+async function createTebexBasket({ nick, contact, notes, items, couponCodes = [] }) {
   const basket = await tebexRequest(`/api/accounts/${tebexPublicToken}/baskets`, {
     method: 'POST',
     body: {
@@ -436,6 +509,15 @@ async function createTebexBasket({ nick, contact, notes, items }) {
     });
   }
 
+  // Cupones de ofertas activas. Si no se pueden aplicar se aborta: el cliente vio un precio
+  // con descuento y no debe pagar el completo sin saberlo.
+  for (const code of couponCodes) {
+    await tebexRequest(`/api/accounts/${tebexPublicToken}/baskets/${ident}/coupons`, { method: 'POST', body: { coupon_code: code } });
+  }
+  if (couponCodes.length) {
+    latest = await tebexRequest(`/api/accounts/${tebexPublicToken}/baskets/${ident}`);
+  }
+
   const checkoutUrl = latest?.data?.links?.checkout;
   if (!checkoutUrl) {
     throw new Error('Tebex no devolvió checkout para el basket');
@@ -445,7 +527,7 @@ async function createTebexBasket({ nick, contact, notes, items }) {
     basketIdent: ident,
     checkoutUrl,
     currency: latest?.data?.currency || 'USD',
-    totalPrice: latest?.data?.total_price || 0
+    totalPrice: Number(latest?.data?.total_price) || 0
   };
 }
 
@@ -744,6 +826,11 @@ function now_ok(updated) {
   return Number.isFinite(t) && Date.now() - t < FX_MAX_STALE_MS;
 }
 
+app.get('/offers.json', async (_request, reply) => {
+  reply.header('Cache-Control', 'public, max-age=30');
+  return offersView();
+});
+
 app.get('/api/store', async () => {
   const catalog = getStoreCatalogView();
   const allPriced = catalog.products.map(p => p.usd).filter(Number.isFinite);
@@ -752,6 +839,7 @@ app.get('/api/store', async () => {
   const maxPrice = Math.max(...allPriced);
   return {
     ...catalog,
+    offers: offersView().active,
     summary: {
       products: catalog.products.length,
       monthlyRanks: monthly.length,
@@ -903,6 +991,15 @@ app.post('/api/store/tebex/checkout', async (request, reply) => {
   const notes = String(body.notes || '').trim().slice(0, 500);
 
   if (body.website) return reply.code(204).send();
+  // Tienda cerrada hasta la fecha de apertura (catalog/store-schedule.json o STORE_OPENS_AT).
+  const status = storeStatus(now);
+  if (!status.open) {
+    return reply.code(403).send({
+      error: `${closedMessage(status.opensAt)}. Fecha por confirmar en Discord.`,
+      code: 'store_closed',
+      opensAt: status.opensAt
+    });
+  }
   if (!items.length) return reply.code(400).send({ error: 'Selecciona al menos un producto.' });
   if (!MINECRAFT_USERNAME_PATTERN.test(nick)) {
     return reply.code(400).send({
@@ -919,8 +1016,32 @@ app.post('/api/store/tebex/checkout', async (request, reply) => {
 
   try {
     const quoteId = `dt-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
-    const basket = await createTebexBasket({ nick, contact, notes, items });
-    const totalUsd = items.reduce((sum, product) => sum + (Number.isFinite(product.usd) ? product.usd : 0), 0);
+    // Ofertas: descuento de carrito vigente + regalos aun no reclamados por este nick.
+    const plan = activeOfferPlan(now, nick);
+    const plist = offerProductList();
+    const couponCodes = [];
+    const expectedTotal = Number(items.reduce((sum, product) => {
+      const price = priceFor({ id: product.id, usd: product.usd }, { cartOffer: plan.cart, giftOffers: plan.gifts, products: plist });
+      return sum + (price ? price.usd : (Number.isFinite(product.usd) ? product.usd : 0));
+    }, 0).toFixed(2));
+    const usedOffers = new Set();
+    for (const product of items) {
+      const price = priceFor({ id: product.id, usd: product.usd }, { cartOffer: plan.cart, giftOffers: plan.gifts, products: plist });
+      if (price) usedOffers.add(price.offerId);
+    }
+    for (const id of usedOffers) couponCodes.push(offerState.get(id).code || offerCode({ id }));
+    const basket = await createTebexBasket({ nick, contact, notes, items, couponCodes });
+    if (couponCodes.length && Math.abs(basket.totalPrice - expectedTotal) > 0.011) {
+      app.log.warn({ expectedTotal, tebexTotal: basket.totalPrice, offers: [...usedOffers] }, 'ofertas: total de Tebex distinto al mostrado');
+    }
+    for (const id of usedOffers) {
+      const o = offerCalendar.find((x) => x.id === id);
+      if (o?.limits?.perCustomer || o?.limits?.total) {
+        await fs.mkdir(dataDir, { recursive: true });
+        await fs.appendFile(claimsFile, `${JSON.stringify({ offerId: id, nick: nick.toLowerCase(), basket: basket.basketIdent, at: new Date().toISOString() })}\n`, 'utf8');
+      }
+    }
+    const totalUsd = basket.totalPrice || expectedTotal;
     const quote = {
       id: quoteId,
       createdAt: new Date().toISOString(),
@@ -953,6 +1074,7 @@ app.post('/api/store/tebex/checkout', async (request, reply) => {
       init_point: basket.checkoutUrl,
       basket_ident: basket.basketIdent,
       total_usd: Number(totalUsd.toFixed(2)),
+      offers_applied: [...usedOffers],
       currency: basket.currency
     };
   } catch (error) {
@@ -1527,6 +1649,8 @@ app.setErrorHandler(async (error, request, reply) => {
 });
 
 try {
+  setTimeout(runOffersSync, 5000).unref();
+  setInterval(runOffersSync, offersSyncMs).unref();
   await app.listen({ host: '0.0.0.0', port: Number(process.env.PORT || 8080) });
 } catch (error) {
   app.log.error(error);

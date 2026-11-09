@@ -1,0 +1,716 @@
+{
+  "version": 1,
+  "timezone": "America/Santiago",
+  "generatedBy": "tools/gen_offers.mjs",
+  "offers": [
+    {
+      "id": "cumple-2026",
+      "kind": "discount",
+      "name": {
+        "es": "Cumpleaños del dueño",
+        "en": "Owner's birthday"
+      },
+      "description": {
+        "es": "15 % en toda la tienda el 29 de noviembre, cumpleaños de JackStar.",
+        "en": "15% off the whole store on November 29, JackStar's birthday."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2026-11-29T00:00:00-03:00",
+      "end": "2026-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Cumpleaños de JackStar: 15 % de descuento hoy",
+        "en": "JackStar's birthday: 15% off today",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 15
+    },
+    {
+      "id": "cumple-2026-regalo",
+      "kind": "gift",
+      "name": {
+        "es": "Regalo de cumpleaños",
+        "en": "Birthday gift"
+      },
+      "description": {
+        "es": "Un Pack +5 Homes gratis por jugador el 29 de noviembre: agrégalo al carrito con tu nick y el regalo se aplica solo.",
+        "en": "One free +5 Homes Pack per player on November 29: add it to your cart with your nick and the gift applies automatically."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 100
+      },
+      "start": "2026-11-29T00:00:00-03:00",
+      "end": "2026-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "package",
+        "ids": [
+          "homes-pack-5"
+        ],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 100,
+        "perCustomer": 1
+      },
+      "banner": {
+        "es": "Regalo de cumpleaños: Pack +5 Homes gratis (1 por jugador)",
+        "en": "Birthday gift: free +5 Homes Pack (1 per player)",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 0,
+      "giftProductId": "homes-pack-5"
+    },
+    {
+      "id": "navidad-2026",
+      "kind": "discount",
+      "name": {
+        "es": "Navidad",
+        "en": "Christmas"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 19 al 26 de diciembre.",
+        "en": "15% off the whole store, December 19-26."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2026-12-19T00:00:00-03:00",
+      "end": "2026-12-26T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Navidad: 15 % de descuento",
+        "en": "Christmas: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "ano-nuevo-2026",
+      "kind": "discount",
+      "name": {
+        "es": "Año Nuevo",
+        "en": "New Year"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 28 de diciembre al 2 de enero.",
+        "en": "15% off the whole store, December 28 to January 2."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2026-12-28T00:00:00-03:00",
+      "end": "2027-01-02T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Año Nuevo: 15 % de descuento",
+        "en": "New Year: 15% off",
+        "accent": "gold"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "clases-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Regreso a clases",
+        "en": "Back to school"
+      },
+      "description": {
+        "es": "15 % en toda la tienda para empezar el año escolar.",
+        "en": "15% off the whole store to start the school year."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-03-01T00:00:00-03:00",
+      "end": "2027-03-07T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Regreso a clases: 15 % de descuento",
+        "en": "Back to school: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "invierno-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Vacaciones de invierno",
+        "en": "Winter break"
+      },
+      "description": {
+        "es": "15 % en toda la tienda durante una semana de vacaciones.",
+        "en": "15% off the whole store for a week of winter break."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-07-05T00:00:00-04:00",
+      "end": "2027-07-11T23:59:59-04:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Vacaciones de invierno: 15 % de descuento",
+        "en": "Winter break: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "patrias-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Fiestas Patrias",
+        "en": "Chilean National Holidays"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 17 al 19 de septiembre.",
+        "en": "15% off the whole store, September 17-19."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-09-17T00:00:00-03:00",
+      "end": "2027-09-19T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Fiestas Patrias: 15 % de descuento",
+        "en": "National Holidays: 15% off",
+        "accent": "rose"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "bf-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Black Friday (semana completa)",
+        "en": "Black Friday (full week)"
+      },
+      "description": {
+        "es": "25 % en toda la tienda, de lunes a domingo, la primera semana completa de noviembre.",
+        "en": "25% off the whole store, Monday to Sunday, first full week of November."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 25
+      },
+      "start": "2027-11-01T00:00:00-03:00",
+      "end": "2027-11-07T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Black Friday: 25 % de descuento toda la semana",
+        "en": "Black Friday: 25% off all week",
+        "accent": "gold"
+      },
+      "active": true,
+      "priority": 20
+    },
+    {
+      "id": "cumple-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Cumpleaños del dueño",
+        "en": "Owner's birthday"
+      },
+      "description": {
+        "es": "15 % en toda la tienda el 29 de noviembre, cumpleaños de JackStar.",
+        "en": "15% off the whole store on November 29, JackStar's birthday."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-11-29T00:00:00-03:00",
+      "end": "2027-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Cumpleaños de JackStar: 15 % de descuento hoy",
+        "en": "JackStar's birthday: 15% off today",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 15
+    },
+    {
+      "id": "cumple-2027-regalo",
+      "kind": "gift",
+      "name": {
+        "es": "Regalo de cumpleaños",
+        "en": "Birthday gift"
+      },
+      "description": {
+        "es": "Un Pack +5 Homes gratis por jugador el 29 de noviembre: agrégalo al carrito con tu nick y el regalo se aplica solo.",
+        "en": "One free +5 Homes Pack per player on November 29: add it to your cart with your nick and the gift applies automatically."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 100
+      },
+      "start": "2027-11-29T00:00:00-03:00",
+      "end": "2027-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "package",
+        "ids": [
+          "homes-pack-5"
+        ],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 100,
+        "perCustomer": 1
+      },
+      "banner": {
+        "es": "Regalo de cumpleaños: Pack +5 Homes gratis (1 por jugador)",
+        "en": "Birthday gift: free +5 Homes Pack (1 per player)",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 0,
+      "giftProductId": "homes-pack-5"
+    },
+    {
+      "id": "navidad-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Navidad",
+        "en": "Christmas"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 19 al 26 de diciembre.",
+        "en": "15% off the whole store, December 19-26."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-12-19T00:00:00-03:00",
+      "end": "2027-12-26T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Navidad: 15 % de descuento",
+        "en": "Christmas: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "ano-nuevo-2027",
+      "kind": "discount",
+      "name": {
+        "es": "Año Nuevo",
+        "en": "New Year"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 28 de diciembre al 2 de enero.",
+        "en": "15% off the whole store, December 28 to January 2."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2027-12-28T00:00:00-03:00",
+      "end": "2028-01-02T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Año Nuevo: 15 % de descuento",
+        "en": "New Year: 15% off",
+        "accent": "gold"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "clases-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Regreso a clases",
+        "en": "Back to school"
+      },
+      "description": {
+        "es": "15 % en toda la tienda para empezar el año escolar.",
+        "en": "15% off the whole store to start the school year."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-03-01T00:00:00-03:00",
+      "end": "2028-03-07T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Regreso a clases: 15 % de descuento",
+        "en": "Back to school: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "invierno-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Vacaciones de invierno",
+        "en": "Winter break"
+      },
+      "description": {
+        "es": "15 % en toda la tienda durante una semana de vacaciones.",
+        "en": "15% off the whole store for a week of winter break."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-07-03T00:00:00-04:00",
+      "end": "2028-07-09T23:59:59-04:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Vacaciones de invierno: 15 % de descuento",
+        "en": "Winter break: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "patrias-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Fiestas Patrias",
+        "en": "Chilean National Holidays"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 17 al 19 de septiembre.",
+        "en": "15% off the whole store, September 17-19."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-09-17T00:00:00-03:00",
+      "end": "2028-09-19T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Fiestas Patrias: 15 % de descuento",
+        "en": "National Holidays: 15% off",
+        "accent": "rose"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "bf-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Black Friday (semana completa)",
+        "en": "Black Friday (full week)"
+      },
+      "description": {
+        "es": "25 % en toda la tienda, de lunes a domingo, la primera semana completa de noviembre.",
+        "en": "25% off the whole store, Monday to Sunday, first full week of November."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 25
+      },
+      "start": "2028-11-06T00:00:00-03:00",
+      "end": "2028-11-12T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Black Friday: 25 % de descuento toda la semana",
+        "en": "Black Friday: 25% off all week",
+        "accent": "gold"
+      },
+      "active": true,
+      "priority": 20
+    },
+    {
+      "id": "cumple-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Cumpleaños del dueño",
+        "en": "Owner's birthday"
+      },
+      "description": {
+        "es": "15 % en toda la tienda el 29 de noviembre, cumpleaños de JackStar.",
+        "en": "15% off the whole store on November 29, JackStar's birthday."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-11-29T00:00:00-03:00",
+      "end": "2028-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Cumpleaños de JackStar: 15 % de descuento hoy",
+        "en": "JackStar's birthday: 15% off today",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 15
+    },
+    {
+      "id": "cumple-2028-regalo",
+      "kind": "gift",
+      "name": {
+        "es": "Regalo de cumpleaños",
+        "en": "Birthday gift"
+      },
+      "description": {
+        "es": "Un Pack +5 Homes gratis por jugador el 29 de noviembre: agrégalo al carrito con tu nick y el regalo se aplica solo.",
+        "en": "One free +5 Homes Pack per player on November 29: add it to your cart with your nick and the gift applies automatically."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 100
+      },
+      "start": "2028-11-29T00:00:00-03:00",
+      "end": "2028-11-29T23:59:59-03:00",
+      "scope": {
+        "type": "package",
+        "ids": [
+          "homes-pack-5"
+        ],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 100,
+        "perCustomer": 1
+      },
+      "banner": {
+        "es": "Regalo de cumpleaños: Pack +5 Homes gratis (1 por jugador)",
+        "en": "Birthday gift: free +5 Homes Pack (1 per player)",
+        "accent": "violet"
+      },
+      "active": true,
+      "priority": 0,
+      "giftProductId": "homes-pack-5"
+    },
+    {
+      "id": "navidad-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Navidad",
+        "en": "Christmas"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 19 al 26 de diciembre.",
+        "en": "15% off the whole store, December 19-26."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-12-19T00:00:00-03:00",
+      "end": "2028-12-26T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Navidad: 15 % de descuento",
+        "en": "Christmas: 15% off",
+        "accent": "cyan"
+      },
+      "active": true,
+      "priority": 10
+    },
+    {
+      "id": "ano-nuevo-2028",
+      "kind": "discount",
+      "name": {
+        "es": "Año Nuevo",
+        "en": "New Year"
+      },
+      "description": {
+        "es": "15 % en toda la tienda del 28 de diciembre al 2 de enero.",
+        "en": "15% off the whole store, December 28 to January 2."
+      },
+      "discount": {
+        "type": "percentage",
+        "value": 15
+      },
+      "start": "2028-12-28T00:00:00-03:00",
+      "end": "2029-01-02T23:59:59-03:00",
+      "scope": {
+        "type": "cart",
+        "ids": [],
+        "excludeIds": []
+      },
+      "minimum": 0,
+      "limits": {
+        "total": 0,
+        "perCustomer": 0
+      },
+      "banner": {
+        "es": "Año Nuevo: 15 % de descuento",
+        "en": "New Year: 15% off",
+        "accent": "gold"
+      },
+      "active": true,
+      "priority": 10
+    }
+  ]
+}

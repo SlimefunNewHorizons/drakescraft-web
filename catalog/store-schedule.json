@@ -1,0 +1,4 @@
+{
+  "opensAt": "2026-11-18T00:00:00-03:00",
+  "note": "Apertura de la tienda (T2). STORE_OPENS_AT en el entorno tiene prioridad. Quitar este archivo o poner una fecha pasada = tienda abierta."
+}
