@@ -451,6 +451,59 @@ async function main() {
     }
   }
 
+  // Tipos de cambio de referencia
+  try {
+    const res = await fetch(`${BASE_URL}/fx-rates.json`);
+    const fxData = JSON.parse(res.body);
+    const shapeOk = res.status === 200 && fxData.base === 'USD' && typeof fxData.available === 'boolean';
+    const ratesOk = fxData.available
+      ? ['CLP', 'EUR'].every((c) => Number.isFinite(fxData.rates?.[c]) && fxData.rates[c] > 0)
+      : fxData.rates === null;
+    if (!shapeOk || !ratesOk) errors.push('/fx-rates.json: forma invalida');
+    else { passed++; console.log(`✓ /fx-rates.json (available=${fxData.available})`); }
+  } catch (err) {
+    errors.push(`/fx-rates.json: ${err.message}`);
+  }
+
+  // Fallback: sin fuente de tasas el endpoint responde available:false y no rompe la tienda
+  try {
+    const { spawn } = await import('node:child_process');
+    const os = await import('node:os');
+    const fsp = await import('node:fs/promises');
+    const pathMod = await import('node:path');
+    const tmp = await fsp.mkdtemp(pathMod.join(os.tmpdir(), 'fx-test-'));
+    const port = String(Number(PORT) + 211);
+    const child = spawn(process.execPath, ['server.js'], {
+      env: { ...process.env, PORT: port, DATA_DIR: tmp, FX_SOURCES_OVERRIDE: 'http://127.0.0.1:9/nada' },
+      stdio: 'ignore'
+    });
+    let body = null;
+    for (let i = 0; i < 30 && !body; i++) {
+      await new Promise((r) => setTimeout(r, 300));
+      try { body = (await fetch(`http://127.0.0.1:${port}/fx-rates.json`)).body; } catch { /* aun arrancando */ }
+    }
+    child.kill();
+    await fsp.rm(tmp, { recursive: true, force: true });
+    const parsed = body ? JSON.parse(body) : null;
+    if (!parsed || parsed.available !== false || parsed.rates !== null) errors.push('/fx-rates.json: fallback sin tasas incorrecto');
+    else { passed++; console.log('✓ /fx-rates.json fallback sin tasas (solo USD)'); }
+  } catch (err) {
+    errors.push(`/fx-rates.json fallback: ${err.message}`);
+  }
+
+  // Protección 481 excluida de la venta y redirect de /terminos.html
+  try {
+    const data = JSON.parse((await fetch(`${BASE_URL}/api/store`)).body);
+    const p481 = data.products.find((p) => p.id === 'protection-481');
+    if (!p481 || p481.purchaseAvailable !== false) errors.push('protection-481 debe estar fuera de venta');
+    else { passed++; console.log('✓ protection-481 fuera de venta'); }
+    const r = await fetch(`${BASE_URL}/terminos.html`);
+    if (r.status !== 301) errors.push(`/terminos.html: esperado 301, got ${r.status}`);
+    else { passed++; console.log('✓ /terminos.html redirige'); }
+  } catch (err) {
+    errors.push(`extras: ${err.message}`);
+  }
+
   // Resumen
   console.log(`\n📊 Results: ${passed} checks passed`);
 

@@ -125,12 +125,32 @@
     <section class="store-catalog-section" id="catalogo">
       <div class="container">
 
+        <div class="store-t2-notice" role="note">
+          <strong>Season 2 is in testing (staff only).</strong> Planned opening: November 18, 2026, to be confirmed on Discord. 30-day passes start counting when you pay, not when the server opens, so we recommend buying from the opening date.
+        </div>
+        <div class="store-howto" id="how-to-buy">
+          <h2>How to buy and what you get</h2>
+          <ol>
+            <li><strong>Pick Java or Bedrock.</strong> On Bedrock your username starts with a dot (for example <code>.YourName</code>); the store adds it for you.</li>
+            <li><strong>Type your exact username</strong>, case-sensitive.</li>
+            <li><strong>Pay on Tebex.</strong> Base prices and the actual charge are in US dollars (USD); other currencies are only an estimate.</li>
+            <li><strong>Join the server.</strong> Delivery is automatic, normally 1 to 5 minutes after payment; if you were offline it arrives when you join.</li>
+          </ol>
+          <p><strong>What you get:</strong> what each card says, nothing more. Ranks are 30-day passes with no automatic renewal. Anything marked "season", and anything Tebex labels "permanent" or "lifetime" (Anti-AFK, vaults, homes, Premium Economy, Slimefun Knowledge), lasts until the end of the season in which you buy it, as stated in the <a href="terms-en.html">terms</a>.</p>
+          <p><strong>If it did not arrive:</strong> open a ticket on <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Discord</a> with your username and the Tebex transaction ID. We will redeliver it, move it to the right account or compensate you in-game (<a href="terms-en.html#seccion-2">terms, section 2</a>). More help in <a href="support-en.html">Purchase Support</a>.</p>
+        </div>
+        <details class="store-compare" id="comparativa">
+          <summary>Rank comparison</summary>
+          <div class="store-compare__scroll"><table class="store-compare__table"><caption class="visually-hidden">Rank comparison</caption><thead><tr><th scope="col">Rank</th><th scope="col">USD / 30 days</th><th scope="col">/fly*</th><th scope="col">Homes</th><th scope="col">Vaults</th><th scope="col">Protection</th><th scope="col">Shops</th></tr></thead><tbody><tr><th scope="row">Hércules</th><td>US$4.99</td><td>—</td><td>3</td><td>3</td><td>49×49</td><td>20</td></tr><tr><th scope="row">Hestia</th><td>US$7.99</td><td>—</td><td>5</td><td>4</td><td>81×81</td><td>30</td></tr><tr><th scope="row">Hermes</th><td>US$10.99</td><td>Yes</td><td>6</td><td>5</td><td>113×113</td><td>40</td></tr><tr><th scope="row">Hefesto</th><td>US$15.99</td><td>Yes</td><td>8</td><td>7</td><td>177×177</td><td>50</td></tr><tr><th scope="row">Artemisa</th><td>US$22.99</td><td>Yes</td><td>10</td><td>8</td><td>241×241</td><td>60</td></tr><tr><th scope="row">Afrodita</th><td>US$31.99</td><td>Yes</td><td>12</td><td>10</td><td>353×353</td><td>70</td></tr><tr><th scope="row">Zeus</th><td>US$44.99</td><td>Yes</td><td>20</td><td>15</td><td>481×481</td><td>80</td></tr><tr><th scope="row">Thor</th><td>US$49.99</td><td>Yes</td><td>25</td><td>20</td><td>601×601</td><td>100</td></tr><tr><th scope="row">Anubis</th><td>US$54.99</td><td>Yes</td><td>30</td><td>25</td><td>721×721</td><td>120</td></tr><tr><th scope="row">Poseidón</th><td>US$59.99</td><td>Yes</td><td>35</td><td>30</td><td>841×841</td><td>150</td></tr><tr><th scope="row">Titán Japeto</th><td>US$49.99</td><td>Yes</td><td>40</td><td>35</td><td>1001×1001</td><td>200</td></tr><tr><th scope="row">Titán Oceanus</th><td>US$59.99</td><td>Yes</td><td>45</td><td>40</td><td>1301×1301</td><td>250</td></tr><tr><th scope="row">Titán Hiperión</th><td>US$69.99</td><td>Yes</td><td>50</td><td>45</td><td>1601×1601</td><td>300</td></tr><tr><th scope="row">Titán Cronos</th><td>US$79.99</td><td>Yes</td><td>60</td><td>50</td><td>2001×2001</td><td>400</td></tr><tr><th scope="row">Titán Caos</th><td>US$89.99</td><td>Yes</td><td>100</td><td>50</td><td>2501×2501</td><td>500</td></tr></tbody></table></div>
+          <p class="store-compare__foot">Each rank inherits the ones below. Passes last 30 days and do not renew by themselves. *<code>/fly</code> works in your protected regions and enabled areas, without energy or gems. Figures from the <a href="guia-rangos-en.html">Ranks Guide</a>; Hercules and Hestia include no <code>/fly</code>.</p>
+        </details>
+
         <!-- Legal Disclaimer and Terms Banner -->
         <div class="store-legal-banner">
           <span class="legal-icon">⚖️</span>
           <div class="legal-text">
             <strong>Before purchasing:</strong>
-            Purchases are digital, delivered immediately and <strong>non-refundable</strong>; if something goes wrong, we resolve it in-game. By purchasing you accept the <a href="terms-en.html">Terms of Service</a>. Final price and currency are shown in Tebex checkout.
+            Purchases are digital, delivered immediately and <strong>non-refundable</strong>; if something goes wrong, we resolve it in-game. By purchasing you accept the <a href="terms-en.html">Terms of Service</a>. Prices are in USD; other currencies are only estimates. The final price and currency are shown in Tebex checkout.
           </div>
         </div>
 
@@ -148,6 +168,24 @@
           </div>
         </div>
 
+          <div class="fx-box" id="fx-box">
+            <label for="fx-select">Show approximate prices in:</label>
+            <select id="fx-select" name="fx-currency" aria-describedby="fx-note">
+              <option value="USD">USD (actual price)</option>
+              <option value="CLP">CLP · Chilean peso</option>
+              <option value="ARS">ARS · Argentine peso</option>
+              <option value="MXN">MXN · Mexican peso</option>
+              <option value="COP">COP · Colombian peso</option>
+              <option value="PEN">PEN · Peruvian sol</option>
+              <option value="UYU">UYU · Uruguayan peso</option>
+              <option value="BOB">BOB · Bolivian boliviano</option>
+              <option value="BRL">BRL · Brazilian real</option>
+              <option value="EUR">EUR · euro</option>
+              <option value="GBP">GBP · pound sterling</option>
+              <option value="CAD">CAD · Canadian dollar</option>
+            </select>
+            <p class="fx-note" id="fx-note">Base prices are in <strong>USD</strong>. Other currencies are an <strong>estimate</strong>: the actual charge is in USD and the exchange rate is set by your bank or Tebex. <span id="fx-updated"></span></p>
+          </div>
         <!-- Category Tabs -->
         <div class="store-tabs-modern" id="store-tabs" aria-label="Product categories"></div>
 
@@ -213,7 +251,7 @@
                 <!-- Total -->
                 <div class="checkout-total-row">
                   <span>Estimated total:</span>
-                  <strong id="quote-total">$0 CLP</strong>
+                  <strong id="quote-total">US$0.00</strong>
                 </div>
 
                 <!-- Optional Support Contact -->
@@ -230,9 +268,10 @@
                 </details>
 
                 <input class="hidden" name="website" tabindex="-1" autocomplete="off">
-                <div class="checkout-eula-notice">
-                  <small>By proceeding you confirm you are 14 or older (or have parental consent) and accept the <a href="terms-en.html" target="_blank" rel="noopener">Terms of Service</a> and immediate digital delivery policy. NOT AN OFFICIAL MINECRAFT PRODUCT.</small>
-                </div>
+                <label class="checkout-age">
+                  <input type="checkbox" id="age-confirm" name="age" required>
+                  <span>I am 14 or older (or have parental consent) and I accept the <a href="terms-en.html" target="_blank" rel="noopener">Terms of Service</a> and the immediate digital delivery policy. Not an official Minecraft product.</span>
+                </label>
                 <button class="btn btn-primary btn-checkout-submit" type="submit" id="btn-submit-checkout">
                   <span class="btn-icon">🔒</span>
                   <span>Proceed to Secure Payment on Tebex</span>
@@ -343,7 +382,7 @@
               <span class="faq-toggle" aria-hidden="true"></span>
             </summary>
             <div class="faq-answer">
-              <p>Per DrakesCraft's canonical rules, items labeled as <strong>"permanent"</strong> (such as the <strong>Permanent Anti-AFK Pass</strong>, extra vaults, and seasonal ranks) remain active for <strong>the entire duration of the active season</strong> in which they were purchased, concluding when that season reaches its official wipe/conclusion. Passes from Season 1 expired with Season 1, and passes acquired in Season 2 remain valid throughout all of Season 2.</p>
+              <p>Per DrakesCraft's canonical rules, items labeled as <strong>"permanent"</strong> (such as the <strong>Permanent Anti-AFK Pass</strong>, extra vaults and homes, Premium Economy and Slimefun Knowledge; Tebex may label them "permanent" or "lifetime", but nothing is for life) remain active for <strong>the entire duration of the active season</strong> in which they were purchased, concluding when that season reaches its official wipe/conclusion. Passes from Season 1 expired with Season 1, and passes acquired in Season 2 remain valid throughout all of Season 2.</p>
             </div>
           </details>
 
@@ -373,7 +412,7 @@
               <span class="faq-toggle" aria-hidden="true"></span>
             </summary>
             <div class="faq-answer">
-              <p><strong>Yes.</strong> DrakesCraft has a synchronized global permissions and economy network. Your VIP rank, progress multipliers, and Dragmas balance follow you across <strong>Slimefun, Classic, SkyBlock and OneBlock</strong>.</p>
+              <p>Your rank and your Dragmas go with you, but inventories and auctions are independent per game mode, and the Lab is creative-only with no trading (see the <a href="guia.html#modalidades">guide</a>). Per-mode limits for vaults, homes and protections are not itemized: if it matters for a specific mode, ask on Discord before buying.</p>
             </div>
           </details>
 
@@ -383,7 +422,7 @@
               <span class="faq-toggle" aria-hidden="true"></span>
             </summary>
             <div class="faq-answer">
-              <p>It consumes no energy, fuel, batteries or in-game money. The <code>/fly</code> command granted by ranks and kits is <strong>unlimited free flight</strong> in all areas where it's enabled, permanently active for your rank duration (or for life in Titans).</p>
+              <p>It consumes no energy, fuel, batteries or in-game money. The <code>/fly</code> command granted by ranks and kits is <strong>free flight</strong> in your protected regions and in areas where it is enabled, for as long as your pass lasts (30 days for ranks, Titans included), in your protected regions and in areas where it is enabled.</p>
             </div>
           </details>
 
@@ -394,6 +433,25 @@
             </summary>
             <div class="faq-answer">
               <p>Don't worry, you won't lose your purchase. Every transaction generates an official Tebex order number sent to your email. Go to our <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener">Official Discord</a>, open a ticket in <code>#support</code> with your receipt and staff will transfer your package to your correct account at no additional cost.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" name="store-faq">
+            <summary class="faq-question">
+              <span>Is the store pay-to-win?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>The store sells convenience and cosmetics, but also gameplay advantages, and we would rather say so plainly: Dragmas for real money, equipment kits, rank abilities, Keep Inventory (from Zeus), XP retention (from Artemis), <code>/ultragod</code> (Titan Chaos), a temporary SFMaster pass (24 h with Poseidon, 72 h with Titan Chaos) and Total Slimefun Knowledge. Each card lists what it includes. Dragmas can also be earned by playing.</p>
+            </div>
+          </details>
+          <details class="faq-item" name="store-faq">
+            <summary class="faq-question">
+              <span>Why are prices in US dollars?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Tebex charges in US dollars (USD). The conversion to other currencies shown in the store is only an <strong>estimate</strong> from public rates: the real charge is in USD and your bank or Tebex sets the exchange rate. Tebex is the Merchant of Record and may apply taxes depending on your country.</p>
             </div>
           </details>
         </div>

@@ -145,7 +145,7 @@ def temporada(lang):
                     "La historia de la Temporada 2 de DrakesCraft: una isla griega flotante, La Grieta, el titán Atlas, la Anticitera, el radar, el Wither Storm y el coliseo.",
                     'El Olimpo ya<br>no se <em>sostiene</em>', "El Olimpo ya no se sostiene", "Temporada 2 · Olimpo en colapso",
                     "El cielo de los dioses se partió. Una isla griega flota sobre el vacío, La Grieta le abre el costado y el End sube por sus heridas.",
-                    "<span><strong>ESTADO</strong> T2 en pruebas · Solo staff</span><span><b>REAPERTURA</b> Por confirmar en Discord</span>",
+                    "<span><strong>ESTADO</strong> T2 en pruebas · Solo staff</span><span><b>REAPERTURA</b> Prevista el 18 de noviembre · por confirmar en Discord</span>",
                     f'    <div class="container">{hero}</div>\n    <div class="ol-prologue">{"".join(f"<p>{p}</p>" for p in pro)}</div>\n    <div class="container">\n'
                     + "\n".join(chapter(*c) for c in caps)
                     + f'\n      <div class="ol-cta">{cta}</div>\n    </div>')
@@ -188,7 +188,7 @@ def temporada(lang):
                 "The story of DrakesCraft Season 2: a floating Greek island, the Rift, the titan Atlas, the Antikythera, the radar, the Wither Storm and the colosseum.",
                 'Olympus can no<br>longer <em>hold</em>', "Olympus can no longer hold", "Season 2 · Olympus in Collapse",
                 "The sky of the gods has split. A Greek island floats over the void, the Rift tears open its side, and the End climbs through its wounds.",
-                "<span><strong>STATUS</strong> S2 in testing · Staff only</span><span><b>REOPENING</b> To be confirmed on Discord</span>",
+                "<span><strong>STATUS</strong> S2 in testing · Staff only</span><span><b>REOPENING</b> Planned for November 18 · to be confirmed on Discord</span>",
                 f'    <div class="container">{hero}</div>\n    <div class="ol-prologue">{"".join(f"<p>{p}</p>" for p in pro)}</div>\n    <div class="container">\n'
                 + "\n".join(chapter(*c) for c in caps)
                 + f'\n      <div class="ol-cta">{cta}</div>\n    </div>')

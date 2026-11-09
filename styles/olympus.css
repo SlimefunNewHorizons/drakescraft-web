@@ -3452,3 +3452,24 @@ h1 em, h2 em, .op-heading-row h1 em {
   border-color: var(--gold) !important;
   box-shadow: 0 14px 38px rgba(229, 189, 114, 0.22), 0 0 20px rgba(169, 138, 232, 0.25) !important;
 }
+
+/* Tienda: moneda de referencia, como comprar, comparativa, aviso T2, edad */
+.fx-box { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; margin: 0 0 1rem; padding: .75rem 1rem; border: 1px solid rgba(255, 255, 255, .14); border-radius: 12px; background: rgba(255, 255, 255, .04); }
+.fx-box label { font-weight: 600; }
+.fx-box select { min-height: 44px; padding: .4rem .7rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, .25); background: rgba(0, 0, 0, .35); color: inherit; font: inherit; }
+.fx-box .fx-note { flex: 1 1 100%; margin: 0; font-size: .85rem; opacity: .85; }
+.fx-box.is-usd-only label, .fx-box.is-usd-only select { display: none; }
+.store-fx-approx { display: block; font-size: .72rem; font-weight: 500; opacity: .8; }
+.store-howto, .store-t2-notice, .store-compare { margin: 0 0 1rem; padding: 1rem 1.2rem; border: 1px solid rgba(255, 255, 255, .14); border-radius: 12px; background: rgba(255, 255, 255, .04); }
+.store-t2-notice { border-color: rgba(245, 158, 11, .55); }
+.store-howto h2 { font-size: 1.25rem; margin: 0 0 .6rem; }
+.store-howto ol { margin: 0 0 .7rem; padding-left: 1.3rem; }
+.store-howto p { margin: .4rem 0 0; }
+.store-compare summary { cursor: pointer; font-weight: 700; min-height: 44px; display: flex; align-items: center; }
+.store-compare__scroll { overflow-x: auto; margin-top: .5rem; }
+.store-compare__table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: .88rem; }
+.store-compare__table th, .store-compare__table td { padding: .4rem .6rem; border-bottom: 1px solid rgba(255, 255, 255, .1); text-align: left; white-space: nowrap; }
+.store-compare__foot { font-size: .8rem; opacity: .85; margin: .6rem 0 0; }
+.checkout-age { display: flex; gap: .6rem; align-items: flex-start; font-size: .82rem; margin: .75rem 0; }
+.checkout-age input { width: 22px; height: 22px; flex: none; margin-top: .1rem; }
+@media (max-width: 575px) { .fx-box select { width: 100%; } }

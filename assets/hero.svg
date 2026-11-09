@@ -120,7 +120,7 @@
   <g transform="translate(60, 240)">
     <circle cx="10" cy="10" r="5" fill="#d4af37" filter="url(#glow)" class="star"/>
     <text x="25" y="14" font-family="monospace" font-size="12" fill="#d4af37" font-weight="bold" letter-spacing="1">
-      IP: PLAY.DRAKESCRAFT.CL (PORT: 25565 / BEDROCK: 19132)
+      IP: MC.DRAKESCRAFT.CL
     </text>
   </g>
 </svg>
