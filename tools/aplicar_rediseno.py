@@ -58,6 +58,8 @@ for stem, hero in HERO.items():
     s = s.replace("</head>", f"  {link}\n  </head>", 1) if "rediseno.css" not in s else s
     if "data-hero=" not in s:
         s = re.sub(r"<body ", f'<body data-hero="{hero}" ', s, 1)
+    if "/scripts/portal.js" not in s:
+        s = s.replace("</body>", '  <script src="/scripts/portal.js?v=%s" defer></script>\n  </body>' % V, 1)
     s = re.sub(r'<footer class="op-footer">.*?</footer>', FOOT, s, count=1, flags=re.S)
     p.write_text(s)
     print("ok", stem)
