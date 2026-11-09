@@ -22,7 +22,7 @@ const PROT = 7510370; // protection-177
 const HOMES = 7697425; // homes-pack-5
 const made = [];
 const mk = async (code, packages, pct) => {
-  await api.createCoupon({ code, effective_on: 'package', packages, discount_type: 'percentage', discount_percentage: pct, redeem_unlimited: true, expire_never: false, expire_limit: 0, start_date: today, expire_date: tomorrow, basket_type: 'single', minimum: 0, discount_application_method: 0, note: 'auto-oferta-test' });
+  await api.createCoupon({ code, effective_on: 'package', packages, discount_type: 'percentage', discount_amount: 0, discount_percentage: pct, redeem_unlimited: true, expire_never: false, expire_limit: 0, start_date: today, expire_date: tomorrow, basket_type: 'single', minimum: 0, discount_application_method: 0, note: 'auto-oferta-test' });
   const c = (await api.listCoupons()).find((x) => x.code === code);
   if (!c) throw new Error(`cupon ${code} no aparece en GET /coupons`);
   made.push(c.id);
