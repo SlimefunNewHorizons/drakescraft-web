@@ -1,0 +1,46 @@
+/* Wiki de Slimefun (movil primero). Usa los tokens de rediseno.css. */
+.sfw{padding:1.2rem 16px 3rem;max-width:1200px;margin:0 auto}
+.sfw *{box-sizing:border-box}
+.sfw a{color:var(--r-gold-hi)}
+.sfw-form{display:grid;gap:.6rem;position:sticky;top:0;z-index:5;background:var(--r-ink);padding:.6rem 0}
+.sfw-in,.sfw select{width:100%;min-height:48px;padding:.6rem .9rem;background:var(--r-deep);color:var(--r-marble);border:1px solid var(--r-line-strong);border-radius:6px;font:inherit;font-size:16px}
+.sfw select:disabled{opacity:.55}
+.sfw-btn{min-height:48px;padding:.6rem 1.2rem;background:var(--r-gold);color:#170f05;border:0;border-radius:6px;font-weight:700;cursor:pointer}
+.sfw-btn:disabled{opacity:.5}
+.sfw-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin:1rem 0}
+.sfw-stats div{background:var(--r-plate);border:1px solid var(--r-line);padding:.8rem;text-align:center;border-radius:8px}
+.sfw-stats b{display:block;font:700 1.6rem var(--f-display);color:var(--r-gold-hi)}
+.sfw-stats span{color:var(--r-mute);font-size:.85rem}
+.sfw-muted{color:var(--r-mute);font-size:.9rem}
+.sfw-err{color:#fda4af}
+.sfw-hd{display:grid;gap:.5rem;margin:1.2rem 0 .6rem}
+.sfw-hd h2,.sfw-h{font-family:var(--f-display);margin:0;font-size:var(--t-h3)}
+.sfw-h{font-size:1.6rem;margin:.4rem 0}
+.sfw h3{font-family:var(--f-display);font-size:1.05rem;margin:1.2rem 0 .5rem;color:var(--r-gold)}
+.sfw-lead{color:var(--r-mute)}
+.sfw-grid{display:grid;grid-template-columns:1fr;gap:.6rem}
+.sfw-card{display:flex;flex-direction:column;gap:.25rem;min-height:56px;padding:.75rem .9rem;background:var(--r-plate);border:1px solid var(--r-line);border-radius:8px;text-decoration:none;color:var(--r-marble)!important;overflow-wrap:anywhere}
+.sfw-card:hover{border-color:var(--r-line-strong);background:var(--r-plate-2)}
+.sfw-card small{color:var(--r-mute)}
+.sfw-badge{display:inline-block;align-self:flex-start;font-size:.75rem;padding:.15rem .5rem;border-radius:4px;background:rgba(179,156,240,.16);color:var(--r-amethyst)!important;text-decoration:none}
+.sfw-badge--c{background:rgba(228,187,104,.14);color:var(--r-gold-hi)!important}
+.sfw-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.sfw-chips a,.sfw-chips span{display:inline-flex;align-items:center;min-height:44px;padding:.3rem .8rem;border:1px solid var(--r-line);border-radius:22px;text-decoration:none;font-size:.9rem}
+.sfw-chips a.on{background:var(--r-gold);color:#170f05!important}
+.sfw-more{text-align:center;margin:1rem 0}
+.sfw-meta{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.sfw-meta code{color:var(--r-amethyst);overflow-wrap:anywhere}
+.sfw-facts{display:grid;gap:.5rem;margin:1rem 0}
+.sfw-facts div{background:var(--r-plate);border:1px solid var(--r-line);padding:.6rem .8rem;border-radius:8px}
+.sfw-facts span{display:block;color:var(--r-mute);font-size:.8rem}
+.sfw-recipe{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem;max-width:420px}
+.sfw-recipe--l{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+.sfw-slot{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:56px;padding:.3rem;background:var(--r-deep);border:1px solid var(--r-line);border-radius:6px;font-size:.78rem;overflow-wrap:anywhere;text-decoration:none}
+.sfw-slot em{color:var(--r-ok);font-style:normal}
+.sfw-slot--mc{color:var(--r-mute)}
+.sfw-lore{white-space:pre-wrap;margin:0;padding:.8rem 1rem;background:var(--r-deep);border-left:3px solid var(--r-gold);color:var(--r-marble);overflow-wrap:anywhere}
+.sfw-faq details{border:1px solid var(--r-line);border-radius:8px;margin:.5rem 0;background:var(--r-plate)}
+.sfw-faq summary{min-height:48px;padding:.8rem 1rem;cursor:pointer;font-weight:600}
+.sfw-faq p{padding:0 1rem 1rem;margin:0;color:var(--r-mute)}
+@media(min-width:600px){.sfw-form{grid-template-columns:2fr 1fr 1fr auto}.sfw-stats{grid-template-columns:repeat(4,1fr)}.sfw-grid{grid-template-columns:repeat(2,1fr)}.sfw-facts{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:992px){.sfw-grid{grid-template-columns:repeat(3,1fr)}}
