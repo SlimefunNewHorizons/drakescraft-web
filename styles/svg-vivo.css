@@ -1,0 +1,21 @@
+/* SVG propios de DrakesCraft: iconos (sprite /assets/svg/dc.svg), ilustraciones, divisores y fondos. Solo tema oscuro. */
+.dc-i{width:1.6rem;height:1.6rem;flex:none}
+.dc-ico{display:grid;place-items:center;justify-self:start;width:2.75rem;height:2.75rem;border:1px solid var(--r-line);background:rgba(228,187,104,.08);color:var(--r-gold-hi)}
+.dc-badge{display:inline-block;vertical-align:-.3em;width:1.5em;height:1.5em;margin-right:.45em;color:var(--r-gold)}
+.dc-host{position:relative;isolation:isolate}
+.dc-art{position:absolute;right:var(--r-gutter,1.6rem);top:50%;translate:0 -50%;width:clamp(130px,17vw,240px);aspect-ratio:4/3;color:var(--r-gold);--ac:var(--r-amethyst);pointer-events:none;opacity:.85;z-index:0;animation:dc-draw 2.4s ease-out both,dc-float 7s ease-in-out 2.4s infinite}
+.dc-art--l{left:var(--r-gutter,1.6rem);right:auto}
+.dc-div{display:flex;align-items:center;gap:.8rem;width:min(100% - 2*var(--r-gutter,1.6rem),var(--r-max,1640px));margin:0 auto;color:var(--r-gold);opacity:.75}
+.dc-div::before,.dc-div::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor);transform-origin:right;animation:dc-grow 1.4s ease-out both}
+.dc-div::after{background:linear-gradient(270deg,transparent,currentColor);transform-origin:left}
+.dc-div svg{width:3rem;height:.75rem;flex:none}
+.pt-sec--band{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' fill='none' stroke='%23e4bb68' stroke-opacity='.08'%3E%3Cpath d='M0 30h40l10 10h30M60 0v40M120 90H90l-10-10H50M30 120V80l10-10'/%3E%3Ccircle cx='40' cy='30' r='3'/%3E%3Ccircle cx='80' cy='40' r='3'/%3E%3Ccircle cx='50' cy='80' r='3'/%3E%3C/svg%3E"),linear-gradient(180deg,rgba(21,13,38,.85),rgba(8,5,14,.85))}
+.dc-stars::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' fill='%23f7dca0' fill-opacity='.35'%3E%3Ccircle cx='20' cy='30' r='1'/%3E%3Ccircle cx='110' cy='20' r='1.4'/%3E%3Ccircle cx='160' cy='90' r='1'/%3E%3Ccircle cx='70' cy='110' r='1.2'/%3E%3Ccircle cx='30' cy='160' r='1'/%3E%3Ccircle cx='140' cy='150' r='1.3'/%3E%3C/svg%3E")}
+@keyframes dc-draw{0%{stroke-dasharray:800;stroke-dashoffset:800;opacity:0}99%{stroke-dasharray:800;stroke-dashoffset:0;opacity:.85}100%{stroke-dasharray:none;stroke-dashoffset:0;opacity:.85}}
+@keyframes dc-float{50%{transform:translateY(-6px)}}
+@keyframes dc-grow{from{transform:scaleX(0)}}
+@media (max-width:1100px){.dc-art{opacity:.4;animation:none}}
+@media (max-width:760px){.dc-art{display:none}.dc-ico{width:2.4rem;height:2.4rem}}
+@media (prefers-reduced-motion:reduce){.dc-art,.dc-div::before,.dc-div::after{animation:none}}
+.pt-head>.dc-art{top:0;translate:none;width:clamp(110px,22vw,160px)}
+@media (min-width:900px){.pt-head>.dc-art{left:40%;right:auto;top:50%;translate:0 -50%;width:clamp(110px,11vw,170px)}}
