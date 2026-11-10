@@ -46,9 +46,17 @@
     const u8 = new Uint8Array(buffer);
     if (u8[0] === 0x1f && u8[1] === 0x8b) {
       if (typeof DecompressionStream !== 'undefined') {
-        const ds = new DecompressionStream('gzip');
-        const stream = new Response(buffer).body.pipeThrough(ds);
-        return await new Response(stream).arrayBuffer();
+        try {
+          const ds = new DecompressionStream('gzip');
+          const stream = new Response(buffer).body.pipeThrough(ds);
+          return await new Response(stream).arrayBuffer();
+        } catch (e) {
+          const ds = new DecompressionStream('gzip');
+          const writer = ds.writable.getWriter();
+          writer.write(u8);
+          writer.close();
+          return await new Response(ds.readable).arrayBuffer();
+        }
       }
     }
     return buffer;
@@ -158,7 +166,10 @@
       return;
     }
 
-    if (gl.getExtension) gl.getExtension('OES_element_index_uint');
+    const isWebGL2 = typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
+    const uintExt = !isWebGL2 && gl.getExtension ? gl.getExtension('OES_element_index_uint') : true;
+    const canUseUint32 = isWebGL2 || !!uintExt;
+    cv.addEventListener('webglcontextlost', (e) => e.preventDefault());
 
     const vsNodes = `
       attribute vec3 aPosition;
@@ -404,7 +415,7 @@
       const maxNodes = MOBILE ? Math.min(curData.N, 40000) : curData.N;
       const maxEdges = MOBILE ? Math.min(curData.M, 35000) : Math.min(curData.M, 160000);
 
-      if (maxEdges > 0) {
+      if (maxEdges > 0 && (!curData.u32 || canUseUint32)) {
         gl.useProgram(progLines);
         gl.uniformMatrix4fv(locMatL, false, mvp);
         gl.uniform4f(locColL, 0.42, 0.58, 0.95, MOBILE ? 0.14 : 0.18);

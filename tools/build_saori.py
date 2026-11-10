@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 R = Path(__file__).resolve().parent.parent
-V = "20261110-g1"
+V = "20261110-webgl-v3"
 U = lambda i: f'<svg class="{{c}}" aria-hidden="true"><use href="/assets/svg/griego.svg#{i}"/></svg>'
 
 TX = {
