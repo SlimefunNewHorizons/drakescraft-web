@@ -65,6 +65,16 @@ def clean_lore(t):
     return re.sub(r"[§&][0-9a-fk-or]", "", t or "").strip()
 
 
+def load_desc(path):
+    d, cur = {}, None
+    for ln in open(path, encoding="utf-8"):
+        m = re.match(r"^([a-z0-9\-]+):\s*$", ln)
+        if m: cur = d.setdefault(m.group(1), {}); continue
+        m = re.match(r"^  (es|en):\s*(.+)$", ln)
+        if m and cur is not None: cur[m.group(1)] = m.group(2).strip()
+    return d
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--addons"); ap.add_argument("--core")
@@ -77,6 +87,7 @@ def main():
         a.addons, a.core = tmp + "/iva.yml", tmp + "/iv.yml"
         for r, l in (("item-values-addons.yml", a.addons), ("item-values.yml", a.core)):
             subprocess.run([sys.executable, CTRL, "download", "/plugins/MultiverseGambling/" + r, l], check=True, stdout=subprocess.DEVNULL)
+    desc = load_desc(os.path.join(os.path.dirname(os.path.abspath(__file__)), "addon_descriptions.yml"))
     live = parse_values(a.core, True) + parse_values(a.addons, False)
     db = sqlite3.connect("file:%s?mode=ro" % a.lake, uri=True)
     lake = {r[0]: r for r in db.execute(
@@ -194,7 +205,9 @@ def main():
                             "nc": cc.get(-1, 0),
                             "tm": mc.most_common(4),
                             "f": [[x["i"], x["n"], x["sh"]] for x in feat],
-                            "rc": sum(1 for x in lst if x.get("rec"))})
+                            "rc": sum(1 for x in lst if x.get("rec")),
+                            "d": [desc.get(s, {}).get("es", ""), desc.get(s, {}).get("en", "")]})
+        if s not in desc: print("sin descripcion:", s)
 
     # indices de busqueda por inicial de palabra
     buckets = defaultdict(dict)

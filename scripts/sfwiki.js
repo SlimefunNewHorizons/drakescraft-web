@@ -132,7 +132,7 @@
     let s = L.dtitle.replace("%n", ad.n).replace("%c", fmt(ad.c));
     if (ad.cats.length) s += L.dcats.replace("%k", ad.cats.length);
     if (ad.tm.length) s += L.dmach + ad.tm.map((m) => mach(m[0]) + " (" + fmt(m[1]) + ")").join(", ");
-    return s + ".";
+    return (ad.d && ad.d[EN ? 1 : 0] ? ad.d[EN ? 1 : 0] + " " : "") + s + ".";
   }
   async function addonView(slug, cat) {
     const ad = AS[slug];

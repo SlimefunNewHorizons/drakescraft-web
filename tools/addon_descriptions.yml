@@ -1,0 +1,245 @@
+# Descripciones por addon (slug: es / en). Editable a mano; el generador las lee en cada corrida.
+# Regla: solo hechos que se vean en los datos (categorias, items destacados); si hay duda, texto generico.
+coloredenderchests:
+  es: Cofres de Ender de colores en tamaño pequeño y grande; cada combinación de tres colores es un ítem distinto, por eso hay miles de variantes.
+  en: Colored Ender Chests in small and big sizes; every three-colour combination is a separate item, which is why there are thousands of variants.
+slimechem:
+  es: Addon con una gran cantidad de ítems de química; la lista viva no trae categorías, así que aquí ves nombre, máquina y receta de cada uno.
+  en: Addon with a very large number of chemistry-related items; the live list has no categories, so each item shows its name, machine and recipe.
+cultivation:
+  es: Cultivos y plantas con sus productos y subproductos, como arvejas, pimentón u hojas de curry.
+  en: Crops and plants with their produce and by-products, such as peas, bell pepper and curry leaf.
+slimetinker:
+  es: Sistema de partes, materiales y rasgos de metal para fabricar herramientas y armaduras, con moldes (casts) y diccionario de partes.
+  en: Parts, materials and metal traits system for building tools and armor, with casts and a part dictionary.
+slimefun:
+  es: El Slimefun base del servidor: energía y electricidad, recursos, máquinas básicas, herramientas y objetos mágicos.
+  en: The server's base Slimefun: energy and electricity, resources, basic machines, tools and magical items.
+supreme:
+  es: Addon tecnológico con TechMobs, tarjetas y componentes, además de aleaciones como el titanio.
+  en: Tech addon with TechMobs, cards and components, plus alloys such as titanium.
+foxymachines:
+  es: Mezcla de bloques fantasma, materiales, herramientas y jefes con sus huevos de aparición y drops.
+  en: A mix of ghost blocks, materials, tools and bosses with their spawn eggs and drops.
+gastronomicon:
+  es: Addon de cocina y comida de Slimefun; la lista viva no trae categorías para él.
+  en: Slimefun cooking and food addon; the live list has no categories for it.
+crystamaehistoria:
+  es: Cristales históricos, semillas de Netheopoiesis y gadgets de tecnología mágica.
+  en: Historia crystals, Netheopoiesis seeds and magical tech gadgets.
+compressioncraft:
+  es: Addon de compresión de materiales; la lista viva no trae categorías, solo nombre, máquina y receta.
+  en: Material compression addon; the live list has no categories, only name, machine and recipe.
+netheopoiesis:
+  es: Semillas, pastas y bolas Netheo para cultivar y procesar recursos del Nether.
+  en: Seeds, seed pastes and Netheo balls for growing and processing Nether resources.
+exoticgarden:
+  es: Plantas, frutas, comidas y bebidas exóticas.
+  en: Exotic plants, fruits, food and drinks.
+fnamplifications:
+  es: Gemas, generadores de materiales y maquinaria para progresar en tecnología.
+  en: Gems, material generators and machinery for tech progression.
+slimeframe:
+  es: Componentes prime, recursos y máquinas con temática de Warframe (Orokin, Argon).
+  en: Prime components, resources and machines with a Warframe theme (Orokin, Argon).
+drakes-nanotechnology-stark-engineering:
+  es: Addon propio de DrakesCraft de nanotecnología e ingeniería: núcleos ARC, matrices de nanocarbono y fragmentos cósmicos.
+  en: DrakesCraft's own nanotechnology and engineering addon: ARC cores, nanocarbon matrices and cosmic fragments.
+infinityexpansion:
+  es: Materiales infinitos, máquinas avanzadas y recetas técnicas de alto nivel, con circuitos y lingotes del vacío.
+  en: Infinity materials, advanced machines and high-end technical recipes, with machine circuits and void ingots.
+miniblocks:
+  es: Addon de bloques en miniatura; la lista viva no trae categorías.
+  en: Miniature blocks addon; the live list has no categories.
+quaptics:
+  es: Addon de óptica y cuántica de Slimefun; la lista viva no trae categorías.
+  en: Slimefun optics and quantum addon; the live list has no categories.
+souljars:
+  es: Frascos de almas, vacíos o llenos con distintos mobs.
+  en: Soul jars, empty or filled with different mobs.
+elementmanipulation:
+  es: Elementos químicos (oxígeno, carbono, hidrógeno) y uniones para manipularlos.
+  en: Chemical elements (oxygen, carbon, hydrogen) and junctions to manipulate them.
+dynatech:
+  es: Apiarios, máquinas y ítems experimentales de tecnología.
+  en: Apiaries, machines and experimental tech items.
+geneticchickengineering:
+  es: Gallinas de bolsillo, sueros mutagénicos y biotecnología avícola industrial.
+  en: Pocket chickens, mutagenic serums and industrial avian biotechnology.
+galaxyfun:
+  es: Componentes y máquinas de exploración espacial (línea Galactifun).
+  en: Space-exploration components and machines (Galactifun line).
+slimefunwarfare:
+  es: Explosivos, trajes de poder y material bélico, con aleaciones de slimesteel y osmio.
+  en: Explosives, power suits and military gear, with slimesteel and osmium alloys.
+dyedbackpacks:
+  es: Mochilas de cada color.
+  en: Backpacks in every colour.
+sensibletoolbox:
+  es: Ítems, bloques y máquinas con polvos energizados y cuarzo.
+  en: Items, blocks and machines with energized dusts and quartz.
+slimybees:
+  es: Abejas forestales: herencias de abeja, aceite de cera y marcos.
+  en: Forest bees: bee heritage, wax oil and frames.
+mobcapturer:
+  es: Huevos de mob y herramientas para capturar criaturas.
+  en: Mob eggs and tools to capture creatures.
+networksv6-drake:
+  es: Redes de cable óptico con herramientas de gestión y materiales de fabricación.
+  en: Optic-cable networks with management tools and crafting materials.
+litexpansion:
+  es: Aleaciones, hierro refinado e iridio para progresión de tecnología.
+  en: Alloys, refined iron and iridium for tech progression.
+extragear:
+  es: Equipo adicional de Slimefun; la lista viva no trae ítems destacados.
+  en: Extra Slimefun gear; the live list has no featured items.
+extraheads:
+  es: Cabezas decorativas adicionales; la lista viva no trae categorías.
+  en: Additional decorative heads; the live list has no categories.
+liquid:
+  es: Addon de líquidos de Slimefun; la lista viva no trae categorías.
+  en: Slimefun liquids addon; the live list has no categories.
+simplestorage:
+  es: Addon de almacenamiento sencillo; la lista viva no trae categorías.
+  en: Simple storage addon; the live list has no categories.
+fluffymachines:
+  es: Máquinas como la mesa de crafteo automática, barriles esponjosos y la llave esponjosa.
+  en: Machines such as the auto crafting table, fluffy barrels and the fluffy wrench.
+idreamofeasy:
+  es: Ítems de utilidad con nombres en español, como absorbedores de radiación y ahumador eléctrico.
+  en: Utility items with Spanish names, such as radiation absorbers and the electric smoker.
+betterchests:
+  es: Cofres más grandes y herramientas y máquinas de almacenamiento.
+  en: Bigger chests plus storage tools and machines.
+bump:
+  es: Addon de Slimefun; la lista viva no trae categorías, solo nombre, máquina y receta.
+  en: Slimefun addon; the live list has no categories, only name, machine and recipe.
+relicsofcthonia:
+  es: Reliquias legendarias y los anuladores de reliquias por rareza.
+  en: Legendary relics and the relic voiders by rarity.
+emctech:
+  es: Addon de tecnología de equivalencia; la lista viva no trae categorías.
+  en: Equivalency-style tech addon; the live list has no categories.
+alchimiavitae:
+  es: Alquimia con categorías de general, infusión y transmutación; incluye lingotes y cristales de experiencia.
+  en: Alchemy with general, infusion and transmutation categories; includes ingots and experience crystals.
+transcendence:
+  es: Bloques estables y condensados quirp.
+  en: Stable blocks and quirp condensates.
+hotbarpets:
+  es: Mascotas que viven en la barra de acceso rápido.
+  en: Pets that live in your hotbar.
+danktech2:
+  es: Mochilas dank y trash, materiales y maquinaria con celdas por nivel.
+  en: Dank and trash packs, materials and machinery with tiered cells.
+magicxpansion:
+  es: Recursos, objetos mágicos y armas con arcanium y shulkerium.
+  en: Resources, magical items and weapons with arcanium and shulkerium.
+electricspawners:
+  es: Spawners eléctricos para distintos mobs.
+  en: Electric spawners for different mobs.
+spiritsunchained:
+  es: Addon de espíritus; la lista viva no trae categorías.
+  en: Spirits addon; the live list has no categories.
+obsidianexpansion:
+  es: Recursos y objetos de obsidiana, con núcleos y cuerno de dragón.
+  en: Obsidian resources and objects, with cores and dragon horn.
+privatestorage:
+  es: Cajas y cajas fuertes de almacenamiento privado, de hierro y de oro.
+  en: Private storage boxes and safes, in iron and gold.
+fastmachines:
+  es: Versiones rápidas de máquinas y sus materiales.
+  en: Fast versions of machines and their materials.
+flowerpower:
+  es: Cristales de colores y crema mágica de Flower Power.
+  en: Coloured crystals and magic cream from Flower Power.
+potionexpansion:
+  es: Ítems para pociones, como el mortero y polvos.
+  en: Potion-making items such as the pestle and powders.
+simplematerialgenerators:
+  es: Generadores de piedra, adoquín y grava.
+  en: Stone, cobblestone and gravel generators.
+cringlebosses:
+  es: Addon de jefes; la lista viva no trae categorías.
+  en: Bosses addon; the live list has no categories.
+dyebench:
+  es: Banco de tintes y pigmentos de colores.
+  en: Dye bench and coloured pigments.
+slimytreetaps:
+  es: Grifos de árbol y los recursos que se extraen con ellos, como caucho y ámbar.
+  en: Tree taps and the resources tapped with them, such as rubber and amber.
+betterreactor:
+  es: Addon de reactores; la lista viva no trae categorías.
+  en: Reactors addon; the live list has no categories.
+nexcavate:
+  es: Excavación arqueológica: partes antiguas y un pico arqueológico.
+  en: Archaeological digging: ancient parts and an archaeological pickaxe.
+ecopower:
+  es: Generadores de energía como solar de alta energía y lunar.
+  en: Power generators such as high-energy solar and lunar.
+notenoughaddons:
+  es: Ítems y máquinas sueltas, como el bloque ángel y espadas cortas.
+  en: Assorted items and machines, such as the angel block and shortswords.
+slimefunorechunks:
+  es: Trozos de mena de aluminio, cobalto, cobre y otros metales.
+  en: Ore chunks of aluminum, cobalt, copper and other metals.
+smallspace:
+  es: Addon de espacios pequeños; la lista viva no trae categorías.
+  en: Small-spaces addon; the live list has no categories.
+advancedtech:
+  es: Tecnología avanzada: carbonado reforzado, uranio enmarcado y excavadoras de mano.
+  en: Advanced tech: boosted carbonado, framed uranium and handheld power diggers.
+chestterminal:
+  es: Terminal de cofres con terminal de acceso y paneles.
+  en: Chest terminal with access terminal and panels.
+coronalis:
+  es: Addon de Slimefun; la lista viva no trae categorías.
+  en: Slimefun addon; the live list has no categories.
+demonicexpansion:
+  es: Esencia demoníaca y napalm.
+  en: Demonic essence and napalm.
+randomexpansion:
+  es: Materiales bestiales y membranas fantasmales.
+  en: Beastly materials and ghostly membranes.
+equivalencytech:
+  es: Materia oscura, combustible aeternalis y carbón alquímico.
+  en: Dark matter, aeternalis fuel and alchemical coal.
+extratools:
+  es: Herramientas extra, como el compostador eléctrico.
+  en: Extra tools, such as the electric composter.
+infernalexpansion:
+  es: Talismanes por nivel, como el Talismán de los Piglins.
+  en: Tiered talismans, such as the Talisman of the Piglins.
+villagerutil:
+  es: Fichas y esencia de aldeano.
+  en: Villager tokens and essence.
+slimefun-disc:
+  es: Addon de discos; la lista viva no trae categorías.
+  en: Discs addon; the live list has no categories.
+obsidian-armor:
+  es: Armadura de obsidiana y su aleación.
+  en: Obsidian armor and its alloy.
+slimefunluckyblocks:
+  es: Bloques de la suerte.
+  en: Lucky blocks.
+sfportalgunsextension:
+  es: Pistola de portales, pistola de gravedad y fluido de portal.
+  en: Portal gun, gravity gun and portal fluid.
+simpleutils:
+  es: Utilidades simples: ascensor, mesa de trabajo y llave.
+  en: Simple utilities: elevator, workbench and wrench.
+magic8ball:
+  es: La bola mágica 8; un par de ítems.
+  en: The Magic 8 Ball; a couple of items.
+drugfun:
+  es: Tecnología médica, como la morfina médica.
+  en: Medical technology, such as medical morphine.
+globiamachines:
+  es: Una máquina de Globia.
+  en: A Globia machine.
+slimyrepair:
+  es: Un ítem de reparación.
+  en: A repair item.
+worldeditslimefun:
+  es: Varita de selección (WESF) para usar WorldEdit con Slimefun.
+  en: Selection wand (WESF) for using WorldEdit with Slimefun.
