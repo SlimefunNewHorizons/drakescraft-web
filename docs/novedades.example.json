@@ -1,0 +1,5 @@
+[
+  {"id":"ej-001","fecha":"2026-11-09T22:00:00-03:00","tipo":"servidor","titulo":"Slimefun llega a 102 addons y 20 450 ítems","cuerpo":"La T2 carga más de 100 addons de Slimefun. Todos los ítems se pueden buscar en la guía.","fuente_url":"https://web.drakescraft.cl/guia-slimefun.html","titulo_en":"Slimefun reaches 102 addons and 20,450 items","cuerpo_en":"Season 2 loads 100+ Slimefun addons. Every item is searchable in the guide."},
+  {"id":"ej-002","fecha":"2026-11-08T15:30:00-03:00","tipo":"github","titulo":"Cambios de la semana en el repositorio de la web","cuerpo":"Nuevo registro de desarrollo y sección de novedades en la portada.","fuente_url":"","titulo_en":"This week's website repository changes","cuerpo_en":"New development log and news section on the homepage."},
+  {"id":"ej-003","fecha":"2026-11-04T12:00:00-03:00","tipo":"red","titulo":"La Temporada 2 sigue en pruebas con el staff","cuerpo":"La apertura pública está prevista para el 18 de noviembre de 2026 y se confirma en Discord.","fuente_url":"","titulo_en":"Season 2 is still in staff testing","cuerpo_en":"Public opening is planned for 18 November 2026 and will be confirmed on Discord."}
+]

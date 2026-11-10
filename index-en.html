@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="styles/home.css?v=20261107-v1">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;display=swap" rel="stylesheet" />
     <link href="/styles/rediseno.css?v=20261109-1521" rel="stylesheet" />
+      <link href="/styles/portada.css?v=20261110-1" rel="stylesheet" />
   </head>
 <body data-hero="home" class="home-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -152,6 +153,7 @@
     </section>
 
     <!-- GAME MODES SELECTOR (shadcn/ui Interactive Tabs) -->
+<section class="pt pt-sec" aria-labelledby="pt-hub-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Everything at a glance</p><h2 id="pt-hub-h">Enter wherever you like.</h2><p>DrakesCraft is more than a server: store, guides, metrics and community live in one portal.</p></div><div class="pt-hub"><a class="pt-card pt-card--w6 pt-card--big" href="/store-en.html" data-img style="--img:url(/assets/editorial/store-lake.webp)"><span class="pt-card__n" aria-hidden="true">01</span><span class="pt-tag">Ranks and passes</span><h3>Support the server</h3><p>Ranks valid across all six modes, automatic delivery and Tebex payments. No pay-to-win.</p><span class="pt-btn pt-btn--gold">Go to the store</span></a><a class="pt-card pt-card--w6 pt-card--big" href="/guia-slimefun-en.html" data-img style="--img:url(/assets/editorial/slimefun-cosmos.webp)"><span class="pt-card__n" aria-hidden="true">02</span><span class="pt-tag">20,450 items</span><h3>Slimefun, from A to Z</h3><p>100+ addons catalogued. Look up recipes, machines and progression paths before spending a single resource.</p><span class="pt-btn pt-btn--gold">Open the guide and search</span></a><a class="pt-card" href="/metricas-en.html"><span class="pt-card__n" aria-hidden="true">03</span><span class="pt-tag">Live</span><h3>The server in plain sight</h3><p>TPS, players and network health, no smoke. See how DrakesCraft performs right now.</p><span class="pt-btn pt-btn--gold">View metrics</span></a><a class="pt-card" href="/votar.html"><span class="pt-card__n" aria-hidden="true">04</span><span class="pt-tag">Rewards</span><h3>Every vote counts</h3><p>Vote for the server, climb the listings and earn in-game rewards.</p><span class="pt-btn pt-btn--gold">Vote now</span></a><a class="pt-card" href="/reglas.html"><span class="pt-card__n" aria-hidden="true">05</span><span class="pt-tag">Fair play</span><h3>Clear rules</h3><p>Few, simple and applied equally. Read them before your first session.</p><span class="pt-btn pt-btn--gold">Read the rules</span></a><a class="pt-card pt-card--w4" href="/discord.html" data-img style="--img:url(/assets/editorial/community-pagoda.webp)"><span class="pt-card__n" aria-hidden="true">06</span><span class="pt-tag">Community</span><h3>Tickets, news and people</h3><p>Ticket support, announcements, events and the Bedrock link. This is where balance gets decided.</p><span class="pt-btn pt-btn--gold">Join Discord</span></a><a class="pt-card pt-card--w4" href="#join"><span class="pt-card__n" aria-hidden="true">07</span><span class="pt-tag">Java and Bedrock</span><h3>One IP, two editions</h3><p>Java 1.21+ and Bedrock use the same address. Copy it and you are in.</p><span class="pt-btn pt-btn--gold">See the 3 steps</span></a><a class="pt-card pt-card--w4" href="#modalidades"><span class="pt-card__n" aria-hidden="true">08</span><span class="pt-tag">Six worlds</span><h3>Six worlds</h3><p>Slimefun, Classic, SkyBlock, OneBlock, OneChunk and Laboratory, each with its own economy and progress.</p><span class="pt-btn pt-btn--gold">See the modes</span></a><a class="pt-card pt-card--w12 pt-card--big" href="/temporada-2-en.html" data-img style="--img:url(/assets/screens/slot-03-stellarity-end-1600.webp)"><span class="pt-card__n" aria-hidden="true">09</span><span class="pt-tag">18 November 2026</span><h3>Olympus is breaking</h3><p>A Greek island floats over the void as the Rift tears its side open. New Season 2 on DrakesPurpur 26.2, Odysseia and a casino.</p><span class="pt-btn pt-btn--gold">Read the story</span></a></div></div></section><section class="pt pt-sec pt-sec--band" id="join" aria-labelledby="pt-join-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Start now</p><h2 id="pt-join-h">Three steps to your new world.</h2><p>No mods, no extra account. Join with the edition you already have.</p></div><ol class="pt-steps" style="margin:0;padding:0;list-style:none"><li class="pt-step"><h3>Pick your edition</h3><p>Java 1.21+ or Bedrock on mobile, console or PC. Crossplay is native.</p><a class="pt-btn" href="/guide-en.html">Getting started</a></li><li class="pt-step"><h3>Copy the IP</h3><p>Add it as a new server and connect.</p><span class="pt-ip">mc.drakescraft.cl</span> <button class="pt-btn pt-btn--plain" type="button" data-copy-ip>Copy IP</button></li><li class="pt-step"><h3>Hop on Discord and vote</h3><p>Link your account, open tickets if something breaks and vote for rewards.</p><a class="pt-btn" href="/discord.html">Go to Discord</a></li></ol><div class="pt-live" data-pt-live><span class="pt-live__dot" aria-hidden="true"></span><strong data-pt-count>—</strong><span data-pt-text role="status">Checking the server…</span></div></div></section>
     <section class="modes-section reveal" id="modalidades" aria-labelledby="modes-title" style="padding: clamp(3.5rem, 6vw, 5.5rem) 0;">
       <div class="container">
         <div class="modes-heading">
@@ -272,71 +274,7 @@
     </section>
 
     <!-- BENTO GRID (Season 2 & Technical Architecture) -->
-    <section class="reveal" id="novedades" aria-labelledby="novedades-title" style="padding: clamp(3rem, 5vw, 5rem) 0; background: rgba(8, 5, 20, 0.7); border-block: 1px solid var(--home-line);">
-      <div class="container">
-        <div style="margin-bottom: 2rem;">
-          <p class="home-kicker">Star Ecosystem · Season 2</p>
-          <h2 id="novedades-title" style="font-family:var(--font-heading); font-size:clamp(2rem, 4vw, 3.2rem); margin:0; color:#fff;">Infrastructure & Horizon.</h2>
-        </div>
-
-        <div class="ui-bento-grid">
-          <article class="ui-bento-card ui-bento-card--col-8">
-            <div>
-              <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
-                <span class="ui-badge ui-badge--violet">Season 2</span>
-                <span class="ui-badge ui-badge--gold">Olympus in Collapse</span>
-              </div>
-              <h3 style="font-family:var(--font-heading); font-size:1.75rem; color:#fff; margin:0 0 0.6rem;">Abyssal End & Stellarity</h3>
-              <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.6; margin:0 0 1.25rem;">
-                The Rift splits the island of gods. Cursed and Sacred altars, void fishing, 26 adaptive AI deities, soulbound relics, and abyssal biomes for the definitive endgame.
-              </p>
-            </div>
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-              <a href="temporada-2-en.html" class="ui-btn ui-btn--primary">Lobby Lore →</a>
-              <a href="maintenance-en.html" class="ui-btn ui-btn--secondary">T2 Testing Status</a>
-            </div>
-          </article>
-
-          <article class="ui-bento-card ui-bento-card--col-4">
-            <div>
-              <span class="ui-badge ui-badge--cyan">Star Engineering</span>
-              <h3 style="font-family:var(--font-heading); font-size:1.4rem; color:#fff; margin:0.6rem 0 0.5rem;">Odysseia & Star Engine</h3>
-              <p style="color:#cbd5e1; font-size:0.88rem; line-height:1.55; margin:0 0 1rem;">
-                Java 21 LTS with native FFM acceleration for off-heap networks, SQLite WAL, and 20 TPS in Dallas.
-              </p>
-            </div>
-            <code style="color:#67e8f9; font-size:0.78rem;">Target: Stable 20.0 TPS</code>
-          </article>
-
-          <article class="ui-bento-card ui-bento-card--col-6 ui-card--gold">
-            <div>
-              <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
-                <span class="ui-badge ui-badge--gold">Tebex Merchant of Record</span>
-                <span class="ui-badge ui-badge--emerald">Instant Delivery</span>
-              </div>
-              <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin:0 0 0.5rem;">Global VIP Store</h3>
-              <p style="color:#cbd5e1; font-size:0.92rem; line-height:1.6; margin:0 0 1.25rem;">
-                Ranks (Hades, Zeus, Poseidon, Titan) valid across all 6 modes simultaneously. Crate keys, cosmetics, and perks without pay-to-win imbalance.
-              </p>
-            </div>
-            <a href="store-en.html" class="ui-btn ui-btn--gold" style="align-self:flex-start;">Explore Tebex Catalog →</a>
-          </article>
-
-          <article class="ui-bento-card ui-bento-card--col-6">
-            <div>
-              <span class="ui-badge ui-badge--outline">Historic Archive</span>
-              <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#fff; margin:0.6rem 0 0.5rem;">Season 1 World Downloads</h3>
-              <p style="color:#cbd5e1; font-size:0.92rem; line-height:1.6; margin:0 0 1.25rem;">
-                Full 7.9 GB historical archive bundle including Classic, Slimefun, OneBlock, and SkyBlock worlds, base coordinates, and local server for Java 1.21.11.
-              </p>
-            </div>
-            <a href="https://pack.drakescraft.cl/t1/" target="_blank" rel="noopener" class="ui-btn ui-btn--secondary" style="align-self:flex-start;">Download S1 Worlds (7.9 GB) ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCREENSHOTS REEL (Touch Carousel) -->
+<section class="pt pt-sec" id="novedades" aria-labelledby="pt-news-h"><div class="pt-wrap" data-news data-mode="home"><div class="pt-head"><p class="pt-kicker">News</p><h2 id="pt-news-h">The latest from DrakesCraft.</h2><p>Updates itself: server, network and code changes.</p></div><div class="pt-chips" data-news-filter role="group" aria-label="Filter by type"></div><ul class="pt-news pt-news--home" data-news-list aria-live="polite"></ul><p class="pt-more"><a class="pt-btn pt-btn--gold" href="/novedades-en.html">See all news</a></p></div></section><section class="pt pt-sec pt-sec--band" id="desarrollo" aria-labelledby="pt-dev-h"><div class="pt-wrap" data-devlog><div class="pt-head"><p class="pt-kicker">Development log</p><h2 id="pt-dev-h">What we are working on.</h2><p>No date promises: just what is queued, in progress and done.</p></div><div class="pt-dev"><div class="pt-col pt-col--cola"><h3>Queued <span data-dev-count="cola">0</span></h3><ul data-dev="cola"></ul></div><div class="pt-col pt-col--curso"><h3>In progress <span data-dev-count="curso">0</span></h3><ul data-dev="curso"></ul></div><div class="pt-col pt-col--hecho"><h3>Done <span data-dev-count="hecho">0</span></h3><ul data-dev="hecho"></ul></div></div><p class="pt-note">The only public date is the Season 2 opening: 18 November 2026, to be confirmed on Discord.</p></div></section><section class="pt pt-sec" aria-labelledby="pt-tog-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Better together</p><h2 id="pt-tog-h">We build this together.</h2><p>Four doors to take part, help out or follow the project.</p></div><div class="pt-links"><a class="pt-link" href="/discord.html"><strong>Discord</strong><span>News, tickets and community</span></a><a class="pt-link" href="/support-en.html"><strong>Purchase support</strong><span>Help with orders and ranks</span></a><a class="pt-link" href="/apoya-en.html"><strong>Support the project</strong><span>How to help keep it running</span></a><a class="pt-link" href="/metricas-en.html"><strong>Metrics</strong><span>Live server health</span></a></div></div></section>
     <section class="reveal" id="capturas" aria-labelledby="screens-title" style="padding: clamp(3.5rem, 6vw, 5.5rem) 0;">
       <div class="container">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
@@ -543,5 +481,6 @@
   <script src="scripts/site.js?v=20261017-v7"></script>
   <script src="scripts/home.js?v=20261107-v1"></script>
   <script src="/scripts/portal.js?v=20261109-r8" defer></script>
+      <script src="/scripts/novedades.js?v=20261110-1" defer></script>
   </body>
 </html>

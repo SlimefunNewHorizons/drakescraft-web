@@ -1206,6 +1206,17 @@ for (const storeAlias of ['/tienda', '/store', '/shop']) {
 }
 app.get('/discord', async (_request, reply) => reply.code(302).redirect('https://discord.gg/rv3vtXZTk7'));
 
+// Novedades y registro de desarrollo: los escribe SAORI en DATA_DIR; si faltan, se sirve el ejemplo de docs/.
+for (const name of ['novedades', 'desarrollo']) {
+  app.get(`/data/${name}.json`, async (_request, reply) => {
+    reply.header('cache-control', 'public, max-age=60').type('application/json; charset=utf-8');
+    for (const file of [path.join(dataDir, `${name}.json`), path.join(root, 'docs', `${name}.example.json`)]) {
+      try { return await fs.readFile(file, 'utf8'); } catch { /* siguiente */ }
+    }
+    return '[]';
+  });
+}
+
 // Keep removed legacy pages useful without exposing stale systems.
 for (const legacyPath of [
   '/server.html', '/odysseia.html', '/dioses.html',
