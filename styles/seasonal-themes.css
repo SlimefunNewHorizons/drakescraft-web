@@ -184,8 +184,12 @@ body.theme-birthday.bday-phase-3::before {
 
 @media (max-width: 760px) {
   #drakes-birthday-widget {
-    bottom: 82px;
-    left: 12px;
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    gap: 4px;
+    transform: scale(.9);
+    transform-origin: bottom right;
   }
   .bday-ctrl-btn {
     padding: 6px 10px;

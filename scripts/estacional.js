@@ -33,7 +33,7 @@
     }
     function ensureCss() {
         if (!document.querySelector('link[href*="seasonal-themes.css"]')) {
-            var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'styles/seasonal-themes.css?v=20261110-v10'; document.head.appendChild(l);
+            var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'styles/seasonal-themes.css?v=20261110-v11'; document.head.appendChild(l);
         }
     }
     function ensureScript(id, src) {
