@@ -1,3 +1,4 @@
+/* ESTADO 2026-11-10: desplegado y verificado (1280/1600/1920/360/412, sin desborde, no tapa botones). PENDIENTE: index-en.html no tiene .op-stage (hero distinto, sin logo); probar prefers-reduced-motion real. */
 /* Hero de la portada: mini sistema solar alrededor del emblema.
  * Canvas 2D con proyeccion 3D propia, sprites precalculados y pausa fuera de pantalla. */
 (() => {
