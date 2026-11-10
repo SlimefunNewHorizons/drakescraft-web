@@ -82,3 +82,37 @@
   .sg-legend { right: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .sg-radar__dial::after, .sg-log { animation: none; } }
+
+/* Toolbar de Controles del Laboratorio */
+.sg-toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 4px 0 14px; }
+.sg-tool-btn { font: 600 .74rem/1 var(--font-mono, ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase;
+  padding: .5rem .85rem; min-height: 36px; color: var(--c-cyan); background: rgba(14, 22, 40, .75);
+  border: 1px solid rgba(63, 224, 208, .35); border-radius: 8px; cursor: pointer; transition: all .2s; }
+.sg-tool-btn:hover { background: rgba(63, 224, 208, .15); border-color: var(--c-cyan); color: #fff; }
+.sg-tool-btn.is-off { color: #8f86ad; border-color: rgba(255, 255, 255, .15); background: rgba(255, 255, 255, .03); }
+
+/* Inspector de Nodo Seleccionado */
+.sg-inspector { margin-top: 12px; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.sg-ins-hint { font: .75rem var(--font-mono, monospace); color: #8f86ad; letter-spacing: .05em; }
+.sg-ins-card { width: 100%; padding: .8rem 1.1rem; background: rgba(14, 22, 40, .85); border: 1px solid rgba(63, 224, 208, .35);
+  border-radius: 10px; display: flex; flex-direction: column; gap: .35rem; animation: sg-in .25s ease both; }
+.sg-ins-head { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: center; }
+.sg-ins-badge { font: 700 .7rem/1 var(--font-mono, monospace); text-transform: uppercase; letter-spacing: .08em;
+  padding: .3rem .6rem; border-radius: 6px; background: rgba(255, 255, 255, .08); color: var(--c, #fff); border: 1px solid var(--c, #fff); }
+.sg-ins-comm { font: .72rem var(--font-mono, monospace); color: var(--c-gold); }
+.sg-ins-conn { font: .72rem var(--font-mono, monospace); color: var(--c-cyan); }
+.sg-ins-name { font: 600 .9rem var(--font-mono, monospace); color: #fff; word-break: break-all; }
+
+/* Card Dinámica de Explicación del Grafo */
+.sg-desc-card { margin-top: 14px; padding: 1.2rem 1.4rem; border-radius: 12px;
+  background: linear-gradient(160deg, rgba(20, 14, 44, .95), rgba(10, 8, 24, .98));
+  border: 1px solid rgba(228, 187, 104, .35); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .7); }
+.sg-desc-card__header { display: flex; flex-wrap: wrap; gap: .6rem; align-items: baseline; justify-content: space-between; margin-bottom: .6rem; }
+.sg-desc-card__badge { font: 700 .68rem/1 var(--font-mono, monospace); letter-spacing: .12em; color: var(--c-gold);
+  border: 1px solid rgba(228, 187, 104, .4); padding: .3rem .55rem; border-radius: 6px; }
+.sg-desc-card__title { margin: 0; font-family: var(--f-display, serif); font-size: clamp(1.1rem, 1rem + .8vw, 1.45rem); color: var(--r-marble, #f6efde); }
+.sg-desc-card__lead { margin: 0 0 1rem; color: #d8d2ec; font-size: .95rem; line-height: 1.6; }
+.sg-desc-card__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: .8rem; }
+.sg-desc-item { padding: .75rem .9rem; border-radius: 8px; background: rgba(255, 255, 255, .03); border: 1px solid rgba(63, 224, 208, .18); }
+.sg-desc-item__label { display: block; font: 700 .72rem/1 var(--font-mono, monospace); color: var(--c-cyan); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .35rem; }
+.sg-desc-item span { font-size: .84rem; color: var(--c-mute); line-height: 1.5; display: block; }
