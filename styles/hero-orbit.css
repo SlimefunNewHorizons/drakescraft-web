@@ -1,0 +1,9 @@
+/* Hero: mini sistema solar en canvas (scripts/hero-orbit.js) */
+.op-stage.has-orbit::before, .op-stage.has-orbit::after { display: none; }
+.op-stage.has-orbit .op-stage__logo { opacity: 0; }
+.op-stage.has-orbit .op-stage__canvas { inset: -16%; width: 132%; height: 132%; transform: none; pointer-events: none; }
+.op-hero { overflow-x: clip; }
+@media (max-width: 1099px) {
+  .op-stage { display: block !important; width: min(100%, 440px); max-width: none; margin: 0.5rem auto 0 !important; }
+  .op-stage.has-orbit .op-stage__canvas { inset: -6%; width: 112%; height: 112%; }
+}
