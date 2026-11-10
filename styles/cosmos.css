@@ -1,0 +1,202 @@
+/* DrakesCraft · capa "Cosmos helénico" (2026-11).
+   Va DESPUÉS de rediseno.css/portada.css. Solo CSS: tokens de color, cielo profundo con
+   orbes y estrellas, vidrio, títulos con degradado, botones con brillo, greca y centrado
+   en pantallas anchas. Oro + violeta de siempre; cian y magenta como acentos. */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --c-bg-0: #05040d;
+  --c-bg-1: #0a0920;
+  --c-bg-2: #160c30;
+  --c-gold: #e4bb68;
+  --c-gold-hi: #fff0c4;
+  --c-gold-old: #a7782c;
+  --c-violet: #9b6bff;
+  --c-cyan: #3fe0d0;
+  --c-magenta: #ff4fd8;
+  --c-rose: #ff7a9c;
+  --c-text: #f3eefb;
+  --c-mute: #c4bbd8;
+  --c-glass: rgba(22, 15, 46, .62);
+  --c-glass-hi: rgba(255, 255, 255, .06);
+  --c-edge: linear-gradient(135deg, rgba(255, 224, 150, .7), rgba(155, 107, 255, .45) 45%, rgba(63, 224, 208, .55));
+  --g-gold: linear-gradient(135deg, #fff1c6 0%, #f0c66e 38%, #c98f34 72%, #8a5a1c 100%);
+  --g-title: linear-gradient(100deg, #fff7e2 0%, #f3d08a 38%, #e7b6ff 72%, #8ef3e8 100%);
+  --g-marble: linear-gradient(115deg, #f4efe4 0%, #d9d2e6 30%, #fbf8f1 48%, #cfc5dc 70%, #f1ebdf 100%);
+  --acc: var(--c-gold);
+  --orb-blur: 90px;
+  /* greca con raíles: se colorea por máscara, así sirve con cualquier token */
+  --greca: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='18' viewBox='0 0 28 18'%3E%3Cpath d='M0 1h28M0 17h28M3 17V5h16v9h-9V8h5v3' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E");
+  --meander: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='18' viewBox='0 0 28 18'%3E%3Cpath d='M0 1h28M0 17h28M3 17V5h16v9h-9V8h5v3' fill='none' stroke='%23e4bb68' stroke-width='1.6'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+/* variante clara opcional (data-theme="light"); el sitio es oscuro por defecto */
+:root[data-theme="light"] {
+  --c-bg-0: #f6f1e6; --c-bg-1: #efe7f7; --c-bg-2: #e6dcf5;
+  --c-text: #1b1430; --c-mute: #4a4064; --c-glass: rgba(255, 255, 255, .7); --c-glass-hi: rgba(255, 255, 255, .5);
+  --g-title: linear-gradient(100deg, #5a3a0e, #9a6a1c 40%, #6d2bb3 75%, #0f7f76);
+  color-scheme: light;
+}
+
+/* ---------- 2. Cielo: degradado profundo + orbes + estrellas ---------- */
+body::before {
+  content: "" !important; display: block !important; position: fixed !important; inset: 0 !important;
+  z-index: -10 !important; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 120px 90px, rgba(255, 240, 200, .9) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 200px 170px, rgba(190, 170, 255, .9) 50%, transparent 51%),
+    radial-gradient(1px 1px at 60px 210px, rgba(160, 255, 240, .8) 50%, transparent 51%),
+    radial-gradient(1px 1px at 260px 40px, #fff 50%, transparent 51%),
+    radial-gradient(60vmax 45vmax at 88% -8%, rgba(155, 107, 255, .32), transparent 70%),
+    radial-gradient(45vmax 35vmax at -6% 38%, rgba(63, 224, 208, .12), transparent 70%),
+    radial-gradient(50vmax 40vmax at 104% 70%, rgba(255, 79, 216, .1), transparent 70%),
+    radial-gradient(55vmax 40vmax at 30% 112%, rgba(228, 187, 104, .12), transparent 70%),
+    linear-gradient(180deg, var(--c-bg-1) 0%, var(--c-bg-0) 45%, var(--c-bg-2) 100%) !important;
+  background-size: 300px 260px, 300px 260px, 300px 260px, 300px 260px, 300px 260px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat !important;
+  opacity: 1 !important;
+}
+body, body.op-page { background: var(--c-bg-0); }
+/* bandas alternas: más profundidad y un orbe de acento por sección */
+main > section { --acc: var(--c-gold); }
+main > section:nth-of-type(4n+2) { --acc: var(--c-violet); }
+main > section:nth-of-type(4n+3) { --acc: var(--c-cyan); }
+main > section:nth-of-type(4n) { --acc: var(--c-magenta); }
+main > section:nth-of-type(even):not(.guide-hero):not(.ol-chapter) {
+  background:
+    radial-gradient(40% 70% at 100% 0%, color-mix(in srgb, var(--acc) 13%, transparent), transparent 70%),
+    radial-gradient(35% 60% at 0% 100%, rgba(155, 107, 255, .1), transparent 70%),
+    linear-gradient(180deg, rgba(16, 10, 36, .85), rgba(10, 7, 26, .85));
+}
+
+/* ---------- 3. Títulos con degradado ---------- */
+main h2, .op-hero h1, .op-page-heading h1, .guide-hero h1, .pt-head h1, .vt h1, .sfw h1 {
+  background: var(--g-title);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  text-shadow: none !important;
+  filter: drop-shadow(0 2px 18px rgba(155, 107, 255, .28));
+}
+main h2 *, .op-hero h1 *, .guide-hero h1 * { -webkit-text-fill-color: inherit; }
+main h3 { color: var(--c-text); }
+.ol-kicker, .op-section-heading .op-kicker { color: var(--acc, var(--c-gold)) !important; }
+
+/* ---------- 4. Vidrio ---------- */
+.op-card, .guide-split__card, .transparency-card, .impact-card, .sponsor-channel-card, .sponsor-honor-card,
+.edge-card, .metrica, .team-card, .mode-card, .faq-item, .guide-callout, .vt-box, .sfw-card, .r-steps li,
+.guide-accordion, .plugin-entry, .pw-power, .pw-steps li, .ft-card {
+  background:
+    linear-gradient(160deg, rgba(34, 24, 66, .86), rgba(14, 10, 32, .9)) padding-box,
+    var(--c-edge) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 50px -30px rgba(0, 0, 0, .95), inset 0 1px 0 var(--c-glass-hi) !important;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.pt-card { --pt-card: linear-gradient(160deg, rgba(34, 24, 66, .78), rgba(14, 10, 32, .86)); border-radius: 14px; overflow: hidden; }
+.pt-card::before { height: 2px; background: linear-gradient(90deg, var(--c-gold), var(--c-magenta) 45%, var(--c-cyan) 80%, transparent); }
+.op-mode-card, .r-next__panel, .pt-card { border-radius: 14px; box-shadow: 0 0 0 1px rgba(228, 187, 104, .22), 0 28px 60px -34px #000; transition: transform .25s ease, box-shadow .25s ease; }
+@media (hover: hover) {
+  .op-card:hover, .team-card:hover, .mode-card:hover, .vt-box:hover, .sfw-card:hover, .pt-card:hover, .op-mode-card:hover,
+  .guide-split__card:hover, .metrica:hover, .ft-card:hover, .plugin-entry:hover, .r-next__panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px rgba(255, 224, 150, .5), 0 18px 50px -18px color-mix(in srgb, var(--acc, #9b6bff) 55%, transparent), 0 0 32px -8px rgba(63, 224, 208, .25) !important;
+  }
+}
+@media (min-width: 900px) {
+  .op-card, .team-card, .mode-card, .vt-box, .guide-split__card, .metrica, .ft-card, .plugin-entry {
+    backdrop-filter: blur(10px) saturate(140%);
+  }
+}
+.op-nav { background: linear-gradient(180deg, rgba(8, 6, 22, .9), rgba(10, 7, 26, .78)) !important; backdrop-filter: blur(16px) saturate(150%); }
+
+/* ---------- 5. Botones con degradado y brillo ---------- */
+.pt-btn--gold, .f-btn--gold, .btn-primary, .vt-btn, .sfw-btn, .ol-cta a.is-main, .op-final .btn, .sg-btn {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--g-gold) !important; color: #170f02 !important; border: 0 !important; border-radius: 10px !important;
+  box-shadow: 0 10px 26px -10px rgba(228, 187, 104, .65), inset 0 1px 0 rgba(255, 255, 255, .6) !important;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.pt-btn--gold::after, .f-btn--gold::after, .btn-primary::after, .vt-btn::after, .sfw-btn::after, .ol-cta a.is-main::after, .sg-btn::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .55) 48%, transparent 66%);
+  transform: translateX(-120%); transition: transform .6s ease;
+}
+@media (hover: hover) {
+  .pt-btn--gold:hover::after, .f-btn--gold:hover::after, .btn-primary:hover::after, .vt-btn:hover::after, .sfw-btn:hover::after, .ol-cta a.is-main:hover::after, .sg-btn:hover::after { transform: translateX(120%); }
+  .pt-btn--gold:hover, .f-btn--gold:hover, .btn-primary:hover, .vt-btn:hover, .sfw-btn:hover, .ol-cta a.is-main:hover, .sg-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(255, 79, 216, .45), 0 0 0 1px rgba(255, 240, 196, .8) !important; }
+}
+.pt-btn:not(.pt-btn--gold), .f-btn:not(.f-btn--gold), .ol-cta a:not(.is-main) {
+  border-radius: 10px !important; border: 1px solid rgba(63, 224, 208, .45) !important;
+  background: rgba(63, 224, 208, .06) !important; color: #dffcf8 !important;
+}
+
+/* ---------- 6. Grecas y motivos ---------- */
+.greca { display: block; height: 18px; color: var(--c-gold); background: currentColor; opacity: .7;
+  -webkit-mask: var(--greca) repeat-x center / auto 18px; mask: var(--greca) repeat-x center / auto 18px; }
+.greca--cian { color: var(--c-cyan); }
+.op-nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 9px; pointer-events: none;
+  background: linear-gradient(90deg, var(--c-gold-old), var(--c-gold-hi) 30%, var(--c-violet) 60%, var(--c-cyan));
+  -webkit-mask: var(--greca) repeat-x center / auto 9px; mask: var(--greca) repeat-x center / auto 9px; opacity: .75; }
+.op-footer::before, .r-foot::before {
+  background: linear-gradient(90deg, var(--c-cyan), var(--c-gold) 30%, var(--c-gold-hi) 50%, var(--c-gold) 70%, var(--c-magenta)) !important;
+  -webkit-mask: var(--greca) repeat-x center / auto 14px; mask: var(--greca) repeat-x center / auto 14px; opacity: .8 !important;
+}
+hr.op-rule, .op-rule::before { background: linear-gradient(90deg, transparent, var(--c-gold) 20%, var(--c-gold-hi) 50%, var(--c-gold) 80%, transparent) !important;
+  -webkit-mask: var(--greca) repeat-x center / auto 14px; mask: var(--greca) repeat-x center / auto 14px; }
+.ft-card--top, .team-card--highlight, .pt-card--big { border-top: 0; }
+.ft-card--top::before, .team-card--highlight::before {
+  content: ""; position: absolute; left: 14px; right: 14px; top: 0; height: 12px; background: var(--c-gold);
+  -webkit-mask: var(--greca) repeat-x center / auto 12px; mask: var(--greca) repeat-x center / auto 12px; opacity: .8;
+}
+.marmol { background: var(--g-marble); color: #1d1530; }
+.oro-viejo { background: var(--g-gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ---------- 7. Centrado en pantallas anchas ---------- */
+/* T2: cantos simétricos y centrados; ficha técnica a ancho completo en 3 columnas */
+.ol-page main > .container { max-width: 1440px !important; }
+.ol-chapter { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 1320px; margin-inline: auto; }
+.ol-chapter#ficha-tecnica { display: block; max-width: none; }
+#ficha-tecnica > .container { max-width: 1320px !important; margin-inline: auto !important; padding-inline: 0 !important; }
+#ficha-tecnica > .container > div[style*="grid"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)) !important; }
+#ficha-tecnica article { border-radius: 14px !important; background: linear-gradient(160deg, rgba(34, 24, 66, .86), rgba(14, 10, 32, .9)) padding-box, var(--c-edge) border-box !important; border: 1px solid transparent !important; }
+.ol-cta { justify-content: center; }
+.ol-plate { border-radius: 16px; box-shadow: 0 30px 70px -36px #000, 0 0 0 1px rgba(228, 187, 104, .25); background: #0b0818; }
+.ol-plate::after { border-radius: 10px; }
+.ol-plate__art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+@media (hover: hover) { .ol-plate:hover .ol-plate__art { transform: scale(1.04); } }
+.ol-prologue { max-width: 52rem; }
+/* cabeceras: en pantallas anchas el texto no se queda huérfano a la izquierda */
+/* cierre de portada centrado */
+.op-final .container { text-align: center; }
+.op-final h2, .op-final p { margin-inline: auto; }
+.op-final .op-actions { justify-content: center; }
+/* cabeceras de página: en pantallas anchas el bloque de texto se centra sobre la imagen */
+@media (min-width: 1360px) {
+  .op-page-heading, .guide-hero { align-items: center; text-align: center;
+    background:
+      radial-gradient(60% 80% at 50% 55%, rgba(8, 5, 14, .82), rgba(8, 5, 14, .35) 70%, rgba(8, 5, 14, .6)),
+      linear-gradient(0deg, var(--r-ink) 0%, transparent 38%),
+      var(--hero-img) center 38% / cover no-repeat, var(--r-night) !important; }
+  .op-page-heading h1, .guide-hero h1, .op-page-heading .op-lead, .guide-hero p { margin-inline: auto !important; }
+  .op-page-heading .op-heading-row { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .op-page-heading .op-page-art { display: none; }
+  .guide-hero .t2-status, .guide-hero [class*="status"], .guide-hero .guide-hero__grid { margin-inline: auto; justify-content: center; }
+  .ol-page .guide-hero h1 { margin-inline: auto !important; }
+}
+@media (min-width: 1200px) {
+  .guide-split { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)) !important; }
+}
+
+/* ---------- 8. Móvil y movimiento ---------- */
+@media (max-width: 760px) {
+  body::before { background-size: 220px 200px, 220px 200px, 220px 200px, 220px 200px, 220px 200px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important; }
+  main h2, .op-hero h1, .guide-hero h1 { filter: none; }
+  .op-nav { backdrop-filter: blur(8px); }
+  .ol-chapter { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-btn--gold::after, .f-btn--gold::after, .btn-primary::after, .vt-btn::after, .sfw-btn::after, .ol-cta a.is-main::after, .sg-btn::after { display: none; }
+  .ol-plate__art, .op-card, .pt-card, .team-card { transition: none !important; }
+}

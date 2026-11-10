@@ -77,24 +77,13 @@ def page(lang, slug, alt, section, title, desc, heading, glitch, eyebrow, lead, 
 </html>
 """
 
-
-# Grabados de respaldo: dibujo de línea decorativo, no una captura del lobby.
-SVG = {
-    "olimpo": '<path d="M80 250 Q400 330 720 250 L560 330 L420 410 L300 340 Z"/><path d="M270 250V170M340 250V170M410 250V170M480 250V170M530 250V170M250 170H550L400 105Z"/><path class="e" d="M470 170 L500 215 L480 240 L520 300"/>',
-    "grieta": '<path class="e" d="M550 40 L500 120 L530 170 L440 240 L470 300 L380 450"/><path class="e" d="M500 120 L620 150 L740 135"/><path d="M50 300 H300 M520 330 H770"/>',
-    "atlas": '<circle class="e" cx="400" cy="120" r="88" stroke-dasharray="180 16 90 24"/><path class="e" d="M360 70 L420 130 L390 200"/><path d="M340 200 L365 260 L435 260 L460 200 M365 260 L350 400 M435 260 L450 400 M300 400 H500"/><circle cx="400" cy="232" r="18"/>',
-    "anticitera": '<circle cx="400" cy="210" r="135" stroke-dasharray="14 8"/><circle cx="400" cy="210" r="88"/><circle class="e" cx="400" cy="210" r="40"/><circle cx="565" cy="120" r="50" stroke-dasharray="9 7"/><path d="M400 75V345M265 210H535M305 115 L495 305"/>',
-    "duga": '<path d="M110 390 V80 M210 390 V80 M310 390 V80 M410 390 V80 M510 390 V80 M610 390 V80 M710 390 V80 M90 390 H730 M110 130 H710 M110 230 H710"/><path d="M110 80 L210 230 L310 80 L410 230 L510 80 L610 230 L710 80"/><path class="e" d="M70 60 C240 10 560 10 750 60"/>',
-    "wither": '<path class="e" d="M120 340 C220 250 300 300 380 220 S560 150 690 80"/><circle cx="330" cy="170" r="46"/><circle cx="420" cy="130" r="58"/><circle cx="512" cy="172" r="46"/><path d="M398 118h14M428 118h14M318 165h12M504 165h12"/>',
-    "coliseo": '<ellipse cx="400" cy="270" rx="300" ry="125"/><ellipse cx="400" cy="280" rx="175" ry="62"/><path d="M100 270 V165 L170 110 L180 172 M260 150 V110 M340 145 V90 M430 145 V105 M540 150 V95 M700 270 V180 L635 130"/><path class="e" d="M620 92 L650 110 L640 150"/>',
-    "islas": '<path d="M90 200 Q180 165 260 205 L205 270 L150 255 Z M520 110 Q610 80 700 115 L640 190 L570 170 Z M480 320 Q570 290 660 325 L600 395 L530 380 Z M185 345 Q250 320 320 350 L265 410 Z"/><path class="e" d="M260 205 Q390 150 520 130 M300 345 Q390 320 480 325" stroke-dasharray="5 9"/>',
-}
+# Láminas: assets/svg/t2/<clave>.svg (generadas con tools/gen_laminas_t2.py).
 
 
 def plate(key, cap, aria, wide=False):
     cls = " ol-plate--wide" if wide else ""
     return (f'<figure class="ol-plate ol-plate--{key}{cls}" role="img" aria-label="{e(aria)}">'
-            f'<svg viewBox="0 0 800 460" aria-hidden="true" preserveAspectRatio="xMidYMid slice">{SVG[key]}</svg>'
+            f'<img class="ol-plate__art" src="/assets/svg/t2/{key}.svg" alt="" width="800" height="500" loading="lazy" decoding="async">'
             f'<div class="ol-plate__photo"></div><figcaption>{cap}</figcaption></figure>')
 
 
