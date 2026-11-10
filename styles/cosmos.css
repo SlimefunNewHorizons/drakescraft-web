@@ -268,3 +268,97 @@ hr.op-rule, .op-rule::before { background: linear-gradient(90deg, transparent, v
   .store-product__body, .store-product__buy { padding-inline: 1.1rem; }
   body { padding-bottom: env(safe-area-inset-bottom); }
 }
+
+/* ---------- 10. Modern CSS Scroll-Driven Animations (W3C Spec / Chromium / WebKit 2026) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* A. Barra celestial de progreso de lectura (0 JS, hilo compositor) */
+  @supports (animation-timeline: scroll()) {
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--c-cyan, #3fe0d0), var(--c-gold, #e4bb68) 50%, var(--c-magenta, #ff4fd8));
+      transform-origin: 0 50%;
+      scale: 0 1;
+      z-index: 99999;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(63, 224, 208, .6);
+      animation: scroll-progress-fill auto linear both;
+      animation-timeline: scroll();
+    }
+    @keyframes scroll-progress-fill {
+      from { scale: 0 1; }
+      to { scale: 1 1; }
+    }
+  }
+
+  /* B. Revelación suave de tarjetas y módulos al entrar en el viewport */
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scroll-card-reveal {
+      entry 0% {
+        opacity: 0.15;
+        transform: translateY(28px) scale(0.97);
+      }
+      entry 100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes scroll-title-reveal {
+      entry 0% {
+        opacity: 0.2;
+        transform: translateY(18px);
+      }
+      entry 100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scroll-parallax-float {
+      from { transform: translateY(24px); }
+      to { transform: translateY(-24px); }
+    }
+
+    /* Tarjetas y módulos que se revelan elegantemente al entrar */
+    .op-card,
+    .team-card,
+    .ft-card,
+    .sg-frame,
+    .sg-hud,
+    .sg-desc-card,
+    .op-mode-card,
+    .guide-split__card,
+    .plugin-entry,
+    .r-steps li,
+    .store-product,
+    .f-join {
+      animation: scroll-card-reveal auto linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 30%;
+    }
+
+    /* Títulos de sección */
+    .sg-head,
+    .op-section h2,
+    .home-kicker,
+    .f-join h2 {
+      animation: scroll-title-reveal auto linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 25%;
+    }
+
+    /* Elementos decorativos helénicos con flotación suave en scroll */
+    .sg-col--l,
+    .sg-col--r,
+    .sg-motifs {
+      animation: scroll-parallax-float auto linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
