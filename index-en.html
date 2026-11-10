@@ -16,7 +16,9 @@
     <link href="/styles/rediseno.css?v=20261109-1521" rel="stylesheet" />
       <link href="/styles/portada.css?v=20261110-1" rel="stylesheet" />
 <link href="/styles/svg-vivo.css?v=20261110-svg" rel="stylesheet" />
-  </head>
+    <link rel="stylesheet" href="/styles/cosmos.css?v=20261110-c1">
+  <link rel="stylesheet" href="/styles/grafos.css?v=20261110-g1">
+</head>
 <body data-hero="home" class="home-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -423,7 +425,20 @@
         </div>
       </div>
     </section>
-  </main>
+  
+<!-- saori-lab --><section class="sg-sec" id="saori-lab" aria-labelledby="sg-title"><div class="sg-wrap">
+<header class="sg-head"><svg class="sg-laurel" aria-hidden="true"><use href="/assets/svg/griego.svg#laurel"/></svg><span class="sg-num">LABORATORY · I</span><h2 id="sg-title">SAORI · Olympus thinks too</h2><p>The network that keeps DrakesCraft alive, turned into a graph sphere you can spin. Public data, live telemetry and an owl that never sleeps.</p></header>
+<div class="sg-grid" data-hud-box><svg class="sg-col sg-col--l" aria-hidden="true"><use href="/assets/svg/griego.svg#columna"/></svg><svg class="sg-col sg-col--r" aria-hidden="true"><use href="/assets/svg/griego.svg#columna"/></svg>
+ <div class="sg-frame"><span class="greca greca--cian" aria-hidden="true"></span>
+  <div data-grafos data-sets="slimefun,saori,plugins"></div><span class="greca greca--b" aria-hidden="true"></span></div>
+ <aside class="sg-hud">
+  <div class="sg-panel"><h3>TERMINAL // <span>SAORI-NEURAL-DAEMON</span></h3><div data-hud="term" aria-live="off"></div></div>
+  <div class="sg-panel"><h3>SYSTEM // <span>ROOT DECK</span></h3><div data-hud="deck"></div></div>
+  <div class="sg-panel"><h3>TELEMETRY // <span>FLUX</span></h3><div data-hud="flux"></div></div>
+  <div class="sg-panel"><h3>NEURAL DATA TREE // <span>RADAR</span></h3><div class="sg-radar"><div class="sg-radar__dial" aria-hidden="true"></div><p style="margin:0">Athena watches the network: the radar sweeps the graphs and the owl keeps the knowledge.</p></div></div>
+ </aside>
+</div><div class="sg-foot"><a class="pt-btn pt-btn--gold" href="/saori-en.html">Open the full lab</a></div>
+</div></section><!-- /saori-lab --></main>
 
   <footer class="r-foot">
     <div class="container">
@@ -483,5 +498,6 @@
   <script src="scripts/home.js?v=20261107-v1"></script>
   <script src="/scripts/portal.js?v=20261109-r8" defer></script>
       <script src="/scripts/novedades.js?v=20261110-1" defer></script>
-  </body>
+  <script src="/scripts/grafos.js?v=20261110-g1" defer></script>
+</body>
 </html>

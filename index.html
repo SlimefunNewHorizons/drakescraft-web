@@ -44,7 +44,9 @@
         <link href="/styles/rediseno.css?v=20261109-1521" rel="stylesheet" />
       <link href="/styles/portada.css?v=20261110-1" rel="stylesheet" />
 <link href="/styles/svg-vivo.css?v=20261110-svg" rel="stylesheet" />
-  </head>
+    <link rel="stylesheet" href="/styles/cosmos.css?v=20261110-c1">
+  <link rel="stylesheet" href="/styles/grafos.css?v=20261110-g1">
+</head>
   <body data-hero="home" class="op-page" data-design="olympus-3d">
     <a class="skip-link" href="#main">Saltar al contenido</a>
     <nav
@@ -404,6 +406,19 @@
           >
         </div>
       </section>
+<!-- saori-lab --><section class="sg-sec" id="saori-lab" aria-labelledby="sg-title"><div class="sg-wrap">
+<header class="sg-head"><svg class="sg-laurel" aria-hidden="true"><use href="/assets/svg/griego.svg#laurel"/></svg><span class="sg-num">LABORATORIO · I</span><h2 id="sg-title">SAORI · El Olimpo también piensa</h2><p>La red que mantiene vivo DrakesCraft, convertida en una esfera de grafos que puedes girar. Datos públicos, telemetría en vivo y un búho que no duerme.</p></header>
+<div class="sg-grid" data-hud-box><svg class="sg-col sg-col--l" aria-hidden="true"><use href="/assets/svg/griego.svg#columna"/></svg><svg class="sg-col sg-col--r" aria-hidden="true"><use href="/assets/svg/griego.svg#columna"/></svg>
+ <div class="sg-frame"><span class="greca greca--cian" aria-hidden="true"></span>
+  <div data-grafos data-sets="slimefun,saori,plugins"></div><span class="greca greca--b" aria-hidden="true"></span></div>
+ <aside class="sg-hud">
+  <div class="sg-panel"><h3>TERMINAL // <span>SAORI-NEURAL-DAEMON</span></h3><div data-hud="term" aria-live="off"></div></div>
+  <div class="sg-panel"><h3>SYSTEM // <span>ROOT DECK</span></h3><div data-hud="deck"></div></div>
+  <div class="sg-panel"><h3>TELEMETRY // <span>FLUX</span></h3><div data-hud="flux"></div></div>
+  <div class="sg-panel"><h3>NEURAL DATA TREE // <span>RADAR</span></h3><div class="sg-radar"><div class="sg-radar__dial" aria-hidden="true"></div><p style="margin:0">Atenea vigila la red: el radar barre los grafos y el búho guarda el conocimiento.</p></div></div>
+ </aside>
+</div><div class="sg-foot"><a class="pt-btn pt-btn--gold" href="/saori.html">Abrir el laboratorio completo</a></div>
+</div></section><!-- /saori-lab -->
       <section class="op-section">
         <div class="container">
           <div class="row g-4 align-items-center">
@@ -815,5 +830,6 @@
     <script src="/scripts/emblem.js" defer></script>
     <script src="/scripts/portal.js?v=20261109-r7" defer></script>
       <script src="/scripts/novedades.js?v=20261110-1" defer></script>
-  </body>
+  <script src="/scripts/grafos.js?v=20261110-g1" defer></script>
+</body>
 </html>

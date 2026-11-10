@@ -35,5 +35,7 @@
   <url><loc>https://web.drakescraft.cl/novedades.html</loc><lastmod>2026-11-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://web.drakescraft.cl/novedades-en.html</loc><lastmod>2026-11-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://web.drakescraft.cl/votar.html</loc><lastmod>2026-11-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://web.drakescraft.cl/saori.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://web.drakescraft.cl/saori-en.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://web.drakescraft.cl/vote-en.html</loc><lastmod>2026-11-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

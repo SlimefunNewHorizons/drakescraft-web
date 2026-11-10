@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<!-- Motivos griegos propios de DrakesCraft. Color por currentColor; segunda capa con opacidad para dar volumen. -->
+<symbol id="columna" viewBox="0 0 60 200">
+ <path d="M4 14h52l-4 8H8z" fill="currentColor"/>
+ <path d="M2 6h56v8H2z" fill="currentColor"/>
+ <path d="M8 22c-6 0-8 10 0 10 4 0 5-4 2-6M52 22c6 0 8 10 0 10-4 0-5-4-2-6" fill="none" stroke="currentColor" stroke-width="2.4"/>
+ <path d="M12 32h36l-2 152H14z" fill="currentColor" opacity=".35"/>
+ <path d="M17 34v148M23 34v148M29 34v148M35 34v148M41 34v148" stroke="currentColor" stroke-width="2.2" opacity=".85"/>
+ <path d="M12 32h36l-1 6H13z" fill="currentColor"/>
+ <path d="M10 184h40v6H10zM4 190h52v8H4z" fill="currentColor"/>
+</symbol>
+<symbol id="laurel" viewBox="0 0 120 120">
+ <g fill="currentColor">
+  <path d="M60 112C30 108 12 84 14 52" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M60 112c30-4 48-28 46-60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M15 56c-8-6-8-16-2-22 6 6 7 15 2 22zM18 74c-10-2-14-11-11-18 8 3 12 11 11 18zM28 90c-10 1-16-6-15-14 8 0 14 7 15 14zM42 102c-9 4-17-1-18-9 8-2 15 3 18 9z"/>
+  <path d="M18 54c6-6 15-6 20 0-6 5-15 5-20 0zM24 72c6-5 15-4 19 2-7 4-15 3-19-2zM34 88c7-4 15-2 18 4-7 3-15 1-18-4z" opacity=".6"/>
+  <path d="M105 56c8-6 8-16 2-22-6 6-7 15-2 22zM102 74c10-2 14-11 11-18-8 3-12 11-11 18zM92 90c10 1 16-6 15-14-8 0-14 7-15 14zM78 102c9 4 17-1 18-9-8-2-15 3-18 9z"/>
+  <path d="M102 54c-6-6-15-6-20 0 6 5 15 5 20 0zM96 72c-6-5-15-4-19 2 7 4 15 3 19-2zM86 88c-7-4-15-2-18 4 7 3 15 1 18-4z" opacity=".6"/>
+ </g>
+</symbol>
+<symbol id="anfora" viewBox="0 0 100 140">
+ <path d="M36 6h28v6h-4v14c18 6 30 22 30 44 0 26-16 46-30 52v8h8v6H32v-6h8v-8C26 116 10 96 10 70c0-22 12-38 30-44V12h-4z" fill="currentColor" opacity=".35"/>
+ <path d="M36 6h28v6H36zM32 130h36v6H32z" fill="currentColor"/>
+ <path d="M40 26C22 32 10 48 10 70c0 26 16 46 30 52h20c14-6 30-26 30-52 0-22-12-38-30-44" fill="none" stroke="currentColor" stroke-width="2.6"/>
+ <path d="M40 30c-14 0-26 6-30 18M60 30c14 0 26 6 30 18" fill="none" stroke="currentColor" stroke-width="2.2"/>
+ <path d="M16 60h68M14 82h72" stroke="currentColor" stroke-width="2"/>
+ <path d="M16 62h68v18H16z" fill="currentColor" opacity=".5"/>
+ <path d="M20 66h6v4h4v-8h6v12h-10v-4h-6zM40 66h6v4h4v-8h6v12h-10v-4h-6zM60 66h6v4h4v-8h6v12h-10v-4h-6z" fill="currentColor"/>
+ <path d="M30 40c4-4 10-6 16-6" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none"/>
+</symbol>
+<symbol id="buho" viewBox="0 0 120 140">
+ <path d="M60 18c-30 0-46 22-46 54 0 34 20 58 46 58s46-24 46-58c0-32-16-54-46-54z" fill="currentColor" opacity=".3"/>
+ <path d="M16 30l14 14M104 30L90 44" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+ <path d="M14 26c10 2 18 8 22 18M106 26c-10 2-18 8-22 18" fill="none" stroke="currentColor" stroke-width="3"/>
+ <circle cx="40" cy="58" r="17" fill="none" stroke="currentColor" stroke-width="3"/>
+ <circle cx="80" cy="58" r="17" fill="none" stroke="currentColor" stroke-width="3"/>
+ <circle cx="40" cy="58" r="8" fill="currentColor"/><circle cx="80" cy="58" r="8" fill="currentColor"/>
+ <circle cx="43" cy="55" r="2.6" fill="#fff"/><circle cx="83" cy="55" r="2.6" fill="#fff"/>
+ <path d="M54 70l6 12 6-12z" fill="currentColor"/>
+ <path d="M34 92c8 4 16 6 26 6s18-2 26-6M38 104c6 3 14 5 22 5s16-2 22-5M44 116c5 2 10 3 16 3s11-1 16-3" fill="none" stroke="currentColor" stroke-width="2.2" opacity=".85"/>
+ <path d="M44 130l-4 8M60 130v8M76 130l4 8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+</symbol>
+<symbol id="roseta" viewBox="0 0 60 60">
+ <g fill="currentColor"><circle cx="30" cy="30" r="5"/>
+  <path d="M30 4c5 8 5 14 0 20-5-6-5-12 0-20zM30 56c-5-8-5-14 0-20 5 6 5 12 0 20zM4 30c8-5 14-5 20 0-6 5-12 5-20 0zM56 30c-8 5-14 5-20 0 6-5 12-5 20 0z"/>
+  <path d="M11.6 11.6c9 2 13 6 14.2 13.8-7.8-1.2-11.8-5.2-14.2-13.8zM48.4 48.4c-9-2-13-6-14.2-13.8 7.8 1.2 11.8 5.2 14.2 13.8zM48.4 11.6c-2 9-6 13-13.8 14.2 1.2-7.8 5.2-11.8 13.8-14.2zM11.6 48.4c2-9 6-13 13.8-14.2-1.2 7.8-5.2 11.8-13.8 14.2z" opacity=".55"/>
+ </g>
+</symbol>
+<symbol id="fronton" viewBox="0 0 400 90">
+ <path d="M8 84L200 6l192 78z" fill="currentColor" opacity=".18"/>
+ <path d="M8 84L200 6l192 78M30 76L200 16l170 60" fill="none" stroke="currentColor" stroke-width="2.4"/>
+ <path d="M0 84h400v6H0z" fill="currentColor"/>
+ <circle cx="200" cy="52" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="200" cy="52" r="4" fill="currentColor"/>
+</symbol>
+</svg>
