@@ -14,7 +14,7 @@ TX = {
         title="SAORI · Laboratorio de grafos | DrakesCraft",
         desc="Explora en 3D el catálogo de Slimefun, la arquitectura de plugins y el código de DrakesCraft como grafos interactivos, con telemetría pública del servidor.",
         num="LABORATORIO · I", h="SAORI · Laboratorio de grafos",
-        lead="Cada punto es una pieza de DrakesCraft: addons, plugins, archivos de la web. Gira la esfera, pasa el cursor por los nodos y cambia de grafo con las pestañas.",
+        lead="Cada punto es una pieza real de DrakesCraft y Star: 35 repositorios, más de 273.000 nodos y 960.000 aristas. Gira el universo, pasa el cursor por los símbolos y explora la arquitectura con las pestañas.",
         term="TERMINAL // <span>SAORI-NEURAL-DAEMON</span>", deck="SYSTEM // <span>ROOT DECK</span>",
         flux="TELEMETRY // <span>FLUX</span>", radar="NEURAL DATA TREE // <span>RADAR</span>",
         radar_t="Atenea vigila la red: el radar barre los grafos y el búho guarda el conocimiento.",
@@ -23,12 +23,12 @@ TX = {
                ("III", "Qué no verás", "Nada privado: ni rutas, ni IPs, ni registros reales. El grafo SAORI es ilustrativo y el terminal se sintetiza con métricas públicas del servidor.")],
         cta="Abrir el laboratorio completo", home_h="SAORI · El Olimpo también piensa",
         home_lead="La red que mantiene vivo DrakesCraft, convertida en una esfera de grafos que puedes girar. Datos públicos, telemetría en vivo y un búho que no duerme.",
-        sets="slimefun,plugins,web,saori", home_sets="slimefun,saori,plugins", tpl="votar.html", out="saori.html", other="saori-en.html"),
+        sets="labs,galaxia,aihub,tinkers,denizen,bentobox,elitemobs", home_sets="labs,galaxia,aihub", tpl="votar.html", out="saori.html", other="saori-en.html"),
     "en": dict(
         title="SAORI · Graph Lab | DrakesCraft",
         desc="Explore DrakesCraft's Slimefun catalogue, plugin architecture and website code as interactive 3D graphs, with public server telemetry.",
         num="LABORATORY · I", h="SAORI · Graph Lab",
-        lead="Every point is a piece of DrakesCraft: addons, plugins, website files. Spin the sphere, hover the nodes and switch graphs with the tabs.",
+        lead="Every point is a real piece of DrakesCraft and Star: 35 repositories, over 273,000 nodes and 960,000 edges. Spin the universe, inspect symbols on hover, and navigate the architecture through the tabs.",
         term="TERMINAL // <span>SAORI-NEURAL-DAEMON</span>", deck="SYSTEM // <span>ROOT DECK</span>",
         flux="TELEMETRY // <span>FLUX</span>", radar="NEURAL DATA TREE // <span>RADAR</span>",
         radar_t="Athena watches the network: the radar sweeps the graphs and the owl keeps the knowledge.",
@@ -37,7 +37,7 @@ TX = {
                ("III", "What you will not see", "Nothing private: no paths, IPs or real logs. The SAORI graph is illustrative and the terminal is synthesised from public server metrics.")],
         cta="Open the full lab", home_h="SAORI · Olympus thinks too",
         home_lead="The network that keeps DrakesCraft alive, turned into a graph sphere you can spin. Public data, live telemetry and an owl that never sleeps.",
-        sets="slimefun,plugins,web,saori", home_sets="slimefun,saori,plugins", tpl="vote-en.html", out="saori-en.html", other="saori.html"),
+        sets="labs,galaxia,aihub,tinkers,denizen,bentobox,elitemobs", home_sets="labs,galaxia,aihub", tpl="vote-en.html", out="saori-en.html", other="saori.html"),
 }
 
 def lab(t, sets, heading, lead, tag, extra=""):

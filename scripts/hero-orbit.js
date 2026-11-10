@@ -31,14 +31,45 @@
     return c;
   };
 
+  // 6 mundos soberanos = 6 planetas con paletas y orbitas unicas
   const bodies = [
-    { a: 0.44, e: 0.07, i: 0.22, n: 0.3, w: 0.95, r: 0.04, c: ["#ffe9b0", "#c88f2c"], g: "rgba(255,206,120,.9)" },
-    { a: 0.55, e: 0.16, i: -0.55, n: 1.2, w: -0.6, r: 0.058, c: ["#e6d6ff", "#7446d4"], g: "rgba(169,138,232,.9)", moon: ["#f4e9ff", "#8a6fd0", 0.09, 2.4] },
-    { a: 0.76, e: 0.1, i: 0.16, n: 2.5, w: 0.34, r: 0.07, c: ["#cdf7ff", "#178db5"], g: "rgba(111,227,255,.9)", ring: 1, moon: ["#fff6dc", "#c99c45", 0.12, -1.7] },
-    { a: 0.88, e: 0.09, i: -0.3, n: 4.1, w: -0.26, r: 0.052, c: ["#ffd3f1", "#bf2f8c"], g: "rgba(255,95,200,.9)" },
-    { a: 0.68, e: 0.83, i: 0.95, n: 0.7, w: 0.42, r: 0.02, c: ["#ffffff", "#9feaff"], g: "rgba(190,240,255,1)", comet: [] },
-  ].filter((b, k) => !small || k !== 3);
-  const ORB = ["rgba(229,189,114,", "rgba(169,138,232,", "rgba(111,227,255,", "rgba(255,95,200,", "rgba(200,240,255,"];
+    // 01 Slimefun: Tecnologia y Magia (Verde esmeralda / quantum ring)
+    { id: "slimefun", name: "01 Slimefun", a: 0.43, e: 0.05, i: 0.24, n: 0.4, w: 0.92, r: 0.046, ring: 1,
+      c: ["#a8ffb2", "#138842"], g: "rgba(46,204,113,.95)",
+      ringCol: ["rgba(168,255,178,.25)", "rgba(46,204,113,.95)", "rgba(130,255,180,.35)"] },
+
+    // 02 Clasico: Supervivencia Vanilla (Oro solar puro)
+    { id: "clasico", name: "02 Clásico", a: 0.54, e: 0.08, i: -0.32, n: 1.2, w: -0.70, r: 0.042,
+      c: ["#ffe9b0", "#c88f2c"], g: "rgba(255,206,120,.95)" },
+
+    // 03 SkyBlock: Isla en el cielo (Cian celestial con luna/isla orbital)
+    { id: "skyblock", name: "03 SkyBlock", a: 0.66, e: 0.10, i: 0.18, n: 2.3, w: 0.52, r: 0.054,
+      c: ["#cdf7ff", "#178db5"], g: "rgba(63,224,208,.95)",
+      moon: ["#ffffff", "#62d6ec", 0.085, 2.3] },
+
+    // 04 OneBlock: Bloque infinito (Amatista del vacio con nucleo orbital)
+    { id: "oneblock", name: "04 OneBlock", a: 0.78, e: 0.13, i: -0.48, n: 3.6, w: -0.42, r: 0.052,
+      c: ["#e6d6ff", "#7446d4"], g: "rgba(169,138,232,.95)",
+      moon: ["#f5e9ff", "#9b72e0", 0.075, -2.1] },
+
+    // 05 Laboratorio: Zona de experimentacion (Plasma rojo redstone)
+    { id: "laboratorio", name: "05 Laboratorio", a: 0.90, e: 0.09, i: 0.38, n: 4.8, w: 0.35, r: 0.044,
+      c: ["#ff9e80", "#cf2f17"], g: "rgba(255,87,34,.95)" },
+
+    // 06 OneChunk: Minado tactico 16x16 (Topacio ambar con estela de cometa)
+    { id: "onechunk", name: "06 OneChunk", a: 1.02, e: 0.40, i: -0.66, n: 0.8, w: 0.28, r: 0.038,
+      c: ["#ffe082", "#935a10"], g: "rgba(255,193,7,.95)", comet: [],
+      tailCol: "#ffe082",
+      tailGrad: ["rgba(255,235,160,.8)", "rgba(255,193,7,.3)", "rgba(255,140,0,0)"] },
+  ];
+  const ORB = [
+    "rgba(46,204,113,",
+    "rgba(229,189,114,",
+    "rgba(63,224,208,",
+    "rgba(169,138,232,",
+    "rgba(255,87,34,",
+    "rgba(255,193,7,"
+  ];
   bodies.forEach((b, k) => {
     b.th = rnd() * TAU; b.col = ORB[k];
     b.spr = sphere(b.c[0], b.c[1]); b.gl = glow(b.g);
@@ -123,19 +154,22 @@
   function ringHalf(b, x, y, rad, l, a0, a1) {
     ctx.globalAlpha = 0.75 * l; ctx.lineWidth = rad * 0.28;
     const gr = ctx.createLinearGradient(x - rad * 2.2, y, x + rad * 2.2, y);
-    gr.addColorStop(0, "rgba(255,230,170,.2)"); gr.addColorStop(0.5, "rgba(255,226,160,.95)"); gr.addColorStop(1, "rgba(160,230,255,.35)");
+    const rc = b.ringCol || ["rgba(255,230,170,.2)", "rgba(255,226,160,.95)", "rgba(160,230,255,.35)"];
+    gr.addColorStop(0, rc[0]); gr.addColorStop(0.5, rc[1]); gr.addColorStop(1, rc[2]);
     ctx.strokeStyle = gr; ctx.beginPath(); ctx.ellipse(x, y, rad * 2.1, rad * 0.62, -0.38 + roll, a0, a1); ctx.stroke();
   }
   function drawComet(b, q) {
     const [x, y, z, s] = q, tr = b.comet, l = light(z);
     ctx.globalCompositeOperation = "lighter"; ctx.lineCap = "round";
+    const strokeC = b.tailCol || "#9feaff";
     for (let k = 1; k < tr.length; k++) {
       ctx.globalAlpha = (1 - k / tr.length) * 0.55 * l; ctx.lineWidth = max(0.6, (1 - k / tr.length) * 3 * s);
-      ctx.strokeStyle = "#9feaff"; ctx.beginPath(); ctx.moveTo(tr[k - 1][0], tr[k - 1][1]); ctx.lineTo(tr[k][0], tr[k][1]); ctx.stroke();
+      ctx.strokeStyle = strokeC; ctx.beginPath(); ctx.moveTo(tr[k - 1][0], tr[k - 1][1]); ctx.lineTo(tr[k][0], tr[k][1]); ctx.stroke();
     }
     const dx = x - cx, dy = y - cy, d = Math.hypot(dx, dy) || 1, len = R * min(0.42, 0.06 / max(0.12, d / R)) * 2.2;
     const ex = x + (dx / d) * len, ey = y + (dy / d) * len, g = ctx.createLinearGradient(x, y, ex, ey);
-    g.addColorStop(0, "rgba(220,250,255,.75)"); g.addColorStop(0.35, "rgba(140,215,255,.25)"); g.addColorStop(1, "rgba(120,200,255,0)");
+    const tg = b.tailGrad || ["rgba(220,250,255,.75)", "rgba(140,215,255,.25)", "rgba(120,200,255,0)"];
+    g.addColorStop(0, tg[0]); g.addColorStop(0.35, tg[1]); g.addColorStop(1, tg[2]);
     ctx.globalAlpha = 0.8 * l; ctx.fillStyle = g; ctx.beginPath();
     const nx = -dy / d, ny = dx / d, wd = b.r * s * R * 1.3;
     ctx.moveTo(x + nx * wd, y + ny * wd); ctx.lineTo(ex + nx * wd * 1.8, ey + ny * wd * 1.8); ctx.lineTo(ex - nx * wd * 0.8, ey - ny * wd * 0.8); ctx.lineTo(x - nx * wd, y - ny * wd); ctx.fill();

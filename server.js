@@ -1196,7 +1196,7 @@ for (const [alias, file] of [
   ['/temporada-2', 'temporada-2.html'], ['/t2', 'temporada-2.html'], ['/season-2', 'temporada-2-en.html'],
   ['/saori', 'saori.html'], ['/grafos', 'saori.html'], ['/saori-en', 'saori-en.html'], ['/graphs', 'saori-en.html'],
   ['/novedades', 'novedades.html'], ['/news', 'novedades-en.html'], ['/novedades-en', 'novedades-en.html'],
-  ['/votar', 'votar.html'], ['/vote', 'vote-en.html'], ['/reglas', 'terms.html'], ['/rules', 'terms-en.html'],
+  ['/votar', 'votar.html'], ['/vote', 'vote-en.html'], ['/reglas', 'terms.html'], ['/reglas.html', 'terms.html'], ['/rules', 'terms-en.html'],
   ['/eventos', 'eventos.html'], ['/calendario', 'eventos.html'],
   ['/events', 'events-en.html'], ['/calendar', 'events-en.html'],
 ]) {
