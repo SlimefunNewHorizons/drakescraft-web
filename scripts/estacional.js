@@ -45,8 +45,8 @@
         var theme = forced || detect();
         var b = document.body;
         b.classList.remove('theme-birthday', 'theme-christmas', 'theme-valentines');
-        if (theme === 'birthday') { b.classList.add('theme-birthday'); ensureScript('drakes-birthday-fx-script', 'scripts/birthday-fx.js?v=20261105-t2'); }
-        else if (calendarTheme() === 'birthday') { ensureScript('drakes-birthday-fx-script', 'scripts/birthday-fx.js?v=20261105-t2'); }
+        if (theme === 'birthday') { b.classList.add('theme-birthday'); ensureScript('drakes-birthday-fx-script', 'scripts/birthday-fx.js?v=20261112'); }
+        else if (calendarTheme() === 'birthday') { ensureScript('drakes-birthday-fx-script', 'scripts/birthday-fx.js?v=20261112'); }
         if (theme === 'christmas') { b.classList.add('theme-christmas'); ensureScript('drakes-christmas-fx-script', 'scripts/christmas-fx.js?v=20261102'); }
         else if (calendarTheme() === 'christmas') { ensureScript('drakes-christmas-fx-script', 'scripts/christmas-fx.js?v=20261102'); }
         window.drakesCurrentTheme = theme;
