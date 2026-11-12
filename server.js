@@ -16,6 +16,7 @@ import { storeCatalog } from './catalog/store-catalog.js';
 import { storeStatus, closedMessage } from './lib/store-schedule.js';
 import { loadOffers, pickCartOffer, liveGifts, liveOffers, offerProducts, priceFor, discountedUsd, publicOffer, validateCalendar, offerCode } from './lib/offers.js';
 import { pluginApi, syncOffers } from './lib/offers-sync.js';
+import { REPORT_MAX_BYTES, cleanDevice, cleanVersion, createLimiter, isZip, saveReport } from './lib/launcher-reports.js';
 
 
 const app = Fastify({ logger: true, trustProxy: true, bodyLimit: 128 * 1024 });
@@ -633,6 +634,7 @@ app.addContentTypeParser('application/x-www-form-urlencoded', { parseAs: 'string
 });
 
 app.addHook('preParsing', async (request, _reply, payload) => {
+  if (request.raw.url?.startsWith('/api/launcher/report')) return payload;
   const chunks = [];
   for await (const chunk of payload) chunks.push(chunk);
   const raw = Buffer.concat(chunks);
@@ -740,6 +742,22 @@ app.post('/api/analytics/collect', async (request, reply) => {
   } catch (err) {
     return { ok: false };
   }
+});
+
+// Reportes de error del launcher DrakeStar: un .zip con registros ya sin datos personales (se tachan en el cliente).
+// Solo se valida y se guarda en <DATA_DIR>/launcher-reports/ (30 dias); no se guarda la IP. Ver README del launcher.
+const launcherReportDir = path.join(dataDir, 'launcher-reports');
+const launcherReportAllow = createLimiter();
+app.addContentTypeParser('application/zip', { parseAs: 'buffer', bodyLimit: REPORT_MAX_BYTES }, (_request, body, done) => done(null, body));
+app.post('/api/launcher/report', { bodyLimit: REPORT_MAX_BYTES }, async (request, reply) => {
+  if (!launcherReportAllow(request.ip)) return reply.code(429).send({ error: 'Demasiados reportes; intenta mas tarde' });
+  if (!isZip(request.body)) return reply.code(415).send({ error: 'Se espera un .zip' });
+  const name = await saveReport(launcherReportDir, request.body, {
+    device: cleanDevice(request.headers['x-drakestar-device']),
+    version: cleanVersion(request.headers['x-drakestar-version'])
+  });
+  request.log.info({ report: name, bytes: request.body.length }, 'launcher report');
+  return reply.code(202).send({ accepted: true });
 });
 
 app.get('/api/overview', async (request, reply) => {
