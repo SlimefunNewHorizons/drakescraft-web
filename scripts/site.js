@@ -334,7 +334,7 @@ try {
         if (!document.getElementById("drakes-birthday-fx-script")) {
             const script = document.createElement("script");
             script.id = "drakes-birthday-fx-script";
-            script.src = "scripts/birthday-fx.js?v=20261105-t2";
+            script.src = "scripts/birthday-fx.js?v=20261112";
             document.head.appendChild(script);
         }
     }
