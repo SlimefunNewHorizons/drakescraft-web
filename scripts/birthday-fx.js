@@ -341,6 +341,7 @@
         }
 
         fxRunning = true;
+        let justStarted = true;
 
         function renderFrame() {
             if (!fxRunning) return;
@@ -401,7 +402,7 @@
                 ctx.restore();
             }
 
-            if (ambient.length === 0 && burstParticles.length === 0) {
+            if (ambient.length === 0 && burstParticles.length === 0 && !justStarted) {
                 stopParticlesCanvas();
                 return;
             }
@@ -410,6 +411,7 @@
         }
 
         renderFrame();
+        justStarted = false;
 
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && fxRunning && !animFrame && !reducedMotionQuery.matches) {
