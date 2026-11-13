@@ -922,7 +922,8 @@
     if (deck) {
       const rows = st
         ? [['STATUS', st.enLinea ? T.online : T.offline, st.enLinea ? 'ok' : 'bad'],
-           [T.players.toUpperCase(), `${st.jugadores ?? 0} / ${st.maximo ?? '—'}`],
+           [T.players.toUpperCase(), String(st.jugadores ?? 0)],
+           [EN ? 'ADVERTISED MAX' : 'MÁXIMO ANUNCIADO', st.enLinea ? String(st.maximo ?? '—') : '—'],
            [T.ver.toUpperCase(), st.version || '—']]
         : [['STATUS', T.offline, 'bad']];
       if (me?.semana) {
@@ -949,7 +950,7 @@
     if (!term) return;
     const now = () => new Date().toTimeString().slice(0, 8);
     push('DAEMON', st ? `${EN ? 'server' : 'servidor'} ${st.enLinea ? T.online : T.offline} · ${st.version || 'Purpur'}` : (EN ? 'telemetry connected · star vps' : 'telemetría conectada · star vps'));
-    if (st) push('FLUX', `${st.jugadores ?? 0} ${T.players} · ${EN ? 'capacity' : 'capacidad'} ${st.maximo ?? '—'}`);
+    if (st) push('FLUX', `${st.jugadores ?? 0} ${T.players} · ${EN ? 'advertised max' : 'máximo anunciado'} ${st.enLinea ? st.maximo ?? '—' : '—'}`);
     if (me?.semana) push('FLUX', `${T.peak} ${me.semana.pico_maximo} · ${me.semana.jugadores_distintos} ${T.uniq}`);
     push('GRAPH', EN ? 'real WebGL neural engine ready · 273k topology' : 'motor neuronal WebGL listo · topología de 273k');
     push('CIPHER', EN ? 'sovereign zero-leak mode active' : 'modo soberano activo · cero filtración');
