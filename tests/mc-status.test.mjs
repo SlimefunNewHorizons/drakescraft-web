@@ -34,6 +34,31 @@ for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
     assert.equal(conexiones, 1);
   });
 
+  test(`${entry}: no reutiliza el máximo anunciado de otro destino`, async t => {
+    const conexiones = [0, 0];
+    const puertos = [];
+    for (const [i, maximo] of [2027, 100].entries()) {
+      puertos.push(await fixture(t, socket => {
+        conexiones[i]++;
+        socket.once('data', () => {
+          const json = Buffer.from(JSON.stringify({ players: { online: i, max: maximo } }));
+          socket.end(Buffer.concat([Buffer.from([json.length + 2, 0, json.length]), json]));
+        });
+      }));
+    }
+    t.mock.method(globalThis, 'fetch', () => { throw Error('HTTP inesperado'); });
+    const { estadoServidor } = await import(`${entry}?test=destinos`);
+    const primero = await estadoServidor('127.0.0.1', puertos[0]);
+    const segundo = await estadoServidor('127.0.0.1', puertos[1]);
+    assert.equal(primero.maximo, 2027);
+    assert.equal(segundo.maximo, 100);
+    assert.equal(segundo.jugadores, 1);
+    assert.equal(segundo.maximoFuente, 'server-list-ping');
+    assert.deepEqual(await estadoServidor('127.0.0.1', puertos[1]), segundo);
+    assert.deepEqual(conexiones, [1, 1]);
+    assert.equal((await estadoServidor('127.0.0.1', puertos[0])).maximo, 2027);
+  });
+
   test(`${entry}: respaldo HTTP y ausencia de medición`, async t => {
     // Liberar el puerto fuerza ECONNREFUSED sin conexiones externas.
     const cerrado = net.createServer();

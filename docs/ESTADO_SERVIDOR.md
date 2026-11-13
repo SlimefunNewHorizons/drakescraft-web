@@ -20,3 +20,9 @@ no consulta ni modifica producción.
 Validación sin Dallas: `node --test tests/mc-status.test.mjs` cubre ping TCP
 local (0/2027), caché, respaldo HTTP simulado y ambas fuentes ausentes para
 las dos copias del módulo de estado.
+
+La caché de 30 segundos solo se reutiliza para el mismo host y puerto.
+Cambiar de destino obliga a consultar su estado: no hereda jugadores,
+máximo anunciado, versión ni disponibilidad del servidor anterior.
+La regresión de dos destinos usa puertos TCP loopback distintos (2027/100)
+y comprueba que las consultas repetidas al mismo destino usan la caché.
