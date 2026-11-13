@@ -26,3 +26,9 @@ Cambiar de destino obliga a consultar su estado: no hereda jugadores,
 máximo anunciado, versión ni disponibilidad del servidor anterior.
 La regresión de dos destinos usa puertos TCP loopback distintos (2027/100)
 y comprueba que las consultas repetidas al mismo destino usan la caché.
+
+Si el servidor cierra TCP sin entregar un estado completo, la consulta pasa
+al respaldo HTTP. El timeout de inactividad del socket no cubre un socket
+ya cerrado: se atiende también `close` para evitar peticiones pendientes.
+Cuatro regresiones loopback cubren cierres sin bytes y paquetes truncados
+en ambas copias del módulo, sin consultar producción.

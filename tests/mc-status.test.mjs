@@ -13,6 +13,34 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  for (const [nombre, respuesta] of [
+    ['sin respuesta', Buffer.alloc(0)],
+    ['paquete incompleto', Buffer.from([10, 0, 8, 123])],
+  ]) {
+    test(`${entry}: cierre TCP ${nombre} activa respaldo HTTP`, async t => {
+      const puerto = await fixture(t, socket => {
+        socket.once('data', () => socket.end(respuesta));
+      });
+      const http = t.mock.method(globalThis, 'fetch', async () => ({
+        ok: true,
+        json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+      }));
+      const { estadoServidor } = await import(`${entry}?test=eof-${nombre}`);
+      let timer;
+      t.after(() => clearTimeout(timer));
+      const estado = await Promise.race([
+        estadoServidor('127.0.0.1', puerto),
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(Error('Consulta pendiente tras cierre TCP')), 1000);
+        }),
+      ]);
+      assert.equal(estado.maximo, 100);
+      assert.equal(estado.jugadores, 2);
+      assert.equal(estado.maximoFuente, 'mcsrvstat');
+      assert.equal(http.mock.callCount(), 1);
+    });
+  }
+
   test(`${entry}: máximo del ping y caché, sin confundirlo con capacidad`, async t => {
     let conexiones = 0;
     const puerto = await fixture(t, socket => {
