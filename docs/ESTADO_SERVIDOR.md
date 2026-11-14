@@ -38,3 +38,12 @@ JSON debe coincidir con el final del paquete declarado. Un ID distinto, un
 JSON que exceda el paquete o bytes sobrantes dentro de este activan el
 respaldo HTTP; no se presentan como una medición válida del ping. Seis
 regresiones loopback verifican estos casos en ambas copias del módulo.
+
+Los conteos de jugadores y máximo anunciado deben existir y ser enteros
+seguros no negativos, tanto en TCP como en el respaldo HTTP. Un ping con
+conteos ausentes, negativos, fraccionarios o de texto pasa al respaldo. Si
+este también es inválido se devuelve el estado sin medición. El respaldo
+requiere `online: true` booleano; `"false"` no acredita disponibilidad. Se
+permite cero y no se compara conectados con máximo, porque este es anunciado.
+Un MOTD con `text` de otro tipo se ignora, conservando los componentes de
+texto válidos y sin interrumpir la consulta de estado.
