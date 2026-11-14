@@ -1,5 +1,8 @@
 /* Shared storefront interactions. Public pages are intentionally store-only. */
 (function () {
+    // Capture before translation changes <html lang>; a translated page stays Spanish at its source.
+    const nativePageLanguage = (document.documentElement.lang || "es").toLowerCase();
+    const isNativeEnglish = nativePageLanguage.startsWith("en");
     /**
      * Construye una única navegación para todo el portal y evita que cada
      * página mantenga una copia distinta de enlaces, títulos y estados activos.
@@ -81,10 +84,7 @@ try {
             langBtn.setAttribute("aria-label", langBtn.title);
             langBtn.setAttribute("aria-pressed", String(isTranslated));
             langBtn.addEventListener("click", () => {
-                if (isEn) {
-                    const es = rawPath.replace("guide-en.html", "guia.html").replace("events-en.html", "eventos.html").replace("index-en.html", "").replace(/-en\.html$/, ".html");
-                    window.location.href = "/" + es;
-                } else if (isTranslated) {
+                if (isTranslated) {
                     resetGoogleTranslate();
                 } else {
                     applyGoogleTranslate('en');
@@ -95,7 +95,7 @@ try {
 
             menu.replaceChildren(fragment);
             navigation.classList.remove("home-nav");
-            if (brandSubtitle) brandSubtitle.textContent = "Temporada 2 · Purpur 26.2";
+            if (brandSubtitle) brandSubtitle.textContent = isEn ? "Season 2 · Purpur 26.2" : "Temporada 2 · Purpur 26.2";
         } catch (error) {
             console.error("No se pudo unificar la navegación principal", error);
         }
@@ -170,7 +170,7 @@ try {
     }
 
     function isEnglishSelected() {
-        return document.cookie.includes('googtrans=/es/en')
+        return isNativeEnglish || document.cookie.includes('googtrans=/es/en')
             || localStorage.getItem('drakes_lang_choice') === 'en';
     }
 
@@ -185,6 +185,14 @@ try {
         const domain = window.location.hostname.includes('drakescraft.cl') ? '.drakescraft.cl' : window.location.hostname;
         document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain};`;
+        if (isNativeEnglish) {
+            const path = window.location.pathname.split('/').pop() || '';
+            const spanishPath = path.replace('guide-en.html', 'guia.html')
+                .replace('events-en.html', 'eventos.html').replace('index-en.html', '')
+                .replace(/-en\.html$/, '.html');
+            window.location.href = '/' + spanishPath;
+            return;
+        }
         window.location.reload();
     }
 
@@ -222,6 +230,8 @@ try {
     }
 
     function initBilingualSystem() {
+        // Native English pages need neither translation nor a language suggestion.
+        if (isNativeEnglish) return;
         if (!document.getElementById('google_translate_element')) {
             const gtDiv = document.createElement('div');
             gtDiv.id = 'google_translate_element';
