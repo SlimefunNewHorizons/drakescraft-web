@@ -47,3 +47,9 @@ requiere `online: true` booleano; `"false"` no acredita disponibilidad. Se
 permite cero y no se compara conectados con máximo, porque este es anunciado.
 Un MOTD con `text` de otro tipo se ignora, conservando los componentes de
 texto válidos y sin interrumpir la consulta de estado.
+
+Los VarInt del paquete TCP admiten como máximo cinco bytes y 32 bits.
+Se rechazan desbordamientos del quinto byte y codificaciones de seis bytes:
+no pueden convertirse por truncamiento en un ID o una longitud válidos.
+Ocho regresiones cubren longitudes de paquete/JSON e ID malformados en ambas
+copias; dos controles conservan longitudes válidas de dos bytes.
