@@ -13,6 +13,56 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  test(`${entry}: acepta longitudes VarInt válidas de dos bytes`, async t => {
+    const motd = 'Servidor '.repeat(30);
+    const puerto = await fixture(t, socket => {
+      socket.once('data', () => {
+        const json = Buffer.from(JSON.stringify({ players: { online: 4, max: 2027 }, description: motd }));
+        const cuerpo = Buffer.concat([
+          Buffer.from([0, (json.length & 0x7f) | 0x80, json.length >>> 7]), json,
+        ]);
+        socket.end(Buffer.concat([
+          Buffer.from([(cuerpo.length & 0x7f) | 0x80, cuerpo.length >>> 7]), cuerpo,
+        ]));
+      });
+    });
+    const http = t.mock.method(globalThis, 'fetch', () => { throw Error('HTTP inesperado'); });
+    const { estadoServidor } = await import(`${entry}?test=varint-valido`);
+    const estado = await estadoServidor('127.0.0.1', puerto);
+    assert.equal(estado.maximoFuente, 'server-list-ping');
+    assert.equal(estado.maximo, 2027);
+    assert.equal(estado.motd, motd.trim());
+    assert.equal(http.mock.callCount(), 0);
+  });
+
+  for (const caso of ['longitud desbordada', 'ID desbordado', 'ID de seis bytes', 'longitud JSON desbordada']) {
+    test(`${entry}: rechaza VarInt con ${caso} sin publicar el ping`, async t => {
+      const puerto = await fixture(t, socket => {
+        socket.once('data', () => {
+          const json = Buffer.from(JSON.stringify({ players: { online: 4, max: 2027 } }));
+          const id = caso === 'ID desbordado' ? Buffer.from([0x80, 0x80, 0x80, 0x80, 0x10])
+            : caso === 'ID de seis bytes' ? Buffer.from([0x80, 0x80, 0x80, 0x80, 0x80, 0])
+            : Buffer.from([0]);
+          const largoJson = caso === 'longitud JSON desbordada'
+            ? Buffer.from([json.length | 0x80, 0x80, 0x80, 0x80, 0x10]) : Buffer.from([json.length]);
+          const cuerpo = Buffer.concat([id, largoJson, json]);
+          const largo = caso === 'longitud desbordada'
+            ? Buffer.from([cuerpo.length | 0x80, 0x80, 0x80, 0x80, 0x10]) : Buffer.from([cuerpo.length]);
+          socket.end(Buffer.concat([largo, cuerpo]));
+        });
+      });
+      const http = t.mock.method(globalThis, 'fetch', async () => ({
+        ok: true, json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+      }));
+      const { estadoServidor } = await import(`${entry}?test=varint-${caso}`);
+      const estado = await estadoServidor('127.0.0.1', puerto);
+      assert.equal(estado.maximoFuente, 'mcsrvstat');
+      assert.equal(estado.maximo, 100);
+      assert.equal(estado.jugadores, 2);
+      assert.equal(http.mock.callCount(), 1);
+    });
+  }
+
   for (const [nombre, players] of [
     ['sin conteos', undefined],
     ['jugadores negativos', { online: -1, max: 100 }],

@@ -41,7 +41,7 @@ function varInt(valor) {
   return Buffer.from(bytes);
 }
 
-/** Lee un VarInt y devuelve el valor junto a cuántos bytes ocupó. */
+/** Lee un VarInt de hasta 32 bits y cinco bytes; espera o rechaza con null. */
 function leerVarInt(buffer, desde = 0) {
   let valor = 0;
   let desplazamiento = 0;
@@ -49,11 +49,12 @@ function leerVarInt(buffer, desde = 0) {
   while (true) {
     if (desde + leidos >= buffer.length) return null;
     const byte = buffer[desde + leidos];
+    if (leidos === 4 && (byte & 0xf0) !== 0) return null;
     valor |= (byte & 0x7f) << desplazamiento;
     leidos += 1;
     if ((byte & 0x80) === 0) break;
     desplazamiento += 7;
-    if (desplazamiento > 35) return null;
+    if (desplazamiento >= 35) return null;
   }
   return { valor, leidos };
 }
