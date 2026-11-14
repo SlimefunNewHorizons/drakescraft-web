@@ -25,28 +25,27 @@ let failures = 0;
 const saveReport = complete => writeFile(resolve(output, 'report.json'), JSON.stringify({ base: base.href, generated: new Date().toISOString(), browser: 'Chromium', screenshots, complete, results }, null, 2) + '\n');
 try {
   audit: for (const width of widths) {
-    const context = await browser.newContext({ viewport: { width, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
-    // No forms, clicks, checkout, or requests that can write server state.
-    await context.route('**/*', route => ['GET', 'HEAD'].includes(route.request().method()) ? route.continue() : route.abort());
-    const page = await context.newPage();
-    const errors = [];
-    let cspErrors = 0;
-    page.on('pageerror', error => errors.push(error.name));
-    page.on('console', message => {
-      if (message.type() === 'error' && /Content Security Policy/i.test(message.text())) cspErrors++;
-    });
     for (const slug of selectedPages) {
-      errors.length = 0;
-      cspErrors = 0;
+      // Each document starts without another page's cookies, storage or WebGL scene.
+      const context = await browser.newContext({ viewport: { width, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+      // No forms, clicks, checkout, or requests that can write server state.
+      await context.route('**/*', route => ['GET', 'HEAD'].includes(route.request().method()) ? route.continue() : route.abort());
+      const page = await context.newPage();
+      const errors = [];
+      let cspErrors = 0;
+      page.on('pageerror', error => errors.push(error.name));
+      page.on('console', message => {
+        if (message.type() === 'error' && /Content Security Policy/i.test(message.text())) cspErrors++;
+      });
       const row = { page: `${slug}.html`, width, phase: 'navigation', timings: {} };
       results.push(row);
       const started = performance.now();
       const phase = name => { row.timings[row.phase] = Math.round(performance.now() - started); row.phase = name; };
       try {
-        const response = await page.goto(new URL(row.page, base).href, { waitUntil: 'load', timeout: 30000 });
+        const response = await page.goto(new URL(row.page, base).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
         row.status = response?.status();
         phase('fonts');
-        await page.evaluate(() => document.fonts.ready);
+        await page.waitForFunction(() => document.fonts.status === 'loaded', null, { timeout: 10000 });
         phase('settle');
         await page.waitForTimeout(800);
         phase('measure');
@@ -61,6 +60,7 @@ try {
           const smallText = elements.filter(el => [...el.childNodes].some(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim()) && parseFloat(getComputedStyle(el).fontSize) < 12);
           return {
             viewport,
+            readyState: document.readyState,
             scrollWidth: document.documentElement.scrollWidth,
             overflow: elements.filter(el => {
               const box = el.getBoundingClientRect();
@@ -92,15 +92,15 @@ try {
         row.failure = error.name;
         row.failurePhase = row.phase;
         row.captureLog = (error.message.split('Call log:')[1] || '').split('\n').map(line => line.trim()).filter(line => /^- (taking page screenshot|waiting for fonts to load|fonts loaded|disabled all CSS animations)/.test(line));
+      } finally {
+        await context.close();
       }
       await saveReport(false);
       console.log(JSON.stringify({ page: row.page, width, status: row.status, overflow: row.scrollWidth > row.viewport + 1, smallText: row.smallTextCount, failure: row.failure }));
       if (failures >= 2) {
-        await context.close();
         break audit;
       }
     }
-    await context.close();
   }
 } finally {
   await browser.close();

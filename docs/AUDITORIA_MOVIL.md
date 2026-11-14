@@ -16,7 +16,15 @@ El recorrido abre 30 páginas por ancho, incluidas novedades y el alias de grafo
 
 Para separar mediciones de DOM y capturas, usar `AUDIT_SCREENSHOTS=0`. Para repetir casos concretos, `AUDIT_PAGES=store,index-en AUDIT_WIDTHS=393,412`. Solo se aceptan las páginas del recorrido y los tres anchos previstos. Una ejecución sin capturas no acredita revisión visual.
 
-Cada resultado incluye estado HTTP, ancho real del documento, hasta 25 selectores fuera del viewport, número total y una muestra de textos menores de 12 px, errores JavaScript/CSP y dimensiones de canvas. También cuenta tarjetas de novedades, contenedores de grafos y la presencia del hero solar, idioma declarado y aviso de idioma. Se reutiliza una pestaña por ancho, reiniciando los contadores de errores entre navegaciones; los errores guardados se copian para conservar la evidencia anterior. Las capturas muestran el viewport; las medidas abarcan todo el documento. Salida `1` indica desborde horizontal, errores de carga/JavaScript/CSP o fallo de captura. Los textos pequeños son candidatos a revisión visual y no provocan por sí solos ese código.
+Cada resultado incluye estado HTTP, ancho real del documento, hasta 25 selectores fuera del viewport, número total y una muestra de textos menores de 12 px, errores JavaScript/CSP y dimensiones de canvas. También cuenta tarjetas de novedades, contenedores de grafos y la presencia del hero solar, idioma declarado y aviso de idioma. Cada página usa un contexto nuevo, sin cookies ni almacenamiento heredados de la anterior; se cierra al terminar, incluso si falla la medición. Los errores guardados se copian para conservar la evidencia anterior. Las capturas muestran el viewport; las medidas abarcan todo el documento. Salida `1` indica desborde horizontal, errores de carga/JavaScript/CSP o fallo de captura. Los textos pequeños son candidatos a revisión visual y no provocan por sí solos ese código.
+
+La navegación espera `DOMContentLoaded`, después fuentes cargadas (máximo 10 s) y 800 ms de estabilización. Una imagen pendiente ya no bloquea las medidas esperando `load`. `readyState` deja constancia del estado medido; no acredita que todas las imágenes, peticiones o escenas asíncronas hayan terminado. La regresión con dos páginas, una imagen que nunca responde y almacenamiento local verifica ambos límites sin red externa:
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/mobile-audit.browser.test.mjs
+```
 
 `report.json` y los PNG quedan en el directorio indicado, fuera de Git. El informe no copia textos de la página, respuestas API ni parámetros de URL. Solo se usa contenido público y no se inicia sesión.
 
