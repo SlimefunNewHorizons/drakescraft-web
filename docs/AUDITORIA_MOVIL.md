@@ -12,13 +12,17 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 
 En un host sin las bibliotecas de Chromium, instalar primero sus dependencias de sistema mediante el administrador del host. No instalar este navegador dentro del contenedor web.
 
-El recorrido abre 26 páginas por ancho y bloquea métodos HTTP distintos de GET/HEAD. No hace clic, envía formularios ni interactúa con pagos. La tienda se inspecciona como documento público; no se modifica su código.
+El recorrido abre 30 páginas por ancho, incluidas novedades y el alias de grafos, y bloquea métodos HTTP distintos de GET/HEAD. No hace clic, envía formularios ni interactúa con pagos. La tienda se inspecciona como documento público; no se modifica su código.
 
-Cada resultado incluye estado HTTP, ancho real del documento, hasta 25 selectores fuera del viewport, número total y una muestra de textos menores de 12 px, errores JavaScript/CSP y dimensiones de canvas. Las capturas muestran el viewport; las medidas abarcan todo el documento. Salida `1` indica desborde horizontal, errores de carga/JavaScript/CSP o fallo de captura. Los textos pequeños son candidatos a revisión visual y no provocan por sí solos ese código.
+Para separar mediciones de DOM y capturas, usar `AUDIT_SCREENSHOTS=0`. Para repetir casos concretos, `AUDIT_PAGES=store,index-en AUDIT_WIDTHS=393,412`. Solo se aceptan las páginas del recorrido y los tres anchos previstos. Una ejecución sin capturas no acredita revisión visual.
+
+Cada resultado incluye estado HTTP, ancho real del documento, hasta 25 selectores fuera del viewport, número total y una muestra de textos menores de 12 px, errores JavaScript/CSP y dimensiones de canvas. También cuenta tarjetas de novedades, contenedores de grafos y la presencia del hero solar, idioma declarado y aviso de idioma. Se reutiliza una pestaña por ancho, reiniciando los contadores de errores entre navegaciones; los errores guardados se copian para conservar la evidencia anterior. Las capturas muestran el viewport; las medidas abarcan todo el documento. Salida `1` indica desborde horizontal, errores de carga/JavaScript/CSP o fallo de captura. Los textos pequeños son candidatos a revisión visual y no provocan por sí solos ese código.
 
 `report.json` y los PNG quedan en el directorio indicado, fuera de Git. El informe no copia textos de la página, respuestas API ni parámetros de URL. Solo se usa contenido público y no se inicia sesión.
 
-El JSON final se escribe al terminar el recorrido. Si se interrumpe el proceso, conservar la salida JSON por línea como evidencia parcial: esta salida no contiene todos los campos del informe final y no acredita las rutas restantes.
+`report.json` se guarda antes de cada captura y al terminar cada página: conserva medidas aunque la captura se bloquee. `complete=false` distingue los informes parciales; los filtros delimitan qué recorrido puede considerarse completo. `phase`, `failurePhase` y `timings` indican la fase actual, la fase fallida y tiempos acumulados en milisegundos desde la navegación. `captureLog` conserva únicamente marcadores conocidos de Playwright, sin URLs ni mensajes de la página. El recorrido se detiene tras dos excepciones.
+
+La captura tiene un presupuesto de 45 s. En el ensayo instrumentado de `guia-slimefun-en` a 375 px, las fuentes ya estaban listas y Playwright volvió a comprobarlas en menos de 0,1 s; la operación de captura consumió 12,7 s, cerca del presupuesto anterior de 15 s. Esto localiza la demora después de las fuentes, sin demostrar qué parte interna del render la causa. Para obtener los marcadores de diagnóstico, ejecutar un caso con `DEBUG=pw:api` y guardar su salida fuera de Git; revisar y sanear antes de compartirla.
 
 Límites: emulación de Chromium con movimiento reducido y WebGL por software; no acredita Safari, Firefox, un teléfono físico, contraste, objetivos táctiles ni la interacción completa de los grafos. La existencia de un canvas no demuestra que su escena se haya dibujado. Repetir los casos relevantes con movimiento normal y revisar capturas antes de cerrar un hallazgo.
 
