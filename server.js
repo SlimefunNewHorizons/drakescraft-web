@@ -17,6 +17,7 @@ import { storeStatus, closedMessage } from './lib/store-schedule.js';
 import { loadOffers, pickCartOffer, liveGifts, liveOffers, offerProducts, priceFor, discountedUsd, publicOffer, validateCalendar, offerCode } from './lib/offers.js';
 import { pluginApi, syncOffers } from './lib/offers-sync.js';
 import { REPORT_MAX_BYTES, cleanDevice, cleanVersion, createLimiter, isZip, saveReport } from './lib/launcher-reports.js';
+import { createBalanceLimiter, saveBalanceTicket, validateBalanceTicket } from './lib/balance-tickets.js';
 
 
 const app = Fastify({ logger: true, trustProxy: true, bodyLimit: 128 * 1024 });
@@ -758,6 +759,45 @@ app.post('/api/launcher/report', { bodyLimit: REPORT_MAX_BYTES }, async (request
   });
   request.log.info({ report: name, bytes: request.body.length }, 'launcher report');
   return reply.code(202).send({ accepted: true });
+});
+
+// Canalización de reportes de balance de Temporada 2 (economía, encantamientos y jugabilidad)
+// hacia la cola local y el intake de tickets de SAORI bajo política Zero-Trust y protección de cuota.
+const balanceTicketsFile = path.join(dataDir, 'balance-tickets.jsonl');
+const balanceTicketAllow = createBalanceLimiter();
+const saoriTicketUrl = process.env.SAORI_TICKET_URL || '';
+
+async function forwardBalanceToSaori(payload) {
+  if (!saoriTicketUrl) return null;
+  const response = await fetch(saoriTicketUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(3000)
+  });
+  if (!response.ok) return null;
+  const data = await response.json().catch(() => null);
+  return data?.ticket_id || null;
+}
+
+app.post('/api/support/balance-ticket', async (request, reply) => {
+  const body = request.body || {};
+  if (body && typeof body === 'object' && String(body.website || '').trim() !== '') {
+    return reply.code(204).send();
+  }
+  if (!balanceTicketAllow(clientAddress(request))) {
+    return reply.code(429).header('Retry-After', '3600').send({
+      error: 'Demasiados reportes de balance recientes. Espera antes de volver a enviar.'
+    });
+  }
+  const validation = validateBalanceTicket(body);
+  if (!validation.ok) {
+    return reply.code(400).send({ error: validation.error });
+  }
+  const saved = await saveBalanceTicket(balanceTicketsFile, validation.value, {
+    forwardFn: saoriTicketUrl ? forwardBalanceToSaori : null
+  });
+  return reply.code(202).send({ ok: true, accepted: true, ...saved });
 });
 
 app.get('/api/overview', async (request, reply) => {
