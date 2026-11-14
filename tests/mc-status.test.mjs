@@ -13,6 +13,36 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  test(`${entry}: limita el plazo total TCP aunque sigan llegando bytes`, async t => {
+    let conexion;
+    let goteo;
+    t.after(() => { clearInterval(goteo); conexion?.destroy(); });
+    const puerto = await fixture(t, socket => {
+      conexion = socket;
+      socket.once('data', () => {
+        // Longitud incompleta: cada byte evita el timeout de inactividad.
+        socket.write(Buffer.from([0x80]));
+        goteo = setInterval(() => socket.write(Buffer.from([0x80])), 60);
+        socket.once('close', () => clearInterval(goteo));
+      });
+    });
+    const http = t.mock.method(globalThis, 'fetch', async () => ({
+      ok: true, json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+    }));
+    const { estadoServidor } = await import(`${entry}?test=plazo-total`);
+    let timer;
+    t.after(() => clearTimeout(timer));
+    const estado = await Promise.race([
+      estadoServidor('127.0.0.1', puerto),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(Error('TCP sigue pendiente pese al plazo total')), 4500);
+      }),
+    ]);
+    assert.equal(estado.maximoFuente, 'mcsrvstat');
+    assert.equal(estado.maximo, 100);
+    assert.equal(http.mock.callCount(), 1);
+  });
+
   test(`${entry}: acepta longitudes VarInt válidas de dos bytes`, async t => {
     const motd = 'Servidor '.repeat(30);
     const puerto = await fixture(t, socket => {
