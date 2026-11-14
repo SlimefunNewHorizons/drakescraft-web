@@ -66,6 +66,21 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 
 Retira scripts globales del documento para aislar el renderer; conserva HTML y CSS locales. Solo permite GET/HEAD al servidor local. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las capturas opcionales muestran la receta ficticia, no el catálogo público ni su CSP. No acredita un teléfono físico, fuentes externas o interacción entre scripts globales.
 
+## Eventos cancelados y calendario sintético
+
+`tests/events-mobile.browser.test.mjs` sirve el `<main>`, estilos locales (incluido el bloque CSS inline) y renderer inline reales de `eventos.html` y `events-en.html`. A375/393/412px comprueba cuatro respuestas: cancelación con eventos presentes en el JSON, HTTP503 con `ok:false`, JSON inválido y calendario activo ficticio. Los tres primeros mantienen ocultos los cinco nodos de programación, sin tarjetas ni sustitución del título de cancelación. El activo comprueba traducciones, evento del día, seis tarjetas, cinco tipos de distintivo y clases de día actual/cumpleaños/gala. Todas las hojas locales deben cargar con reglas; se mide el ancho global en24 navegaciones.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-events-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/events-mobile.browser.test.mjs
+```
+
+Solo permite GET al servidor efímero local y sustituye la API con datos ficticios. Retira navbar/footer y scripts ajenos al renderer; no prueba programación real, premios, comandos, fuentes remotas, CSP ni teléfono físico. HTTP503 se prueba junto a `ok:false`: no acredita el rechazo HTTP independiente del cuerpo. Sin `PLAYWRIGHT_MODULE` se omite explícitamente. Para tras dos casos fallidos. Las doce capturas opcionales son de viewport, cancelado/activo; no muestran todas las tarjetas.
+
+`events-report.json` registra por estado el ancho y el área de intersección entre el rectángulo del título y el distintivo `::before` de la caja de hoy (píxeles cuadrados CSS). La medida contempla bordes y `box-sizing`; no analiza los glifos. Es diagnóstico de la fixture, sin aserción de separación: retirar fuentes y scripts globales puede cambiar tipografía y saltos de línea. Un solape local debe contrastarse con capturas públicas antes de abrir un defecto. Las pruebas de calendario por sí solas no certifican ausencia de solapes en la página completa.
+
 ## Render e interacción WebGL
 
 `scripts/audit-graphs-browser.mjs` comprueba `/saori.html` a los tres anchos con contextos separados, WebGL por software y peticiones GET/HEAD. Intercepta las llamadas de dibujo únicamente en el navegador de prueba: toma una muestra central de 32 × 32 píxeles inmediatamente después de `drawArrays`, cuenta colores y errores GL, y comprueba cambios de proyección al arrastrar y usar la rueda. También prueba el control de aristas, la pestaña Galaxia y el botón de centrar. Guarda checkpoints JSON y capturas del canvas fuera del repositorio; se detiene tras dos fallos. Los errores JavaScript se registran por tipo y ubicación de fuente pública, sin copiar mensajes de página.
