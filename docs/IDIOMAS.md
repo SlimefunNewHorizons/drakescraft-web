@@ -9,6 +9,8 @@ En páginas españolas se mantienen la preferencia manual de inglés y el aviso
 para navegadores de otros idiomas. Volver a español borra la preferencia y ambas
 cookies de traducción; desde una página inglesa navega a su equivalente español,
 y desde una página española traducida recarga el original.
+El regreso desde `vote-en.html` usa el alias español `votar.html` en ambas
+copias del script; `vote.html` no es una página del portal.
 
 `npm run check` ejecuta las regresiones sin red de ambas copias del script.
 Para comprobar el menú móvil real con Chromium instalado y Playwright disponible:
