@@ -38,6 +38,19 @@ Para comprobar novedades sin servicios externos, `tests/news-mobile.browser.test
 
 Las capturas de viewport y de documento completo son modalidades distintas de la [API de Playwright](https://playwright.dev/docs/screenshots).
 
+## Métricas con datos sintéticos
+
+`tests/metrics-mobile.browser.test.mjs` sirve el documento, estilos locales y renderer reales de métricas ES/EN, retirando fuentes remotas y scripts ajenos a métricas. Chromium procesa el HTML original sin extraer ni reconstruir `<main>`: la página inglesa carece actualmente de su cierre explícito. La API local devuelve 27 perfiles ficticios: comprueba las 24 barras horarias, días, nombres HTML tratados como texto, expansión de 25 a 27 filas y vuelta a 25, contención del documento y desplazamiento horizontal propio de la tabla. Después responde HTTP503 y exige el estado sin datos, sin conservar filas anteriores.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-metrics-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/metrics-mobile.browser.test.mjs
+```
+
+Recorre375/393/412px en ambos idiomas, bloquea servicios externos y métodos distintos de GET/HEAD, y se detiene tras dos casos fallidos. Las capturas opcionales muestran la zona de la tabla después de contraerla; no son capturas de la web publicada. No acredita datos públicos, fuentes remotas, navegación global, CSP ni teléfono físico. Sin `PLAYWRIGHT_MODULE` la prueba se omite explícitamente.
+
 ## Render e interacción WebGL
 
 `scripts/audit-graphs-browser.mjs` comprueba `/saori.html` a los tres anchos con contextos separados, WebGL por software y peticiones GET/HEAD. Intercepta las llamadas de dibujo únicamente en el navegador de prueba: toma una muestra central de 32 × 32 píxeles inmediatamente después de `drawArrays`, cuenta colores y errores GL, y comprueba cambios de proyección al arrastrar y usar la rueda. También prueba el control de aristas, la pestaña Galaxia y el botón de centrar. Guarda checkpoints JSON y capturas del canvas fuera del repositorio; se detiene tras dos fallos. Los errores JavaScript se registran por tipo y ubicación de fuente pública, sin copiar mensajes de página.
