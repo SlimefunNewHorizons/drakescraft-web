@@ -51,6 +51,19 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 
 Recorre375/393/412px en ambos idiomas, bloquea servicios externos y métodos distintos de GET/HEAD, y se detiene tras dos casos fallidos. Las capturas opcionales muestran la zona de la tabla después de contraerla; no son capturas de la web publicada. No acredita datos públicos, fuentes remotas, navegación global, CSP ni teléfono físico. Sin `PLAYWRIGHT_MODULE` la prueba se omite explícitamente.
 
+## Wiki con datos sintéticos
+
+`tests/wiki-mobile.browser.test.mjs` sirve los documentos ES/EN y estilos locales reales con `scripts/sfwiki.js` y dos addons ficticios. Recorre375/393/412px: filtro de addons, búsqueda sin distinción de acentos, paginación48→51, exclusión del segundo addon al filtrar y paginar48→50, filtros por categoría, búsqueda vacía de resultados y navegación de receta a ingrediente y vuelta al addon. Comprueba hojas CSS locales cargadas con reglas, nueve casillas, cantidades, texto HTML inerte y contención horizontal del documento en la receta.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-wiki-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/wiki-mobile.browser.test.mjs
+```
+
+Retira scripts globales del documento para aislar el renderer; conserva HTML y CSS locales. Solo permite GET/HEAD al servidor local. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las capturas opcionales muestran la receta ficticia, no el catálogo público ni su CSP. No acredita un teléfono físico, fuentes externas o interacción entre scripts globales.
+
 ## Render e interacción WebGL
 
 `scripts/audit-graphs-browser.mjs` comprueba `/saori.html` a los tres anchos con contextos separados, WebGL por software y peticiones GET/HEAD. Intercepta las llamadas de dibujo únicamente en el navegador de prueba: toma una muestra central de 32 × 32 píxeles inmediatamente después de `drawArrays`, cuenta colores y errores GL, y comprueba cambios de proyección al arrastrar y usar la rueda. También prueba el control de aristas, la pestaña Galaxia y el botón de centrar. Guarda checkpoints JSON y capturas del canvas fuera del repositorio; se detiene tras dos fallos. Los errores JavaScript se registran por tipo y ubicación de fuente pública, sin copiar mensajes de página.
