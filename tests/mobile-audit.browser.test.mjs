@@ -58,3 +58,54 @@ test('mobile audit measures DOM despite a pending image and isolates page storag
     await rm(output, { recursive: true, force: true });
   }
 });
+
+test('mobile audit records CSP violations without copying policy or URL parameters', { timeout: 20000 }, async () => {
+  const output = await mkdtemp(join(tmpdir(), 'drakes-mobile-csp-'));
+  const server = createServer((req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'none'");
+    res.end(`<!doctype html><html lang="es"><meta name="viewport" content="width=device-width">
+      <body><p>CSP fixture</p>
+      <script>throw new Error('blocked inline script executed')</script>
+      <script src="/blocked.js?private=fixture-value"></script>
+      <script src="https://blocked.invalid/external.js?private=fixture-value"></script></body></html>`);
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  let child;
+  try {
+    child = spawn(process.execPath, [auditor, `http://127.0.0.1:${server.address().port}`, output], {
+      env: { ...process.env, AUDIT_PAGES: 'terms', AUDIT_WIDTHS: '375', AUDIT_SCREENSHOTS: '0' },
+      stdio: 'ignore',
+    });
+    const code = await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => { child.kill(); reject(new Error('CSP audit did not finish')); }, 12000);
+      child.once('error', error => { clearTimeout(timer); reject(error); });
+      child.once('exit', code => { clearTimeout(timer); resolve(code); });
+    });
+    assert.equal(code, 1, 'enforced CSP must fail the audit');
+    const raw = await readFile(join(output, 'report.json'), 'utf8');
+    const report = JSON.parse(raw);
+    assert.equal(report.complete, true);
+    assert.equal(report.results.length, 1);
+    const row = report.results[0];
+    assert.deepEqual(row.errors, [], 'CSP prevented the inline script from running');
+    assert.equal(row.cspViolations.length, 3);
+    assert.deepEqual(new Set(row.cspViolations.map(v => v.blockedResource)), new Set(['inline', 'same-origin', 'https://blocked.invalid']));
+    for (const violation of row.cspViolations) {
+      assert.equal(violation.directive, 'script-src-elem');
+      assert.equal(violation.disposition, 'enforce');
+    }
+    assert.equal(raw.includes('fixture-value'), false, 'URL query must stay out of the report');
+    assert.equal(raw.includes('blocked.js'), false, 'resource paths must stay out of the report');
+    assert.equal(raw.includes('external.js'), false, 'external resource paths must stay out of the report');
+    assert.equal(raw.includes('default-src'), false, 'policy must stay out of the report');
+  } finally {
+    if (child && child.exitCode === null) {
+      child.kill();
+      await new Promise(resolve => child.once('exit', resolve));
+    }
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+    await rm(output, { recursive: true, force: true });
+  }
+});

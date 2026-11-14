@@ -31,6 +31,25 @@ try {
       // No forms, clicks, checkout, or requests that can write server state.
       await context.route('**/*', route => ['GET', 'HEAD'].includes(route.request().method()) ? route.continue() : route.abort());
       const page = await context.newPage();
+      await page.addInitScript(() => {
+        window.__drakesAuditCsp = [];
+        document.addEventListener('securitypolicyviolation', event => {
+          let blockedResource = event.blockedURI;
+          if (!['inline', 'eval', 'data', 'blob'].includes(blockedResource)) {
+            try {
+              const blocked = new URL(blockedResource, location.href);
+              blockedResource = blocked.origin === location.origin ? 'same-origin' : blocked.protocol === 'https:' || blocked.protocol === 'http:' ? blocked.origin : blocked.protocol;
+            } catch {
+              blockedResource = 'unknown';
+            }
+          }
+          window.__drakesAuditCsp.push({
+            directive: event.effectiveDirective,
+            disposition: event.disposition,
+            blockedResource,
+          });
+        });
+      });
       const errors = [];
       let cspErrors = 0;
       page.on('pageerror', error => errors.push(error.name));
@@ -75,6 +94,7 @@ try {
             graphViewers: document.querySelectorAll('[data-grafos]').length,
             language: document.documentElement.lang,
             languageBanner: !!document.querySelector('#dk-lang-banner'),
+            cspViolations: window.__drakesAuditCsp,
           };
         }));
         row.errors = [...errors];
@@ -106,4 +126,4 @@ try {
   await browser.close();
 }
 await saveReport(results.length === selectedPages.length * widths.length && failures < 2);
-if (results.some(r => r.failure || r.status !== 200 || r.scrollWidth > r.viewport + 1 || r.errors.length || r.cspErrors)) process.exitCode = 1;
+if (results.some(r => r.failure || r.status !== 200 || r.scrollWidth > r.viewport + 1 || r.errors.length || r.cspErrors || r.cspViolations.length)) process.exitCode = 1;
