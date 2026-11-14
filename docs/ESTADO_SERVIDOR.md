@@ -53,3 +53,10 @@ Se rechazan desbordamientos del quinto byte y codificaciones de seis bytes:
 no pueden convertirse por truncamiento en un ID o una longitud válidos.
 Ocho regresiones cubren longitudes de paquete/JSON e ID malformados en ambas
 copias; dos controles conservan longitudes válidas de dos bytes.
+
+La consulta TCP tiene también un plazo total de 3500 ms desde la apertura
+del socket, incluido el establecimiento de conexión. Recibir bytes no
+reinicia ese plazo: una respuesta incompleta con tráfico continuo pasa al
+respaldo HTTP al vencer. El temporizador se cancela al resolver la consulta.
+Dos regresiones loopback envían bytes cada 60 ms y comprueban el respaldo
+sin esperar al timeout de inactividad. El respaldo conserva su propio plazo.
