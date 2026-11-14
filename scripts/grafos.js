@@ -798,9 +798,9 @@
         if (cz <= 0.1) continue;
 
         const sx = (rx * (f / aspect) / cz) * (W / 2) + (W / 2);
-        const sy = -(ry * f / cz) * (H / 2) + (H / 2);
+        const screenY = -(ry * f / cz) * (H / 2) + (H / 2);
 
-        const dx = sx - mx, dy = sy - my;
+        const dx = sx - mx, dy = screenY - my;
         const d = dx * dx + dy * dy;
         if (d < bestDist) {
           bestDist = d;
