@@ -13,6 +13,73 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  for (const [nombre, players] of [
+    ['sin conteos', undefined],
+    ['jugadores negativos', { online: -1, max: 100 }],
+    ['máximo negativo', { online: 1, max: -100 }],
+    ['jugadores como texto', { online: '4', max: 100 }],
+    ['máximo como texto', { online: 4, max: '100' }],
+    ['jugadores fraccionarios', { online: 1.5, max: 100 }],
+    ['máximo fuera del rango seguro', { online: 4, max: 1e20 }],
+  ]) {
+    test(`${entry}: TCP con ${nombre} usa conteos del respaldo`, async t => {
+      const puerto = await fixture(t, socket => {
+        socket.once('data', () => {
+          const json = Buffer.from(JSON.stringify({ players }));
+          assert.ok(json.length < 126);
+          socket.end(Buffer.concat([Buffer.from([json.length + 2, 0, json.length]), json]));
+        });
+      });
+      const http = t.mock.method(globalThis, 'fetch', async () => ({
+        ok: true, json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+      }));
+      const { estadoServidor } = await import(`${entry}?test=counts-${nombre}`);
+      const estado = await estadoServidor('127.0.0.1', puerto);
+      assert.equal(estado.maximoFuente, 'mcsrvstat');
+      assert.equal(estado.jugadores, 2);
+      assert.equal(estado.maximo, 100);
+      assert.equal(http.mock.callCount(), 1);
+    });
+  }
+
+  test(`${entry}: respaldo inválido no publica mediciones ni disponibilidad`, async t => {
+    const puerto = await fixture(t, socket => socket.once('data', () => socket.end()));
+    t.mock.method(globalThis, 'fetch', async () => ({ ok: true, json: async () => null }));
+    for (const [i, payload] of [
+      null,
+      { online: 'false', players: { online: 2, max: 100 } },
+      { online: true, players: { online: 2, max: '100' } },
+      { online: true, players: { online: -2, max: 100 } },
+      { online: true },
+    ].entries()) {
+      globalThis.fetch.mock.mockImplementation(async () => ({ ok: true, json: async () => payload }));
+      const { estadoServidor } = await import(`${entry}?test=http-schema-${i}`);
+      const estado = await estadoServidor('127.0.0.1', puerto);
+      assert.equal(estado.enLinea, false);
+      assert.equal(estado.maximoFuente, null);
+    }
+  });
+
+  test(`${entry}: MOTD con text inválido conserva el ping sin lanzar excepción`, async t => {
+    const puerto = await fixture(t, socket => {
+      socket.once('data', () => {
+        const json = Buffer.from(JSON.stringify({
+          players: { online: 101, max: 100 }, description: { text: 7, extra: ['Servidor'] },
+        }));
+        assert.ok(json.length < 126);
+        socket.end(Buffer.concat([Buffer.from([json.length + 2, 0, json.length]), json]));
+      });
+    });
+    const http = t.mock.method(globalThis, 'fetch', () => { throw Error('HTTP inesperado'); });
+    const { estadoServidor } = await import(`${entry}?test=motd-type`);
+    const estado = await estadoServidor('127.0.0.1', puerto);
+    assert.equal(estado.motd, 'Servidor');
+    assert.equal(estado.jugadores, 101);
+    assert.equal(estado.maximo, 100);
+    assert.equal(estado.maximoFuente, 'server-list-ping');
+    assert.equal(http.mock.callCount(), 0);
+  });
+
   for (const caso of ['id incorrecto', 'JSON fuera del paquete', 'bytes sobrantes']) {
     test(`${entry}: rechaza ${caso} y consulta respaldo HTTP`, async t => {
       const puerto = await fixture(t, socket => {
