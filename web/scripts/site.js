@@ -174,7 +174,7 @@ try {
         if (isNativeEnglish) {
             const path = window.location.pathname.split('/').pop() || '';
             const spanishPath = path.replace('guide-en.html', 'guia.html')
-                .replace('events-en.html', 'eventos.html').replace('index-en.html', '')
+                .replace('events-en.html', 'eventos.html').replace('vote-en.html', 'votar.html').replace('index-en.html', '')
                 .replace(/-en\.html$/, '.html');
             window.location.href = '/' + spanishPath;
             return;

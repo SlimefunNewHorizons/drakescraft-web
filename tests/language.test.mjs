@@ -68,7 +68,7 @@ for (const file of ['scripts/site.js', 'web/scripts/site.js']) {
     });
   }
 
-  for (const [path, target] of [['/guide-en.html', '/guia.html'], ['/events-en.html', '/eventos.html'], ['/index-en.html', '/'], ['/guia-slimefun-en.html', '/guia-slimefun.html']]) {
+  for (const [path, target] of [['/guide-en.html', '/guia.html'], ['/events-en.html', '/eventos.html'], ['/vote-en.html', '/votar.html'], ['/index-en.html', '/'], ['/guia-slimefun-en.html', '/guia-slimefun.html']]) {
     test(`${file}: return from ${path} clears translation before navigation`, () => {
       const site = loadSite(file, { lang: 'en', path, choice: 'en', cookie: 'googtrans=/es/en' });
       site.language.resetGoogleTranslate();
