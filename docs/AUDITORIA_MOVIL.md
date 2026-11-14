@@ -34,6 +34,8 @@ La captura tiene un presupuesto de 45 s. En el ensayo instrumentado de `guia-sli
 
 Límites: emulación de Chromium con movimiento reducido y WebGL por software; no acredita Safari, Firefox, un teléfono físico, contraste, objetivos táctiles ni la interacción completa de los grafos. La existencia de un canvas no demuestra que su escena se haya dibujado. Repetir los casos relevantes con movimiento normal y revisar capturas antes de cerrar un hallazgo.
 
+Para comprobar novedades sin servicios externos, `tests/news-mobile.browser.test.mjs` sirve el `<main>` real de ambas páginas, sus estilos locales y el renderer actual con tres entradas sintéticas. Recorre filtros, agrupación semanal, expansión/contracción, traducciones, enlaces y texto HTML tratado como datos a 375/393/412 px. Solo permite GET/HEAD al servidor local y nunca abre el enlace de fuente. Se ejecuta con `PLAYWRIGHT_MODULE` y `build_seguro.sh` como la regresión anterior; sin esa variable se omite explícitamente. `AUDIT_ARTIFACT_DIR` permite guardar capturas de la fixture fuera de Git. Estas pruebas no acreditan el feed público, fuentes externas ni la página completa.
+
 Las capturas de viewport y de documento completo son modalidades distintas de la [API de Playwright](https://playwright.dev/docs/screenshots).
 
 ## Render e interacción WebGL
