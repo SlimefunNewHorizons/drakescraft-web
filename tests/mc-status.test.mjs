@@ -13,6 +13,78 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  for (const caso of ['longitud anunciada', 'respuesta recibida', 'cabecera incompleta']) {
+    test(`${entry}: limita bytes TCP con ${caso} excesiva`, async t => {
+      const encode = valor => {
+        const bytes = [];
+        do {
+          const parte = valor & 0x7f;
+          valor >>>= 7;
+          bytes.push(parte | (valor ? 0x80 : 0));
+        } while (valor);
+        return Buffer.from(bytes);
+      };
+      let conexion;
+      t.after(() => conexion?.destroy());
+      const puerto = await fixture(t, socket => {
+        conexion = socket;
+        socket.on('error', () => {}); // El lector puede cerrar durante la escritura.
+        socket.once('data', () => {
+          if (caso === 'longitud anunciada') {
+            socket.write(encode(1024 * 1024 + 1));
+          } else if (caso === 'cabecera incompleta') {
+            socket.write(Buffer.alloc(1024 * 1024 + 1, 0x80));
+          } else {
+            const json = Buffer.from(JSON.stringify({
+              players: { online: 4, max: 2027 }, description: 'x'.repeat(1024 * 1024),
+            }));
+            const cuerpo = Buffer.concat([Buffer.from([0]), encode(json.length), json]);
+            socket.end(Buffer.concat([encode(cuerpo.length), cuerpo]));
+          }
+        });
+      });
+      const http = t.mock.method(globalThis, 'fetch', async () => ({
+        ok: true, json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+      }));
+      const { estadoServidor } = await import(`${entry}?test=limite-${caso}`);
+      let timer;
+      t.after(() => clearTimeout(timer));
+      const estado = await Promise.race([
+        estadoServidor('127.0.0.1', puerto),
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(Error('No rechaza la respuesta TCP excesiva')), 1500);
+        }),
+      ]);
+      assert.equal(estado.maximoFuente, 'mcsrvstat');
+      assert.equal(estado.maximo, 100);
+      assert.equal(http.mock.callCount(), 1);
+    });
+  }
+
+  test(`${entry}: acepta exactamente 1 MiB de respuesta TCP`, async t => {
+    const encode3 = valor => Buffer.from([
+      (valor & 0x7f) | 0x80, ((valor >>> 7) & 0x7f) | 0x80, valor >>> 14,
+    ]);
+    const base = { players: { online: 4, max: 2027 }, description: '' };
+    const relleno = 1024 * 1024 - 7 - Buffer.byteLength(JSON.stringify(base));
+    const puerto = await fixture(t, socket => {
+      socket.once('data', () => {
+        const json = Buffer.from(JSON.stringify({ ...base, description: 'x'.repeat(relleno) }));
+        const cuerpo = Buffer.concat([Buffer.from([0]), encode3(json.length), json]);
+        const respuesta = Buffer.concat([encode3(cuerpo.length), cuerpo]);
+        assert.equal(respuesta.length, 1024 * 1024);
+        socket.end(respuesta);
+      });
+    });
+    const http = t.mock.method(globalThis, 'fetch', () => { throw Error('HTTP inesperado'); });
+    const { estadoServidor } = await import(`${entry}?test=limite-valido`);
+    const estado = await estadoServidor('127.0.0.1', puerto);
+    assert.equal(estado.maximoFuente, 'server-list-ping');
+    assert.equal(estado.maximo, 2027);
+    assert.equal(estado.motd.length, relleno);
+    assert.equal(http.mock.callCount(), 0);
+  });
+
   test(`${entry}: limita el plazo total TCP aunque sigan llegando bytes`, async t => {
     let conexion;
     let goteo;
