@@ -17,11 +17,18 @@ Para comprobar el menú móvil real con Chromium instalado y Playwright disponib
 node scripts/check-language-browser.mjs
 # Si Playwright está instalado fuera del proyecto:
 PLAYWRIGHT_MODULE=/ruta/playwright/index.mjs node scripts/check-language-browser.mjs
+# Recorrer todas las páginas inglesas que cargan site.js:
+LANGUAGE_ALL=1 node scripts/check-language-browser.mjs
+# Comprobar el espejo heredado (navegación antigua, sin exigir subtítulo inglés):
+LANGUAGE_ALL=1 LANGUAGE_ROOT=web node scripts/check-language-browser.mjs
 ```
 
 El ensayo sirve los HTML y recursos locales en una dirección de loopback efímera,
 bloquea servicios externos y scripts ajenos a `site.js`, y comprueba el idioma,
 la ausencia de traductor en inglés y el regreso a español con el botón real a
 375, 393 y 412 px. Guarda el resultado en `/tmp/drakescraft-language-browser.json`
-(o en `LANGUAGE_REPORT`). No acredita traducción externa, la auditoría visual
+(o en `LANGUAGE_REPORT`). En el recorrido completo exige HTTP 200 en ambos
+idiomas y comprueba el destino español del botón ES, incluido `vote-en.html`
+→ `votar.html`. Guarda cada resultado antes de continuar y se detiene tras
+dos fallos; `complete=false` identifica una matriz incompleta. No acredita traducción externa, la auditoría visual
 completa ni cambios en producción.
