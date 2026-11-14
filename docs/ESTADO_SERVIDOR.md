@@ -60,3 +60,10 @@ reinicia ese plazo: una respuesta incompleta con tráfico continuo pasa al
 respaldo HTTP al vencer. El temporizador se cancela al resolver la consulta.
 Dos regresiones loopback envían bytes cada 60 ms y comprueban el respaldo
 sin esperar al timeout de inactividad. El respaldo conserva su propio plazo.
+
+El lector limita cada respuesta TCP a 1 MiB, incluida la cabecera de longitud.
+Es una política local de memoria, no un límite del protocolo de Minecraft.
+Una longitud anunciada superior se rechaza sin esperar el cuerpo; un bloque
+que excedería el límite se descarta antes de concatenarlo al búfer. Ambos
+casos activan el respaldo HTTP. Ocho regresiones loopback cubren el rechazo
+y la aceptación de una respuesta de exactamente 1 MiB en las dos copias.
