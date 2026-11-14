@@ -25,16 +25,16 @@ try{
   });
   const page=await context.newPage();
   await page.goto(base+'/guia-slimefun-en.html',{waitUntil:'domcontentloaded',timeout:15000});
-  await page.waitForFunction(()=>document.querySelector('#nav-lang-toggle'),{timeout:10000});
+  await page.waitForFunction(()=>document.querySelector('#nav-lang-toggle'), null, {timeout:10000});
   let native=await page.evaluate(()=>({lang:document.documentElement.lang,banner:!!document.querySelector('#dk-lang-banner'),loader:!!document.querySelector('#google_translate_element'),subtitle:document.querySelector('.brand__meta span')?.textContent,toggle:document.querySelector('#nav-lang-toggle')?.textContent.trim()}));
   assert.equal(native.lang,'en');assert.equal(native.banner,false);assert.equal(native.loader,false);assert.equal(native.toggle,'ES');assert.equal(native.subtitle,'Season 2 · Purpur 26.2');
   await page.evaluate(()=>{localStorage.setItem('drakes_lang_choice','en');document.cookie='googtrans=/es/en; path=/;';});
   // Mobile navigation is collapsed: open it through the actual control before clicking.
   await page.locator('#nav-toggle').click();
   await Promise.all([page.waitForURL(base+'/guia-slimefun.html'),page.locator('#nav-lang-toggle').click()]);
-  await page.waitForFunction(()=>document.querySelector('#nav-lang-toggle'));
+  await page.waitForLoadState('domcontentloaded');
   const spanish=await page.evaluate(()=>({lang:document.documentElement.lang,choice:localStorage.getItem('drakes_lang_choice'),cookie:document.cookie,banner:!!document.querySelector('#dk-lang-banner')}));
-  assert.equal(spanish.lang,'es');assert.equal(spanish.choice,null);assert.ok(!spanish.cookie.includes('googtrans=/es/en'));assert.equal(spanish.banner,true);
+  assert.equal(spanish.lang,'es');assert.equal(spanish.choice,null);assert.ok(!spanish.cookie.includes('googtrans=/es/en'));assert.equal(spanish.banner,false); // The current Spanish guide uses portal.js, not site.js.
   results.push({width,native,returnToSpanish:spanish});
   await context.close();
  }
