@@ -573,6 +573,46 @@ async function main() {
     const r = await fetch(`${BASE_URL}/terminos.html`);
     if (r.status !== 301) errors.push(`/terminos.html: esperado 301, got ${r.status}`);
     else { passed++; console.log('✓ /terminos.html redirige'); }
+
+    // Canalización de reportes de balance T2 (/api/support/balance-ticket)
+    const balSrv = await startServer({}, 215);
+    try {
+      const badRes = await fetch(`${balSrv.url}/api/support/balance-ticket`, {
+        method: 'POST',
+        headers: { 'cf-connecting-ip': '127.0.3.1' },
+        body: JSON.stringify({ nick: 'JackPlayer', axes: [], description: 'Corto' })
+      });
+      if (badRes.status !== 400) errors.push(`/api/support/balance-ticket invalid: expected 400, got ${badRes.status}`);
+      else { passed++; console.log('✓ /api/support/balance-ticket valida ejes y descripción (HTTP 400)'); }
+
+      const trapRes = await fetch(`${balSrv.url}/api/support/balance-ticket`, {
+        method: 'POST',
+        headers: { 'cf-connecting-ip': '127.0.3.2' },
+        body: JSON.stringify({ nick: 'JackPlayer', axes: ['economia'], description: 'Reporte válido con honeypot activo', website: 'spam.org' })
+      });
+      if (trapRes.status !== 204) errors.push(`/api/support/balance-ticket honeypot: expected 204, got ${trapRes.status}`);
+      else { passed++; console.log('✓ /api/support/balance-ticket bloquea bots vía honeypot (HTTP 204)'); }
+
+      const okRes = await fetch(`${balSrv.url}/api/support/balance-ticket`, {
+        method: 'POST',
+        headers: { 'cf-connecting-ip': '127.0.3.3' },
+        body: JSON.stringify({
+          nick: 'JackPlayer',
+          axes: ['economia', 'encantamientos', 'jugabilidad'],
+          modality: 'survival',
+          description: 'El precio en dracmas del libro encantado de filo descalibra el combate PvP.'
+        })
+      });
+      const okJson = JSON.parse(okRes.body || '{}');
+      if (okRes.status !== 202 || okJson.channel !== 'web:balance-economia-encantamientos-jugabilidad') {
+        errors.push(`/api/support/balance-ticket valid: expected 202 with canonical channel, got ${okRes.status} ${okRes.body}`);
+      } else {
+        passed++;
+        console.log('✓ /api/support/balance-ticket canaliza reporte T2 (HTTP 202)');
+      }
+    } finally {
+      await balSrv.stop();
+    }
   } catch (err) {
     errors.push(`extras: ${err.message}`);
   }
