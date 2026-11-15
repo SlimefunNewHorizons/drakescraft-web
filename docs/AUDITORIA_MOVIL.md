@@ -96,3 +96,16 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 ```
 
 La regresión local sirve el renderer real con dos nodos sintéticos DGR1 y comprueba hover, selección e inspector persistente a375/393/412px, sin red externa. No acredita rendimiento con grafos masivos. La sonda pública exige WebGL disponible; no acredita pinch táctil, GPU física ni navegación completa con lector de pantalla. `complete` describe el recorrido, mientras que errores CSP o JavaScript también producen salida1.
+
+## Votos con datos sintéticos
+
+`tests/votes-mobile.browser.test.mjs` sirve el `<main>`, CSS local y renderer inline originales de `votar.html` y `vote-en.html`. Recorre375/393/412px con cinco listados ficticios: dos activos, uno deshabilitado, uno provisional y uno sin URL. Comprueba nombres HTML inertes, enlaces y `noopener`, estados traducidos, persistencia local del nick, contención horizontal y botones de al menos44px de alto. Un reloj simulado comprueba decremento y expiración del cooldown de dos horas, además del estado de24horas tras el listener de clic y una recarga.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-votes-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/votes-mobile.browser.test.mjs
+```
+
+Solo permite GET al servidor local. El clic es un evento sintético sin navegación: no abre listados ni emite votos. JSON inválido, error de red y HTTP503 con cuerpo HTML terminan sin tarjetas; el último caso prueba error de parseo, no validación del estado HTTP independientemente del cuerpo. No acredita entrega de premios, Votifier, CSP pública, fuentes remotas, cabecera/pie ni interacción táctil real. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las seis capturas opcionales y `votes-report.json` son de la fixture, con nombres ficticios, fuera de Git.
