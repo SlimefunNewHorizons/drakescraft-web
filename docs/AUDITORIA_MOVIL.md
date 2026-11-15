@@ -66,6 +66,21 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 
 Retira scripts globales del documento para aislar el renderer; conserva HTML y CSS locales. Solo permite GET/HEAD al servidor local. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las capturas opcionales muestran la receta ficticia, no el catálogo público ni su CSP. No acredita un teléfono físico, fuentes externas o interacción entre scripts globales.
 
+## Wiki: respuestas tardías tras cambiar de vista
+
+`tests/wiki-navigation-races.browser.test.mjs` conserva los documentos ES/EN, CSS local y renderer de la wiki. Con dos addons ficticios, retiene una petición de fragmento hasta que la navegación a otro addon o ítem termina. A375/393/412px comprueba por separado respuestas tardías HTTP200 y HTTP503, con el mismo cuerpo JSON válido. Espera la petición real, su resolución y dos cuadros de animación; no depende de una demora de red fija.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-wiki-races-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/wiki-navigation-races.browser.test.mjs
+```
+
+Los doce controles HTTP200 conservan la vista nueva. Las doce respuestas HTTP503 obsoletas la sustituyen por un error, aunque el hash sigue apuntando al destino nuevo: los `catch` de `addonView` e `itemView` escriben sin comprobar la secuencia. La aserción final registra este defecto y permanece roja; Node cuenta seis escenarios correctos y dos fallos (aserción y contenedor), sin omisiones. No presentar el conjunto como verde ni como un arreglo del renderer.
+
+Solo GET al servidor local, sin fuentes ni scripts globales y sin APIs externas. Exige CSS cargado, ausencia de errores JS y contención horizontal; `wiki-navigation-races-report.json` conserva estados ficticios fuera de Git. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; se detiene tras dos errores de ejecución de escenarios. No acredita frecuencia en producción, teléfono físico, CSP, accesibilidad ni capturas visuales.
+
 ## Eventos cancelados y calendario sintético
 
 `tests/events-mobile.browser.test.mjs` sirve el `<main>`, estilos locales (incluido el bloque CSS inline) y renderer inline reales de `eventos.html` y `events-en.html`. A375/393/412px comprueba cuatro respuestas: cancelación con eventos presentes en el JSON, HTTP503 con `ok:false`, JSON inválido y calendario activo ficticio. Los tres primeros mantienen ocultos los cinco nodos de programación, sin tarjetas ni sustitución del título de cancelación. El activo comprueba traducciones, evento del día, seis tarjetas, cinco tipos de distintivo y clases de día actual/cumpleaños/gala. Todas las hojas locales deben cargar con reglas; se mide el ancho global en24 navegaciones.
