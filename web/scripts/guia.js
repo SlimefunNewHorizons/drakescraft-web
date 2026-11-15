@@ -6,6 +6,9 @@
   const filters = [
     ...document.querySelectorAll(".guide-filters button, .guide-chips button"),
   ];
+  const modalityButtons = [
+    ...document.querySelectorAll("#modality-selector [data-mod]"),
+  ];
   const accordions = [...document.querySelectorAll(".guide-accordion")];
   const sections = [...document.querySelectorAll(".guide-section")];
   const rows = [...document.querySelectorAll(".guide-row")];
@@ -23,6 +26,10 @@
   }));
 
   let category = "all";
+  let modality = "all";
+
+  const initialQuery = new URLSearchParams(window.location.search).get("q");
+  if (initialQuery !== null) input.value = initialQuery;
 
   const normalize = (value) =>
     value.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").trim();
@@ -37,8 +44,10 @@
       const accCat =
         entry.accordion?.dataset.cat || entry.section?.dataset.cat || "all";
       const matchesCategory = category === "all" || accCat === category;
+      const matchesModality = modality === "all" ||
+        (entry.row.dataset.mod || "").split(",").includes(modality);
       const matchesText = terms.every((term) => entry.text.includes(term));
-      const show = matchesCategory && matchesText;
+      const show = matchesCategory && matchesModality && matchesText;
 
       entry.row.classList.toggle("is-hidden", !show);
       if (show) {
@@ -54,7 +63,8 @@
       const accCat = acc.dataset.cat || "all";
       const matchesCategory = category === "all" || accCat === category;
       const hasVisibleRows = matchingAccordions.has(acc);
-      const isMatch = matchesCategory && (terms.length === 0 || hasVisibleRows);
+      const isMatch = matchesCategory &&
+        ((terms.length === 0 && modality === "all") || hasVisibleRows);
 
       acc.classList.toggle("is-hidden", !isMatch);
 
@@ -82,7 +92,7 @@
     empty?.classList.toggle("is-hidden", visible > 0);
     if (count) {
       count.textContent =
-        terms.length || category !== "all"
+        terms.length || category !== "all" || modality !== "all"
           ? `${visible} de ${index.length} entradas encontradas`
           : `${index.length} mecánicas y recetas catalogadas`;
     }
@@ -94,6 +104,18 @@
     button.addEventListener("click", () => {
       category = button.dataset.filter || "all";
       filters.forEach((other) => {
+        const isSelected = other === button;
+        other.setAttribute("aria-pressed", String(isSelected));
+        other.classList.toggle("is-active", isSelected);
+      });
+      apply();
+    });
+  });
+
+  modalityButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      modality = button.dataset.mod || "all";
+      modalityButtons.forEach((other) => {
         const isSelected = other === button;
         other.setAttribute("aria-pressed", String(isSelected));
         other.classList.toggle("is-active", isSelected);
