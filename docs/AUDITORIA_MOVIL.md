@@ -109,3 +109,18 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 ```
 
 Solo permite GET al servidor local. El clic es un evento sintético sin navegación: no abre listados ni emite votos. JSON inválido, error de red y HTTP503 con cuerpo HTML terminan sin tarjetas; el último caso prueba error de parseo, no validación del estado HTTP independientemente del cuerpo. No acredita entrega de premios, Votifier, CSP pública, fuentes remotas, cabecera/pie ni interacción táctil real. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las seis capturas opcionales y `votes-report.json` son de la fixture, con nombres ficticios, fuera de Git.
+
+## Menús de términos, apoyo y Temporada 2
+
+`tests/navigation-mobile.browser.test.mjs` conserva los seis documentos ES/EN completos y sus estilos locales, pero ejecuta únicamente los scripts de navegación presentes en cada original: Bootstrap o `scripts/site.js`. A375/393/412px comprueba menú inicialmente cerrado, apertura por toque emulado, cierre con Enter, apertura con Espacio y cierre por toque. Exige correspondencia entre `aria-controls`, visibilidad y `aria-expanded`; cada enlace acepta foco y su centro queda accesible tras desplazarlo al viewport. También exige CSS local cargado y ausencia de desborde horizontal con el menú abierto.
+
+Una aserción independiente exige tres barras de al menos12×1px en el botón inglés. Actualmente falla: el CSS real comprime su altura a0px, aunque el botón responde. Es una regresión abierta (#811), fuera de `npm run check`; no presentar el conjunto como verde. La medición de rectángulos no acredita contraste ni píxeles pintados.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-navigation-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/navigation-mobile.browser.test.mjs
+```
+
+Solo sirve GET locales; bloquea APIs, analítica y recursos externos. No sigue enlaces, cambia idioma ni abre pagos. Sin `PLAYWRIGHT_MODULE` se omite explícitamente y se detiene tras dos casos fallidos. Las dieciocho capturas opcionales muestran menús abiertos; `navigation-report.json` conserva dimensiones de enlaces sin sus textos ni URLs. No acredita la carga de datos de las páginas, fuentes remotas, CSP pública, orden de tabulación, lector de pantalla ni teléfono físico. El foco programático comprueba que los enlaces aceptan foco, no el recorrido con Tab.
