@@ -16,8 +16,14 @@ const events = ['BOOST', 'RUSH_MINING', 'SUPPLY_DROP', 'COMBO', 'GALA', 'BOOST']
   reward_es: 'Recompensa ficticia sin entrega', reward_en: 'Synthetic reward without delivery',
 }));
 const active = { ok: true, status: 'active', events, todayEvent: events[2], currentDay: 3, isNovember: true };
+// Benign markup only: detect DOM interpretation without executing scripts or loading resources.
+const markup = field => `<b data-event-fixture="${field}">Synthetic ${field}</b>`;
+const markedEvent = { ...events[0], ...Object.fromEntries(
+  ['name_es', 'name_en', 'summary_es', 'summary_en', 'reward_es', 'reward_en'].map(field => [field, markup(field)]),
+) };
+const markedActive = { ...active, events: [markedEvent], todayEvent: markedEvent, currentDay: 1 };
 
-test('events mobile: cancelled, unavailable and synthetic active calendar with real renderer', {
+test('events mobile: calendar states, HTTP errors and literal API text with real renderer', {
   skip: !process.env.PLAYWRIGHT_MODULE, timeout: 120000,
 }, async t => {
   const { chromium } = await import(process.env.PLAYWRIGHT_MODULE);
@@ -77,17 +83,21 @@ test('events mobile: cancelled, unavailable and synthetic active calendar with r
               window.fetch = async (...args) => {
                 const response = await Reflect.apply(fetchOriginal, window, args);
                 const jsonOriginal = response.json.bind(response);
+                const settled = () => setTimeout(() => { window.__eventsSettled = 1; }, 0);
+                // A renderer that rejects HTTP errors before parsing JSON must also finish this fixture.
+                if (!response.ok) settled();
                 response.json = async () => {
                   try { return await jsonOriginal(); }
-                  finally { setTimeout(() => { window.__eventsSettled++; }, 0); }
+                  finally { settled(); }
                 };
                 return response;
               };
             });
-            for (const state of ['cancelled', 'unavailable', 'invalid-json', 'active']) {
-              const data = state === 'active' ? active : state === 'cancelled' ? { ...active, status: 'cancelled' } : { ok: false };
+            for (const state of ['cancelled', 'unavailable', 'invalid-json', 'active', 'http-error-active', 'markup']) {
+              const data = state === 'markup' ? markedActive : ['active', 'http-error-active'].includes(state)
+                ? active : state === 'cancelled' ? { ...active, status: 'cancelled' } : { ok: false };
               await page.route('**/api/eventos', route => route.fulfill({
-                status: state === 'unavailable' ? 503 : 200,
+                status: ['unavailable', 'http-error-active'].includes(state) ? 503 : 200,
                 contentType: 'application/json', body: state === 'invalid-json' ? '{invalid' : JSON.stringify(data),
               }));
               const response = await page.goto(`${origin}/${lang === 'en' ? 'events-en' : 'eventos'}.html`, { waitUntil: 'domcontentloaded' });
@@ -99,7 +109,24 @@ test('events mobile: cancelled, unavailable and synthetic active calendar with r
               const cards = page.locator('#calendar-grid .event-card');
               const schedule = page.locator('[data-event-schedule]');
               assert.equal(await schedule.count(), 5, 'the cancellation check must cover the actual schedule nodes');
-              if (state !== 'active') {
+              const observation = { state, cards: await cards.count(),
+                visibleSchedule: await schedule.evaluateAll(nodes => nodes.filter(node => !node.hidden && getComputedStyle(node).display !== 'none').length),
+                markupNodes: await page.locator('[data-event-fixture]').count(),
+              };
+              if (state === 'markup') {
+                // The textContent paths provide a positive control for this same payload.
+                assert.equal(await page.locator('#today-title').textContent(), `${lang === 'en' ? 'Day' : 'Día'} 1: ${markup(`name_${lang}`)}`);
+                assert.equal(await page.locator('#today-desc').textContent(), markup(`summary_${lang}`));
+                assert.equal(await page.locator('#today-title [data-event-fixture], #today-desc [data-event-fixture]').count(), 0);
+                observation.literalFields = await page.evaluate(() => {
+                  const card = document.querySelector('.event-card');
+                  return [card?.querySelector('h3')?.textContent, card?.querySelector('p')?.textContent,
+                    card?.lastElementChild?.textContent, document.querySelector('#today-reward').textContent];
+                });
+                observation.markupFields = await page.locator('[data-event-fixture]').evaluateAll(nodes => nodes.map(node => node.dataset.eventFixture));
+              } else if (state === 'http-error-active') {
+                observation.todayTitle = await page.locator('#today-title').textContent();
+              } else if (state !== 'active') {
                 assert.equal(await cards.count(), 0);
                 assert.equal(await schedule.evaluateAll(nodes => nodes.every(node => node.hidden && getComputedStyle(node).display === 'none')), true);
                 assert.match(await page.locator('#today-title').textContent(), lang === 'en' ? /cancelled/i : /cancelado/i);
@@ -139,7 +166,7 @@ test('events mobile: cancelled, unavailable and synthetic active calendar with r
                   titleBadgeOverlap: Math.round(titleBadgeOverlap),
                 };
               });
-              row.states.push({ state, ...layout });
+              row.states.push({ ...observation, ...layout });
               assert.ok(layout.document <= layout.viewport + 1, `horizontal overflow: ${JSON.stringify(layout)}`);
               if (process.env.AUDIT_ARTIFACT_DIR && ['cancelled', 'active'].includes(state)) {
                 await mkdir(process.env.AUDIT_ARTIFACT_DIR, { recursive: true });
@@ -161,6 +188,26 @@ test('events mobile: cancelled, unavailable and synthetic active calendar with r
         if (failures >= 2 || t.signal.aborted) return;
       }
     }
+    // Collect all widths/languages before checking defects; keep every observation in the report.
+    // #814: HTTP status must take precedence over an apparently successful JSON body.
+    await t.test('HTTP503 must not activate a calendar even with an active JSON body', () => {
+      const observations = report.map(row => ({ width: row.width, lang: row.lang,
+        ...row.states.find(state => state.state === 'http-error-active') }));
+      assert.equal(observations.length, 6);
+      assert.ok(observations.every(row => row.state === 'http-error-active'
+        && row.cards === 0 && row.visibleSchedule === 0), JSON.stringify(observations));
+    });
+    // #815: API fields must remain text in both the cards and today's reward.
+    await t.test('event names, descriptions and rewards remain literal text', () => {
+      const observations = report.map(row => ({ width: row.width, lang: row.lang,
+        ...row.states.find(state => state.state === 'markup') }));
+      assert.equal(observations.length, 6);
+      assert.ok(observations.every(row => row.state === 'markup' && row.cards === 1
+        && row.markupNodes === 0 && row.literalFields?.length === 4
+        && row.literalFields[0] === markup(`name_${row.lang}`)
+        && row.literalFields[1] === markup(`summary_${row.lang}`)
+        && row.literalFields.slice(2).every(text => text?.includes(markup(`reward_${row.lang}`)))), JSON.stringify(observations));
+    });
   } finally {
     if (browser) await browser.close();
     server.closeAllConnections();
