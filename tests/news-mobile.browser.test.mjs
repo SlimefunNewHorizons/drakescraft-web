@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { readFile, mkdir } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
@@ -16,7 +16,7 @@ const fixtures = ['servidor', 'red', 'github'].map((tipo, i) => ({
 }));
 
 test('news mobile: real page markup, styles and renderer without external services', {
-  skip: !process.env.PLAYWRIGHT_MODULE, timeout: 60000,
+  skip: !process.env.PLAYWRIGHT_MODULE, timeout: 120000,
 }, async t => {
   assert.ok(fixtures.every(entry => Number.isFinite(Date.parse(entry.fecha))), 'fixtures must contain valid ISO dates');
   const { chromium } = await import(process.env.PLAYWRIGHT_MODULE);
@@ -52,6 +52,7 @@ test('news mobile: real page markup, styles and renderer without external servic
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const origin = `http://127.0.0.1:${server.address().port}`;
   let failures = 0;
+  const availability = [];
   try {
     for (const width of [375, 393, 412]) {
       for (const lang of ['es', 'en']) {
@@ -118,9 +119,75 @@ test('news mobile: real page markup, styles and renderer without external servic
         if (failures >= 2 || t.signal.aborted) return;
       }
     }
+    for (const width of [375, 393, 412]) {
+      for (const lang of ['es', 'en']) {
+        const context = await browser.newContext({ viewport: { width, height: 844 }, isMobile: true, hasTouch: true });
+        context.setDefaultTimeout(5000);
+        try {
+          await context.route('**/*', route => route.request().url().startsWith(`${origin}/`)
+            && route.request().method() === 'GET' ? route.continue() : route.abort());
+          const page = await context.newPage();
+          const row = { width, lang, states: [], errors: [] };
+          availability.push(row);
+          page.on('pageerror', error => row.errors.push(error.name));
+          const empty = lang === 'en' ? 'No news yet. Check Discord.' : 'Aún no hay novedades. Mira el Discord.';
+          const unavailable = lang === 'en' ? 'News unavailable right now.' : 'Las novedades no están disponibles ahora.';
+          for (const state of ['empty', 'http-error', 'invalid-json', 'network-failure']) {
+            await page.route('**/data/novedades.json', route => state === 'network-failure' ? route.abort('failed')
+              : route.fulfill({ status: state === 'http-error' ? 503 : 200, contentType: 'application/json',
+                body: state === 'invalid-json' ? '{invalid' : JSON.stringify(state === 'empty' ? [] : fixtures) }));
+            assert.equal((await page.goto(`${origin}/novedades${lang === 'en' ? '-en' : ''}.html`, { waitUntil: 'domcontentloaded' })).status(), 200);
+            await page.waitForFunction(() => document.querySelector('[data-news-list] .pt-empty'));
+            const observation = { state, expected: state === 'empty' ? empty : unavailable,
+              initial: await page.locator('[data-news-list] .pt-empty').textContent(), filters: [] };
+            row.states.push(observation);
+            for (const chip of await page.locator('[data-news-filter] button').all()) {
+              await chip.click();
+              assert.equal(await page.locator('[data-news-filter] [aria-pressed="true"]').count(), 1);
+              observation.filters.push({ text: await page.locator('[data-news-list] .pt-empty').textContent(),
+                pressed: await chip.getAttribute('aria-pressed'), cards: await page.locator('.pt-item').count() });
+            }
+            observation.overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
+            if (process.env.AUDIT_ARTIFACT_DIR && ['empty', 'http-error'].includes(state)) {
+              await mkdir(process.env.AUDIT_ARTIFACT_DIR, { recursive: true });
+              await page.screenshot({ path: join(process.env.AUDIT_ARTIFACT_DIR, `news-${state}-${lang}-${width}.png`), animations: 'disabled', timeout: 10000 });
+            }
+            await page.unroute('**/data/novedades.json');
+          }
+        } finally {
+          await context.close();
+        }
+      }
+    }
+    await t.test('successful empty feeds remain empty while filtering at every viewport', () => {
+      assert.equal(availability.length, 6);
+      for (const row of availability) {
+        assert.deepEqual(row.errors, []);
+        for (const state of row.states) {
+          assert.equal(state.initial, state.expected);
+          assert.equal(state.overflow, false);
+          assert.equal(state.filters.length, 4);
+          for (const chip of state.filters) {
+            assert.equal(chip.pressed, 'true');
+            assert.equal(chip.cards, 0);
+            if (state.state === 'empty') assert.equal(chip.text, state.expected);
+          }
+        }
+      }
+    });
+    await t.test('failed feeds keep their unavailable state after category changes', () => {
+      const mismatches = availability.flatMap(row => row.states.filter(state => state.state !== 'empty')
+        .flatMap(state => state.filters.filter(chip => chip.text !== state.expected)
+          .map(chip => ({ width: row.width, lang: row.lang, state: state.state, text: chip.text }))));
+      assert.deepEqual(mismatches, [], 'filtering cannot turn a failed request into a successful empty feed');
+    });
   } finally {
     await browser.close();
     server.closeAllConnections();
     await new Promise(resolve => server.close(resolve));
+    if (process.env.AUDIT_ARTIFACT_DIR) {
+      await mkdir(process.env.AUDIT_ARTIFACT_DIR, { recursive: true });
+      await writeFile(join(process.env.AUDIT_ARTIFACT_DIR, 'news-availability.json'), JSON.stringify(availability, null, 2));
+    }
   }
 });

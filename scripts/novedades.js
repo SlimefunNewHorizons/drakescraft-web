@@ -107,9 +107,11 @@
 
   function initNews(root) {
     var home = root.dataset.mode === "home";
-    var list = root.querySelector("[data-news-list]"), chips = root.querySelector("[data-news-filter]"), all = [], tipo = "";
+    var list = root.querySelector("[data-news-list]"), chips = root.querySelector("[data-news-filter]"), all = [], tipo = "", status = "loading";
     function render() {
+      if (status === "loading") return;
       list.textContent = "";
+      if (status === "error") { list.appendChild(el("li", "pt-empty", L.err)); return; }
       var rows = all.filter(function (x) { return !tipo || x.tipo === tipo; });
       if (!rows.length) { list.appendChild(el("li", "pt-empty", L.empty)); return; }
       if (home) {
@@ -141,8 +143,8 @@
       });
     }
     var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { clamps(list); }, 150); });
-    getJSON("/data/novedades.json").then(function (d) { all = clean(d); render(); })
-      .catch(function () { list.textContent = ""; list.appendChild(el("li", "pt-empty", L.err)); });
+    getJSON("/data/novedades.json").then(function (d) { all = clean(d); status = "ready"; render(); })
+      .catch(function () { status = "error"; render(); });
   }
 
   function initDev(root) {
