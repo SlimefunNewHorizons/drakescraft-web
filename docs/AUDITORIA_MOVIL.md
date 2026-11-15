@@ -124,3 +124,18 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 ```
 
 Solo sirve GET locales; bloquea APIs, analítica y recursos externos. No sigue enlaces, cambia idioma ni abre pagos. Sin `PLAYWRIGHT_MODULE` se omite explícitamente y se detiene tras dos casos fallidos. Las dieciocho capturas opcionales muestran menús abiertos; `navigation-report.json` conserva dimensiones de enlaces sin sus textos ni URLs. No acredita la carga de datos de las páginas, fuentes remotas, CSP pública, orden de tabulación, lector de pantalla ni teléfono físico. El foco programático comprueba que los enlaces aceptan foco, no el recorrido con Tab.
+
+## Interacción táctil del visor WebGL
+
+`tests/graphs-touch.browser.test.mjs` sirve el renderer y `styles/grafos.css` originales con dos nodos ficticios DGR1. A 375/393/412 px envía entrada táctil mediante Chromium CDP: toque selecciona el nodo central, arrastre cambia la cámara y cancelación libera el arrastre. Exige eventos de puntero táctil `isTrusted`; tras cancelar espera dos cuadros antes de comparar matrices. Un control con rueda comprueba que la distancia de cámara sí puede variar.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-graphs-touch-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/graphs-touch.browser.test.mjs
+```
+
+La aserción final exige que separar dos dedos reduzca la distancia de cámara (`mvp[15]`). Actualmente falla en los tres anchos: la pinza altera el giro, pero mantiene la distancia 2,6 y la escala del viewport 1; la rueda reduce la distancia a 2,3. Es una mejora táctil pendiente (#812); el texto actual del producto anuncia zoom mediante rueda. Esta prueba permanece fuera de `npm run check`: no presentar el conjunto como verde ni como una corrección del renderer.
+
+Solo GET locales, sin APIs externas. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos escenarios fallidos. Las tres capturas opcionales y `graphs-touch-report.json` quedan fuera de Git. No acredita teléfono físico, GPU física, rendimiento con grafos masivos, accesibilidad ni paridad entre todos los navegadores. La primera fixture omitía el CSS y dejaba que Chromium ampliara la página: ese ensayo descartado no constituye evidencia de un defecto del producto.
