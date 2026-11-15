@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { readFile, mkdir } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
@@ -63,6 +63,7 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const origin = `http://127.0.0.1:${server.address().port}`;
   let failures = 0;
+  const edgeReport = [];
   try {
     for (const width of [375, 393, 412]) {
       for (const lang of ['es', 'en']) {
@@ -74,6 +75,25 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
             return req.url().startsWith(`${origin}/`) && ['GET', 'HEAD'].includes(req.method()) ? route.continue() : route.abort();
           });
           const page = await context.newPage();
+          // Observe completion of the real renderer, including HTTP/JSON/network failures.
+          await page.addInitScript(() => {
+            const originalFetch = window.fetch;
+            window.__edgeSettled = false;
+            window.fetch = async (...args) => {
+              if (args[0] !== '/api/edge-metrics') return Reflect.apply(originalFetch, window, args);
+              const settled = () => setTimeout(() => { window.__edgeSettled = true; }, 0);
+              try {
+                const response = await Reflect.apply(originalFetch, window, args);
+                if (!response.ok) settled();
+                const originalJson = response.json.bind(response);
+                response.json = async () => {
+                  try { return await originalJson(); }
+                  finally { settled(); }
+                };
+                return response;
+              } catch (error) { settled(); throw error; }
+            };
+          });
           const errors = [];
           page.on('pageerror', error => errors.push(error.name));
           const url = `${origin}/metricas${lang === 'en' ? '-en' : ''}.html`;
@@ -109,6 +129,36 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
             await page.waitForFunction(() => /Metrics are not available|todavía no se han generado/.test(document.querySelector('#frase-mes').textContent));
             assert.equal(await page.locator('#tabla-jugadores tbody tr').count(), 0, 'failed request cannot retain the previous player table');
             assert.equal(await more.isVisible(), false);
+            for (const state of ['healthy', 'maintenance', 'http503', 'invalid-json', 'network-error', 'missing-network', 'missing-ratio']) {
+              await page.unroute('**/api/edge-metrics');
+              await page.route('**/api/edge-metrics', route => {
+                if (state === 'network-error') return route.abort('failed');
+                const edge = state === 'maintenance'
+                  ? { status: 'maintenance', edge_cache_ratio: '0%' }
+                  : { status: 'operational', ...(state === 'missing-ratio' ? {} : { edge_cache_ratio: '81.2%' }) };
+                return route.fulfill({ status: state === 'http503' ? 503 : 200, contentType: 'application/json',
+                  body: state === 'invalid-json' ? '{' : JSON.stringify(state === 'missing-network' ? {} : { edge_network: edge }) });
+              });
+              await page.goto(url, { waitUntil: 'domcontentloaded' });
+              await page.waitForFunction(() => window.__edgeSettled);
+              const observation = await page.evaluate(() => ({
+                status: document.querySelector('#edge-status').textContent.trim(),
+                ratio: document.querySelector('#edge-cache-ratio').textContent.trim(),
+                documentWidth: document.documentElement.scrollWidth,
+              }));
+              edgeReport.push({ lang, width, state, ...observation });
+              assert.ok(observation.documentWidth <= width + 1, 'edge states stay inside the viewport');
+              if (state === 'healthy' || state === 'maintenance') {
+                assert.equal(observation.ratio, state === 'healthy' ? '81.2%' : '0%');
+                assert.equal(observation.status, state === 'healthy'
+                  ? lang === 'es' ? 'OPERATIVO' : 'OPERATIONAL'
+                  : lang === 'es' ? 'EN MANTENIMIENTO' : 'UNDER MAINTENANCE');
+              }
+              if (state === 'http503' && process.env.AUDIT_ARTIFACT_DIR) {
+                await page.locator('#edge-status').scrollIntoViewIfNeeded();
+                await page.screenshot({ path: join(process.env.AUDIT_ARTIFACT_DIR, `metrics-edge-${lang}-${width}.png`), animations: 'disabled', timeout: 15000 });
+              }
+            }
             assert.deepEqual(errors, []);
           } catch (error) {
             failures++;
@@ -120,9 +170,25 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
         if (t.signal.aborted || failures >= 2) return;
       }
     }
+    await t.test('unavailable Edge API must not display a confirmed operational status', () => {
+      const unavailable = edgeReport.filter(row => ['http503', 'invalid-json', 'network-error', 'missing-network'].includes(row.state));
+      assert.equal(unavailable.length, 24, 'exercise four failure modes in all six viewports/languages');
+      assert.deepEqual(unavailable.filter(row => /^(OPERATIVO|OPERATIONAL)$/.test(row.status)), [],
+        'an unavailable source cannot confirm that the network is operational');
+    });
+    await t.test('missing Edge ratio must not fabricate a percentage', () => {
+      const missing = edgeReport.filter(row => row.state === 'missing-ratio');
+      assert.equal(missing.length, 6);
+      assert.deepEqual(missing.filter(row => /\d+(?:[.,]\d+)?\s*%/.test(row.ratio)), [],
+        'a response without a ratio cannot supply a measured percentage');
+    });
   } finally {
     await browser.close();
     server.closeAllConnections();
     await new Promise(resolve => server.close(resolve));
+    if (process.env.AUDIT_ARTIFACT_DIR) {
+      await mkdir(process.env.AUDIT_ARTIFACT_DIR, { recursive: true });
+      await writeFile(join(process.env.AUDIT_ARTIFACT_DIR, 'metrics-edge.json'), JSON.stringify(edgeReport, null, 2));
+    }
   }
 });
