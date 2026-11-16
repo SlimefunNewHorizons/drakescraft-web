@@ -116,7 +116,7 @@
       if (home) {
         var f = (!tipo || tipo === "servidor") ? rows.filter(function (x) { return x.tipo === "servidor"; })[0] : null;
         if (f) list.appendChild(card(f, true));
-        var count = f ? 3 : 6;
+        var count = f ? 4 : 6;
         rows.filter(function (x) { return x !== f; }).slice(0, count).forEach(function (x) { list.appendChild(card(x)); });
         list.classList.toggle("has-feat", !!f);
         return clamps(list);
