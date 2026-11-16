@@ -15,10 +15,11 @@
   const btnExpandAll = document.getElementById("btn-expand-all");
   const btnCollapseAll = document.getElementById("btn-collapse-all");
 
-  if (!input || !rows.length) return;
+  if (!input || (!rows.length && !accordions.length)) return;
 
-  // Indexar texto de cada fila
-  const index = rows.map((row) => ({
+  // Indexar filas y componentes completos que no tienen filas.
+  const components = accordions.filter((acc) => !acc.querySelector(".guide-row"));
+  const index = [...rows, ...components].map((row) => ({
     row,
     accordion: row.closest(".guide-accordion"),
     section: row.closest(".guide-section"),
@@ -62,14 +63,14 @@
     accordions.forEach((acc) => {
       const accCat = acc.dataset.cat || "all";
       const matchesCategory = category === "all" || accCat === category;
-      const hasVisibleRows = matchingAccordions.has(acc);
+      const hasVisibleEntries = matchingAccordions.has(acc);
       const isMatch = matchesCategory &&
-        ((terms.length === 0 && modality === "all") || hasVisibleRows);
+        ((terms.length === 0 && modality === "all") || hasVisibleEntries);
 
       acc.classList.toggle("is-hidden", !isMatch);
 
       // Si hay búsqueda activa y tiene coincidencia, abrirlo automáticamente
-      if (terms.length > 0 && hasVisibleRows) {
+      if (terms.length > 0 && hasVisibleEntries) {
         acc.open = true;
       }
     });
@@ -92,9 +93,11 @@
     empty?.classList.toggle("is-hidden", visible > 0);
     if (count) {
       count.textContent =
-        terms.length || category !== "all" || modality !== "all"
-          ? `${visible} de ${index.length} entradas encontradas`
-          : `${index.length} mecánicas y recetas catalogadas`;
+        !rows.length
+          ? `${visible} / ${index.length}`
+          : terms.length || category !== "all" || modality !== "all"
+            ? `${visible} de ${index.length} entradas encontradas`
+            : `${index.length} mecánicas y recetas catalogadas`;
     }
   }
 
