@@ -52,9 +52,10 @@
   function md(txt) {
     var f = document.createDocumentFragment(), p = null, ul = null;
     String(txt).replace(/\r/g, "").split("\n").forEach(function (raw) {
-      var line = raw.trim(), b = /^([•*\-–]|\d+\.)\s+/.exec(line);
-      if (!line) { p = ul = null; return; }
+      var line = raw.trim();
+      if (!line || /^\|?\s*[-:]{2,}\s*(\|\s*[-:]{2,}\s*)+\|?$/.test(line) || /^\|?\s*\|?$/.test(line)) { p = ul = null; return; }
       line = line.replace(/^#{1,4}\s+|^>\s?/, "");
+      var b = /^([•*\-–]|\d+\.)\s+/.exec(line);
       if (b) { p = null; if (!ul) ul = f.appendChild(el("ul")); inline(ul.appendChild(el("li")), line.slice(b[0].length)); return; }
       ul = null;
       if (p) p.appendChild(el("br")); else p = f.appendChild(el("p"));
@@ -115,7 +116,8 @@
       if (home) {
         var f = (!tipo || tipo === "servidor") ? rows.filter(function (x) { return x.tipo === "servidor"; })[0] : null;
         if (f) list.appendChild(card(f, true));
-        rows.filter(function (x) { return x !== f; }).slice(0, 4).forEach(function (x) { list.appendChild(card(x)); });
+        var count = f ? 3 : 6;
+        rows.filter(function (x) { return x !== f; }).slice(0, count).forEach(function (x) { list.appendChild(card(x)); });
         list.classList.toggle("has-feat", !!f);
         return clamps(list);
       }
