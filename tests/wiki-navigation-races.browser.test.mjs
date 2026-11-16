@@ -119,6 +119,37 @@ test('wiki mobile: outdated loads cannot replace the current route', {
                   await page.unroute('**/assets/sfwiki/a/slow-0.json', slowRoute);
                 }
               }
+              const slowHash = kind === 'addon' ? '#/a/slow' : '#/i/slow/0/SLOW';
+              const currentFailure = route => route.fulfill({ status: 503, contentType: 'application/json',
+                body: JSON.stringify({ items: [item('slow')], refs: {} }) });
+              await page.route('**/assets/sfwiki/a/slow-0.json', currentFailure);
+              try {
+                await page.goto(url, { waitUntil: 'domcontentloaded' });
+                await page.locator('#sfw-ag .sfw-card').first().waitFor();
+                await page.evaluate(hash => { location.hash = hash; }, slowHash);
+                await page.locator('#sfw-view .sfw-err').waitFor();
+                assert.equal(await page.locator('#sfw-view .sfw-err').count(), 1, 'a current failure must remain visible');
+                if (kind === 'addon') assert.equal(await page.locator('#sfw-view .sfw-h').textContent(), 'Fixture slow');
+                row.cases.push({ kind, currentFailure: true, errorVisible: 1 });
+              } finally {
+                await page.unroute('**/assets/sfwiki/a/slow-0.json', currentFailure);
+              }
+              const retry = route => route.fulfill({ status: 200, contentType: 'application/json',
+                body: JSON.stringify({ items: [item('slow')], refs: {} }) });
+              await page.route('**/assets/sfwiki/a/slow-0.json', retry);
+              try {
+                await page.evaluate(() => { location.hash = '#/'; });
+                await page.locator('#sfw-ag .sfw-card').first().waitFor();
+                await page.evaluate(hash => { location.hash = hash; }, slowHash);
+                await page.waitForFunction(kind => kind === 'addon'
+                  ? document.querySelector('#sfw-view .sfw-card strong')?.textContent === 'Fixture item slow'
+                  : document.querySelector('#sfw-view .sfw-h')?.textContent === 'Fixture item slow', kind);
+                assert.equal(await page.locator('#sfw-view .sfw-err').count(), 0, 'a successful retry must replace the error');
+                assert.equal(await page.evaluate(() => location.hash), slowHash);
+                row.cases.push({ kind, retry: true, errorVisible: 0 });
+              } finally {
+                await page.unroute('**/assets/sfwiki/a/slow-0.json', retry);
+              }
             }
             assert.deepEqual(row.errors, []);
           } catch (error) {

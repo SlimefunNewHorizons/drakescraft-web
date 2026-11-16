@@ -77,7 +77,7 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
   node --test tests/wiki-navigation-races.browser.test.mjs
 ```
 
-Los doce controles HTTP200 conservan la vista nueva. Las doce respuestas HTTP503 obsoletas la sustituyen por un error, aunque el hash sigue apuntando al destino nuevo: los `catch` de `addonView` e `itemView` escriben sin comprobar la secuencia. La aserción final registra este defecto y permanece roja; Node cuenta seis escenarios correctos y dos fallos (aserción y contenedor), sin omisiones. No presentar el conjunto como verde ni como un arreglo del renderer.
+Los doce controles HTTP200 conservan la vista nueva. Antes del arreglo #813, doce respuestas HTTP503 obsoletas la sustituían por un error aunque el hash siguiera apuntando al destino nuevo. Los `catch` de `addonView` e `itemView` ahora comprueban la secuencia antes de escribir. La aserción final exige que ambos tipos de respuesta tardía preserven la vista actual. Otros doce controles exigen que los errores vigentes sigan visibles, con el encabezado del addon, y doce reintentos de la misma ruta deben cargar sin conservar el error. Son48 estados en seis contextos, con datos ficticios; la prueba queda fuera de `npm run check`.
 
 Solo GET al servidor local, sin fuentes ni scripts globales y sin APIs externas. Exige CSS cargado, ausencia de errores JS y contención horizontal; `wiki-navigation-races-report.json` conserva estados ficticios fuera de Git. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; se detiene tras dos errores de ejecución de escenarios. No acredita frecuencia en producción, teléfono físico, CSP, accesibilidad ni capturas visuales.
 
