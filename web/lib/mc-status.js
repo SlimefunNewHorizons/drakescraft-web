@@ -26,7 +26,7 @@ import net from 'node:net';
 const TIEMPO_LIMITE_MS = 3500;
 const CACHE_MS = 30000;
 
-let cache = { momento: 0, datos: null };
+let cache = { host: null, puerto: null, momento: 0, datos: null };
 
 /** Escribe un entero en el formato VarInt del protocolo de Minecraft. */
 function varInt(valor) {
@@ -88,6 +88,7 @@ function consultarTCP(host, puerto) {
     socket.setTimeout(TIEMPO_LIMITE_MS);
     socket.on('timeout', () => terminar(null));
     socket.on('error', () => terminar(null));
+    socket.on('close', () => terminar(null));
 
     socket.on('connect', () => {
       const puertoBuffer = Buffer.alloc(2);
@@ -134,6 +135,7 @@ async function consultarHTTP(host, puerto) {
       enLinea: true,
       jugadores: json.players?.online ?? 0,
       maximo: json.players?.max ?? 0,
+      maximoFuente: 'mcsrvstat',
       version: json.version ?? null,
       motd: Array.isArray(json.motd?.clean) ? json.motd.clean.join(' ') : (json.motd?.clean || 'DrakesCraft · Servidor Oficial')
     };
@@ -147,7 +149,7 @@ async function consultarHTTP(host, puerto) {
  */
 export async function estadoServidor(host, puerto) {
   const ahora = Date.now();
-  if (cache.datos && ahora - cache.momento < CACHE_MS) return cache.datos;
+  if (cache.host === host && cache.puerto === puerto && cache.datos && ahora - cache.momento < CACHE_MS) return cache.datos;
 
   // 1. Intentar TCP nativo
   let datos = null;
@@ -157,6 +159,7 @@ export async function estadoServidor(host, puerto) {
       enLinea: true,
       jugadores: bruto.players?.online ?? 0,
       maximo: bruto.players?.max ?? 0,
+      maximoFuente: 'server-list-ping',
       version: bruto.version?.name ?? null,
       motd: extraerMotd(bruto.description),
     };
@@ -169,9 +172,9 @@ export async function estadoServidor(host, puerto) {
 
   // 3. Si ambos fallaron
   if (!datos) {
-    datos = { enLinea: false, jugadores: 0, maximo: 0, version: null };
+    datos = { enLinea: false, jugadores: 0, maximo: 0, maximoFuente: null, version: null };
   }
 
-  cache = { momento: ahora, datos };
+  cache = { host, puerto, momento: ahora, datos };
   return datos;
 }
