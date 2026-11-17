@@ -32,3 +32,9 @@ al respaldo HTTP. El timeout de inactividad del socket no cubre un socket
 ya cerrado: se atiende también `close` para evitar peticiones pendientes.
 Cuatro regresiones loopback cubren cierres sin bytes y paquetes truncados
 en ambas copias del módulo, sin consultar producción.
+
+El paquete TCP debe tener ID de respuesta de estado (`0`) y la longitud del
+JSON debe coincidir con el final del paquete declarado. Un ID distinto, un
+JSON que exceda el paquete o bytes sobrantes dentro de este activan el
+respaldo HTTP; no se presentan como una medición válida del ping. Seis
+regresiones loopback verifican estos casos en ambas copias del módulo.

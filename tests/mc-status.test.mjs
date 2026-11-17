@@ -13,6 +13,33 @@ async function fixture(t, responder) {
 }
 
 for (const entry of ['../lib/mc-status.js', '../web/lib/mc-status.js']) {
+  for (const caso of ['id incorrecto', 'JSON fuera del paquete', 'bytes sobrantes']) {
+    test(`${entry}: rechaza ${caso} y consulta respaldo HTTP`, async t => {
+      const puerto = await fixture(t, socket => {
+        socket.once('data', () => {
+          const json = Buffer.from(JSON.stringify({ players: { online: 4, max: 2027 } }));
+          const extra = caso === 'bytes sobrantes' ? Buffer.from([0]) : Buffer.alloc(0);
+          const cuerpo = Buffer.concat([
+            Buffer.from([caso === 'id incorrecto' ? 1 : 0,
+              json.length + (caso === 'JSON fuera del paquete' ? 1 : 0)]),
+            json, extra,
+          ]);
+          socket.end(Buffer.concat([Buffer.from([cuerpo.length]), cuerpo]));
+        });
+      });
+      const http = t.mock.method(globalThis, 'fetch', async () => ({
+        ok: true,
+        json: async () => ({ online: true, players: { online: 2, max: 100 } }),
+      }));
+      const { estadoServidor } = await import(`${entry}?test=frame-${caso}`);
+      const estado = await estadoServidor('127.0.0.1', puerto);
+      assert.equal(estado.maximoFuente, 'mcsrvstat');
+      assert.equal(estado.maximo, 100);
+      assert.equal(estado.jugadores, 2);
+      assert.equal(http.mock.callCount(), 1);
+    });
+  }
+
   for (const [nombre, respuesta] of [
     ['sin respuesta', Buffer.alloc(0)],
     ['paquete incompleto', Buffer.from([10, 0, 8, 123])],
