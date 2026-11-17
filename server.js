@@ -1214,11 +1214,33 @@ for (const [alias, file] of [
   ['/temporada-2', 'temporada-2.html'], ['/t2', 'temporada-2.html'], ['/season-2', 'temporada-2-en.html'],
   ['/saori', 'saori.html'], ['/grafos', 'saori.html'], ['/saori-en', 'saori-en.html'], ['/graphs', 'saori-en.html'],
   ['/novedades', 'novedades.html'], ['/news', 'novedades-en.html'], ['/novedades-en', 'novedades-en.html'],
-  ['/votar', 'votar.html'], ['/vote', 'vote-en.html'], ['/reglas', 'terms.html'], ['/reglas.html', 'terms.html'], ['/rules', 'terms-en.html'],
+  ['/votar', 'votar.html'], ['/vote', 'vote-en.html'],
+  ['/reglas', 'reglas.html'],
+  ['/rules', 'rules-en.html'], ['/rules.html', 'rules-en.html'],
   ['/eventos', 'eventos.html'], ['/calendario', 'eventos.html'],
   ['/events', 'events-en.html'], ['/calendar', 'events-en.html'],
 ]) {
   app.get(alias, async (_request, reply) => reply.sendFile(file));
+}
+
+// 301 Permanent Redirects for legacy and alias URLs (SEO Cleanup)
+for (const [legacyPath, canonicalDest] of [
+  ['/comandos.html', '/guia-comandos.html'],
+  ['/commands.html', '/guia-comandos-en.html'],
+  ['/tienda.html', '/store.html'],
+  ['/shop.html', '/store-en.html'],
+  ['/wiki.html', '/wiki-slimefun.html'],
+  ['/wiki-en.html', '/wiki-slimefun-en.html'],
+  ['/rangos.html', '/guia-rangos.html'],
+  ['/ranks.html', '/guia-rangos-en.html'],
+  ['/slimefun.html', '/guia-slimefun.html'],
+  ['/slimefun-en.html', '/guia-slimefun-en.html'],
+  ['/plugins.html', '/guia-plugins.html'],
+  ['/plugins-en.html', '/guia-plugins-en.html'],
+  ['/poderes.html', '/guia-poderes.html'],
+  ['/powers.html', '/guia-poderes-en.html']
+]) {
+  app.get(legacyPath, async (_request, reply) => reply.code(301).redirect(canonicalDest));
 }
 
 // Friendly short aliases for publicity and player convenience
@@ -1241,8 +1263,8 @@ for (const name of ['novedades', 'desarrollo']) {
 // Keep removed legacy pages useful without exposing stale systems.
 for (const legacyPath of [
   '/server.html', '/odysseia.html', '/dioses.html',
-  '/slimefun.html', '/bosses.html', '/community.html', '/jack.html',
-  '/rules.html', '/admin-quote.html',
+  '/bosses.html', '/community.html', '/jack.html',
+  '/admin-quote.html',
   '/ojo-de-atenea.html', '/ojo-de-atenea', '/ojo-de-atenea-en.html', '/atenea'
 ]) {
   app.get(legacyPath, async (_request, reply) => reply.code(301).redirect('/'));

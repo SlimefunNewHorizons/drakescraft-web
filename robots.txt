@@ -1,9 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /maintenance-en.html
-Disallow: /maintenance.html
-Disallow: /500.html
+Disallow: /data/
+Disallow: /archive/
+Disallow: /deploy/
+Disallow: /catalog/
+Disallow: /tools/
+Disallow: /vendor/
+Disallow: /lib/
 
 Sitemap: https://web.drakescraft.cl/sitemap.xml
-Sitemap: https://drakescraft.cl/sitemap.xml

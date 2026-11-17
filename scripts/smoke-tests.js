@@ -50,6 +50,8 @@ const ROUTES = [
   '/maintenance-en.html',
   '/eventos.html',
   '/events-en.html',
+  '/reglas.html',
+  '/rules-en.html',
 ];
 
 // Rutas con redirects esperados
@@ -59,6 +61,19 @@ const EXPECTED_REDIRECTS = new Set([
   '/atenea',
   '/dioses.html',
   '/slimefun.html',
+  '/comandos.html',
+  '/commands.html',
+  '/tienda.html',
+  '/shop.html',
+  '/wiki.html',
+  '/wiki-en.html',
+  '/rangos.html',
+  '/ranks.html',
+  '/slimefun-en.html',
+  '/plugins.html',
+  '/plugins-en.html',
+  '/poderes.html',
+  '/powers.html',
 ]);
 
 let errors = [];
