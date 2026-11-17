@@ -67,3 +67,10 @@ Una longitud anunciada superior se rechaza sin esperar el cuerpo; un bloque
 que excedería el límite se descarta antes de concatenarlo al búfer. Ambos
 casos activan el respaldo HTTP. Ocho regresiones loopback cubren el rechazo
 y la aceptación de una respuesta de exactamente 1 MiB en las dos copias.
+
+`version` contiene texto no vacío o `null`, tanto en TCP como en HTTP.
+El MOTD del respaldo HTTP acepta texto o una lista de textos; descarta otros
+componentes, limpia códigos de formato y usa el nombre oficial si queda vacío.
+Versiones/MOTD malformados no invalidan conteos válidos ni cambian su fuente.
+`npm run test:estado-textos` comprueba ambas copias con TCP loopback y HTTP
+simulado, incluidos los máximos anunciados 2027/100, sin consultar Dallas.
