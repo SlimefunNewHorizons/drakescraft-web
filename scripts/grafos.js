@@ -9,7 +9,7 @@
   const L = EN ? 1 : 0;
   const T = EN
     ? {
-        nodes: 'nodes', edges: 'edges', real: 'real', drag: 'Drag to rotate · Scroll to zoom',
+        nodes: 'nodes', edges: 'edges', real: 'real', drag: 'Drag to rotate · Pinch or scroll to zoom',
         online: 'ONLINE', offline: 'NO SIGNAL', players: 'players', peak: 'weekly peak',
         uniq: 'unique players', ver: 'version', fps: 'fps', load: 'Loading neural topology…',
         fail: 'Graph unavailable', conn: 'connections', comm: 'Cluster', private: 'Private sovereign node',
@@ -20,7 +20,7 @@
         clickHint: 'Click a node to inspect · Hover to preview'
       }
     : {
-        nodes: 'nodos', edges: 'aristas', real: 'reales', drag: 'Arrastra para girar · Rueda para zoom',
+        nodes: 'nodos', edges: 'aristas', real: 'reales', drag: 'Arrastra para girar · Pinza o rueda para zoom',
         online: 'EN LÍNEA', offline: 'SIN SEÑAL', players: 'jugadores', peak: 'pico semanal',
         uniq: 'jugadores distintos', ver: 'versión', fps: 'fps', load: 'Cargando topología neuronal…',
         fail: 'Grafo no disponible', conn: 'conexiones', comm: 'Cúmulo', private: 'Nodo soberano privado',
@@ -408,6 +408,8 @@
     let yaw = 0.5, pitch = -0.22, zoom = 2.7, vy = RM ? 0 : 0.0013;
     let visible = false, dirty = true, hover = -1, pinnedNode = -1;
     let W = 0, H = 0, dpr = 1, raf = 0, drag = null;
+    const pointers = new Map();
+    let pinch = null;
     let frames = 0, fpsT = performance.now(), fps = 60;
 
     // Modos de visualización controlables por el usuario
@@ -810,14 +812,33 @@
       return best;
     }
 
+    function rebaseGesture(moved) {
+      const [a, b] = pointers.values();
+      drag = a ? { x: a.x, y: a.y, yaw, pitch, moved } : null;
+      pinch = b ? {
+        a: a.id, b: b.id, zoom,
+        distance: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y))
+      } : null;
+    }
+
+    function finishPointer(e) {
+      if (!pointers.delete(e.pointerId)) return;
+      rebaseGesture(true);
+      kick();
+    }
+
     cv.addEventListener('pointerdown', (e) => {
-      drag = { x: e.clientX, y: e.clientY, yaw, pitch, moved: false };
+      const first = pointers.values().next().value;
+      if (first && first.type !== e.pointerType) return;
+      pointers.set(e.pointerId, { id: e.pointerId, type: e.pointerType, x: e.clientX, y: e.clientY });
+      rebaseGesture(pointers.size > 1 || !!drag?.moved);
       cv.setPointerCapture(e.pointerId);
       kick();
     });
 
     cv.addEventListener('pointerup', (e) => {
-      if (drag && !drag.moved) {
+      if (!pointers.has(e.pointerId)) return;
+      if (drag && !drag.moved && pointers.size === 1) {
         // Clic directo sin arrastre: fijar nodo en el inspector
         const rect = cv.getBoundingClientRect();
         const mx = e.clientX - rect.left;
@@ -828,13 +849,27 @@
           updateInspector(pinnedNode);
         }
       }
-      drag = null;
-      kick();
+      finishPointer(e);
     });
 
-    cv.addEventListener('pointercancel', () => { drag = null; });
+    cv.addEventListener('pointercancel', finishPointer);
+    cv.addEventListener('lostpointercapture', finishPointer);
 
     cv.addEventListener('pointermove', (e) => {
+      const pointer = pointers.get(e.pointerId);
+      if (pointers.size && !pointer) return;
+      if (pointer) {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+      }
+      if (pinch) {
+        const a = pointers.get(pinch.a), b = pointers.get(pinch.b);
+        const distance = Math.max(1, Math.hypot(a.x - b.x, a.y - b.y));
+        zoom = Math.max(1.1, Math.min(6.5, pinch.zoom * pinch.distance / distance));
+        dirty = true;
+        kick();
+        return;
+      }
       if (drag) {
         const dist = Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y);
         if (dist > 3) drag.moved = true;

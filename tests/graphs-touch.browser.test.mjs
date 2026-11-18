@@ -58,10 +58,11 @@ test('WebGL touch: selection, drag, cancellation and pinch at mobile widths', {
                 return result;
               };
             }
-            for (const name of ['pointerdown', 'pointermove', 'pointerup', 'pointercancel']) {
+            for (const name of ['pointerdown', 'pointermove', 'pointerup', 'pointercancel', 'gotpointercapture', 'lostpointercapture']) {
               document.addEventListener(name, event => {
                 if (event.target.classList.contains('sg-canvas')) window.__touchAudit.events.push({
-                  type: event.type, pointerType: event.pointerType, trusted: event.isTrusted,
+                  type: event.type, id: event.pointerId, x: event.clientX, y: event.clientY,
+                  pointerType: event.pointerType, trusted: event.isTrusted,
                 });
               }, true);
             }
@@ -80,7 +81,9 @@ test('WebGL touch: selection, drag, cancellation and pinch at mobile widths', {
           const nextDraw = before => page.waitForFunction(n => window.__touchAudit.draws > n, before.draws);
           const reset = async () => {
             const before = await snapshot();
-            await page.locator('.sg-tool-btn').nth(3).tap();
+            // Fixture setup: invoke the real reset handler without relying on
+            // compatibility clicks synthesized immediately after CDP multitouch.
+            await page.locator('.sg-tool-btn').nth(3).evaluate(el => el.click());
             await nextDraw(before);
           };
 
@@ -105,19 +108,117 @@ test('WebGL touch: selection, drag, cancellation and pinch at mobile widths', {
           assert.deepEqual((await snapshot()).matrix, cancelled.matrix, 'cancelled gesture must release drag state');
           row.checks.push('cancel-clears-drag');
 
-          await reset();
+          const beforeClear = await snapshot();
+          await canvas.dblclick();
+          await nextDraw(beforeClear);
+          assert.doesNotMatch(await page.locator('.sg-inspector').textContent(), /Center touch fixture/);
           const beforePinch = await snapshot();
           await touch('touchStart', [point(1, -30), point(2, 30)]);
           for (const distance of [40, 50, 60, 70]) {
             await touch('touchMove', [point(1, -distance), point(2, distance)]);
           }
-          await touch('touchEnd');
           await nextDraw(beforePinch);
           const pinched = await snapshot();
           // mvp[15] is camera distance for this renderer; rotations do not change it.
           row.pinch = { beforeDistance: beforePinch.matrix[15], afterDistance: pinched.matrix[15],
             matrixChanged: JSON.stringify(beforePinch.matrix) !== JSON.stringify(pinched.matrix),
             viewportScale: await page.evaluate(() => visualViewport.scale) };
+          assert.ok(row.pinch.afterDistance < row.pinch.beforeDistance, 'spreading fingers zooms in');
+          assert.deepEqual(pinched.matrix.slice(0, 12), beforePinch.matrix.slice(0, 12), 'pinch does not rotate the camera');
+          await touch('touchMove', [point(1, -15), point(2, 15)]);
+          await nextDraw(pinched);
+          const contracted = await snapshot();
+          assert.ok(contracted.matrix[15] > pinched.matrix[15], 'bringing fingers together zooms out');
+          assert.deepEqual(contracted.matrix.slice(0, 12), beforePinch.matrix.slice(0, 12));
+          row.checks.push('pinch-both-directions-without-rotation');
+
+          // A third finger must not hijack the active pair or select a node.
+          await touch('touchStart', [point(1, -15), point(2, 15), point(3, 0, 40)]);
+          await touch('touchMove', [point(1, -15), point(2, 15), point(3, 20, 60)]);
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          assert.deepEqual((await snapshot()).matrix, contracted.matrix, 'third-finger movement leaves the camera unchanged');
+          // Chromium's legacy CDP touch backend ends the IDs supplied here;
+          // an empty list ends all IDs. Omitting IDs from touchMove keeps them down.
+          // Require real pointerup events so a backend change cannot pass silently.
+          const downs = (await snapshot()).events.filter(e => e.type === 'pointerdown' && e.pointerType === 'touch').slice(-3);
+          await touch('touchEnd', [point(1, -15)]);
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          const afterLift = await snapshot();
+          assert.deepEqual(afterLift.matrix, contracted.matrix, 'replacing a pinch contact must not jump the camera');
+          await touch('touchMove', [point(2, 15), point(3, 35, 85)]);
+          await nextDraw(afterLift);
+          const replaced = await snapshot();
+          assert.ok(replaced.matrix[15] < contracted.matrix[15], 'the replacement pair continues pinch zoom');
+          assert.deepEqual(replaced.matrix.slice(0, 12), contracted.matrix.slice(0, 12), 'the replacement pair does not rotate');
+          await touch('touchEnd', [point(3, 35, 85)]);
+          const released = (await snapshot()).events.filter(e => e.type === 'pointerup').slice(-2);
+          assert.deepEqual(released.map(e => e.id), [downs[0].id, downs[2].id], 'only the lifted contacts are released');
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          const remaining = await snapshot();
+          assert.deepEqual(remaining.matrix, replaced.matrix, 'lifting fingers must not jump the camera');
+          await touch('touchMove', [point(2, 35, 12)]);
+          await nextDraw(remaining);
+          const resumed = await snapshot();
+          assert.notDeepEqual(resumed.matrix.slice(0, 12), remaining.matrix.slice(0, 12), 'remaining finger resumes rotation');
+          assert.equal(resumed.matrix[15], remaining.matrix[15], 'remaining finger does not zoom');
+          await touch('touchEnd');
+          assert.doesNotMatch(await page.locator('.sg-inspector').textContent(), /Center touch fixture/, 'multitouch must not pin a node');
+          await reset();
+          await touch('touchStart', [point(1)]);
+          await touch('touchMove', [point(1, 20, 12)]);
+          await page.waitForFunction(matrix => JSON.stringify(window.__touchAudit.matrix.slice(0, 12)) !== JSON.stringify(matrix), beforePinch.matrix.slice(0, 12));
+          assert.deepEqual((await snapshot()).matrix.slice(0, 12), resumed.matrix.slice(0, 12), 'resumed rotation matches the same single-finger displacement without a jump');
+          await touch('touchEnd');
+          row.checks.push('three-fingers-and-resumed-single-drag');
+
+          await reset();
+          await touch('touchStart', [point(1, -3), point(2, 3)]);
+          await touch('touchMove', [point(1, -140), point(2, 140)]);
+          await page.waitForFunction(() => Math.abs(window.__touchAudit.matrix[15] - 1.1) < 0.00001);
+          const lower = await snapshot();
+          await touch('touchMove', [point(1, -0.5), point(2, 0.5)]);
+          await page.waitForFunction(() => Math.abs(window.__touchAudit.matrix[15] - 6.5) < 0.00001);
+          row.limits = { near: lower.matrix[15], far: (await snapshot()).matrix[15] };
+          await touch('touchCancel');
+          const cancelledPinch = await snapshot();
+          await page.mouse.move(x, y); await page.mouse.down();
+          await page.mouse.move(x + 30, y + 15); await page.mouse.up();
+          await nextDraw(cancelledPinch);
+          assert.notDeepEqual((await snapshot()).matrix.slice(0, 12), cancelledPinch.matrix.slice(0, 12), 'cancelling a pinch releases both contacts for a mouse drag');
+          row.checks.push('pinch-respects-wheel-limits');
+
+          // Release real pointer capture while contact is still present; a subsequent
+          // mouse drag and a fresh touch must both work without stale touch state.
+          await reset();
+          await touch('touchStart', [point(1)]);
+          const pending = await snapshot();
+          const pendingId = pending.events.filter(e => e.type === 'pointerdown').at(-1).id;
+          // Pointer capture is pending until the next pointer event. Commit it
+          // before requesting its loss, rather than cancelling a pending capture.
+          await touch('touchMove', [point(1, 1)]);
+          await page.waitForFunction(({ id, start }) => window.__touchAudit.events.slice(start).some(e => e.type === 'gotpointercapture' && e.id === id), { id: pendingId, start: pending.events.length });
+          await page.waitForFunction(matrix => JSON.stringify(window.__touchAudit.matrix) !== JSON.stringify(matrix), pending.matrix);
+          const captured = await snapshot();
+          const capturedId = captured.events.filter(e => e.type === 'pointerdown').at(-1).id;
+          await page.mouse.move(x + 45, y + 20); await page.mouse.down();
+          await page.mouse.move(x + 65, y + 30); await page.mouse.up();
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          assert.deepEqual((await snapshot()).matrix, captured.matrix, 'mouse input cannot hijack active touch');
+          await canvas.evaluate((el, id) => el.releasePointerCapture(id), capturedId);
+          await touch('touchMove', [point(1, 25, 10)]);
+          await page.waitForFunction(({ id, start }) => window.__touchAudit.events.slice(start).some(e => e.type === 'lostpointercapture' && e.id === id), { id: capturedId, start: captured.events.length });
+          await touch('touchEnd');
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          assert.deepEqual((await snapshot()).matrix, captured.matrix, 'lost capture clears drag state');
+          const beforeMouse = await snapshot();
+          await page.mouse.move(x, y); await page.mouse.down();
+          await page.mouse.move(x + 30, y + 15); await page.mouse.up();
+          await nextDraw(beforeMouse);
+          assert.notDeepEqual((await snapshot()).matrix, beforeMouse.matrix, 'mouse drag still rotates after lost capture');
+          await reset();
+          await touch('touchStart', [point(1)]); await touch('touchEnd');
+          await page.waitForFunction(() => document.querySelector('.sg-inspector').textContent.includes('Center touch fixture'));
+          row.checks.push('lost-capture-mouse-drag-and-fresh-tap');
 
           await reset();
           const beforeWheel = await snapshot();
@@ -139,6 +240,7 @@ test('WebGL touch: selection, drag, cancellation and pinch at mobile widths', {
             await page.screenshot({ path: join(process.env.AUDIT_ARTIFACT_DIR, `graph-touch-${width}.png`) });
           }
         } catch (error) {
+          row.events = await context.pages()[0]?.evaluate(() => window.__touchAudit?.events).catch(() => []);
           failures++; row.failure = error.name; throw error;
         } finally {
           await context.close();
