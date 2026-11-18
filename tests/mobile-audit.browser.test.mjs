@@ -10,6 +10,77 @@ import { fileURLToPath } from 'node:url';
 
 const auditor = fileURLToPath(new URL('../scripts/audit-mobile.mjs', import.meta.url));
 
+test('mobile audit fails visible text below 12px and excludes transparent ancestors', { timeout: 40000 }, async () => {
+  const output = await mkdtemp(join(tmpdir(), 'drakes-mobile-type-'));
+  const server = createServer((req, res) => {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    const content = req.url === '/terms.html'
+      ? '<p style="font-size:11px">Small visible text</p>'
+      : req.url === '/terms-en.html'
+        ? '<section style="opacity:0"><p style="font-size:10px">Hidden text</p></section>'
+        : '<p style="font-size:12px">Threshold text</p>';
+    res.end(`<!doctype html><html lang="es"><meta name="viewport" content="width=device-width"><body>${content}</body></html>`);
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  let child;
+  try {
+    const runAudit = async (strictText, widths, pages = 'terms,terms-en,apoya') => {
+      const target = join(output, strictText ? 'strict' : 'default');
+      const env = { ...process.env, AUDIT_PAGES: pages, AUDIT_WIDTHS: widths, AUDIT_SCREENSHOTS: '0' };
+      delete env.AUDIT_STRICT_TEXT;
+      if (strictText) env.AUDIT_STRICT_TEXT = '1';
+      child = spawn(process.execPath, [auditor, `http://127.0.0.1:${server.address().port}`, target], { env, stdio: 'ignore' });
+      const code = await new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { child.kill(); reject(new Error('typography audit did not finish')); }, 22000);
+        child.once('error', error => { clearTimeout(timer); reject(error); });
+        child.once('exit', code => { clearTimeout(timer); resolve(code); });
+      });
+      return { code, report: JSON.parse(await readFile(join(target, 'report.json'), 'utf8')) };
+    };
+    const { code, report } = await runAudit(true, '375,393,412');
+    assert.equal(report.strictText, true);
+    assert.equal(report.minTextSize, 12);
+    assert.equal(report.complete, true);
+    assert.equal(report.results.length, 9);
+    const counts = report.results.map(row => ({ page: row.page, width: row.width, count: row.smallTextCount }));
+    assert.deepEqual({ code, counts }, {
+      code: 1,
+      counts: [375, 393, 412].flatMap(width => [
+        { page: 'terms.html', width, count: 1 },
+        { page: 'terms-en.html', width, count: 0 },
+        { page: 'apoya.html', width, count: 0 },
+      ]),
+    });
+    for (const row of report.results) {
+      assert.equal(row.status, 200);
+      assert.deepEqual(row.errors, []);
+      assert.deepEqual(row.cspViolations, []);
+      assert.ok(row.scrollWidth <= row.viewport + 1);
+      assert.deepEqual(row.smallText, row.page === 'terms.html'
+        ? [{ selector: 'p', fontSize: '11px' }] : []);
+    }
+    const ordinary = await runAudit(false, '375');
+    assert.equal(ordinary.code, 0, 'the existing informative mode stays successful for small text');
+    assert.equal(ordinary.report.strictText, false);
+    assert.equal(ordinary.report.complete, true);
+    assert.equal(ordinary.report.results.length, 3);
+    assert.deepEqual(ordinary.report.results.map(row => row.smallTextCount), [1, 0, 0]);
+    const clean = await runAudit(true, '375', 'terms-en,apoya');
+    assert.equal(clean.code, 0, 'strict mode succeeds when all visible text meets the threshold');
+    assert.equal(clean.report.complete, true);
+    assert.equal(clean.report.results.length, 2);
+    assert.deepEqual(clean.report.results.map(row => row.smallTextCount), [0, 0]);
+  } finally {
+    if (child && child.exitCode === null) {
+      child.kill();
+      await new Promise(resolve => child.once('exit', resolve));
+    }
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+    await rm(output, { recursive: true, force: true });
+  }
+});
+
 test('mobile audit measures DOM despite a pending image and isolates page storage', { timeout: 20000 }, async () => {
   const output = await mkdtemp(join(tmpdir(), 'drakes-mobile-fixture-'));
   let pendingImages = 0;

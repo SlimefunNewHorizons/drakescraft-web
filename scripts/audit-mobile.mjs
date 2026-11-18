@@ -18,11 +18,13 @@ const selectedPages = process.env.AUDIT_PAGES ? process.env.AUDIT_PAGES.split(',
 const widths = process.env.AUDIT_WIDTHS ? process.env.AUDIT_WIDTHS.split(',').map(Number) : [375, 393, 412];
 if (selectedPages.some(slug => !pages.includes(slug)) || widths.some(width => ![375, 393, 412].includes(width))) throw new Error('Unknown audit page or width');
 const screenshots = process.env.AUDIT_SCREENSHOTS !== '0';
+const strictText = process.env.AUDIT_STRICT_TEXT === '1';
+const minTextSize = 12;
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const results = [];
 let failures = 0;
-const saveReport = complete => writeFile(resolve(output, 'report.json'), JSON.stringify({ base: base.href, generated: new Date().toISOString(), browser: 'Chromium', screenshots, complete, results }, null, 2) + '\n');
+const saveReport = complete => writeFile(resolve(output, 'report.json'), JSON.stringify({ base: base.href, generated: new Date().toISOString(), browser: 'Chromium', screenshots, strictText, minTextSize, complete, results }, null, 2) + '\n');
 try {
   audit: for (const width of widths) {
     for (const slug of selectedPages) {
@@ -68,15 +70,15 @@ try {
         phase('settle');
         await page.waitForTimeout(800);
         phase('measure');
-        Object.assign(row, await page.evaluate(() => {
+        Object.assign(row, await page.evaluate(minTextSize => {
           const viewport = document.documentElement.clientWidth;
           const label = el => `${el.tagName.toLowerCase()}${el.id ? `#${el.id}` : ''}${[...el.classList].slice(0, 2).map(c => `.${c}`).join('')}`;
           const visible = el => {
-            const box = el.getBoundingClientRect(), css = getComputedStyle(el);
-            return box.width > 0 && box.height > 0 && css.visibility === 'visible' && css.display !== 'none' && Number(css.opacity) !== 0;
+            const box = el.getBoundingClientRect();
+            return box.width > 0 && box.height > 0 && el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true });
           };
           const elements = [...document.body.querySelectorAll('*')].filter(visible);
-          const smallText = elements.filter(el => [...el.childNodes].some(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim()) && parseFloat(getComputedStyle(el).fontSize) < 12);
+          const smallText = elements.filter(el => [...el.childNodes].some(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim()) && parseFloat(getComputedStyle(el).fontSize) < minTextSize);
           return {
             viewport,
             readyState: document.readyState,
@@ -96,7 +98,7 @@ try {
             languageBanner: !!document.querySelector('#dk-lang-banner'),
             cspViolations: window.__drakesAuditCsp,
           };
-        }));
+        }, minTextSize));
         row.errors = [...errors];
         row.cspErrors = cspErrors;
         phase('screenshot');
@@ -126,4 +128,4 @@ try {
   await browser.close();
 }
 await saveReport(results.length === selectedPages.length * widths.length && failures < 2);
-if (results.some(r => r.failure || r.status !== 200 || r.scrollWidth > r.viewport + 1 || r.errors.length || r.cspErrors || r.cspViolations.length)) process.exitCode = 1;
+if (results.some(r => r.failure || r.status !== 200 || r.scrollWidth > r.viewport + 1 || r.errors.length || r.cspErrors || r.cspViolations.length || (strictText && r.smallTextCount > 0))) process.exitCode = 1;
