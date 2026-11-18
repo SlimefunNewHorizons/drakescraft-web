@@ -1,0 +1,55 @@
+{
+  "ticket": 806,
+  "status": "BUILT candidate, not deployed",
+  "base": "PR13 fix/idioma-nativo-797 @6b5b096",
+  "baseline_no_translator_regression": {
+    "tests": 1,
+    "failed": 1,
+    "expected": true
+  },
+  "browser": {
+    "tests": 7,
+    "passed": 7,
+    "skipped": 0,
+    "duration_ms": 63477.030593,
+    "scenarios": 6,
+    "navigations": 48,
+    "widths": [
+      375,
+      393,
+      412
+    ],
+    "errors": 0,
+    "translation_requests": 0,
+    "csp_violations": 0
+  },
+  "listeners": {
+    "scripts/site.js": {
+      "before": 11,
+      "after": 11,
+      "equal": true,
+      "named_functions_preserved": true
+    },
+    "web/scripts/site.js": {
+      "before": 11,
+      "after": 11,
+      "equal": true,
+      "named_functions_preserved": true
+    }
+  },
+  "limits": [
+    "Loopback fixture with shipped CSP and real Season 2 HTML/CSS; unrelated scripts and external services blocked.",
+    "Not a physical phone or full visual audit; web copy retains pre-existing Spanish subtitle and invisible menu glyph without PR12.",
+    "No deployment; requires parent PR13 integration."
+  ],
+  "graphs": {
+    "cli_update_exit": 0,
+    "extra_merge_exit": 0,
+    "ast_nodes": 5172,
+    "ast_links": 11635,
+    "extra_nodes": 6000,
+    "extra_links": 6900,
+    "merged_nodes": 11172,
+    "merged_links": 18084
+  }
+}
