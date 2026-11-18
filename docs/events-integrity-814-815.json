@@ -1,0 +1,138 @@
+{
+  "before": [
+    {
+      "width": 375,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 375,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 393,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 393,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 412,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 412,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 6,
+      "http503_visible_schedule": 5,
+      "markup_nodes": 4,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    }
+  ],
+  "after": [
+    {
+      "width": 375,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 375,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 393,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 393,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 412,
+      "lang": "es",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    },
+    {
+      "width": 412,
+      "lang": "en",
+      "navigations": 6,
+      "http503_cards": 0,
+      "http503_visible_schedule": 0,
+      "markup_nodes": 0,
+      "horizontal_overflow": false,
+      "page_errors": 0,
+      "failed_styles": 0
+    }
+  ]
+}

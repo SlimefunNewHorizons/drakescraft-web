@@ -83,18 +83,24 @@ Solo GET al servidor local, sin fuentes ni scripts globales y sin APIs externas.
 
 ## Eventos cancelados y calendario sintético
 
-`tests/events-mobile.browser.test.mjs` sirve el `<main>`, estilos locales (incluido el bloque CSS inline) y renderer inline reales de `eventos.html` y `events-en.html`. A375/393/412px comprueba cuatro respuestas: cancelación con eventos presentes en el JSON, HTTP503 con `ok:false`, JSON inválido y calendario activo ficticio. Los tres primeros mantienen ocultos los cinco nodos de programación, sin tarjetas ni sustitución del título de cancelación. El activo comprueba traducciones, evento del día, seis tarjetas, cinco tipos de distintivo y clases de día actual/cumpleaños/gala. Todas las hojas locales deben cargar con reglas; se mide el ancho global en24 navegaciones.
+`tests/events-mobile.browser.test.mjs` sirve el `<main>`, estilos locales (incluido el bloque CSS inline) y renderer inline reales de `eventos.html` y `events-en.html`. A375/393/412px comprueba seis respuestas: cancelación con eventos presentes en el JSON, HTTP503 con `ok:false`, JSON inválido, calendario activo ficticio, HTTP503 con cuerpo activo y campos con marcado HTML benigno. Los tres primeros mantienen ocultos los cinco nodos de programación, sin tarjetas ni sustitución del título de cancelación. El activo comprueba traducciones, evento del día, seis tarjetas, cinco tipos de distintivo y clases de día actual/cumpleaños/gala. Todas las hojas locales deben cargar con reglas; se mide el ancho global en36 navegaciones.
 
 ```sh
 PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
   AUDIT_ARTIFACT_DIR=/tmp/drakes-events-results \
   bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
-  node --test tests/events-mobile.browser.test.mjs
+  node --test tests/events-renderer.test.mjs tests/events-mobile.browser.test.mjs
 ```
 
-Solo permite GET al servidor efímero local y sustituye la API con datos ficticios. Retira navbar/footer y scripts ajenos al renderer; no prueba programación real, premios, comandos, fuentes remotas, CSP ni teléfono físico. HTTP503 se prueba junto a `ok:false`: no acredita el rechazo HTTP independiente del cuerpo. Sin `PLAYWRIGHT_MODULE` se omite explícitamente. Para tras dos casos fallidos. Las doce capturas opcionales son de viewport, cancelado/activo; no muestran todas las tarjetas.
+Solo permite GET al servidor efímero local y sustituye la API con datos ficticios. Retira navbar/footer y scripts ajenos al renderer; no prueba programación real, premios, comandos, fuentes remotas, CSP ni teléfono físico. HTTP503 con cuerpo activo debe conservar el calendario oculto. Nombre, descripción y premio deben permanecer como texto literal sin nodos HTML nuevos. `tests/events-renderer.test.mjs` ejecuta el renderer de las cuatro páginas con respuestas HTTP400/401/404/429/500/503 sin leer JSON ni tocar el DOM y verifica los símbolos escapados y la igualdad del renderer entre raíz y `web/`. Sin `PLAYWRIGHT_MODULE` se omite explícitamente. Para tras dos casos fallidos. Las doce capturas opcionales son de viewport, cancelado/activo; no muestran todas las tarjetas.
 
 `events-report.json` registra por estado el ancho y el área de intersección entre el rectángulo del título y el distintivo `::before` de la caja de hoy (píxeles cuadrados CSS). La medida contempla bordes y `box-sizing`; no analiza los glifos. Es diagnóstico de la fixture, sin aserción de separación: retirar fuentes y scripts globales puede cambiar tipografía y saltos de línea. Un solape local debe contrastarse con capturas públicas antes de abrir un defecto. Las pruebas de calendario por sí solas no certifican ausencia de solapes en la página completa.
+
+### Corrección del calendario (#814/#815, 18-nov-2026)
+
+El renderer de raíz y `web/`, ES/EN, rechaza respuestas HTTP fallidas antes de leer JSON y escapa los campos dinámicos al insertarlos en plantillas HTML. Conserva clases, etiquetas, scripts externos y el estado inicial cancelado. No cambia la API ni programa eventos.
+
+Chromium: 9/9 controles, 36 navegaciones ES/EN375/393/412. Antes: seis respuestas HTTP503 mostraban calendario y el marcado creaba24nodos; después: ambos contadores0. Renderer:9/9 pruebas en las cuatro copias. `npm run check`:14/14 y50productos. [Resumen estructurado](events-integrity-814-815.json). Capturas locales375ES activo y412EN cancelado revisadas; no acreditan página pública completa ni ausencia de solapes del distintivo. Candidato BUILT, sin despliegue; integración de la rama de auditoría y revisión pendientes.
 
 ## Render e interacción WebGL
 
