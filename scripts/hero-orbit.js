@@ -1,4 +1,3 @@
-/* ESTADO 2026-11-10: desplegado y verificado (1280/1600/1920/360/412, sin desborde, no tapa botones). PENDIENTE: index-en.html no tiene .op-stage (hero distinto, sin logo); probar prefers-reduced-motion real. */
 /* Hero de la portada: mini sistema solar alrededor del emblema.
  * Canvas 2D con proyeccion 3D propia, sprites precalculados y pausa fuera de pantalla. */
 (() => {
@@ -9,6 +8,7 @@
   if (!cv || !cv.getContext) return;
   const ctx = cv.getContext("2d");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const english = document.documentElement.lang === "en";
   const small = matchMedia("(max-width: 760px), (pointer: coarse)").matches;
   const TAU = Math.PI * 2, { sin, cos, min, max, sqrt, atan2, random: rnd } = Math;
   const D = 4.4, SUN = 0.29;
@@ -39,7 +39,7 @@
       ringCol: ["rgba(168,255,178,.25)", "rgba(46,204,113,.95)", "rgba(130,255,180,.35)"] },
 
     // 02 Clasico: Supervivencia Vanilla (Oro solar puro)
-    { id: "clasico", name: "02 Clásico", a: 0.54, e: 0.08, i: -0.32, n: 1.2, w: -0.70, r: 0.042,
+    { id: "clasico", name: english ? "02 Classic" : "02 Clásico", a: 0.54, e: 0.08, i: -0.32, n: 1.2, w: -0.70, r: 0.042,
       c: ["#ffe9b0", "#c88f2c"], g: "rgba(255,206,120,.95)" },
 
     // 03 SkyBlock: Isla en el cielo (Cian celestial con luna/isla orbital)
@@ -53,7 +53,7 @@
       moon: ["#f5e9ff", "#9b72e0", 0.075, -2.1] },
 
     // 05 Laboratorio: Zona de experimentacion (Plasma rojo redstone)
-    { id: "laboratorio", name: "05 Laboratorio", a: 0.90, e: 0.09, i: 0.38, n: 4.8, w: 0.35, r: 0.044,
+    { id: "laboratorio", name: english ? "05 Laboratory" : "05 Laboratorio", a: 0.90, e: 0.09, i: 0.38, n: 4.8, w: 0.35, r: 0.044,
       c: ["#ff9e80", "#cf2f17"], g: "rgba(255,87,34,.95)" },
 
     // 06 OneChunk: Minado tactico 16x16 (Topacio ambar con estela de cometa)
