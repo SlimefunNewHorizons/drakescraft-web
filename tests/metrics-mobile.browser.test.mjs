@@ -143,6 +143,7 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
               await page.waitForFunction(() => window.__edgeSettled);
               const observation = await page.evaluate(() => ({
                 status: document.querySelector('#edge-status').textContent.trim(),
+                statusColor: getComputedStyle(document.querySelector('#edge-status')).color,
                 ratio: document.querySelector('#edge-cache-ratio').textContent.trim(),
                 documentWidth: document.documentElement.scrollWidth,
               }));
@@ -153,6 +154,11 @@ test('metrics mobile: real markup, styles and renderers with synthetic API data'
                 assert.equal(observation.status, state === 'healthy'
                   ? lang === 'es' ? 'OPERATIVO' : 'OPERATIONAL'
                   : lang === 'es' ? 'EN MANTENIMIENTO' : 'UNDER MAINTENANCE');
+              }
+              if (['http503', 'invalid-json', 'network-error', 'missing-network'].includes(state)) {
+                assert.equal(observation.status, lang === 'es' ? 'SIN DATOS' : 'NO DATA');
+                assert.equal(observation.ratio, '—');
+                assert.equal(observation.statusColor, 'rgb(148, 163, 184)', 'unknown state has a neutral badge');
               }
               if (state === 'http503' && process.env.AUDIT_ARTIFACT_DIR) {
                 await page.locator('#edge-status').scrollIntoViewIfNeeded();

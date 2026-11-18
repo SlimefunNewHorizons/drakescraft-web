@@ -1409,21 +1409,24 @@ app.get('/api/metricas', async (_request, reply) => {
 
 // ── /api/edge-metrics — métricas globales de Cloudflare Edge & Infraestructura ─
 app.get('/api/edge-metrics', async (_request, reply) => {
-  reply.header('cache-control', 'public, max-age=300');
+  // No provider telemetry is configured: constants must not look like live measurements.
+  reply.code(503);
+  reply.header('cache-control', 'no-store');
   return {
+    error: 'Edge telemetry is not available',
     edge_network: {
       provider: 'Cloudflare Global Anycast Edge',
-      status: 'operational',
+      status: 'unknown',
       tls_version: 'TLS 1.3 (Modern Ciphers)',
       http_protocol: 'HTTP/2 & HTTP/3 (QUIC)',
       hsts_enabled: true,
       waf_shield: 'Active (DrakesCraft-Shield 2.0)',
-      edge_cache_ratio: '95.4%',
+      edge_cache_ratio: null,
       primary_pops: [
-        { code: 'SCL', city: 'Santiago', country: 'CL', latency_ms: '4ms', status: 'optimal' },
-        { code: 'GIG', city: 'Río de Janeiro', country: 'BR', latency_ms: '32ms', status: 'optimal' },
-        { code: 'EZE', city: 'Buenos Aires', country: 'AR', latency_ms: '18ms', status: 'optimal' },
-        { code: 'MIA', city: 'Miami', country: 'US', latency_ms: '110ms', status: 'optimal' }
+        { code: 'SCL', city: 'Santiago', country: 'CL', latency_ms: null, status: 'unknown' },
+        { code: 'GIG', city: 'Río de Janeiro', country: 'BR', latency_ms: null, status: 'unknown' },
+        { code: 'EZE', city: 'Buenos Aires', country: 'AR', latency_ms: null, status: 'unknown' },
+        { code: 'MIA', city: 'Miami', country: 'US', latency_ms: null, status: 'unknown' }
       ]
     },
     minecraft_infrastructure: {
@@ -1434,11 +1437,11 @@ app.get('/api/edge-metrics', async (_request, reply) => {
       tps_target: '20.0 TPS',
       ddos_mitigation: 'Filtrado perimetral L4/L7 + Rate Limiting Activo',
       modalities: [
-        { name: 'Slimefun', type: 'Supervivencia Técnica & Energía', status: 'online' },
-        { name: 'One Block', type: 'Supervivencia en 1 Bloque', status: 'online' },
-        { name: 'Skyblock', type: 'Islas Flotantes & Desafíos', status: 'online' },
-        { name: 'Clásico Vanilla', type: 'Supervivencia Tradicional', status: 'online' },
-        { name: 'Laboratorio', type: 'Entorno Experimental & Tecnología', status: 'online' }
+        { name: 'Slimefun', type: 'Supervivencia Técnica & Energía', status: 'unknown' },
+        { name: 'One Block', type: 'Supervivencia en 1 Bloque', status: 'unknown' },
+        { name: 'Skyblock', type: 'Islas Flotantes & Desafíos', status: 'unknown' },
+        { name: 'Clásico Vanilla', type: 'Supervivencia Tradicional', status: 'unknown' },
+        { name: 'Laboratorio', type: 'Entorno Experimental & Tecnología', status: 'unknown' }
       ]
     }
   };
