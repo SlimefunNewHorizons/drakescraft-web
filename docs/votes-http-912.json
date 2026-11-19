@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "ticket": 912,
+  "scope": "local Chromium fixture; no external vote requests",
+  "widths": [
+    375,
+    393,
+    412
+  ],
+  "languages": [
+    "es",
+    "en"
+  ],
+  "complete": true,
+  "before": {
+    "profiles_executed": 2,
+    "failed": 2,
+    "first_rejected_status_missing": 404,
+    "stopped_after_two_failures": true
+  },
+  "after": {
+    "node_tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "page_navigations": 54,
+    "http_json_errors_rejected": 24
+  },
+  "results": [
+    {
+      "width": 375,
+      "lang": "es",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    },
+    {
+      "width": 375,
+      "lang": "en",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        46.375,
+        46.375,
+        46.375,
+        46.375,
+        46.375
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    },
+    {
+      "width": 393,
+      "lang": "es",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    },
+    {
+      "width": 393,
+      "lang": "en",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        46.375,
+        46.375,
+        46.375,
+        46.375,
+        46.375
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    },
+    {
+      "width": 412,
+      "lang": "es",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    },
+    {
+      "width": 412,
+      "lang": "en",
+      "stylesLoaded": true,
+      "buttonHeights": [
+        46.375,
+        46.375,
+        46.375,
+        46.375,
+        46.375
+      ],
+      "checks": [
+        "links",
+        "disabled",
+        "inert-name",
+        "cooldown",
+        "cooldown-decrease",
+        "cooldown-expiry",
+        "nick-persistence",
+        "invalid-json",
+        "network-error",
+        "503-html-body",
+        "404-json-body",
+        "429-json-body",
+        "500-json-body",
+        "503-json-body"
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "votes-en-375.png",
+      "sha256": "4916557f14c9fc579167270366edea6614339c17737abde144e9ec812e3917bb",
+      "inspected": false
+    },
+    {
+      "file": "votes-en-393.png",
+      "sha256": "f475a29086d8e45115bfb9f1473c98a86a03c0328dbb3e5609b7784bb4e10cb5",
+      "inspected": false
+    },
+    {
+      "file": "votes-en-412.png",
+      "sha256": "c7caaf4efa1ef5e8f831cdd4ff38199b0453a5c10a14d6245feabf97f6b60332",
+      "inspected": true
+    },
+    {
+      "file": "votes-es-375.png",
+      "sha256": "c228f4de501add6583acaeba3590723dffd71dc750154aab2287bd9ef69a9a61",
+      "inspected": true
+    },
+    {
+      "file": "votes-es-393.png",
+      "sha256": "287799c2575f78996d8bffd8b2ee9634c5b1837b4822bd35333152e613e4b08b",
+      "inspected": false
+    },
+    {
+      "file": "votes-es-412.png",
+      "sha256": "25d99d26e9a64b0f7130d3b287794f806c59e652eb574bbf671ea7aded2b1ec9",
+      "inspected": false
+    }
+  ]
+}

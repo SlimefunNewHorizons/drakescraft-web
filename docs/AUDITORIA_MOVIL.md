@@ -125,7 +125,7 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
   node --test tests/votes-mobile.browser.test.mjs
 ```
 
-Solo permite GET al servidor local. El clic es un evento sintético sin navegación: no abre listados ni emite votos. JSON inválido, error de red y HTTP503 con cuerpo HTML terminan sin tarjetas; el último caso prueba error de parseo, no validación del estado HTTP independientemente del cuerpo. No acredita entrega de premios, Votifier, CSP pública, fuentes remotas, cabecera/pie ni interacción táctil real. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las seis capturas opcionales y `votes-report.json` son de la fixture, con nombres ficticios, fuera de Git.
+Solo permite GET al servidor local. El clic es un evento sintético sin navegación: no abre listados ni emite votos. JSON inválido, error de red y HTTP503 con cuerpo HTML terminan sin tarjetas. También comprueba HTTP404/429/500/503 con el mismo JSON válido de cinco sitios: ninguna respuesta fallida debe mostrar tarjetas ni enlaces. Los dos renderers rechazan el estado HTTP antes de leer el JSON; HTTP200 conserva el listado y sus controles. No acredita entrega de premios, Votifier, CSP pública, fuentes remotas, cabecera/pie ni interacción táctil real. Sin `PLAYWRIGHT_MODULE` se omite explícitamente; para tras dos casos fallidos. Las seis capturas opcionales y `votes-report.json` son de la fixture, con nombres ficticios, fuera de Git.
 
 ## Menús de términos, apoyo y Temporada 2
 

@@ -75,7 +75,7 @@ test('votes mobile: real ES/EN renderer, local cooldown and unavailable listings
           page.on('pageerror', error => errors.push(error.name));
           let mode = 'active';
           await context.route('**/assets/vote-sites.json', route => mode === 'network' ? route.abort('failed') : route.fulfill({
-            status: mode === 'unavailable' ? 503 : 200, contentType: 'application/json',
+            status: mode.startsWith('http-') ? Number(mode.slice(5)) : mode === 'unavailable' ? 503 : 200, contentType: 'application/json',
             body: mode === 'invalid' ? '{' : mode === 'unavailable' ? '<html>Unavailable</html>' : JSON.stringify({ sites }),
           }));
           const url = `${origin}/${lang === 'es' ? 'votar' : 'vote-en'}.html`;
@@ -133,13 +133,15 @@ test('votes mobile: real ES/EN renderer, local cooldown and unavailable listings
             assert.equal(await cards.nth(0).locator('.vt-st').textContent(), `${wait} 23h 59m`);
             await page.clock.fastForward(119 * 60000);
             assert.equal(await cards.nth(1).locator('.vt-st').textContent(), ready, 'expired cooldown must become available');
-            for (mode of ['invalid', 'network', 'unavailable']) {
+            for (mode of ['invalid', 'network', 'unavailable', 'http-404', 'http-429', 'http-500', 'http-503']) {
               await page.reload({ waitUntil: 'domcontentloaded' });
-              await page.waitForFunction(() => document.querySelector('#vt-sites').textContent === '...');
+              await page.waitForFunction(() => document.querySelector('#vt-sites').textContent === '...'
+                || document.querySelectorAll('.vt-card').length > 0);
+              assert.equal(await page.locator('#vt-sites').textContent(), '...', `${mode} must enter the unavailable state`);
               assert.equal(await cards.count(), 0, `${mode} must not show vote links`);
             }
             assert.deepEqual(errors, []);
-            report.push({ width, lang, ...layout, checks: ['links', 'disabled', 'inert-name', 'cooldown', 'cooldown-decrease', 'cooldown-expiry', 'nick-persistence', 'invalid-json', 'network-error', '503-html-body'] });
+            report.push({ width, lang, ...layout, checks: ['links', 'disabled', 'inert-name', 'cooldown', 'cooldown-decrease', 'cooldown-expiry', 'nick-persistence', 'invalid-json', 'network-error', '503-html-body', '404-json-body', '429-json-body', '500-json-body', '503-json-body'] });
           } catch (error) { failures++; throw error; }
           finally { await context.close(); }
         });
