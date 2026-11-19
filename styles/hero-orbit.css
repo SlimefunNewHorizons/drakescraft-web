@@ -3,6 +3,12 @@
 .op-stage.has-orbit .op-stage__logo { opacity: 0; }
 .op-stage.has-orbit .op-stage__canvas { inset: -16%; width: 132%; height: 132%; transform: none; pointer-events: none; }
 .op-hero { overflow-x: clip; }
+/* The English home keeps its existing copy, controls and status panel. */
+.home-hero__visuals { flex-direction: column; align-items: center; gap: 2rem; min-width: 0; }
+.home-hero .op-stage { position: relative; width: min(100%, 440px); margin: 0 auto; }
+.home-hero .op-stage__layers { position: absolute; inset: 0; }
+.home-hero .op-stage__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.home-hero .op-stage__logo { position: absolute; left: 35%; top: 35%; width: 30%; height: 30%; object-fit: contain; }
 @media (max-width: 1099px) {
   .op-stage { display: block !important; width: min(100%, 440px); max-width: none; margin: 0.5rem auto 0 !important; }
   .op-stage.has-orbit .op-stage__canvas { inset: -6%; width: 112%; height: 112%; }
