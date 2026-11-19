@@ -112,7 +112,7 @@ function ls(f){try{return f()}catch(e){return null}}
 nick.value=ls(function(){return localStorage.getItem("dc_vote_nick")})||"";
 nick.addEventListener("input",function(){ls(function(){localStorage.setItem("dc_vote_nick",nick.value.trim())})});
 function fmt(ms){var m=Math.ceil(ms/60000),h=Math.floor(m/60);return h?h+"h "+(m%60)+"m":m+"m"}
-fetch("/assets/vote-sites.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(d){
+fetch("/assets/vote-sites.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error("Vote listings unavailable");return r.json()}).then(function(d){
  var sites=d.sites||[];
  box.innerHTML="";
  sites.forEach(function(s){
