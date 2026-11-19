@@ -34,9 +34,11 @@
     }
     .event-today-box::before {
       content: "TODAY IN DRAKES";
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0 0 0.75rem auto;
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
       font-weight: 700;

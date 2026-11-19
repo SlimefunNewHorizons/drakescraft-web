@@ -98,6 +98,17 @@ Solo permite GET al servidor efímero local y sustituye la API con datos fictici
 
 `events-report.json` registra por estado el ancho y el área de intersección entre el rectángulo del título y el distintivo `::before` de la caja de hoy (píxeles cuadrados CSS). La medida contempla bordes y `box-sizing`; no analiza los glifos. Es diagnóstico de la fixture, sin aserción de separación: retirar fuentes y scripts globales puede cambiar tipografía y saltos de línea. Un solape local debe contrastarse con capturas públicas antes de abrir un defecto. Las pruebas de calendario por sí solas no certifican ausencia de solapes en la página completa.
 
+El solape de #914 se confirmó visualmente en la página inglesa publicada. El distintivo de hoy ocupa ahora una fila propia en el flujo de la caja, alineada a la derecha y con separación antes del título, en ambos idiomas y en las copias `web/`.
+
+`tests/events-heading.browser.test.mjs` conserva los cuatro documentos completos y sus CSS locales, retirando scripts y fuentes remotas. A375/393/412 y1280px comprueba el título cancelado original y otro sintético de varias líneas, con tamaño raíz100% y200%: exige separación vertical del distintivo, ancho contenido y ausencia de desborde horizontal del documento al100%. Son64 mediciones; no acredita el flujo activo de la API, fuentes públicas, scripts globales, zoom físico del navegador ni ausencia de desbordes al200%. Las capturas opcionales muestran el estado cancelado al100%, fuera de Git.
+
+```sh
+PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
+  AUDIT_ARTIFACT_DIR=/tmp/drakes-events-heading-results \
+  bash ~/ai-hub/scripts/build_seguro.sh 21 "$PWD" \
+  node --test tests/events-heading.browser.test.mjs
+```
+
 ## Render e interacción WebGL
 
 `scripts/audit-graphs-browser.mjs` comprueba `/saori.html` a los tres anchos con contextos separados, WebGL por software y peticiones GET/HEAD. Intercepta las llamadas de dibujo únicamente en el navegador de prueba: toma una muestra central de 32 × 32 píxeles inmediatamente después de `drawArrays`, cuenta colores y errores GL, y comprueba cambios de proyección al arrastrar y usar la rueda. También prueba el control de aristas, la pestaña Galaxia y el botón de centrar. Guarda checkpoints JSON y capturas del canvas fuera del repositorio; se detiene tras dos fallos. Los errores JavaScript se registran por tipo y ubicación de fuente pública, sin copiar mensajes de página.
