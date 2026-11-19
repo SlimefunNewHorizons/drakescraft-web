@@ -50,6 +50,8 @@ jobs:
   events-mobile:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/events-browser/browsers
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
