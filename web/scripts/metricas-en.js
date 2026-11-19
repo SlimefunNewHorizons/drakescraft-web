@@ -190,12 +190,27 @@
     menu && menu.classList.toggle('is-open', !expanded);
   });
 
+  function edgeUnavailable() {
+    texto('edge-status', 'NO DATA');
+    texto('edge-cache-ratio', '—');
+    var badge = document.getElementById('edge-status');
+    if (badge) badge.dataset.state = 'unknown';
+  }
+  edgeUnavailable();
+
   fetch('/api/edge-metrics', { headers: { accept: 'application/json' } })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (em) {
-      if (!em || !em.edge_network) return;
-      texto('edge-cache-ratio', em.edge_network.edge_cache_ratio || '95.4%');
-      texto('edge-status', em.edge_network.status === 'operational' ? 'OPERATIONAL' : 'UNDER MAINTENANCE');
+      var edge = em && em.edge_network;
+      if (!edge || typeof edge !== 'object' || Array.isArray(edge)) return;
+      var ratio = edge.edge_cache_ratio;
+      if (typeof ratio === 'string' && /^\d{1,3}(?:\.\d+)?%$/.test(ratio)
+          && Number(ratio.slice(0, -1)) <= 100) texto('edge-cache-ratio', ratio);
+      var status = edge.status === 'operational' || edge.status === 'maintenance' ? edge.status : 'unknown';
+      texto('edge-status', status === 'operational' ? 'OPERATIONAL'
+        : status === 'maintenance' ? 'UNDER MAINTENANCE' : 'NO DATA');
+      var badge = document.getElementById('edge-status');
+      if (badge) badge.dataset.state = status;
     })
-    .catch(function () {});
+    .catch(edgeUnavailable);
 })();
