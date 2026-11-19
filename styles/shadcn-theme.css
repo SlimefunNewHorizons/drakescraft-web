@@ -538,7 +538,7 @@
     border-radius: 6px;
     cursor: pointer;
   }
-  .nav-toggle span {
+  .site-nav .nav-toggle span {
     width: 18px;
     height: 2px;
     background: #cbd5e1;

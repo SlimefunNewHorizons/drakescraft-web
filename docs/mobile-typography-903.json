@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-18",
+  "source": "https://web.drakescraft.cl/store.html",
+  "strictText": true,
+  "minTextSize": 12,
+  "complete": true,
+  "exitCode": 1,
+  "results": [
+    {
+      "page": "store.html",
+      "width": 375,
+      "status": 200,
+      "viewport": 375,
+      "scrollWidth": 375,
+      "smallTextCount": 83,
+      "errors": [],
+      "cspErrors": 0,
+      "cspViolations": [],
+      "screenshot": "store-375.png",
+      "screenshotSha256": "40d21abd47363d85fc1e5ab30ef12cd54856131f144e03a2ccd360ff5cc05ca6"
+    },
+    {
+      "page": "store.html",
+      "width": 393,
+      "status": 200,
+      "viewport": 393,
+      "scrollWidth": 393,
+      "smallTextCount": 83,
+      "errors": [],
+      "cspErrors": 0,
+      "cspViolations": [],
+      "screenshot": "store-393.png",
+      "screenshotSha256": "2ab2eae2cd93e50bd43caedda3ce010e7b13921b6d112bab7b270b08442f65eb"
+    },
+    {
+      "page": "store.html",
+      "width": 412,
+      "status": 200,
+      "viewport": 412,
+      "scrollWidth": 412,
+      "smallTextCount": 83,
+      "errors": [],
+      "cspErrors": 0,
+      "cspViolations": [],
+      "screenshot": "store-412.png",
+      "screenshotSha256": "f197e76c3e889bef658850a386a0295eed79a4ccf3db7041a61a7fd205858b27"
+    }
+  ],
+  "scope": "GET/HEAD only; viewport screenshots; computed text sizes cover the document; no checkout interaction or visual review of every product",
+  "checks": {
+    "browserTests": 3,
+    "browserFailures": 0,
+    "npmCheckTests": 14,
+    "npmFailures": 0,
+    "catalogProducts": 50
+  },
+  "sharedSmallTextSample": [
+    {
+      "selector": "span.bday-ribbon__badge",
+      "fontSize": "10.44px"
+    },
+    {
+      "selector": "span.bday-ribbon__text",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "a.bday-ribbon__link",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "button#drakes-bday-ribbon-close.bday-ribbon__close",
+      "fontSize": "10.875px"
+    },
+    {
+      "selector": "small",
+      "fontSize": "9.86px"
+    },
+    {
+      "selector": "strong",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "strong",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "strong",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "p",
+      "fontSize": "10.875px"
+    },
+    {
+      "selector": "p#fx-note.fx-note",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "strong",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "strong",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "span#fx-updated",
+      "fontSize": "11.89px"
+    },
+    {
+      "selector": "span.store-product__tag",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "code",
+      "fontSize": "11.7392px"
+    },
+    {
+      "selector": "span.store-product__delivery",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "span.store-product__tag",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "code",
+      "fontSize": "11.7392px"
+    },
+    {
+      "selector": "span.store-product__delivery",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "span.store-product__tag",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "code",
+      "fontSize": "11.7392px"
+    },
+    {
+      "selector": "span.store-product__delivery",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "span.store-product__tag",
+      "fontSize": "11.6px"
+    },
+    {
+      "selector": "code",
+      "fontSize": "11.7392px"
+    },
+    {
+      "selector": "code",
+      "fontSize": "11.7392px"
+    }
+  ]
+}
