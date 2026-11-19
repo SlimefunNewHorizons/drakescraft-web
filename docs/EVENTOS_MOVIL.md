@@ -25,7 +25,10 @@ del documento completo a ese tamaño. Las capturas opcionales son de fixture.
 
 El job `events-mobile` de CI instala Playwright 1.58.2 y Chromium únicamente
 en el directorio temporal del runner, y ejecuta la misma regresión contra la
-candidata. Las bibliotecas de sistema de Chromium se instalan en ese runner
+candidata sobre `ubuntu-24.04`, plataforma admitida por la versión fijada.
+No usa `ubuntu-latest`: esa etiqueta puede avanzar a una distribución que
+Playwright 1.58.2 no reconozca. La [matriz de esa versión](https://github.com/microsoft/playwright/blob/v1.58.2/packages/playwright-core/src/server/utils/hostPlatform.ts)
+permite contrastar el runner antes de cambiarlo. Las bibliotecas de sistema de Chromium se instalan en ese runner
 efímero; no añade dependencias a la imagen de producción.
 
 Reversión: revertir el commit CSS. El desplegador web exige una copia limpia
