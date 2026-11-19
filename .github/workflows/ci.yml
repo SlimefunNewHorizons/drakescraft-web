@@ -66,4 +66,4 @@ jobs:
         env:
           PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/events-browser/browsers
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/events-browser/node_modules/playwright/index.mjs
-        run: node --test --test-concurrency=1 tests/events-heading.browser.test.mjs tests/votes-mobile.browser.test.mjs tests/navigation-mobile.browser.test.mjs tests/hero-mobile.browser.test.mjs tests/metrics-mobile.browser.test.mjs tests/wiki-mobile.browser.test.mjs tests/wiki-navigation-races.browser.test.mjs
+        run: node --test --test-concurrency=1 tests/events-heading.browser.test.mjs tests/events-mobile.browser.test.mjs tests/votes-mobile.browser.test.mjs tests/navigation-mobile.browser.test.mjs tests/hero-mobile.browser.test.mjs tests/metrics-mobile.browser.test.mjs tests/wiki-mobile.browser.test.mjs tests/wiki-navigation-races.browser.test.mjs
