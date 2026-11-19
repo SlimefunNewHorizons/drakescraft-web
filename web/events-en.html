@@ -207,9 +207,16 @@
   </footer>
 
   <script>
+    // API fields are text, including when inserted into an HTML template.
+    function eventText(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[char]);
+    }
     async function loadEvents() {
       try {
         const res = await fetch('/api/eventos');
+        if (!res.ok) return;
         const data = await res.json();
         if (!data.ok || data.status === 'cancelled') return;
         document.querySelectorAll('[data-event-schedule]').forEach(node => { node.hidden = false; });
@@ -220,7 +227,7 @@
           document.getElementById('today-title').textContent = `Day ${ev.day}: ${ev.name_en}`;
           document.getElementById('today-meta').textContent = `Time: ${ev.time} CLT · Duration: ${ev.duration_minutes} min · Type: ${ev.kind}`;
           document.getElementById('today-desc').textContent = ev.summary_en;
-          document.getElementById('today-reward').innerHTML = `<strong>Reward:</strong> ${ev.reward_en}`;
+          document.getElementById('today-reward').innerHTML = `<strong>Reward:</strong> ${eventText(ev.reward_en)}`;
         }
 
         // 30 days grid
@@ -242,13 +249,13 @@
 
           card.innerHTML = `
             <div>
-              <span class="event-badge ${badgeClass}">${ev.kind}</span>
-              <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #ffaa00; font-weight: 700;">DAY ${ev.day} · ${ev.time} CLT</div>
-              <h3 style="font-size: 1.05rem; margin: 0.35rem 0 0.5rem; color: #f8fafc;">${ev.name_en}</h3>
-              <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 0.75rem; line-height: 1.4;">${ev.summary_en}</p>
+              <span class="event-badge ${badgeClass}">${eventText(ev.kind)}</span>
+              <div style="font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #ffaa00; font-weight: 700;">DAY ${eventText(ev.day)} · ${eventText(ev.time)} CLT</div>
+              <h3 style="font-size: 1.05rem; margin: 0.35rem 0 0.5rem; color: #f8fafc;">${eventText(ev.name_en)}</h3>
+              <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 0.75rem; line-height: 1.4;">${eventText(ev.summary_en)}</p>
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem; color: #38bdf8;">
-              <strong>Reward:</strong> ${ev.reward_en}
+              <strong>Reward:</strong> ${eventText(ev.reward_en)}
             </div>
           `;
           grid.appendChild(card);
