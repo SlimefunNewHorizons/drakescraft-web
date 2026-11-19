@@ -147,7 +147,7 @@
     const head = $view.innerHTML.replace('<div id="sfw-list"></div>', "");
     try {
       await listAddon(ad, cat, my, head);
-    } catch (e) { $view.innerHTML = head + '<p class="sfw-err">' + L.err + "</p>"; }
+    } catch (e) { if (my !== seq) return; $view.innerHTML = head + '<p class="sfw-err">' + L.err + "</p>"; }
   }
   async function itemView(slug, sh, id) {
     const ad = AS[slug], my = ++seq;
@@ -177,7 +177,7 @@
       if (!it.r && !it.l && !it.u) h += '<p class="sfw-muted">' + L.unk + "</p>";
       $view.innerHTML = h;
       document.title = it.n + " · " + ad.n + " · DrakesCraft";
-    } catch (e) { $view.innerHTML = '<p class="sfw-err">' + L.err + "</p>"; }
+    } catch (e) { if (my !== seq) return; $view.innerHTML = '<p class="sfw-err">' + L.err + "</p>"; }
   }
   function route() {
     const p = decodeURIComponent(location.hash.replace(/^#\/?/, "")).split("/");
