@@ -247,9 +247,15 @@
                     <div>
                       <h3>Resumen de Compra</h3>
                     </div>
-                    <span class="cart-badge-count" id="store-cart-count"
-                      >0</span
-                    >
+                    <span class="cart-badge-count" id="store-cart-count">0</span>
+                  </div>
+                  <!-- Alerta Preventiva de VPN Tebex -->
+                  <div class="store-vpn-alert" id="checkout-vpn-alert">
+                    <span class="vpn-alert-icon">⚠️</span>
+                    <div class="vpn-alert-body">
+                      <strong>¡Atención con VPN / Proxies!</strong>
+                      <p>Si usas VPN, Tebex detectará EE.UU. y te exigirá un código postal estadounidense (Error 33617799). <strong>Desactiva tu VPN</strong> y selecciona tu país real al pagar, o utiliza <strong>PayPal / Google Pay</strong>.</p>
+                    </div>
                   </div>
                   <!-- Selector de Plataforma Java / Bedrock -->
                   <div class="platform-selector-box">
@@ -295,6 +301,7 @@
                             id="player-avatar"
                             src="https://minotar.net/helm/Steve/48.png"
                           />
+                          <div class="skin-loading-spinner" id="skin-spinner" style="display: none;"></div>
                         </div>
                         <input
                           autocomplete="username"
@@ -308,6 +315,7 @@
                           title="Escribe de 3 a 16 letras, números o guiones bajos."
                         />
                       </div>
+                      <div class="nick-premium-status" id="nick-premium-badge" style="display: none;"></div>
                       <div class="nick-hint-message" id="nick-platform-hint">
                         <strong>Atención:</strong> Escribe tu nick
                         <em>exactamente igual</em> a como aparece en el juego

@@ -200,6 +200,15 @@
                 <span class="cart-badge-count" id="store-cart-count">0</span>
               </div>
 
+              <!-- Preventive Tebex VPN Alert -->
+              <div class="store-vpn-alert" id="checkout-vpn-alert">
+                <span class="vpn-alert-icon">⚠️</span>
+                <div class="vpn-alert-body">
+                  <strong>Warning: Do not use VPN / Proxies!</strong>
+                  <p>Using a VPN causes Tebex to detect a US IP and demand a valid US ZIP code (Error 33617799). <strong>Turn off your VPN</strong> and pick your actual country during checkout, or pay via <strong>PayPal / Google Pay</strong>.</p>
+                </div>
+              </div>
+
               <!-- Java / Bedrock Platform Selector -->
               <div class="platform-selector-box">
                 <span class="selector-label">1. Choose your platform:</span>
@@ -226,9 +235,11 @@
                   <div class="nick-input-wrapper">
                     <div class="avatar-preview-box" id="avatar-container" title="Your Minecraft Skin">
                       <img id="player-avatar" src="https://minotar.net/helm/Steve/48.png" alt="Avatar">
+                      <div class="skin-loading-spinner" id="skin-spinner" style="display: none;"></div>
                     </div>
                     <input id="input-nick" name="nick" minlength="3" maxlength="17" pattern="\.?[A-Za-z0-9_]{3,16}" title="Enter 3 to 16 letters, numbers or underscores." autocomplete="username" placeholder="Your exact in-game username" required>
                   </div>
+                  <div class="nick-premium-status" id="nick-premium-badge" style="display: none;"></div>
 
                   <div id="nick-platform-hint" class="nick-hint-message">
                     <strong>Attention:</strong> Type your username <em>exactly</em> as it appears in-game (case-sensitive).

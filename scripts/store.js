@@ -117,6 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartJumpCount = document.getElementById("store-cart-jump-count");
     const nickInput = document.getElementById("input-nick");
     const avatarImg = document.getElementById("player-avatar");
+    const skinSpinner = document.getElementById("skin-spinner");
+    const premiumBadge = document.getElementById("nick-premium-badge");
     const platformJava = document.getElementById("btn-platform-java");
     const platformBedrock = document.getElementById("btn-platform-bedrock");
     const nickHint = document.getElementById("nick-platform-hint");
@@ -125,22 +127,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedPlatform = "java";
     let avatarDebounceTimer = null;
+    let currentLookupNick = "";
 
-    // Actualizador de Avatar y Validación de Plataforma
-    function updateAvatar() {
+    // Actualizador de Avatar y Validación de Cuenta Premium
+    async function updateAvatar() {
         const rawNick = (nickInput?.value || "").trim();
         if (!rawNick || rawNick.length < 3) {
-            if (avatarImg) avatarImg.src = "https://minotar.net/helm/Steve/48.png";
+            if (avatarImg) {
+                avatarImg.src = "https://minotar.net/helm/Steve/48.png";
+                avatarImg.style.opacity = "1";
+            }
+            if (skinSpinner) skinSpinner.style.display = "none";
+            if (premiumBadge) {
+                premiumBadge.style.display = "none";
+                premiumBadge.innerHTML = "";
+            }
             return;
         }
 
-        // Limpiar el nick para la llamada al CDN de skins (ignorar punto en bedrock para la skin)
-        const skinLookup = rawNick.startsWith(".") ? rawNick.substring(1) : rawNick;
+        const cleanNick = rawNick.startsWith(".") ? rawNick.substring(1) : rawNick;
+        currentLookupNick = cleanNick;
+
+        if (skinSpinner) skinSpinner.style.display = "block";
+        if (avatarImg) avatarImg.style.opacity = "0.5";
+
+        try {
+            // Verificar si la cuenta es premium oficial mediante PlayerDB API (con CORS habilitado)
+            const res = await fetch(`https://playerdb.co/api/player/minecraft/${encodeURIComponent(cleanNick)}`);
+            if (currentLookupNick !== cleanNick) return; // Evitar carrera si el usuario sigue escribiendo
+
+            if (res.ok) {
+                const data = await res.json();
+                if (data.code === "player.found" && data.data?.player?.raw_id) {
+                    const uuid = data.data.player.raw_id;
+                    if (avatarImg) {
+                        avatarImg.src = `https://mc-heads.net/avatar/${uuid}/48.png`;
+                        avatarImg.onload = () => {
+                            if (currentLookupNick === cleanNick && avatarImg) avatarImg.style.opacity = "1";
+                        };
+                        avatarImg.onerror = () => {
+                            if (avatarImg) {
+                                avatarImg.src = `https://minotar.net/helm/${encodeURIComponent(cleanNick)}/48.png`;
+                                avatarImg.style.opacity = "1";
+                            }
+                        };
+                    }
+                    if (premiumBadge) {
+                        premiumBadge.className = "nick-premium-status is-premium";
+                        premiumBadge.innerHTML = storeIsEn 
+                            ? "✓ Premium Account verified" 
+                            : "✓ Cuenta Premium verificada";
+                        premiumBadge.style.display = "flex";
+                    }
+                } else {
+                    // No es cuenta premium o nick no registrado en Mojang
+                    setNonPremiumAvatar(cleanNick);
+                }
+            } else {
+                setNonPremiumAvatar(cleanNick);
+            }
+        } catch (e) {
+            if (currentLookupNick === cleanNick) {
+                setNonPremiumAvatar(cleanNick);
+            }
+        } finally {
+            if (currentLookupNick === cleanNick && skinSpinner) {
+                skinSpinner.style.display = "none";
+            }
+        }
+    }
+
+    function setNonPremiumAvatar(nick) {
         if (avatarImg) {
-            avatarImg.src = `https://minotar.net/helm/${encodeURIComponent(skinLookup)}/48.png`;
-            avatarImg.onerror = () => {
-                avatarImg.src = "https://minotar.net/helm/Steve/48.png";
-            };
+            avatarImg.src = "https://minotar.net/helm/Steve/48.png";
+            avatarImg.style.opacity = "1";
+        }
+        if (premiumBadge) {
+            premiumBadge.className = "nick-premium-status is-offline";
+            premiumBadge.innerHTML = storeIsEn
+                ? "Cuenta Bedrock / No-Premium (Skin default Steve)"
+                : "Cuenta Bedrock / No-Premium (Skin default Steve)";
+            premiumBadge.style.display = "flex";
         }
     }
 
