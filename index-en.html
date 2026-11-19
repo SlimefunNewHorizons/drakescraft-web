@@ -22,6 +22,7 @@
 <link href="/styles/svg-vivo.css?v=20261110-svg" rel="stylesheet" />
     <link rel="stylesheet" href="/styles/cosmos.css?v=20261110-m2">
   <link rel="stylesheet" href="/styles/grafos.css?v=20261110-webgl-v4">
+  <link rel="stylesheet" href="/styles/hero-orbit.css?v=20261119-en1">
 </head>
 <body data-hero="home" class="home-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -107,7 +108,14 @@
           </div>
         </div>
 
-        <div class="home-hero__telemetry-col">
+        <div class="home-hero__telemetry-col home-hero__visuals">
+          <div class="op-stage" role="img" aria-label="Six worlds orbiting the DrakesCraft emblem">
+            <div class="op-stage__layers">
+              <canvas class="op-stage__canvas" data-emblem aria-hidden="true"></canvas>
+              <img class="op-stage__logo" src="/assets/logo-drakescraft.png"
+                alt="DrakesCraft emblem" width="220" height="220">
+            </div>
+          </div>
           <div class="star-telemetry-hud" data-live-status>
             <div class="hud-header">
               <div class="hud-status-indicator">
@@ -500,6 +508,7 @@
   <script src="scripts/bedrock.js?v=20261116-v2"></script>
   <script src="scripts/site.js?v=20261017-v7"></script>
   <script src="scripts/home.js?v=20261107-v1"></script>
+  <script src="/scripts/hero-orbit.js?v=20261119-en1" defer></script>
   <script src="/scripts/portal.js?v=20261109-r8" defer></script>
       <script src="/scripts/novedades.js?v=20261116-v4" defer></script>
   <script src="/scripts/grafos.js?v=20261110-webgl-v4" defer></script>
