@@ -47,3 +47,23 @@ jobs:
 
           PORT=18080 node scripts/smoke-tests.js
 
+  events-mobile:
+    # Playwright 1.58.2 supports Ubuntu 24.04; ubuntu-latest can move beyond it.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Preparar Chromium fuera de las dependencias de producción
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/events-browser/browsers
+        run: |
+          npm install --prefix "$RUNNER_TEMP/events-browser" playwright@1.58.2 --no-audit --no-fund
+          node "$RUNNER_TEMP/events-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Comprobar separación del distintivo y el título de eventos
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/events-browser/browsers
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/events-browser/node_modules/playwright/index.mjs
+        run: node --test tests/events-heading.browser.test.mjs
