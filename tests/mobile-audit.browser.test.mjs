@@ -10,6 +10,58 @@ import { fileURLToPath } from 'node:url';
 
 const auditor = fileURLToPath(new URL('../scripts/audit-mobile.mjs', import.meta.url));
 
+test('mobile audit covers English guide, votes and events by default and at every supported width', { timeout: 120000 }, async () => {
+  const output = await mkdtemp(join(tmpdir(), 'drakes-mobile-english-'));
+  const englishPages = ['guide-en.html', 'vote-en.html', 'events-en.html'];
+  const requests = [];
+  const server = createServer((req, res) => {
+    requests.push(req.url);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.end('<!doctype html><html lang="en"><meta name="viewport" content="width=device-width"><body><p>English route fixture</p></body></html>');
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  let child;
+  try {
+    // Check real document names without executing their APIs or third-party scripts.
+    for (const page of englishPages) {
+      assert.match(await readFile(new URL(`../${page}`, import.meta.url), 'utf8'), /<html\b[^>]*lang="en"/i);
+    }
+    const runAudit = async (name, widths, selectedPages) => {
+      const target = join(output, name);
+      const env = { ...process.env, AUDIT_WIDTHS: widths, AUDIT_SCREENSHOTS: '0' };
+      delete env.AUDIT_PAGES;
+      delete env.AUDIT_STRICT_TEXT;
+      if (selectedPages) env.AUDIT_PAGES = selectedPages;
+      child = spawn(process.execPath, [auditor, `http://127.0.0.1:${server.address().port}`, target], { env, stdio: 'ignore' });
+      const code = await new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { child.kill(); reject(new Error('English route audit did not finish')); }, 75000);
+        child.once('error', error => { clearTimeout(timer); reject(error); });
+        child.once('exit', code => { clearTimeout(timer); resolve(code); });
+      });
+      assert.equal(code, 0);
+      return JSON.parse(await readFile(join(target, 'report.json'), 'utf8'));
+    };
+    const defaults = await runAudit('default', '375');
+    assert.equal(defaults.complete, true);
+    for (const page of englishPages) {
+      assert.equal(defaults.results.filter(row => row.page === page).length, 1, `${page} is covered by default`);
+      assert.equal(requests.filter(url => url === `/${page}`).length, 1);
+    }
+    const selected = await runAudit('selected', '375,393,412', 'guide-en,vote-en,events-en');
+    assert.equal(selected.complete, true);
+    assert.deepEqual(selected.results.map(row => ({ page: row.page, width: row.width, status: row.status })),
+      [375, 393, 412].flatMap(width => englishPages.map(page => ({ page, width, status: 200 }))));
+  } finally {
+    if (child && child.exitCode === null) {
+      child.kill();
+      await new Promise(resolve => child.once('exit', resolve));
+    }
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+    await rm(output, { recursive: true, force: true });
+  }
+});
+
 test('mobile audit fails visible text below 12px and excludes transparent ancestors', { timeout: 40000 }, async () => {
   const output = await mkdtemp(join(tmpdir(), 'drakes-mobile-type-'));
   const server = createServer((req, res) => {

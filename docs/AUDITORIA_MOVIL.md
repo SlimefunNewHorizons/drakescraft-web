@@ -12,7 +12,7 @@ PLAYWRIGHT_MODULE=/tmp/drakes-mobile/node_modules/playwright/index.mjs \
 
 En un host sin las bibliotecas de Chromium, instalar primero sus dependencias de sistema mediante el administrador del host. No instalar este navegador dentro del contenedor web.
 
-El recorrido abre 30 páginas por ancho, incluidas novedades y el alias de grafos, y bloquea métodos HTTP distintos de GET/HEAD. No hace clic, envía formularios ni interactúa con pagos. La tienda se inspecciona como documento público; no se modifica su código.
+El recorrido abre 33 páginas por ancho, incluidas las versiones inglesas de guía (`guide-en`), votos (`vote-en`) y eventos (`events-en`), novedades y el alias de grafos, y bloquea métodos HTTP distintos de GET/HEAD. No hace clic, envía formularios ni interactúa con pagos. La tienda se inspecciona como documento público; no se modifica su código.
 
 Para separar mediciones de DOM y capturas, usar `AUDIT_SCREENSHOTS=0`. Para repetir casos concretos, `AUDIT_PAGES=store,index-en AUDIT_WIDTHS=393,412`. Solo se aceptan las páginas del recorrido y los tres anchos previstos. Una ejecución sin capturas no acredita revisión visual.
 

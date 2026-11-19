@@ -7,10 +7,10 @@ const base = new URL(process.argv[2] || 'http://127.0.0.1:8080');
 const output = resolve(process.argv[3] || 'mobile-audit');
 if (!['http:', 'https:'].includes(base.protocol)) throw new Error('HTTP(S) base required');
 const pages = [
-  'temporada-2', 'temporada-2-en', 'guia', 'guia-comandos', 'guia-comandos-en',
+  'temporada-2', 'temporada-2-en', 'guia', 'guide-en', 'guia-comandos', 'guia-comandos-en',
   'guia-slimefun', 'guia-slimefun-en', 'guia-rangos', 'guia-rangos-en',
   'guia-poderes', 'guia-poderes-en', 'guia-plugins', 'guia-plugins-en',
-  'wiki-slimefun', 'wiki-slimefun-en', 'votar', 'terms', 'terms-en', 'eventos',
+  'wiki-slimefun', 'wiki-slimefun-en', 'votar', 'vote-en', 'terms', 'terms-en', 'eventos', 'events-en',
   'apoya', 'apoya-en', 'metricas', 'metricas-en', 'store', 'index-en', 'saori',
   'saori-en', 'grafos', 'novedades', 'novedades-en',
 ];
