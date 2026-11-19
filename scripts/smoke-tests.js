@@ -519,6 +519,25 @@ async function main() {
   // Test internal links
   await testLinks();
 
+  // Sin proveedor de telemetría, el servidor HTTP tampoco confirma métricas Edge.
+  try {
+    const response = await fetch(`${BASE_URL}/api/edge-metrics`);
+    const data = JSON.parse(response.body);
+    if (response.status !== 503 || response.headers['cache-control'] !== 'no-store'
+      || data.edge_network?.status !== 'unknown' || data.edge_network?.edge_cache_ratio !== null
+      || !Array.isArray(data.edge_network?.primary_pops) || !data.edge_network.primary_pops.length
+      || data.edge_network.primary_pops.some(pop => pop.latency_ms !== null || pop.status !== 'unknown')
+      || !Array.isArray(data.minecraft_infrastructure?.modalities) || !data.minecraft_infrastructure.modalities.length
+      || data.minecraft_infrastructure.modalities.some(modality => modality.status !== 'unknown')) {
+      errors.push('/api/edge-metrics: expected HTTP 503, no-store and unknown measurements');
+    } else {
+      passed++;
+      console.log('✓ /api/edge-metrics no inventa mediciones sin telemetría');
+    }
+  } catch (err) {
+    errors.push(`/api/edge-metrics: ${err.message}`);
+  }
+
   // Test Store & Checkout API
   await testStoreApi();
   await testStoreSchedule();
