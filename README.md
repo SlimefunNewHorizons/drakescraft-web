@@ -4,13 +4,12 @@
 
 # DrakesCraft Web Portal & Shop Interface
 
-> ### 🏰 ¡Únete a la Comunidad Oficial de DrakesCraft!
-> 
-> * 🎮 **IP del Servidor**: `play.drakescraft.cl` *(Java 1.21.11 & Bedrock)*
-> * 💬 **Discord Oficial**: [discord.gg/drakescraft](https://discord.gg/rv3vtXZTk7)
-> * 🌐 **Web & Guía**: [web.drakescraft.cl](https://web.drakescraft.cl) — 🛒 **Tienda**: [web.drakescraft.cl/store](https://web.drakescraft.cl/store.html)
-> 
-> *¡Juega con este addon y más de 80 expansiones optimizadas en vivo en nuestra network de supervivencia técnica!*
+> ### 🏰 Comunidad Oficial de DrakesCraft
+>
+> * 🎮 **IP del Servidor**: `mc.drakescraft.cl` *(Java & Bedrock)*
+> * 💬 **Discord Oficial**: [discord.gg/rv3vtXZTk7](https://discord.gg/rv3vtXZTk7)
+> * 🌐 **Portal Web & Guía**: [web.drakescraft.cl](https://web.drakescraft.cl)
+> * 🛒 **Tienda Oficial**: [drakescraft-v2.tebex.io](https://drakescraft-v2.tebex.io)
 
 ---
 
@@ -47,8 +46,8 @@ flowchart TD
     end
 
     subgraph Backend["🎮 Infraestructura DrakesCraft & Star"]
-        Minecraft["Servidor Paper / Purpur 1.21.11"]
-        Odysseia["Plugin Odysseia (Telemetría & Ingest)"]
+        Minecraft["Servidor Purpur 26.2 (Temporada 2)"]
+        Odysseia["Plugin Odysseia / DrakesServer (Telemetría & Ingest)"]
         TebexAPI["Tebex Checkout Backend"]
         DataVolume["/data (Visitas, Métricas, Status)"]
     end
@@ -73,7 +72,7 @@ flowchart TD
 ## ⚡ Estructura del Sitio
 
 - **Portal Principal (`index.html`)**:
-  - Estado del servidor en tiempo real vía socket Ping, dirección IP (`mc.drakescraft.cl` / `play.drakescraft.cl`) y accesos comunitarios.
+  - Estado del servidor en tiempo real vía socket Ping, dirección IP (`mc.drakescraft.cl`) y accesos comunitarios.
 - **Centro de Guías Interactivas**:
   - `guia-comandos.html`: Manual interactivo de comandos organizados por modalidad con filtros en tiempo real, soporte Bedrock (`/offhand`) y alias.
   - `guia-rangos.html`: Comparativa de límites efectivos (hogares, protecciones, bóvedas, warps), kits y multiplicadores por rango.
@@ -124,10 +123,8 @@ Los eventos de noviembre están cancelados: `/api/eventos` conserva HTTP 200 y d
 
 Validación: `npm run check` y `npm test` contra una instancia aislada sin credenciales; las pruebas incluyen el calendario cancelado y la regresión de tienda. El despliegue reconstruye únicamente `drakescraft-web`, conservando la imagen anterior para rollback. No requiere reiniciar Minecraft.
 
-## 📄 License & Upstream Attribution
+## 📄 License
 
-This project is a sovereign fork maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons).
+Maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons).
 
-- **Original Project:** Created by the upstream authors and the open-source community.
-- **DrakesCraft Optimizations:** Modernized for Paper/Purpur 1.21.11+, Java 21, high concurrency, asynchronous safety, and exploit/duplication prevention.
-- **License:** Distributed under the original **GNU General Public License v3.0 (GPLv3)** (or original upstream license). See the [LICENSE](LICENSE) file for complete terms.
+Distributed under the **GNU General Public License v3.0 (GPLv3)**. See the [`LICENSE`](LICENSE) file for complete terms.
