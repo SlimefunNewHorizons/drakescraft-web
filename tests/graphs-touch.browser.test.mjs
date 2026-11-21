@@ -78,7 +78,10 @@ test('WebGL touch: selection, drag, cancellation and pinch at mobile widths', {
           const point = (id, dx = 0, dy = 0) => ({ id, x: x + dx, y: y + dy, radiusX: 1, radiusY: 1, force: 1 });
           const touch = (type, touchPoints = []) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints });
           const snapshot = () => page.evaluate(() => structuredClone(window.__touchAudit));
-          const nextDraw = before => page.waitForFunction(n => window.__touchAudit.draws > n, before.draws);
+          const nextDraw = async before => {
+            await page.waitForFunction(n => window.__touchAudit.draws > n, before.draws);
+            await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          };
           const reset = async () => {
             const before = await snapshot();
             // Fixture setup: invoke the real reset handler without relying on
