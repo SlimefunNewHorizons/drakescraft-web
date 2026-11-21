@@ -101,7 +101,7 @@ test('general guides and plugin encyclopedia: mobile search, filters and disclos
               // Collect all widths before the contract assertion, even when the existing renderer exits early.
               const cards = page.locator('.guide-accordion');
               row.total = await cards.count();
-              assert.equal(row.total, 11, 'actual encyclopedia contains eleven components');
+              assert.equal(row.total, 14, 'actual encyclopedia contains fourteen components');
               await page.locator('#btn-collapse-all').tap();
               row.openAfterCollapse = await page.locator('.guide-accordion[open]').count();
               await page.locator('#btn-expand-all').tap();
@@ -138,8 +138,8 @@ test('general guides and plugin encyclopedia: mobile search, filters and disclos
         'component search accepts case, accents and outer whitespace');
       assert.deepEqual(plugins.map(row => ({ width: row.width, collapse: row.openAfterCollapse, expand: row.openAfterExpand,
         noMatch: row.noMatch, filtered: row.filtered, restored: row.restored, counter: row.counter })),
-      [375, 393, 412].map(width => ({ width, collapse: 0, expand: 11,
-        noMatch: { visible: 0, empty: true }, filtered: { pressed: 'true', categories: ['islas'] }, restored: 11, counter: '11 / 11' })));
+      [375, 393, 412].map(width => ({ width, collapse: 0, expand: 14,
+        noMatch: { visible: 0, empty: true }, filtered: { pressed: 'true', categories: ['islas'] }, restored: 14, counter: '14 / 14' })));
     });
   } finally {
     await browser?.close();
