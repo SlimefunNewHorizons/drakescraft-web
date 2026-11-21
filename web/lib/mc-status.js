@@ -1,8 +1,8 @@
 
 function extraerMotd(desc) {
   if (!desc) return 'DrakesCraft · Servidor Oficial';
-  if (typeof desc === 'string') return desc.replace(/§[0-9a-fk-or]/gi, '').trim();
-  let res = desc.text || '';
+  if (typeof desc === 'string') return desc.replace(/§[0-9a-fk-or]/gi, '').trim() || 'DrakesCraft · Servidor Oficial';
+  let res = typeof desc.text === 'string' ? desc.text : '';
   if (Array.isArray(desc.extra)) {
     for (const part of desc.extra) {
       if (typeof part === 'string') res += part;
@@ -24,6 +24,7 @@ import net from 'node:net';
  */
 
 const TIEMPO_LIMITE_MS = 3500;
+const LIMITE_RESPUESTA_BYTES = 1024 * 1024;
 const CACHE_MS = 30000;
 
 let cache = { host: null, puerto: null, momento: 0, datos: null };
@@ -41,7 +42,7 @@ function varInt(valor) {
   return Buffer.from(bytes);
 }
 
-/** Lee un VarInt y devuelve el valor junto a cuántos bytes ocupó. */
+/** Lee un VarInt de hasta 32 bits y cinco bytes; espera o rechaza con null. */
 function leerVarInt(buffer, desde = 0) {
   let valor = 0;
   let desplazamiento = 0;
@@ -49,11 +50,12 @@ function leerVarInt(buffer, desde = 0) {
   while (true) {
     if (desde + leidos >= buffer.length) return null;
     const byte = buffer[desde + leidos];
+    if (leidos === 4 && (byte & 0xf0) !== 0) return null;
     valor |= (byte & 0x7f) << desplazamiento;
     leidos += 1;
     if ((byte & 0x80) === 0) break;
     desplazamiento += 7;
-    if (desplazamiento > 35) return null;
+    if (desplazamiento >= 35) return null;
   }
   return { valor, leidos };
 }
@@ -81,10 +83,12 @@ function consultarTCP(host, puerto) {
     const terminar = (resultado) => {
       if (resuelto) return;
       resuelto = true;
+      clearTimeout(plazo);
       socket.destroy();
       resolve(resultado);
     };
 
+    const plazo = setTimeout(() => terminar(null), TIEMPO_LIMITE_MS);
     socket.setTimeout(TIEMPO_LIMITE_MS);
     socket.on('timeout', () => terminar(null));
     socket.on('error', () => terminar(null));
@@ -98,19 +102,23 @@ function consultarTCP(host, puerto) {
     });
 
     socket.on('data', (trozo) => {
+      if (trozo.length > LIMITE_RESPUESTA_BYTES - recibido.length) return terminar(null);
       recibido = Buffer.concat([recibido, trozo]);
 
       const longitud = leerVarInt(recibido, 0);
       if (!longitud) return;
+      if (longitud.valor < 2) return terminar(null);
       const total = longitud.leidos + longitud.valor;
+      if (total > LIMITE_RESPUESTA_BYTES) return terminar(null);
       if (recibido.length < total) return;
 
       const id = leerVarInt(recibido, longitud.leidos);
-      if (!id) return terminar(null);
+      if (!id || id.valor !== 0) return terminar(null);
       const cadenaJson = leerVarInt(recibido, longitud.leidos + id.leidos);
       if (!cadenaJson) return terminar(null);
 
       const inicio = longitud.leidos + id.leidos + cadenaJson.leidos;
+      if (cadenaJson.valor < 0 || inicio + cadenaJson.valor !== total) return terminar(null);
       try {
         terminar(JSON.parse(recibido.subarray(inicio, inicio + cadenaJson.valor).toString('utf8')));
       } catch {
@@ -118,6 +126,22 @@ function consultarTCP(host, puerto) {
       }
     });
   });
+}
+
+/** Solo publicar conteos medidos como enteros no negativos. */
+function jugadoresValidos(players) {
+  return players && Number.isSafeInteger(players.online) && players.online >= 0
+    && Number.isSafeInteger(players.max) && players.max >= 0;
+}
+
+function versionValida(version) {
+  return typeof version === 'string' && version.trim() ? version : null;
+}
+
+function motdHTTP(clean) {
+  const texto = Array.isArray(clean) ? clean.filter(parte => typeof parte === 'string').join(' ')
+    : typeof clean === 'string' ? clean : '';
+  return extraerMotd(texto);
 }
 
 /**
@@ -130,14 +154,14 @@ async function consultarHTTP(host, puerto) {
     });
     if (!res.ok) return null;
     const json = await res.json();
-    if (!json || !json.online) return null;
+    if (json?.online !== true || !jugadoresValidos(json.players)) return null;
     return {
       enLinea: true,
       jugadores: json.players?.online ?? 0,
       maximo: json.players?.max ?? 0,
       maximoFuente: 'mcsrvstat',
-      version: json.version ?? null,
-      motd: Array.isArray(json.motd?.clean) ? json.motd.clean.join(' ') : (json.motd?.clean || 'DrakesCraft · Servidor Oficial')
+      version: versionValida(json.version),
+      motd: motdHTTP(json.motd?.clean)
     };
   } catch {
     return null;
@@ -154,13 +178,13 @@ export async function estadoServidor(host, puerto) {
   // 1. Intentar TCP nativo
   let datos = null;
   const bruto = await consultarTCP(host, puerto);
-  if (bruto) {
+  if (jugadoresValidos(bruto?.players)) {
     datos = {
       enLinea: true,
       jugadores: bruto.players?.online ?? 0,
       maximo: bruto.players?.max ?? 0,
       maximoFuente: 'server-list-ping',
-      version: bruto.version?.name ?? null,
+      version: versionValida(bruto.version?.name),
       motd: extraerMotd(bruto.description),
     };
   }
