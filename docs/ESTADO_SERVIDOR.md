@@ -32,3 +32,45 @@ al respaldo HTTP. El timeout de inactividad del socket no cubre un socket
 ya cerrado: se atiende también `close` para evitar peticiones pendientes.
 Cuatro regresiones loopback cubren cierres sin bytes y paquetes truncados
 en ambas copias del módulo, sin consultar producción.
+
+El paquete TCP debe tener ID de respuesta de estado (`0`) y la longitud del
+JSON debe coincidir con el final del paquete declarado. Un ID distinto, un
+JSON que exceda el paquete o bytes sobrantes dentro de este activan el
+respaldo HTTP; no se presentan como una medición válida del ping. Seis
+regresiones loopback verifican estos casos en ambas copias del módulo.
+
+Los conteos de jugadores y máximo anunciado deben existir y ser enteros
+seguros no negativos, tanto en TCP como en el respaldo HTTP. Un ping con
+conteos ausentes, negativos, fraccionarios o de texto pasa al respaldo. Si
+este también es inválido se devuelve el estado sin medición. El respaldo
+requiere `online: true` booleano; `"false"` no acredita disponibilidad. Se
+permite cero y no se compara conectados con máximo, porque este es anunciado.
+Un MOTD con `text` de otro tipo se ignora, conservando los componentes de
+texto válidos y sin interrumpir la consulta de estado.
+
+Los VarInt del paquete TCP admiten como máximo cinco bytes y 32 bits.
+Se rechazan desbordamientos del quinto byte y codificaciones de seis bytes:
+no pueden convertirse por truncamiento en un ID o una longitud válidos.
+Ocho regresiones cubren longitudes de paquete/JSON e ID malformados en ambas
+copias; dos controles conservan longitudes válidas de dos bytes.
+
+La consulta TCP tiene también un plazo total de 3500 ms desde la apertura
+del socket, incluido el establecimiento de conexión. Recibir bytes no
+reinicia ese plazo: una respuesta incompleta con tráfico continuo pasa al
+respaldo HTTP al vencer. El temporizador se cancela al resolver la consulta.
+Dos regresiones loopback envían bytes cada 60 ms y comprueban el respaldo
+sin esperar al timeout de inactividad. El respaldo conserva su propio plazo.
+
+El lector limita cada respuesta TCP a 1 MiB, incluida la cabecera de longitud.
+Es una política local de memoria, no un límite del protocolo de Minecraft.
+Una longitud anunciada superior se rechaza sin esperar el cuerpo; un bloque
+que excedería el límite se descarta antes de concatenarlo al búfer. Ambos
+casos activan el respaldo HTTP. Ocho regresiones loopback cubren el rechazo
+y la aceptación de una respuesta de exactamente 1 MiB en las dos copias.
+
+`version` contiene texto no vacío o `null`, tanto en TCP como en HTTP.
+El MOTD del respaldo HTTP acepta texto o una lista de textos; descarta otros
+componentes, limpia códigos de formato y usa el nombre oficial si queda vacío.
+Versiones/MOTD malformados no invalidan conteos válidos ni cambian su fuente.
+`npm run test:estado-textos` comprueba ambas copias con TCP loopback y HTTP
+simulado, incluidos los máximos anunciados 2027/100, sin consultar Dallas.
