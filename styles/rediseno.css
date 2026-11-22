@@ -430,7 +430,7 @@ main .op-section { padding-block: clamp(3.5rem, 7vw, 7rem); }
 
 /* mosaico de modalidades */
 .op-mode-grid { display: grid !important; grid-template-columns: repeat(12, 1fr); gap: 1rem !important; }
-.op-mode-card { --bg: var(--r-plate); position: relative; grid-column: span 6; min-height: 340px; padding: 0 !important; display: flex !important; align-items: flex-end; overflow: hidden; border: 1px solid var(--r-line) !important; border-radius: 2px !important; background: linear-gradient(0deg, rgba(8, 5, 14, 0.96) 12%, rgba(8, 5, 14, 0.35) 62%, rgba(8, 5, 14, 0.1)), var(--bg) center / cover no-repeat !important; transition: border-color 0.25s, transform 0.25s; transform: none !important; }
+.op-mode-card { --bg: var(--r-plate); position: relative; grid-column: span 6; min-height: 340px; padding: 0 !important; display: flex !important; align-items: flex-end; overflow: hidden; border: 1px solid var(--r-line) !important; border-radius: 2px !important; background: linear-gradient(0deg, rgba(8, 5, 14, 0.96) 12%, rgba(8, 5, 14, 0.35) 62%, rgba(8, 5, 14, 0.1)), var(--bg) center / cover no-repeat !important; transition: border-color 0.25s, transform 0.25s; transform: none; }
 .op-mode-card:hover { border-color: var(--r-gold) !important; }
 .op-mode-card--1 { --bg: url("/assets/screens/slot-02-slimefun-quantum-1600.webp"); grid-column: span 7; min-height: 400px; }
 .op-mode-card--2 { --bg: url("/assets/home/world-garden-960.webp"); grid-column: span 5; min-height: 400px; }

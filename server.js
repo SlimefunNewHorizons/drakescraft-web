@@ -1347,6 +1347,7 @@ await app.register(fastifyStatic, {
       || (normalized.endsWith('.html') && !normalized.includes('/'))
       || normalized.startsWith('assets/')
       || normalized.startsWith('styles/')
+      || normalized.startsWith('css/')
       || normalized.startsWith('scripts/')
       || normalized.startsWith('vendor/')
       || normalized === 'robots.txt'

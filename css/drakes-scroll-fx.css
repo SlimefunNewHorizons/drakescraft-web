@@ -1,0 +1,276 @@
+/* DrakesCraft Scroll-Driven & Text Effects Library (Pure CSS, 60fps compositor-only)
+ * Progressive Enhancement: cero dependencias JS/polyfills, respeta prefers-reduced-motion.
+ * Clases disponibles:
+ *   .fx-progress-bar    -> Barra superior de progreso de scroll
+ *   .fx-parallax-wrap   -> Contenedor parallax con hijos .fx-layer-1 / .fx-layer-2 / .fx-layer-3
+ *   .fx-pinned-heading  -> Encabezado sticky anclado al hacer scroll
+ *   .fx-card-3d-zoom    -> Reveal 3D zoom de tarjetas al entrar al viewport
+ *   .fx-line-reveal     -> Revelado linea por linea al entrar al viewport
+ *   .fx-stack-card      -> Tarjetas apilables sticky con efecto de profundidad
+ *   .fx-hero-title      -> Titulo hero con Mask Rise (.fx-mask-line / .fx-mask-rise)
+ *   .fx-gradient-flow   -> Flujo sutil de degradado purpura/oro/cian en acento del titulo
+ *   .fx-blur-in         -> Entrada blur-in breve (<=450ms) para badges y direccion IP
+ */
+
+.fx-progress-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 9999;
+  background: linear-gradient(
+    90deg,
+    var(--c-violet, #9b6bff),
+    var(--c-gold, #e4bb68) 52%,
+    var(--c-cyan, #3fe0d0)
+  );
+  box-shadow: 0 0 8px rgba(155, 107, 255, 0.4);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.fx-parallax-wrap {
+  position: relative;
+  overflow: clip;
+}
+
+.fx-pinned-heading {
+  position: sticky;
+  top: 12px;
+  z-index: 15;
+}
+
+.fx-stack-card {
+  position: sticky;
+  top: calc(72px + var(--stack-index, 0) * 18px);
+}
+
+/* Mask Rise wrappers: keep descenders and italic overhangs unclipped */
+.fx-mask-line {
+  display: block;
+  overflow: clip;
+  padding-block: 0.04em 0.14em;
+  margin-block: -0.04em -0.14em;
+  padding-inline-end: 0.12em;
+}
+
+.fx-mask-rise {
+  display: inline-block;
+}
+
+/* Override ancestor background-clip:text on hero h1 so clipped/transformed children render crisply */
+.op-hero h1.fx-hero-title,
+.home-hero h1.fx-hero-title {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: var(--r-marble, #f6efde);
+  color: var(--r-marble, #f6efde);
+}
+
+.op-hero h1.fx-hero-title .fx-mask-line,
+.home-hero h1.fx-hero-title .fx-mask-line {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: inherit !important;
+}
+
+.op-hero h1.fx-hero-title .fx-mask-rise,
+.home-hero h1.fx-hero-title .fx-mask-rise {
+  background: var(--g-marble, linear-gradient(115deg, #fbf8f1 0%, #e7dff3 50%, #f6efde 100%)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: var(--r-marble, #f6efde) !important;
+}
+
+.op-hero h1.fx-hero-title .fx-mask-rise:has(.fx-gradient-flow),
+.home-hero h1.fx-hero-title .fx-mask-rise:has(.fx-gradient-flow) {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+.op-hero h1.fx-hero-title .fx-gradient-flow,
+.home-hero h1.fx-hero-title .fx-gradient-flow,
+.fx-gradient-flow {
+  display: inline-block;
+  background: linear-gradient(
+    105deg,
+    #f7dca0 0%,
+    #e4bb68 20%,
+    #b39cf0 48%,
+    #3fe0d0 74%,
+    #f7dca0 100%
+  ) !important;
+  background-size: 185% 100% !important;
+  background-position: 28% 50%;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  padding-inline-end: 0.12em;
+}
+
+[data-countup],
+[data-pt-count],
+[data-dev-count] {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fx-mask-rise {
+    from {
+      opacity: 0;
+      transform: translateY(104%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fx-gradient-flow {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes fx-blur-in {
+    from {
+      opacity: 0.2;
+      filter: blur(6px);
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+
+  .fx-mask-rise {
+    animation: fx-mask-rise 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .fx-mask-rise--d2 {
+    animation-delay: 0.11s;
+  }
+
+  .fx-mask-rise--d3 {
+    animation-delay: 0.19s;
+  }
+
+  .fx-gradient-flow {
+    animation: fx-gradient-flow 9s ease-in-out infinite;
+  }
+
+  .fx-blur-in {
+    animation: fx-blur-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .fx-blur-in-scroll.is-fx-in {
+    animation: fx-blur-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @keyframes fx-grow-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* Prevent duplicate scroll progress bar when cosmos.css body::after is also loaded */
+    body:has(> .fx-progress-bar)::after {
+      content: none;
+      animation: none;
+    }
+
+    .fx-progress-bar {
+      animation: fx-grow-progress auto linear;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes fx-parallax-y {
+      from { transform: translateY(var(--fx-offset, 48px)); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes fx-card-zoom-in {
+      from {
+        opacity: 0.08;
+        transform: perspective(1000px) translateY(24px) rotateX(4.5deg) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1);
+      }
+    }
+
+    @keyframes fx-line-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fx-stack-scale {
+      from { transform: scale(1); }
+      to { transform: scale(0.95); }
+    }
+
+    .fx-parallax-wrap {
+      view-timeline: --fx-parallax;
+    }
+
+    .fx-layer-1 {
+      --fx-offset: 24px;
+      animation: fx-parallax-y linear both;
+      animation-timeline: --fx-parallax;
+      animation-range: entry 0% exit 100%;
+    }
+
+    .fx-layer-2 {
+      --fx-offset: 56px;
+      animation: fx-parallax-y linear both;
+      animation-timeline: --fx-parallax;
+      animation-range: entry 0% exit 100%;
+    }
+
+    .fx-layer-3 {
+      --fx-offset: 96px;
+      animation: fx-parallax-y linear both;
+      animation-timeline: --fx-parallax;
+      animation-range: entry 0% exit 100%;
+    }
+
+    .fx-card-3d-zoom {
+      animation: fx-card-zoom-in auto linear backwards;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 48%;
+    }
+
+    .fx-line-reveal {
+      animation: fx-line-up auto linear backwards;
+      animation-timeline: view(block);
+      animation-range: entry 5% entry 40%;
+    }
+
+    .fx-stack-card {
+      animation: fx-stack-scale auto linear forwards;
+      animation-timeline: view(block);
+      animation-range: exit-crossing 0% exit 100%;
+    }
+  }
+}

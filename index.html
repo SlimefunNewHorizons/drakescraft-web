@@ -51,8 +51,10 @@
     <link rel="stylesheet" href="/styles/cosmos.css?v=20261110-m2">
     <link rel="stylesheet" href="/styles/hero-orbit.css?v=20261110-o2">
   <link rel="stylesheet" href="/styles/grafos.css?v=20261110-webgl-v4">
+    <link rel="stylesheet" href="/css/drakes-scroll-fx.css?v=20261122-fx1">
 </head>
   <body data-hero="home" class="op-page" data-design="olympus-3d">
+    <div class="fx-progress-bar" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Saltar al contenido</a>
     <nav
       class="navbar navbar-expand-xl op-nav"
@@ -130,9 +132,9 @@
         <div class="container">
           <div class="row align-items-center g-4">
             <div class="col-lg-6">
-              <a class="r-notice" href="/temporada-2.html"><b>Temporada 2</b><span>¡Gran Apertura Oficial: Miércoles 18 de Noviembre a las 8:30 AM CLT!</span></a>
+              <a class="r-notice fx-blur-in" href="/temporada-2.html"><b>Temporada 2</b><span>¡Gran Apertura Oficial: Miércoles 18 de Noviembre a las 8:30 AM CLT!</span></a>
               <p class="eyebrow">Minecraft Java + Bedrock · Chile</p>
-              <h1>Tu forma de jugar.<br /><em>Tu legado.</em></h1>
+              <h1 class="fx-hero-title"><span class="fx-mask-line"><span class="fx-mask-rise">Tu forma de jugar.</span></span><span class="fx-mask-line"><span class="fx-mask-rise fx-mask-rise--d2"><em class="fx-gradient-flow">Tu legado.</em></span></span></h1>
               <p class="op-lead">
                 Supervivencia técnica, magia, máquinas, islas y experimentación
                 dentro de seis mundos conectados por una sola comunidad.
@@ -220,7 +222,7 @@
           >
         </nav>
       </div>
-<section class="pt pt-sec pt-nsec" id="novedades" aria-labelledby="pt-news-h"><div class="pt-wrap pt-nwrap" data-news data-mode="home"><div class="pt-nhead"><div><p class="pt-kicker">Novedades</p><h2 id="pt-news-h">Lo último en DrakesCraft.</h2></div><div class="pt-nhead__side"><p>Se actualiza sola: cambios del servidor, de la red y del código.</p><div class="pt-ntools"><div class="pt-chips" data-news-filter role="group" aria-label="Filtrar por tipo"></div><a class="pt-btn pt-btn--gold pt-nall" href="/novedades.html">Ver todas</a></div></div></div><ul class="pt-news pt-news--home" data-news-list aria-live="polite"></ul></div></section><section class="pt pt-sec" aria-labelledby="pt-hub-h"><div class="pt-wrap"><div class="pt-head dc-host dc-stars"><svg class="dc-art " viewBox="0 0 160 120" aria-hidden="true"><use href="/assets/svg/dc.svg#a-dragon"/></svg><p class="pt-kicker">Todo en un vistazo</p><h2 id="pt-hub-h">Entra por donde quieras.</h2><p>DrakesCraft es más que un servidor: tienda, guías, métricas y comunidad viven en el mismo portal.</p></div><div class="pt-hub"><a class="pt-card pt-card--w6 pt-card--big" href="/store.html" data-img style="--img:url(/assets/editorial/store-lake.webp)"><span class="pt-card__n" aria-hidden="true">01</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-store"/></svg></span><span class="pt-tag">Rangos y pases</span><h3>Apoya el servidor</h3><p>Rangos válidos en las seis modalidades, entrega automática y pagos por Tebex. Sin ventajas pay-to-win.</p><span class="pt-btn pt-btn--gold">Ir a la tienda</span></a><a class="pt-card pt-card--w6 pt-card--big" href="/guia-slimefun.html" data-img style="--img:url(/assets/editorial/slimefun-cosmos.webp)"><span class="pt-card__n" aria-hidden="true">02</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-wiki"/></svg></span><span class="pt-tag">20 450 ítems</span><h3>Slimefun, de la A a la Z</h3><p>Más de 100 addons catalogados. Busca recetas, máquinas y rutas de progreso antes de gastar un recurso.</p><span class="pt-btn pt-btn--gold">Abrir la guía y el buscador</span></a><a class="pt-card" href="/metricas.html"><span class="pt-card__n" aria-hidden="true">03</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-metrics"/></svg></span><span class="pt-tag">En vivo</span><h3>El servidor, a la vista</h3><p>TPS, jugadores y salud de la red, sin humo. Mira cómo rinde DrakesCraft ahora mismo.</p><span class="pt-btn pt-btn--gold">Ver métricas</span></a><a class="pt-card" href="/votar.html"><span class="pt-card__n" aria-hidden="true">04</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-vote"/></svg></span><span class="pt-tag">Recompensas</span><h3>Cada voto cuenta</h3><p>Vota por el servidor, sube en los listados y recibe recompensas dentro del juego.</p><span class="pt-btn pt-btn--gold">Votar ahora</span></a><a class="pt-card" href="/reglas.html"><span class="pt-card__n" aria-hidden="true">05</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-rules"/></svg></span><span class="pt-tag">Juego limpio</span><h3>Las reglas, claras</h3><p>Pocas, simples y aplicadas igual para todos. Léelas antes de tu primera partida.</p><span class="pt-btn pt-btn--gold">Leer las reglas</span></a><a class="pt-card pt-card--w4" href="/discord.html" data-img style="--img:url(/assets/editorial/community-pagoda.webp)"><span class="pt-card__n" aria-hidden="true">06</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-discord"/></svg></span><span class="pt-tag">Comunidad</span><h3>Tickets, avisos y gente</h3><p>Soporte con tickets, anuncios, eventos y el enlace de Bedrock. Aquí se decide el equilibrio del servidor.</p><span class="pt-btn pt-btn--gold">Unirme al Discord</span></a><a class="pt-card pt-card--w4" href="#unirse"><span class="pt-card__n" aria-hidden="true">07</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-join"/></svg></span><span class="pt-tag">Java y Bedrock</span><h3>Una IP, dos ediciones</h3><p>Java entra con mc.drakescraft.cl. Bedrock, con un enlace directo de un toque o con la IP clásica.</p><span class="pt-btn pt-btn--gold">Ver los 3 pasos</span></a><a class="pt-card pt-card--w4" href="#modalidades"><span class="pt-card__n" aria-hidden="true">08</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-modes"/></svg></span><span class="pt-tag">Seis mundos</span><h3>Seis mundos</h3><p>Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio, cada uno con su economía y su progreso.</p><span class="pt-btn pt-btn--gold">Ver las modalidades</span></a><a class="pt-card pt-card--w12 pt-card--big" href="/temporada-2.html" data-img style="--img:url(/assets/screens/slot-03-stellarity-end-1600.webp)"><span class="pt-card__n" aria-hidden="true">09</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-t2"/></svg></span><span class="pt-tag">18 de noviembre de 2026</span><h3>El Olimpo se rompe</h3><p>Una isla griega flota sobre el vacío y la Grieta le abre el costado. Nueva T2 sobre DrakesPurpur 26.2, Odysseia y casino.</p><span class="pt-btn pt-btn--gold">Leer la historia</span></a></div></div></section><div class="dc-div" aria-hidden="true"><svg><use href="/assets/svg/dc.svg#d-orn"/></svg></div><section class="pt pt-sec pt-sec--band" id="unirse" aria-labelledby="pt-join-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Empieza ahora</p><h2 id="pt-join-h">Tres pasos hacia tu nuevo mundo.</h2><p>No necesitas mods ni cuenta aparte. Entra con tu edición de siempre.</p></div><ol class="pt-steps" style="margin:0;padding:0;list-style:none"><li class="pt-step"><h3>Elige tu edición</h3><p>Java 1.21 o superior, o Bedrock desde móvil, consola o PC. El crossplay es nativo.</p><a class="pt-btn" href="/guia.html">Guía de inicio</a></li><li class="pt-step"><h3>Copia la IP</h3><p>Agrégala como servidor nuevo y entra.</p><span class="pt-ip">mc.drakescraft.cl</span> <button class="pt-btn pt-btn--plain" type="button" data-copy-ip>Copiar IP</button></li><li class="pt-step"><h3>Pasa por Discord y vota</h3><p>Vincula tu cuenta, abre tickets si algo falla y vota para ganar recompensas.</p><a class="pt-btn" href="/discord.html">Ir al Discord</a></li></ol><div class="pt-bedrock" id="bedrock"><div><p class="pt-kicker">Bedrock · móvil, consola y PC</p><h3>Entrar desde Bedrock</h3><p>Desde Bedrock 26.60 o superior se entra con un enlace directo (Warden / NetherNet): ábrelo en el dispositivo donde juegas, acepta abrir Minecraft y te une al servidor, sin escribir IP ni puerto. El mismo enlace está fijado en Discord, en <strong>#bedrock-unirse</strong>.</p><a class="pt-btn pt-btn--gold pt-bedrock__cta bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="Ahora no hay enlace activo. Búscalo en #bedrock-unirse de Discord o usa el método clásico." data-fresh="Enlace actualizado">Unirme directo desde Bedrock</a><p class="pt-bedrock__st" data-bedrock-status role="status">Buscando enlace…</p></div><div class="pt-bedrock__alt"><h4>Método clásico (Geyser)</h4><p>Para versiones de Bedrock anteriores a 26.60: Jugar → Servidores → Agregar servidor.</p><dl><div><dt>Dirección</dt><dd><code>mc.drakescraft.cl</code><button class="pt-btn" type="button" data-copy-text="mc.drakescraft.cl">Copiar</button></dd></div><div><dt>Puerto</dt><dd><code>25565</code><button class="pt-btn" type="button" data-copy-text="25565">Copiar</button></dd></div></dl></div></div><!-- /pt-bedrock --><div class="pt-live" data-pt-live><span class="pt-live__dot" aria-hidden="true"></span><strong data-pt-count>—</strong><span data-pt-text role="status">Comprobando el servidor…</span></div></div></section>
+<section class="pt pt-sec pt-nsec" id="novedades" aria-labelledby="pt-news-h"><div class="pt-wrap pt-nwrap" data-news data-mode="home"><div class="pt-nhead"><div><p class="pt-kicker">Novedades</p><h2 id="pt-news-h">Lo último en DrakesCraft.</h2></div><div class="pt-nhead__side"><p>Se actualiza sola: cambios del servidor, de la red y del código.</p><div class="pt-ntools"><div class="pt-chips" data-news-filter role="group" aria-label="Filtrar por tipo"></div><a class="pt-btn pt-btn--gold pt-nall" href="/novedades.html">Ver todas</a></div></div></div><ul class="pt-news pt-news--home" data-news-list aria-live="polite"></ul></div></section><section class="pt pt-sec" aria-labelledby="pt-hub-h"><div class="pt-wrap"><div class="pt-head dc-host dc-stars"><svg class="dc-art " viewBox="0 0 160 120" aria-hidden="true"><use href="/assets/svg/dc.svg#a-dragon"/></svg><p class="pt-kicker">Todo en un vistazo</p><h2 id="pt-hub-h">Entra por donde quieras.</h2><p>DrakesCraft es más que un servidor: tienda, guías, métricas y comunidad viven en el mismo portal.</p></div><div class="pt-hub"><a class="pt-card pt-card--w6 pt-card--big fx-card-3d-zoom" href="/store.html" data-img style="--img:url(/assets/editorial/store-lake.webp)"><span class="pt-card__n" aria-hidden="true">01</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-store"/></svg></span><span class="pt-tag">Rangos y pases</span><h3>Apoya el servidor</h3><p>Rangos válidos en las seis modalidades, entrega automática y pagos por Tebex. Sin ventajas pay-to-win.</p><span class="pt-btn pt-btn--gold">Ir a la tienda</span></a><a class="pt-card pt-card--w6 pt-card--big fx-card-3d-zoom" href="/guia-slimefun.html" data-img style="--img:url(/assets/editorial/slimefun-cosmos.webp)"><span class="pt-card__n" aria-hidden="true">02</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-wiki"/></svg></span><span class="pt-tag"><span data-countup="20450" data-format="space">20 450</span> ítems</span><h3>Slimefun, de la A a la Z</h3><p>Más de 100 addons catalogados. Busca recetas, máquinas y rutas de progreso antes de gastar un recurso.</p><span class="pt-btn pt-btn--gold">Abrir la guía y el buscador</span></a><a class="pt-card fx-card-3d-zoom" href="/metricas.html"><span class="pt-card__n" aria-hidden="true">03</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-metrics"/></svg></span><span class="pt-tag">En vivo</span><h3>El servidor, a la vista</h3><p>TPS, jugadores y salud de la red, sin humo. Mira cómo rinde DrakesCraft ahora mismo.</p><span class="pt-btn pt-btn--gold">Ver métricas</span></a><a class="pt-card fx-card-3d-zoom" href="/votar.html"><span class="pt-card__n" aria-hidden="true">04</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-vote"/></svg></span><span class="pt-tag">Recompensas</span><h3>Cada voto cuenta</h3><p>Vota por el servidor, sube en los listados y recibe recompensas dentro del juego.</p><span class="pt-btn pt-btn--gold">Votar ahora</span></a><a class="pt-card fx-card-3d-zoom" href="/reglas.html"><span class="pt-card__n" aria-hidden="true">05</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-rules"/></svg></span><span class="pt-tag">Juego limpio</span><h3>Las reglas, claras</h3><p>Pocas, simples y aplicadas igual para todos. Léelas antes de tu primera partida.</p><span class="pt-btn pt-btn--gold">Leer las reglas</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="/discord.html" data-img style="--img:url(/assets/editorial/community-pagoda.webp)"><span class="pt-card__n" aria-hidden="true">06</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-discord"/></svg></span><span class="pt-tag">Comunidad</span><h3>Tickets, avisos y gente</h3><p>Soporte con tickets, anuncios, eventos y el enlace de Bedrock. Aquí se decide el equilibrio del servidor.</p><span class="pt-btn pt-btn--gold">Unirme al Discord</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="#unirse"><span class="pt-card__n" aria-hidden="true">07</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-join"/></svg></span><span class="pt-tag">Java y Bedrock</span><h3>Una IP, dos ediciones</h3><p>Java entra con mc.drakescraft.cl. Bedrock, con un enlace directo de un toque o con la IP clásica.</p><span class="pt-btn pt-btn--gold">Ver los 3 pasos</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="#modalidades"><span class="pt-card__n" aria-hidden="true">08</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-modes"/></svg></span><span class="pt-tag">Seis mundos</span><h3>Seis mundos</h3><p>Slimefun, Clásico, SkyBlock, OneBlock, OneChunk y Laboratorio, cada uno con su economía y su progreso.</p><span class="pt-btn pt-btn--gold">Ver las modalidades</span></a><a class="pt-card pt-card--w12 pt-card--big fx-card-3d-zoom" href="/temporada-2.html" data-img style="--img:url(/assets/screens/slot-03-stellarity-end-1600.webp)"><span class="pt-card__n" aria-hidden="true">09</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-t2"/></svg></span><span class="pt-tag">18 de noviembre de 2026</span><h3>El Olimpo se rompe</h3><p>Una isla griega flota sobre el vacío y la Grieta le abre el costado. Nueva T2 sobre DrakesPurpur 26.2, Odysseia y casino.</p><span class="pt-btn pt-btn--gold">Leer la historia</span></a></div></div></section><div class="dc-div" aria-hidden="true"><svg><use href="/assets/svg/dc.svg#d-orn"/></svg></div><section class="pt pt-sec pt-sec--band" id="unirse" aria-labelledby="pt-join-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Empieza ahora</p><h2 id="pt-join-h">Tres pasos hacia tu nuevo mundo.</h2><p>No necesitas mods ni cuenta aparte. Entra con tu edición de siempre.</p></div><ol class="pt-steps" style="margin:0;padding:0;list-style:none"><li class="pt-step"><h3>Elige tu edición</h3><p>Java 1.21 o superior, o Bedrock desde móvil, consola o PC. El crossplay es nativo.</p><a class="pt-btn" href="/guia.html">Guía de inicio</a></li><li class="pt-step"><h3>Copia la IP</h3><p>Agrégala como servidor nuevo y entra.</p><span class="pt-ip fx-blur-in-scroll">mc.drakescraft.cl</span> <button class="pt-btn pt-btn--plain" type="button" data-copy-ip>Copiar IP</button></li><li class="pt-step"><h3>Pasa por Discord y vota</h3><p>Vincula tu cuenta, abre tickets si algo falla y vota para ganar recompensas.</p><a class="pt-btn" href="/discord.html">Ir al Discord</a></li></ol><div class="pt-bedrock" id="bedrock"><div><p class="pt-kicker">Bedrock · móvil, consola y PC</p><h3>Entrar desde Bedrock</h3><p>Desde Bedrock 26.60 o superior se entra con un enlace directo (Warden / NetherNet): ábrelo en el dispositivo donde juegas, acepta abrir Minecraft y te une al servidor, sin escribir IP ni puerto. El mismo enlace está fijado en Discord, en <strong>#bedrock-unirse</strong>.</p><a class="pt-btn pt-btn--gold pt-bedrock__cta bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="Ahora no hay enlace activo. Búscalo en #bedrock-unirse de Discord o usa el método clásico." data-fresh="Enlace actualizado">Unirme directo desde Bedrock</a><p class="pt-bedrock__st" data-bedrock-status role="status">Buscando enlace…</p></div><div class="pt-bedrock__alt"><h4>Método clásico (Geyser)</h4><p>Para versiones de Bedrock anteriores a 26.60: Jugar → Servidores → Agregar servidor.</p><dl><div><dt>Dirección</dt><dd><code>mc.drakescraft.cl</code><button class="pt-btn" type="button" data-copy-text="mc.drakescraft.cl">Copiar</button></dd></div><div><dt>Puerto</dt><dd><code>25565</code><button class="pt-btn" type="button" data-copy-text="25565">Copiar</button></dd></div></dl></div></div><!-- /pt-bedrock --><div class="pt-live" data-pt-live><span class="pt-live__dot" aria-hidden="true"></span><strong data-pt-count>—</strong><span data-pt-text role="status">Comprobando el servidor…</span></div></div></section>
       <section class="op-section">
         <div class="container">
           <div class="row align-items-center g-5">
@@ -251,15 +253,15 @@
               </p>
               <dl class="op-facts">
                 <div>
-                  <dt>100+</dt>
+                  <dt data-countup="100" data-suffix="+">100+</dt>
                   <dd>expansiones Slimefun</dd>
                 </div>
                 <div>
-                  <dt>6</dt>
+                  <dt data-countup="6">6</dt>
                   <dd>formas de jugar</dd>
                 </div>
                 <div>
-                  <dt>1</dt>
+                  <dt data-countup="1">1</dt>
                   <dd>comunidad conectada</dd>
                 </div>
               </dl>
@@ -283,7 +285,7 @@
             </p>
           </div>
           <div class="op-mode-grid" id="modalidades">
-            <article class="op-mode-card op-mode-card--1" id="modo-1">
+            <article class="op-mode-card op-mode-card--1 fx-card-3d-zoom" id="modo-1">
               <span>01</span>
               <div>
                 <small>Tecnología y magia</small>
@@ -298,7 +300,7 @@
                 ></a
               >
             </article>
-            <article class="op-mode-card op-mode-card--2" id="modo-2">
+            <article class="op-mode-card op-mode-card--2 fx-card-3d-zoom" id="modo-2">
               <span>02</span>
               <div>
                 <small>Minecraft esencial</small>
@@ -313,7 +315,7 @@
                 ></a
               >
             </article>
-            <article class="op-mode-card op-mode-card--3" id="modo-3">
+            <article class="op-mode-card op-mode-card--3 fx-card-3d-zoom" id="modo-3">
               <span>03</span>
               <div>
                 <small>Tu isla en el cielo</small>
@@ -325,7 +327,7 @@
                 ></a
               >
             </article>
-            <article class="op-mode-card op-mode-card--4" id="modo-4">
+            <article class="op-mode-card op-mode-card--4 fx-card-3d-zoom" id="modo-4">
               <span>04</span>
               <div>
                 <small>Veintiuna fases</small>
@@ -339,7 +341,7 @@
                 ></a
               >
             </article>
-            <article class="op-mode-card op-mode-card--5" id="modo-5">
+            <article class="op-mode-card op-mode-card--5 fx-card-3d-zoom" id="modo-5">
               <span>05</span>
               <div>
                 <small>Zona de experimentación</small>
@@ -349,7 +351,7 @@
               </div>
               <a aria-label="Conocer Laboratorio" href="#laboratorio"></a>
             </article>
-            <article class="op-mode-card op-mode-card--6" id="modo-6">
+            <article class="op-mode-card op-mode-card--6 fx-card-3d-zoom" id="modo-6">
               <span>06</span>
               <div>
                 <small>Minado táctico 16x16</small>
@@ -365,13 +367,13 @@
       <section class="r-next" aria-labelledby="next-title">
         <div class="container">
           <div class="r-next__grid">
-            <a class="r-next__panel r-next__panel--t2" href="/temporada-2.html">
+            <a class="r-next__panel r-next__panel--t2 fx-card-3d-zoom" href="/temporada-2.html">
               <span class="r-next__tag">Temporada 2</span>
               <h2 id="next-title">El Olimpo ya no se sostiene</h2>
               <p>Una isla griega flota sobre el vacío y la Grieta le abre el costado. La T2 sigue en pruebas con el staff; la apertura está prevista para el 18 de noviembre y se confirma en Discord.</p>
               <b>Leer la historia</b>
             </a>
-            <a class="r-next__panel r-next__panel--ev" href="/eventos.html">
+            <a class="r-next__panel r-next__panel--ev fx-card-3d-zoom" href="/eventos.html">
               <span class="r-next__tag">Eventos</span>
               <h3>Sin eventos en noviembre</h3>
               <p>El calendario de noviembre de 2026 está cancelado por las pruebas de la T2. Cuando haya fechas nuevas las verás aquí y en Discord.</p>
@@ -560,21 +562,21 @@
               </p>
             </div>
             <div class="op-shop-preview">
-              <a href="store.html?categoria=monthly"
+              <a class="fx-card-3d-zoom" href="store.html?categoria=monthly"
                 ><span>Desde US$4.99</span>
                 <h3>Hércules</h3>
                 <p>
                   El punto de entrada VIP para empezar con una base más sólida.
                 </p>
                 <b>Ver pase </b></a
-              ><a class="is-featured" href="store.html?categoria=monthly"
+              ><a class="is-featured fx-card-3d-zoom" href="store.html?categoria=monthly"
                 ><span>Recomendado · US$10.99</span>
                 <h3>Hermes</h3>
                 <p>
                   Movilidad, vuelo y calidad de vida para survival intensivo.
                 </p>
                 <b>Ver pase </b></a
-              ><a href="store.html?categoria=titans"
+              ><a class="fx-card-3d-zoom" href="store.html?categoria=titans"
                 ><span>Endgame</span>
                 <h3>Titanes</h3>
                 <p>
@@ -605,7 +607,7 @@
                 desarrollo libre de DrakesCraft a través de GitHub Sponsors.
               </p>
             </div>
-            <article class="founder-sponsor-card">
+            <article class="founder-sponsor-card fx-card-3d-zoom">
               <div class="founder-sponsor-card__left">
                 <div>
                   <div class="founder-sponsor-card__badges">
@@ -769,7 +771,7 @@
             Seis mundos. Decenas de sistemas. Tu partida no tiene por qué
             parecerse a ninguna otra.
           </p>
-          <strong class="op-final-ip">mc.drakescraft.cl</strong>
+          <strong class="op-final-ip fx-blur-in-scroll">mc.drakescraft.cl</strong>
           <div class="op-actions">
             <button class="btn btn-primary" data-copy-ip>Copiar IP</button
             ><a class="btn" href="/guia.html">Empezar a jugar</a
@@ -839,5 +841,6 @@
       <script src="/scripts/novedades.js?v=20261121-news" defer></script>
   <script src="/scripts/grafos.js?v=20261118-webgl-v5" defer></script>
 <script src="scripts/estacional.js?v=20261112" defer></script>
+<script src="/scripts/scroll-fx.js?v=20261122-fx1" defer></script>
 </body>
 </html>

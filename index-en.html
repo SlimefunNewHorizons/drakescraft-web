@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="/styles/cosmos.css?v=20261110-m2">
   <link rel="stylesheet" href="/styles/grafos.css?v=20261110-webgl-v4">
   <link rel="stylesheet" href="/styles/hero-orbit.css?v=20261119-en1">
+  <link rel="stylesheet" href="/css/drakes-scroll-fx.css?v=20261122-fx1">
 </head>
 <body data-hero="home" class="home-page">
+  <div class="fx-progress-bar" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- Main Navigation -->
@@ -66,15 +68,15 @@
 
       <div class="container home-hero__split">
         <div class="home-hero__content">
-          <div class="home-tech-pill">
+          <div class="home-tech-pill fx-blur-in">
             <span class="live-dot-mini" aria-hidden="true"></span>
             <span>SEASON 2 PLANNED LAUNCH · NOVEMBER 18, 2026 (TBC) · HYBRID RUST FFM ENGINE</span>
           </div>
 
-          <h1 class="home-hero__title">
-            SIX WORLDS.<br>
-            <span class="title-glow t2-glitch-title" data-glitch="THE END INFECTION.">THE END INFECTION.</span><br>
-            NO SHORTCUTS.
+          <h1 class="home-hero__title fx-hero-title">
+            <span class="fx-mask-line"><span class="fx-mask-rise">SIX WORLDS.</span></span>
+            <span class="fx-mask-line"><span class="fx-mask-rise fx-mask-rise--d2"><span class="title-glow fx-gradient-flow">THE END INFECTION.</span></span></span>
+            <span class="fx-mask-line"><span class="fx-mask-rise fx-mask-rise--d3">NO SHORTCUTS.</span></span>
           </h1>
 
           <p class="home-hero__lead">
@@ -168,7 +170,7 @@
     </section>
 
     <!-- GAME MODES SELECTOR (shadcn/ui Interactive Tabs) -->
-<section class="pt pt-sec pt-nsec" id="novedades" aria-labelledby="pt-news-h"><div class="pt-wrap pt-nwrap" data-news data-mode="home"><div class="pt-nhead"><div><p class="pt-kicker">News</p><h2 id="pt-news-h">The latest from DrakesCraft.</h2></div><div class="pt-nhead__side"><p>Updates itself: server, network and code changes.</p><div class="pt-ntools"><div class="pt-chips" data-news-filter role="group" aria-label="Filter by type"></div><a class="pt-btn pt-btn--gold pt-nall" href="/novedades-en.html">See all</a></div></div></div><ul class="pt-news pt-news--home" data-news-list aria-live="polite"></ul></div></section><section class="pt pt-sec" aria-labelledby="pt-hub-h"><div class="pt-wrap"><div class="pt-head dc-host dc-stars"><svg class="dc-art " viewBox="0 0 160 120" aria-hidden="true"><use href="/assets/svg/dc.svg#a-dragon"/></svg><p class="pt-kicker">Everything at a glance</p><h2 id="pt-hub-h">Enter wherever you like.</h2><p>DrakesCraft is more than a server: store, guides, metrics and community live in one portal.</p></div><div class="pt-hub"><a class="pt-card pt-card--w6 pt-card--big" href="/store-en.html" data-img style="--img:url(/assets/editorial/store-lake.webp)"><span class="pt-card__n" aria-hidden="true">01</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-store"/></svg></span><span class="pt-tag">Ranks and passes</span><h3>Support the server</h3><p>Ranks valid across all six modes, automatic delivery and Tebex payments. No pay-to-win.</p><span class="pt-btn pt-btn--gold">Go to the store</span></a><a class="pt-card pt-card--w6 pt-card--big" href="/guia-slimefun-en.html" data-img style="--img:url(/assets/editorial/slimefun-cosmos.webp)"><span class="pt-card__n" aria-hidden="true">02</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-wiki"/></svg></span><span class="pt-tag">20,450 items</span><h3>Slimefun, from A to Z</h3><p>100+ addons catalogued. Look up recipes, machines and progression paths before spending a single resource.</p><span class="pt-btn pt-btn--gold">Open the guide and search</span></a><a class="pt-card" href="/metricas-en.html"><span class="pt-card__n" aria-hidden="true">03</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-metrics"/></svg></span><span class="pt-tag">Live</span><h3>The server in plain sight</h3><p>TPS, players and network health, no smoke. See how DrakesCraft performs right now.</p><span class="pt-btn pt-btn--gold">View metrics</span></a><a class="pt-card" href="/votar.html"><span class="pt-card__n" aria-hidden="true">04</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-vote"/></svg></span><span class="pt-tag">Rewards</span><h3>Every vote counts</h3><p>Vote for the server, climb the listings and earn in-game rewards.</p><span class="pt-btn pt-btn--gold">Vote now</span></a><a class="pt-card" href="/reglas.html"><span class="pt-card__n" aria-hidden="true">05</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-rules"/></svg></span><span class="pt-tag">Fair play</span><h3>Clear rules</h3><p>Few, simple and applied equally. Read them before your first session.</p><span class="pt-btn pt-btn--gold">Read the rules</span></a><a class="pt-card pt-card--w4" href="/discord.html" data-img style="--img:url(/assets/editorial/community-pagoda.webp)"><span class="pt-card__n" aria-hidden="true">06</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-discord"/></svg></span><span class="pt-tag">Community</span><h3>Tickets, news and people</h3><p>Ticket support, announcements, events and the Bedrock link. This is where balance gets decided.</p><span class="pt-btn pt-btn--gold">Join Discord</span></a><a class="pt-card pt-card--w4" href="#join"><span class="pt-card__n" aria-hidden="true">07</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-join"/></svg></span><span class="pt-tag">Java and Bedrock</span><h3>One IP, two editions</h3><p>Java joins with mc.drakescraft.cl. Bedrock uses a one-tap direct link or the classic IP.</p><span class="pt-btn pt-btn--gold">See the 3 steps</span></a><a class="pt-card pt-card--w4" href="#modalidades"><span class="pt-card__n" aria-hidden="true">08</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-modes"/></svg></span><span class="pt-tag">Six worlds</span><h3>Six worlds</h3><p>Slimefun, Classic, SkyBlock, OneBlock, OneChunk and Laboratory, each with its own economy and progress.</p><span class="pt-btn pt-btn--gold">See the modes</span></a><a class="pt-card pt-card--w12 pt-card--big" href="/temporada-2-en.html" data-img style="--img:url(/assets/screens/slot-03-stellarity-end-1600.webp)"><span class="pt-card__n" aria-hidden="true">09</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-t2"/></svg></span><span class="pt-tag">18 November 2026</span><h3>Olympus is breaking</h3><p>A Greek island floats over the void as the Rift tears its side open. New Season 2 on DrakesPurpur 26.2, Odysseia and a casino.</p><span class="pt-btn pt-btn--gold">Read the story</span></a></div></div></section><section class="pt pt-sec pt-sec--band" id="join" aria-labelledby="pt-join-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Start now</p><h2 id="pt-join-h">Three steps to your new world.</h2><p>No mods, no extra account. Join with the edition you already have.</p></div><ol class="pt-steps" style="margin:0;padding:0;list-style:none"><li class="pt-step"><h3>Pick your edition</h3><p>Java 1.21+ or Bedrock on mobile, console or PC. Crossplay is native.</p><a class="pt-btn" href="/guide-en.html">Getting started</a></li><li class="pt-step"><h3>Copy the IP</h3><p>Add it as a new server and connect.</p><span class="pt-ip">mc.drakescraft.cl</span> <button class="pt-btn pt-btn--plain" type="button" data-copy-ip>Copy IP</button></li><li class="pt-step"><h3>Hop on Discord and vote</h3><p>Link your account, open tickets if something breaks and vote for rewards.</p><a class="pt-btn" href="/discord.html">Go to Discord</a></li></ol><div class="pt-bedrock" id="bedrock"><div><p class="pt-kicker">Bedrock · mobile, console and PC</p><h3>Join from Bedrock</h3><p>On Bedrock 26.60 or newer you join with a direct link (Warden / NetherNet): open it on the device you play on, accept opening Minecraft and it drops you into the server, no IP or port to type. The same link is pinned on Discord in <strong>#bedrock-unirse</strong>.</p><a class="pt-btn pt-btn--gold pt-bedrock__cta bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="No active link right now. Find it in #bedrock-unirse on Discord or use the classic method." data-fresh="Link updated">Join directly from Bedrock</a><p class="pt-bedrock__st" data-bedrock-status role="status">Looking for the link…</p></div><div class="pt-bedrock__alt"><h4>Classic method (Geyser)</h4><p>For Bedrock versions older than 26.60: Play → Servers → Add server.</p><dl><div><dt>Address</dt><dd><code>mc.drakescraft.cl</code><button class="pt-btn" type="button" data-copy-text="mc.drakescraft.cl">Copy</button></dd></div><div><dt>Port</dt><dd><code>25565</code><button class="pt-btn" type="button" data-copy-text="25565">Copy</button></dd></div></dl></div></div><!-- /pt-bedrock --><div class="pt-live" data-pt-live><span class="pt-live__dot" aria-hidden="true"></span><strong data-pt-count>—</strong><span data-pt-text role="status">Checking the server…</span></div></div></section>
+<section class="pt pt-sec pt-nsec" id="novedades" aria-labelledby="pt-news-h"><div class="pt-wrap pt-nwrap" data-news data-mode="home"><div class="pt-nhead"><div><p class="pt-kicker">News</p><h2 id="pt-news-h">The latest from DrakesCraft.</h2></div><div class="pt-nhead__side"><p>Updates itself: server, network and code changes.</p><div class="pt-ntools"><div class="pt-chips" data-news-filter role="group" aria-label="Filter by type"></div><a class="pt-btn pt-btn--gold pt-nall" href="/novedades-en.html">See all</a></div></div></div><ul class="pt-news pt-news--home" data-news-list aria-live="polite"></ul></div></section><section class="pt pt-sec" aria-labelledby="pt-hub-h"><div class="pt-wrap"><div class="pt-head dc-host dc-stars"><svg class="dc-art " viewBox="0 0 160 120" aria-hidden="true"><use href="/assets/svg/dc.svg#a-dragon"/></svg><p class="pt-kicker">Everything at a glance</p><h2 id="pt-hub-h">Enter wherever you like.</h2><p>DrakesCraft is more than a server: store, guides, metrics and community live in one portal.</p></div><div class="pt-hub"><a class="pt-card pt-card--w6 pt-card--big fx-card-3d-zoom" href="/store-en.html" data-img style="--img:url(/assets/editorial/store-lake.webp)"><span class="pt-card__n" aria-hidden="true">01</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-store"/></svg></span><span class="pt-tag">Ranks and passes</span><h3>Support the server</h3><p>Ranks valid across all six modes, automatic delivery and Tebex payments. No pay-to-win.</p><span class="pt-btn pt-btn--gold">Go to the store</span></a><a class="pt-card pt-card--w6 pt-card--big fx-card-3d-zoom" href="/guia-slimefun-en.html" data-img style="--img:url(/assets/editorial/slimefun-cosmos.webp)"><span class="pt-card__n" aria-hidden="true">02</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-wiki"/></svg></span><span class="pt-tag"><span data-countup="20450" data-format="comma">20,450</span> items</span><h3>Slimefun, from A to Z</h3><p>100+ addons catalogued. Look up recipes, machines and progression paths before spending a single resource.</p><span class="pt-btn pt-btn--gold">Open the guide and search</span></a><a class="pt-card fx-card-3d-zoom" href="/metricas-en.html"><span class="pt-card__n" aria-hidden="true">03</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-metrics"/></svg></span><span class="pt-tag">Live</span><h3>The server in plain sight</h3><p>TPS, players and network health, no smoke. See how DrakesCraft performs right now.</p><span class="pt-btn pt-btn--gold">View metrics</span></a><a class="pt-card fx-card-3d-zoom" href="/votar.html"><span class="pt-card__n" aria-hidden="true">04</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-vote"/></svg></span><span class="pt-tag">Rewards</span><h3>Every vote counts</h3><p>Vote for the server, climb the listings and earn in-game rewards.</p><span class="pt-btn pt-btn--gold">Vote now</span></a><a class="pt-card fx-card-3d-zoom" href="/reglas.html"><span class="pt-card__n" aria-hidden="true">05</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-rules"/></svg></span><span class="pt-tag">Fair play</span><h3>Clear rules</h3><p>Few, simple and applied equally. Read them before your first session.</p><span class="pt-btn pt-btn--gold">Read the rules</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="/discord.html" data-img style="--img:url(/assets/editorial/community-pagoda.webp)"><span class="pt-card__n" aria-hidden="true">06</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-discord"/></svg></span><span class="pt-tag">Community</span><h3>Tickets, news and people</h3><p>Ticket support, announcements, events and the Bedrock link. This is where balance gets decided.</p><span class="pt-btn pt-btn--gold">Join Discord</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="#join"><span class="pt-card__n" aria-hidden="true">07</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-join"/></svg></span><span class="pt-tag">Java and Bedrock</span><h3>One IP, two editions</h3><p>Java joins with mc.drakescraft.cl. Bedrock uses a one-tap direct link or the classic IP.</p><span class="pt-btn pt-btn--gold">See the 3 steps</span></a><a class="pt-card pt-card--w4 fx-card-3d-zoom" href="#modalidades"><span class="pt-card__n" aria-hidden="true">08</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-modes"/></svg></span><span class="pt-tag">Six worlds</span><h3>Six worlds</h3><p>Slimefun, Classic, SkyBlock, OneBlock, OneChunk and Laboratory, each with its own economy and progress.</p><span class="pt-btn pt-btn--gold">See the modes</span></a><a class="pt-card pt-card--w12 pt-card--big fx-card-3d-zoom" href="/temporada-2-en.html" data-img style="--img:url(/assets/screens/slot-03-stellarity-end-1600.webp)"><span class="pt-card__n" aria-hidden="true">09</span><span class="dc-ico"><svg class="dc-i" aria-hidden="true"><use href="/assets/svg/dc.svg#i-t2"/></svg></span><span class="pt-tag">18 November 2026</span><h3>Olympus is breaking</h3><p>A Greek island floats over the void as the Rift tears its side open. New Season 2 on DrakesPurpur 26.2, Odysseia and a casino.</p><span class="pt-btn pt-btn--gold">Read the story</span></a></div></div></section><section class="pt pt-sec pt-sec--band" id="join" aria-labelledby="pt-join-h"><div class="pt-wrap"><div class="pt-head"><p class="pt-kicker">Start now</p><h2 id="pt-join-h">Three steps to your new world.</h2><p>No mods, no extra account. Join with the edition you already have.</p></div><ol class="pt-steps" style="margin:0;padding:0;list-style:none"><li class="pt-step"><h3>Pick your edition</h3><p>Java 1.21+ or Bedrock on mobile, console or PC. Crossplay is native.</p><a class="pt-btn" href="/guide-en.html">Getting started</a></li><li class="pt-step"><h3>Copy the IP</h3><p>Add it as a new server and connect.</p><span class="pt-ip fx-blur-in-scroll">mc.drakescraft.cl</span> <button class="pt-btn pt-btn--plain" type="button" data-copy-ip>Copy IP</button></li><li class="pt-step"><h3>Hop on Discord and vote</h3><p>Link your account, open tickets if something breaks and vote for rewards.</p><a class="pt-btn" href="/discord.html">Go to Discord</a></li></ol><div class="pt-bedrock" id="bedrock"><div><p class="pt-kicker">Bedrock · mobile, console and PC</p><h3>Join from Bedrock</h3><p>On Bedrock 26.60 or newer you join with a direct link (Warden / NetherNet): open it on the device you play on, accept opening Minecraft and it drops you into the server, no IP or port to type. The same link is pinned on Discord in <strong>#bedrock-unirse</strong>.</p><a class="pt-btn pt-btn--gold pt-bedrock__cta bedrock-cta" data-bedrock-join aria-disabled="true" href="https://discord.gg/rv3vtXZTk7" data-fallback="No active link right now. Find it in #bedrock-unirse on Discord or use the classic method." data-fresh="Link updated">Join directly from Bedrock</a><p class="pt-bedrock__st" data-bedrock-status role="status">Looking for the link…</p></div><div class="pt-bedrock__alt"><h4>Classic method (Geyser)</h4><p>For Bedrock versions older than 26.60: Play → Servers → Add server.</p><dl><div><dt>Address</dt><dd><code>mc.drakescraft.cl</code><button class="pt-btn" type="button" data-copy-text="mc.drakescraft.cl">Copy</button></dd></div><div><dt>Port</dt><dd><code>25565</code><button class="pt-btn" type="button" data-copy-text="25565">Copy</button></dd></div></dl></div></div><!-- /pt-bedrock --><div class="pt-live" data-pt-live><span class="pt-live__dot" aria-hidden="true"></span><strong data-pt-count>—</strong><span data-pt-text role="status">Checking the server…</span></div></div></section>
     <section class="modes-section reveal" id="modalidades" aria-labelledby="modes-title" style="padding: clamp(3.5rem, 6vw, 5.5rem) 0;">
       <div class="container">
         <div class="modes-heading">
@@ -301,7 +303,7 @@
         </div>
 
         <div class="ui-reel">
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-01-t2-lobby-olimpo-960.webp">
               <img src="assets/screens/slot-01-t2-lobby-olimpo-1600.webp" alt="Olympus lobby in collapse" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -313,7 +315,7 @@
             </div>
           </figure>
 
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-02-slimefun-industria-redes-960.webp">
               <img src="assets/screens/slot-02-slimefun-industria-redes-1600.webp" alt="Slimefun industrial complex" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -325,7 +327,7 @@
             </div>
           </figure>
 
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-03-stellarity-end-960.webp">
               <img src="assets/screens/slot-03-stellarity-end-1600.webp" alt="Abyssal End biomes" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -337,7 +339,7 @@
             </div>
           </figure>
 
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-04-modalidades-islas-960.webp">
               <img src="assets/screens/slot-04-modalidades-islas-1600.webp" alt="SkyBlock and OneBlock floating islands" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -349,7 +351,7 @@
             </div>
           </figure>
 
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-05-bosses-olimpo-960.webp">
               <img src="assets/screens/slot-05-bosses-olimpo-1600.webp" alt="Boss arenas of Olympus" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -361,7 +363,7 @@
             </div>
           </figure>
 
-          <figure class="ui-reel__item ui-card" style="padding:0;">
+          <figure class="ui-reel__item ui-card fx-card-3d-zoom" style="padding:0;">
             <picture>
               <source media="(max-width: 720px)" srcset="assets/screens/slot-06-comunidad-imperio-960.webp">
               <img src="assets/screens/slot-06-comunidad-imperio-1600.webp" alt="Players gathered in megastructure" width="1600" height="900" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
@@ -380,7 +382,7 @@
     <section class="reveal" id="comunidad" aria-labelledby="comunidad-title" style="padding: clamp(3.5rem, 6vw, 5.5rem) 0; background: rgba(8, 5, 20, 0.7); border-top: 1px solid var(--home-line);">
       <div class="container">
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; align-items:start;">
-          <article class="ui-card">
+          <article class="ui-card fx-card-3d-zoom">
             <div style="display:flex; align-items:center; gap:1.2rem; margin-bottom:1rem;">
               <div>
                 <span class="ui-badge ui-badge--cyan">Become a Sponsor</span>
@@ -396,7 +398,7 @@
             <a href="apoya-en.html#sponsors" class="ui-btn ui-btn--secondary" style="width:100%;">Support Options →</a>
           </article>
 
-          <article class="ui-card ui-card--gold">
+          <article class="ui-card ui-card--gold fx-card-3d-zoom">
             <div style="display:flex; align-items:center; gap:1.2rem; margin-bottom:1rem;">
               <img src="assets/staff/JackStar6677.png" alt="JackStar6677" width="64" height="64" style="border-radius:8px; border:2px solid #ffd700; background:#181124;">
               <div>
@@ -425,7 +427,7 @@
         <p class="home-kicker">Your journey starts here</p>
         <h2 id="final-title">What will you build?</h2>
         <p>Six connected game modes. Dozens of deep technical systems. Your survival story belongs to you.</p>
-        <strong class="final-cta__ip">mc.drakescraft.cl</strong>
+        <strong class="final-cta__ip fx-blur-in-scroll">mc.drakescraft.cl</strong>
         <div class="home-actions">
           <button class="ui-btn ui-btn--gold" type="button" data-copy-ip>Copy IP</button>
           <a class="ui-btn ui-btn--primary" href="store-en.html">VIP Store</a>
@@ -512,5 +514,6 @@
   <script src="/scripts/portal.js?v=20261109-r8" defer></script>
       <script src="/scripts/novedades.js?v=20261121-news" defer></script>
   <script src="/scripts/grafos.js?v=20261118-webgl-v5" defer></script>
+  <script src="/scripts/scroll-fx.js?v=20261122-fx1" defer></script>
 </body>
 </html>

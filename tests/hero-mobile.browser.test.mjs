@@ -31,7 +31,7 @@ test('solar hero: real ES/EN markup, canvas pixels and reduced motion at mobile 
           ${styles.join('\n')}${body}<main>${hero}</main>${scripts.join('\n')}</body></html>`);
       }
       // Only public hero resources. No APIs, other scripts or arbitrary filesystem reads.
-      if (!/^\/(?:styles\/[\w-]+\.css|vendor\/bootstrap\/bootstrap\.min\.css|scripts\/hero-orbit\.js|assets\/(?:[\w-]+\/)*[\w.-]+\.(?:webp|png|svg|woff2?))$/.test(path)) {
+      if (!/^\/(?:(?:styles|css)\/[\w-]+\.css|vendor\/bootstrap\/bootstrap\.min\.css|scripts\/hero-orbit\.js|assets\/(?:[\w-]+\/)*[\w.-]+\.(?:webp|png|svg|woff2?))$/.test(path)) {
         res.writeHead(404).end(); return;
       }
       const content = await readFile(join(root, path.slice(1)));
