@@ -1,5 +1,8 @@
 /* Shared storefront interactions. Public pages are intentionally store-only. */
 (function () {
+    // Capture before translation changes <html lang>; a translated page stays Spanish at its source.
+    const nativePageLanguage = (document.documentElement.lang || "es").toLowerCase();
+    const isNativeEnglish = nativePageLanguage.startsWith("en");
     /**
      * Construye una única navegación para todo el portal y evita que cada
      * página mantenga una copia distinta de enlaces, títulos y estados activos.
@@ -77,14 +80,11 @@ try {
             langBtn.type = "button";
             langBtn.id = "nav-lang-toggle";
             langBtn.innerHTML = `<span>${isTranslated ? 'ES' : 'EN'}</span>`;
-            langBtn.title = isTranslated ? "Cambiar a Español" : "Translate to English";
+            langBtn.title = isTranslated ? "Cambiar a Español" : "Open English version";
             langBtn.setAttribute("aria-label", langBtn.title);
             langBtn.setAttribute("aria-pressed", String(isTranslated));
             langBtn.addEventListener("click", () => {
-                if (isEn) {
-                    const es = rawPath.replace("guide-en.html", "guia.html").replace("events-en.html", "eventos.html").replace("index-en.html", "").replace(/-en\.html$/, ".html");
-                    window.location.href = "/" + es;
-                } else if (isTranslated) {
+                if (isTranslated) {
                     resetGoogleTranslate();
                 } else {
                     applyGoogleTranslate('en');
@@ -95,7 +95,7 @@ try {
 
             menu.replaceChildren(fragment);
             navigation.classList.remove("home-nav");
-            if (brandSubtitle) brandSubtitle.textContent = "Temporada 2 · Purpur 26.2";
+            if (brandSubtitle) brandSubtitle.textContent = isEn ? "Season 2 · Purpur 26.2" : "Temporada 2 · Purpur 26.2";
         } catch (error) {
             console.error("No se pudo unificar la navegación principal", error);
         }
@@ -163,28 +163,52 @@ try {
         container.addEventListener("mouseleave", () => { stage.style.transform = ""; });
     }
 
+    // Native pages work with the existing CSP; no external translator is loaded.
+    const englishPages = {
+        'index.html': 'index-en.html', 'guia.html': 'guide-en.html',
+        'eventos.html': 'events-en.html', 'votar.html': 'vote-en.html',
+        'temporada-2.html': 'temporada-2-en.html', 'terms.html': 'terms-en.html',
+        'apoya.html': 'apoya-en.html', 'metricas.html': 'metricas-en.html',
+        'support.html': 'support-en.html', 'privacidad.html': 'privacidad-en.html',
+        'guia-comandos.html': 'guia-comandos-en.html', 'guia-rangos.html': 'guia-rangos-en.html',
+        'guia-slimefun.html': 'guia-slimefun-en.html', 'guia-plugins.html': 'guia-plugins-en.html',
+        'guia-poderes.html': 'guia-poderes-en.html', 'store.html': 'store-en.html',
+        'maintenance.html': 'maintenance-en.html', '404.html': '404-en.html', '500.html': '500-en.html',
+        'saori.html': 'saori-en.html', 'novedades.html': 'novedades-en.html', 'wiki-slimefun.html': 'wiki-slimefun-en.html'
+    };
+
     function setGoogleTranslateCookie(lang) {
+        // Retain the legacy helper to clear both cookie scopes during migration.
+        if (lang !== 'es') return;
         const domain = window.location.hostname.includes('drakescraft.cl') ? '.drakescraft.cl' : window.location.hostname;
-        document.cookie = `googtrans=/es/${lang}; path=/;`;
-        document.cookie = `googtrans=/es/${lang}; path=/; domain=${domain};`;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain};`;
     }
 
     function isEnglishSelected() {
-        return document.cookie.includes('googtrans=/es/en')
-            || localStorage.getItem('drakes_lang_choice') === 'en';
+        return isNativeEnglish;
     }
 
     function applyGoogleTranslate(lang) {
+        if (lang !== 'en') return;
         localStorage.setItem('drakes_lang_choice', lang);
-        setGoogleTranslateCookie(lang);
-        window.location.reload();
+        setGoogleTranslateCookie('es');
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        const target = Object.hasOwn(englishPages, path) ? englishPages[path] : null;
+        window.location.href = '/' + (target || 'index-en.html')
+            + (target ? window.location.search + window.location.hash : '');
     }
 
     function resetGoogleTranslate() {
         localStorage.removeItem('drakes_lang_choice');
-        const domain = window.location.hostname.includes('drakescraft.cl') ? '.drakescraft.cl' : window.location.hostname;
-        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain};`;
+        setGoogleTranslateCookie('es');
+        if (isNativeEnglish) {
+            const path = window.location.pathname.split('/').pop() || '';
+            const spanishPath = Object.keys(englishPages).find(key => englishPages[key] === path);
+            window.location.href = (spanishPath && spanishPath !== 'index.html' ? '/' + spanishPath : '/')
+                + (spanishPath ? window.location.search + window.location.hash : '');
+            return;
+        }
         window.location.reload();
     }
 
@@ -200,10 +224,10 @@ try {
             <span class="dk-lang-icon" aria-hidden="true">🌐</span>
             <div class="dk-lang-text">
               <strong>We noticed your browser is in English.</strong>
-              <span>Would you like to translate DrakesCraft into English?</span>
+              <span>Would you like to open the English version of DrakesCraft?</span>
             </div>
             <div class="dk-lang-actions">
-              <button class="dk-lang-btn dk-lang-btn--primary" id="dk-lang-translate" type="button">🌐 Translate to English</button>
+              <button class="dk-lang-btn dk-lang-btn--primary" id="dk-lang-translate" type="button">🌐 Open English version</button>
               <button class="dk-lang-btn dk-lang-btn--ghost" id="dk-lang-dismiss" type="button" aria-label="Dismiss">✕ Not now</button>
             </div>
           </div>
@@ -222,35 +246,14 @@ try {
     }
 
     function initBilingualSystem() {
-        if (!document.getElementById('google_translate_element')) {
-            const gtDiv = document.createElement('div');
-            gtDiv.id = 'google_translate_element';
-            gtDiv.style.display = 'none';
-            document.body.appendChild(gtDiv);
-        }
-
-        window.googleTranslateElementInit = function() {
-            try {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'es',
-                    includedLanguages: 'en,es,pt,fr',
-                    autoDisplay: false
-                }, 'google_translate_element');
-            } catch (ignored) {}
-        };
-
-        if (!document.querySelector('script[src*="translate.google.com"]')) {
-            const s = document.createElement('script');
-            s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-            s.async = true;
-            document.body.appendChild(s);
-        }
-
-        const isAlreadyEn = isEnglishSelected();
-        // Keep assistive technology aligned with the language selected by the site toggle.
-        document.documentElement.lang = isAlreadyEn ? 'en' : 'es';
-        if (isAlreadyEn && !document.cookie.includes('googtrans=/es/en')) {
-            setGoogleTranslateCookie('en');
+        // Native English pages need neither translation nor a language suggestion.
+        if (isNativeEnglish) return;
+        // Migrate existing choices to native English without relabelling Spanish content.
+        const isAlreadyEn = localStorage.getItem('drakes_lang_choice') === 'en'
+            || document.cookie.includes('googtrans=/es/en');
+        if (isAlreadyEn) {
+            applyGoogleTranslate('en');
+            return;
         }
 
         const userLang = (navigator.language || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
