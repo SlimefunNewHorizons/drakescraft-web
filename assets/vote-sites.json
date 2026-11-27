@@ -28,6 +28,13 @@
       "url": "https://topminecraftservers.org/server/45114",
       "cooldown_hours": 24,
       "enabled": true
+    },
+    {
+      "id": "minecraftservers_org",
+      "name": "MinecraftServers.org",
+      "url": "https://minecraftservers.org/vote/693662",
+      "cooldown_hours": 24,
+      "enabled": true
     }
   ]
 }
