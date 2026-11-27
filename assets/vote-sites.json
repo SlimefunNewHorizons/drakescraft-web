@@ -23,11 +23,11 @@
       "enabled": true
     },
     {
-      "id": "listado-4",
-      "name": "Listado 4",
-      "url": "https://example.invalid/PLACEHOLDER-listado-4",
+      "id": "topminecraftservers",
+      "name": "TopMinecraftServers",
+      "url": "https://topminecraftservers.org/server/45114",
       "cooldown_hours": 24,
-      "enabled": false
+      "enabled": true
     }
   ]
 }
