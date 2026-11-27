@@ -35,6 +35,13 @@
       "url": "https://minecraftservers.org/vote/693662",
       "cooldown_hours": 24,
       "enabled": true
+    },
+    {
+      "id": "planetminecraft",
+      "name": "PlanetMinecraft",
+      "url": "https://www.planetminecraft.com/server/drakescraft-7111349/vote/",
+      "cooldown_hours": 24,
+      "enabled": true
     }
   ]
 }
