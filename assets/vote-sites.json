@@ -2,18 +2,18 @@
   "_nota": "Lista de sitios de voto (la lee la web). Nix: reemplaza name, url y pon enabled:true. Debe coincidir con plugins/DrakesVotes/config.yml (service-name) en Dallas. cooldown_hours solo informa en la web; el servidor valida con su propio cooldown-hours.",
   "sites": [
     {
-      "id": "listado-1",
-      "name": "Listado 1",
-      "url": "https://example.invalid/PLACEHOLDER-listado-1",
+      "id": "minerank",
+      "name": "Minerank",
+      "url": "https://minerank.com/",
       "cooldown_hours": 24,
-      "enabled": false
+      "enabled": true
     },
     {
-      "id": "listado-2",
-      "name": "Listado 2",
-      "url": "https://example.invalid/PLACEHOLDER-listado-2",
+      "id": "minecraft-mp",
+      "name": "Minecraft-MP",
+      "url": "https://minecraft-mp.com/server/351633/vote/",
       "cooldown_hours": 24,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "listado-3",
