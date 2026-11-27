@@ -51,8 +51,8 @@
 .fx-mask-line {
   display: block;
   overflow: clip;
-  padding-block: 0.04em 0.14em;
-  margin-block: -0.04em -0.14em;
+  padding-block: 0.04em 0.26em;
+  margin-block: -0.04em -0.26em;
   padding-inline-end: 0.12em;
 }
 
@@ -113,6 +113,8 @@
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
   padding-inline-end: 0.12em;
+  padding-block-end: 0.22em;
+  margin-block-end: -0.22em;
 }
 
 [data-countup],
