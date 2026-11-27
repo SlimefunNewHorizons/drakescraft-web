@@ -16,11 +16,11 @@
       "enabled": true
     },
     {
-      "id": "listado-3",
-      "name": "Listado 3",
-      "url": "https://example.invalid/PLACEHOLDER-listado-3",
+      "id": "servidoresdeminecraft",
+      "name": "ServidoresDeMinecraft",
+      "url": "https://servidoresdeminecraft.es/server/status/DAg9fYpz/mc.drakescraft.cl",
       "cooldown_hours": 24,
-      "enabled": false
+      "enabled": true
     },
     {
       "id": "listado-4",
